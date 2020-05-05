@@ -27,21 +27,21 @@ See the `examples` directory for a complete list of examples.
   roles:
     - ansible-icinga-modules
   tasks:
-		- name: create a host in icinga
-			icinga_host:
-				state: present
-				url: "https://example.com"
-				url_username: "{{ icinga_user }}"
-				url_password: "{{ icinga_pass }}"
-				object_name: "{{ ansible_hostname }}"
-				address: "{{ ansible_default_ipv4.address }}"
-				display_name: "{{ ansible_hostname }}"
-				groups:
-					- "foo"
-				imports:
-					- "StandardServer"
-				vars:
-					dnscheck: "no"
+    - name: create a host in icinga
+      icinga_host:
+        state: present
+        url: "https://example.com"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "{{ ansible_hostname }}"
+        address: "{{ ansible_default_ipv4.address }}"
+        display_name: "{{ ansible_hostname }}"
+        groups:
+          - "foo"
+        imports:
+          - "StandardServer"
+        vars:
+          dnscheck: "no"
 ```
 
 License
