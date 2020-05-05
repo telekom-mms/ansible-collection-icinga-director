@@ -1,0 +1,8 @@
+  - name: create servicegroup
+    icinga_servicegroup:
+      state: present
+      url: "https://example.com"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+      object_name: customer-servicegroup
+      assign_filter: 'host.name="cust-*"'

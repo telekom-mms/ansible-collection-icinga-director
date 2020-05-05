@@ -1,0 +1,17 @@
+  - name: create notification
+    icinga_notification:
+      state: present
+      url: "https://example.com"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+      apply_to: host
+      assign_filter: '"ABLE_E-Mail"=host.vars.enabled_notifications'
+      imports:
+        - host
+      notification_interval: '0'
+      object_name: able_E-Mail_host
+      types:
+        - Problem
+        - Recovery
+      users:
+        - ABLE_E-Mail

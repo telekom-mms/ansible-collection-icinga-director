@@ -1,0 +1,12 @@
+  - name: create servicetemplate
+    tags: servicetemplate
+    icinga_service_template:
+      url: "https://example.com"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+      object_name: Consul
+      use_agent: true
+      vars:
+          procs_argument: consul
+          procs_critical: '1:'
+          procs_warning: '1:'

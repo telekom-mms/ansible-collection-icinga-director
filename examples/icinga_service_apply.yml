@@ -1,0 +1,20 @@
+- name: Add service apply rule to icinga
+  icinga_service_apply:
+    state: present
+    url: "https://example.com"
+    url_username: ""
+    url_password: ""
+    object_name: "SERVICE_promtail"
+    assign_filter: 'host.vars.HostOS="Linux"&host.name="sbk-pilot-api*'
+    apply_for: "host.vars.enabled_notifications"
+    display_name: "Promtail process"
+    imports:
+      - http
+    groups:
+      - sbk
+    vars:
+      http_address: "$address$"
+      http_port: "9080"
+      http_uri: "/ready"
+      http_string: "Ready"
+      http_expect: "Yes"

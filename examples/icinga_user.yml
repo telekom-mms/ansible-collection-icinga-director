@@ -1,0 +1,12 @@
+  - name: create user
+    icinga_user:
+      state: present
+      url: "https://example.com"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+      imports:
+        - "user"
+      object_name: "rb"
+      display_name: "Rufbereitschaft"
+      pager: 'SIP/emergency'
+      period: '24/7'
