@@ -1,4 +1,4 @@
-name: CI
+name: ansible-test
 
 on: push
 
@@ -14,8 +14,8 @@ jobs:
         uses: actions/checkout@v1
         with:
           path: ansible_collections/T_Systems_MMS/icinga
-      - name: Install Ansible 2.9.0rc1
-        run: pip install ansible==2.9.0 --disable-pip-version-check
+      - name: Install Ansible
+        run: pip install ansible --disable-pip-version-check
       - name: Run sanity tests
         run: ansible-test sanity --docker -v --color
       - name: Run unit tests
