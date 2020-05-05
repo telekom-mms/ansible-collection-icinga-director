@@ -23,19 +23,7 @@ jobs:
         # targets: |
         #   playbook_1.yml
         #   playbook_2.yml
-        targets: |
-          icinga_command.yml
-          icinga_host.yml
-          icinga_hostgroup.yml
-          icinga_notification.yml
-          icinga_service_apply.yml
-          icinga_service_template.yml
-          icinga_service_timeperiod.yml
-          icinga_service_user.yml
-          icinga_servicegroup.yml
-          icinga_timeperiod.yml
-          icinga_user.yml
-          icinga_user_template.yml
+        targets: examples/*.yml
         # [optional]
         # Arguments to override a package and its version to be set explicitly.
         # Must follow the example syntax.
