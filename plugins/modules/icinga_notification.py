@@ -144,7 +144,6 @@ EXAMPLES = '''
         - Recovery
       users:
         - ABLE_E-Mail
-
 '''
 
 from ansible.module_utils.basic import AnsibleModule

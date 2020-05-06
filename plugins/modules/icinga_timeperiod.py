@@ -122,7 +122,6 @@ EXAMPLES = '''
         wednesday: "09:00-16:00"
         thursday: "09:00-16:00"
         friday: "09:00-16:00"
-
 '''
 
 from ansible.module_utils.basic import AnsibleModule

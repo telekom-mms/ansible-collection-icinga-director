@@ -136,7 +136,6 @@ EXAMPLES = '''
       display_name: "Rufbereitschaft"
       pager: 'SIP/emergency'
       period: '24/7'
-
 '''
 
 from ansible.module_utils.basic import AnsibleModule
