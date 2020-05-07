@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 from __future__ import absolute_import, division, print_function
@@ -9,6 +8,8 @@ import json
 from collections import defaultdict
 
 from ansible.module_utils.urls import fetch_url
+from ansible.module_utils.six import iteritems
+
 
 class Icinga2APIObject:
     module = None
@@ -70,13 +71,13 @@ class Icinga2APIObject:
     def scrub_diff_value(self, value):
         # /command-API gibt in den Arguments das jeweilige command_id mit, das macht die diffs unnuetz
         if isinstance(value, dict):
-            for k, v in value.copy().iteritems():
+            for k, v in iteritems(value.copy()):
                 if isinstance(value[k], dict):
                     value[k].pop('command_id', None)
 
         return value
 
-    def diff(self, find_by='name', ignore_keys=[]):
+    def diff(self, find_by='name'):
         ret = self.call_url(
             path=self.path + "?" + find_by + "=" + self.object_id + "&withNull",
             method="GET"
