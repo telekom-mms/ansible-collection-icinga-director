@@ -1,5 +1,7 @@
 Ansible Icinga Modules
 =========
+[![ci-ansible-test](https://github.com/T-Systems-MMS/ansible-icinga-modules/workflows/ansible-test/badge.svg)](https://github.com/T-Systems-MMS/ansible-icinga-modules/actions?query=workflow%3Aansible-test)
+[![ci-ansible-lint](https://github.com/T-Systems-MMS/ansible-icinga-modules/workflows/Ansible%20Lint/badge.svg)](https://github.com/T-Systems-MMS/ansible-icinga-modules/actions?query=workflow%3A%22Ansible+Lint%22)
 
 This collection contains Ansible modules to change objects in Icinga 2 using the director API.
 
