@@ -19,6 +19,24 @@ Currently supported modules:
 * `icinga_user_template`
 
 
+Installation
+------------
+
+These modules are distributed as [collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html).
+To install them, run:
+
+```
+ansible-galaxy collection install T_Systems_MMS.icinga
+```
+
+Alternatively put the collection into a `requirements.yml`-file:
+
+```
+---
+collections:
+- T_Systems_MMS.icinga
+```
+
 Examples
 --------
 
@@ -26,8 +44,8 @@ See the `examples` directory for a complete list of examples.
 
 ```
 - hosts: localhost
-  roles:
-    - ansible-icinga-modules
+  collections:
+    - T_Systems_MMS.icinga
   tasks:
     - name: create a host in icinga
       icinga_host:
