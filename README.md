@@ -1,7 +1,8 @@
-Ansible Icinga Modules
+Icinga Director Collection for Ansible
 =========
-[![ci-ansible-test](https://github.com/T-Systems-MMS/ansible-icinga-modules/workflows/ansible-test/badge.svg)](https://github.com/T-Systems-MMS/ansible-icinga-modules/actions?query=workflow%3Aansible-test)
-[![ci-ansible-lint](https://github.com/T-Systems-MMS/ansible-icinga-modules/workflows/Ansible%20Lint/badge.svg)](https://github.com/T-Systems-MMS/ansible-icinga-modules/actions?query=workflow%3A%22Ansible+Lint%22)
+
+[![ci-ansible-test](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/workflows/ansible-test/badge.svg)](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/actions?query=workflow%3Aansible-test)
+[![ci-ansible-lint](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/workflows/Ansible%20Lint/badge.svg)](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/actions?query=workflow%3A%22Ansible+Lint%22)
 
 This collection contains Ansible modules to change objects in Icinga 2 using the director API.
 
@@ -26,7 +27,7 @@ These modules are distributed as [collections](https://docs.ansible.com/ansible/
 To install them, run:
 
 ```
-ansible-galaxy collection install T_Systems_MMS.icinga
+ansible-galaxy collection install T_Systems_MMS.icinga-director
 ```
 
 Alternatively put the collection into a `requirements.yml`-file:
@@ -34,7 +35,7 @@ Alternatively put the collection into a `requirements.yml`-file:
 ```
 ---
 collections:
-- T_Systems_MMS.icinga
+- T_Systems_MMS.icinga-director
 ```
 
 Examples
@@ -45,7 +46,7 @@ See the `examples` directory for a complete list of examples.
 ```
 - hosts: localhost
   collections:
-    - T_Systems_MMS.icinga
+    - T_Systems_MMS.icinga-director
   tasks:
     - name: create a host in icinga
       icinga_host:
