@@ -13,7 +13,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
         with:
-          path: ansible_collections/T_Systems_MMS/icinga
+          path: ansible_collections/t_systems_mms/icinga_director
       - name: Install Ansible
         run: pip install ansible --disable-pip-version-check
       - name: Run sanity tests
