@@ -27,7 +27,7 @@ These modules are distributed as [collections](https://docs.ansible.com/ansible/
 To install them, run:
 
 ```
-ansible-galaxy collection install T_Systems_MMS.icinga-director
+ansible-galaxy collection install T_Systems_MMS.icinga_director
 ```
 
 Alternatively put the collection into a `requirements.yml`-file:
@@ -35,7 +35,7 @@ Alternatively put the collection into a `requirements.yml`-file:
 ```
 ---
 collections:
-- T_Systems_MMS.icinga-director
+- T_Systems_MMS.icinga_director
 ```
 
 Examples
@@ -46,7 +46,7 @@ See the `examples` directory for a complete list of examples.
 ```
 - hosts: localhost
   collections:
-    - T_Systems_MMS.icinga-director
+    - T_Systems_MMS.icinga_director
   tasks:
     - name: create a host in icinga
       icinga_host:
