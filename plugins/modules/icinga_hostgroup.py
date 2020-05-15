@@ -118,7 +118,7 @@ EXAMPLES = '''
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.T_Systems_MMS.icinga.plugins.module_utils.icinga import Icinga2APIObject
+from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import Icinga2APIObject
 
 
 # ===========================================
