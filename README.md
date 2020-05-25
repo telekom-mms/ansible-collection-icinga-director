@@ -9,6 +9,7 @@ This collection contains Ansible modules to change objects in Icinga 2 using the
 Currently supported modules:
 
 * `icinga_command`
+* `icinga_command_template`
 * `icinga_host`
 * `icinga_hostgroup`
 * `icinga_notification`
