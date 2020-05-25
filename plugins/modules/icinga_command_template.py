@@ -242,9 +242,9 @@ def main():
     command_type = module.params["command_type"]
     timeout = module.params["timeout"]
     zone = module.params["zone"]
-    # typ von arguments ist eigentlich dict, also ohne Angabe = {}
-    # die director API schickt hier aber ein leeres Array zurueck wenn nichts definiert
-    # daher ueberschreiben, damit der diff besser funktioniert
+    # `arguments` is of type dict, default should be {}
+    # however, the director api returns [] when no `arguments` are set, making the diff seem changed
+    # therefore set the default to [] as well to get a clean diff output
     if not module.params["arguments"]:
         module.params["arguments"] = []
     arguments = module.params["arguments"]
