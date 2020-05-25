@@ -1,8 +1,20 @@
 # Changelog
 
-## [v1.0.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/v1.0.0) (2020-05-15)
+## [v1.1.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/v1.1.0) (2020-05-25)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/2492296965515a9ac885c6a4874acba8a7475895...v1.0.0)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.0.0...v1.1.0)
+
+**Implemented enhancements:**
+
+- Add icinga command template [\#8](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/8) ([mmslkr](https://github.com/mmslkr))
+
+**Fixed bugs:**
+
+- fix name of imports [\#7](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/7) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [1.0.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.0.0) (2020-05-15)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/2492296965515a9ac885c6a4874acba8a7475895...1.0.0)
 
 **Merged pull requests:**
 
