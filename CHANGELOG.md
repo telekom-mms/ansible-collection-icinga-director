@@ -1,8 +1,20 @@
 # Changelog
 
-## [v1.1.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/v1.1.0) (2020-05-25)
+## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.1) (2020-06-04)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.0.0...v1.1.0)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.1.0...1.1.1)
+
+**Implemented enhancements:**
+
+- fix issue \#9 - define assing\_filter as string [\#10](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/10) ([FLiPp3r90](https://github.com/FLiPp3r90))
+
+**Fixed bugs:**
+
+- assign\_filter variable in icinga\_notification module should be a string [\#9](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/9)
+
+## [1.1.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.0) (2020-05-25)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.0.0...1.1.0)
 
 **Implemented enhancements:**
 
