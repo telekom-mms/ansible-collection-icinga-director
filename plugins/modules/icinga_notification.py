@@ -117,7 +117,7 @@ options:
     description:
       - The filter where the service apply rule will take effect
     required: false
-    type: "dict"
+    type: "str"
   imports:
     description:
       - Importable templates, add as many as you want.
@@ -166,7 +166,7 @@ def main():
         object_name=dict(required=True),
         imports=dict(type="list", required=True),
         apply_to=dict(required=True, choices=["service", "host"]),
-        assign_filter=dict(type="dict", required=False),
+        assign_filter=dict(required=False),
         notification_interval=dict(required=False),
         types=dict(type="list", required=False),
         users=dict(type="list", required=False)
