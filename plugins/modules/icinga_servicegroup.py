@@ -146,16 +146,11 @@ def main():
         supports_check_mode=True
     )
 
-    state = module.params["state"]
-    object_name = module.params["object_name"]
-    display_name = module.params["display_name"]
-    assign_filter = module.params["assign_filter"]
-
     data = {
-        'object_name': object_name,
+        'object_name': module.params["object_name"],
         'object_type': "object",
-        'display_name': display_name,
-        'assign_filter': assign_filter,
+        'display_name': module.params["display_name"],
+        'assign_filter': module.params["assign_filter"],
     }
 
     try:
@@ -163,8 +158,8 @@ def main():
     except Exception as e:
         module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
 
-    changed, diff = icinga_object.update(state)
-    module.exit_json(changed=changed, object_name=object_name, data=icinga_object.data, diff=diff)
+    changed, diff = icinga_object.update(module.params["state"])
+    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
 
 
 # import module snippets

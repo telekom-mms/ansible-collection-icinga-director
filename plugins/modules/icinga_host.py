@@ -192,26 +192,16 @@ def main():
         supports_check_mode=True
     )
 
-    state = module.params["state"]
-    object_name = module.params["object_name"]
-    display_name = module.params["display_name"]
-    groups = module.params["groups"]
-    imports = module.params["imports"]
-    disabled = module.params["disabled"]
-    address = module.params["address"]
-    zone = module.params["zone"]
-    vars = module.params["vars"]
-
     data = {
-        'object_name': object_name,
+        'object_name': module.params["object_name"],
         'object_type': "object",
-        'display_name': display_name,
-        'groups': groups,
-        'imports': imports,
-        'disabled': disabled,
-        'address': address,
-        'zone': zone,
-        'vars': vars,
+        'display_name': module.params["display_name"],
+        'groups': module.params["groups"],
+        'imports': module.params["imports"],
+        'disabled': module.params["disabled"],
+        'address': module.params["address"],
+        'zone': module.params["zone"],
+        'vars': module.params["vars"],
     }
 
     try:
@@ -219,8 +209,8 @@ def main():
     except Exception as e:
         module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
 
-    changed, diff = icinga_object.update(state)
-    module.exit_json(changed=changed, object_name=object_name, data=icinga_object.data, diff=diff)
+    changed, diff = icinga_object.update(module.params["state"])
+    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
 
 
 # import module snippets

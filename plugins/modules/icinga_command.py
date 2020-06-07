@@ -233,33 +233,23 @@ def main():
         supports_check_mode=True
     )
 
-    state = module.params["state"]
-    object_name = module.params["object_name"]
-    imports = module.params["imports"]
-    disabled = module.params["disabled"]
-    vars = module.params["vars"]
-    command = module.params["command"]
-    command_type = module.params["command_type"]
-    timeout = module.params["timeout"]
-    zone = module.params["zone"]
     # typ von arguments ist eigentlich dict, also ohne Angabe = {}
     # die director API schickt hier aber ein leeres Array zurueck wenn nichts definiert
     # daher ueberschreiben, damit der diff besser funktioniert
     if not module.params["arguments"]:
         module.params["arguments"] = []
-    arguments = module.params["arguments"]
 
     data = {
-        'object_name': object_name,
+        'object_name': module.params["object_name"],
         'object_type': "object",
-        'imports': imports,
-        'disabled': disabled,
-        'vars': vars,
-        'command': command,
-        'methods_execute': command_type,
-        'timeout': timeout,
-        'zone': zone,
-        'arguments': arguments,
+        'imports': module.params["imports"],
+        'disabled': module.params["disabled"],
+        'vars': module.params["vars"],
+        'command': module.params["command"],
+        'methods_execute': module.params["command_type"],
+        'timeout': module.params["timeout"],
+        'zone': module.params["zone"],
+        'arguments': module.params["arguments"],
     }
 
     try:
@@ -267,8 +257,8 @@ def main():
     except Exception as e:
         module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
 
-    changed, diff = icinga_object.update(state)
-    module.exit_json(changed=changed, object_name=object_name, data=icinga_object.data, diff=diff)
+    changed, diff = icinga_object.update(module.params["state"])
+    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
 
 
 # import module snippets

@@ -170,24 +170,15 @@ def main():
         supports_check_mode=True
     )
 
-    state = module.params["state"]
-    object_name = module.params["object_name"]
-    display_name = module.params["display_name"]
-    imports = module.params["imports"]
-    disabled = module.params["disabled"]
-    email = module.params["email"]
-    pager = module.params["pager"]
-    period = module.params["period"]
-
     data = {
-        'object_name': object_name,
+        'object_name': module.params["object_name"],
         'object_type': "object",
-        'display_name': display_name,
-        'imports': imports,
-        'disabled': disabled,
-        'email': email,
-        'pager': pager,
-        'period': period,
+        'display_name': module.params["display_name"],
+        'imports': module.params["imports"],
+        'disabled': module.params["disabled"],
+        'email': module.params["email"],
+        'pager': module.params["pager"],
+        'period': module.params["period"],
     }
 
     try:
@@ -195,8 +186,8 @@ def main():
     except Exception as e:
         module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
 
-    changed, diff = icinga_object.update(state)
-    module.exit_json(changed=changed, object_name=object_name, data=icinga_object.data, diff=diff)
+    changed, diff = icinga_object.update(module.params["state"])
+    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
 
 
 # import module snippets
