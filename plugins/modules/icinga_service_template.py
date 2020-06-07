@@ -35,7 +35,7 @@ author: "Sebastian Gumprich"
 options:
   url:
     description:
-      - HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@services/templates.domain[:port]/path
+      - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
     required: true
     type: str
   use_proxy:
