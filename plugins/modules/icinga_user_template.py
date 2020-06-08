@@ -35,7 +35,7 @@ author: "Lars Krahl"
 options:
   url:
     description:
-      - HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
+      - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
     required: true
     type: str
   use_proxy:
@@ -148,18 +148,12 @@ def main():
         supports_check_mode=True
     )
 
-    state = module.params["state"]
-    object_name = module.params["object_name"]
-    imports = module.params["imports"]
-    period = module.params["period"]
-    enable_notifications = module.params["enable_notifications"]
-
     data = {
-        'object_name': object_name,
+        'object_name': module.params["object_name"],
         'object_type': "template",
-        'imports': imports,
-        'period': period,
-        'enable_notifications': enable_notifications,
+        'imports': module.params["imports"],
+        'period': module.params["period"],
+        'enable_notifications': module.params["enable_notifications"],
     }
 
     try:
@@ -167,8 +161,8 @@ def main():
     except Exception as e:
         module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
 
-    changed, diff = icinga_object.update(state)
-    module.exit_json(changed=changed, object_name=object_name, data=icinga_object.data, diff=diff)
+    changed, diff = icinga_object.update(module.params["state"])
+    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
 
 
 # import module snippets

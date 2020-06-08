@@ -35,7 +35,7 @@ author: "Sebastian Gumprich"
 options:
   url:
     description:
-      - HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
+      - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
     required: true
     type: str
   use_proxy:
@@ -232,28 +232,17 @@ def main():
         supports_check_mode=True
     )
 
-    state = module.params["state"]
-    object_name = module.params["object_name"]
-    display_name = module.params["display_name"]
-    apply_for = module.params["apply_for"]
-    assign_filter = module.params["assign_filter"]
-    imports = module.params["imports"]
-    groups = module.params["groups"]
-    vars = module.params["vars"]
-    notes = module.params["notes"]
-    notes_url = module.params["notes_url"]
-
     data = {
-        'object_name': object_name,
-        'display_name': display_name,
+        'object_name': module.params["object_name"],
+        'display_name': module.params["display_name"],
         'object_type': "apply",
-        'apply_for': apply_for,
-        'assign_filter': assign_filter,
-        'imports': imports,
-        'groups': groups,
-        'vars': vars,
-        'notes': notes,
-        'notes_url': notes_url,
+        'apply_for': module.params["apply_for"],
+        'assign_filter': module.params["assign_filter"],
+        'imports': module.params["imports"],
+        'groups': module.params["groups"],
+        'vars': module.params["vars"],
+        'notes': module.params["notes"],
+        'notes_url': module.params["notes_url"],
     }
 
     try:
@@ -261,8 +250,8 @@ def main():
     except Exception as e:
         module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
 
-    changed, diff = icinga_object.update(state)
-    module.exit_json(changed=changed, object_name=object_name, data=icinga_object.data, diff=diff)
+    changed, diff = icinga_object.update(module.params["state"])
+    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
 
 
 # import module snippets

@@ -35,7 +35,7 @@ author: "Sebastian Gumprich"
 options:
   url:
     description:
-      - HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@services/templates.domain[:port]/path
+      - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
     required: true
     type: str
   use_proxy:
@@ -251,48 +251,27 @@ def main():
         supports_check_mode=True
     )
 
-    state = module.params["state"]
-    object_name = module.params["object_name"]
-    disabled = module.params["disabled"]
-    check_command = module.params["check_command"]
-    check_interval = module.params["check_interval"]
-    check_period = module.params["check_period"]
-    check_timeout = module.params["check_timeout"]
-    enable_active_checks = module.params["enable_active_checks"]
-    enable_event_handler = module.params["enable_event_handler"]
-    enable_notifications = module.params["enable_notifications"]
-    enable_passive_checks = module.params["enable_passive_checks"]
-    enable_perfdata = module.params["enable_perfdata"]
-    groups = module.params["groups"]
-    imports = module.params["imports"]
-    max_check_attempts = module.params["max_check_attempts"]
-    notes = module.params["notes"]
-    retry_interval = module.params["retry_interval"]
-    use_agent = module.params["use_agent"]
-    vars = module.params["vars"]
-    volatile = module.params["volatile"]
-
     data = {
-        "object_name": object_name,
-        "disabled": disabled,
+        "object_name": module.params["object_name"],
+        "disabled": module.params["disabled"],
         "object_type": "template",
-        "check_command": check_command,
-        "check_interval": check_interval,
-        "check_period": check_period,
-        "check_timeout": check_timeout,
-        "enable_active_checks": enable_active_checks,
-        "enable_event_handler": enable_event_handler,
-        "enable_notifications": enable_notifications,
-        "enable_passive_checks": enable_passive_checks,
-        "enable_perfdata": enable_perfdata,
-        "groups": groups,
-        "imports": imports,
-        "max_check_attempts": max_check_attempts,
-        "notes": notes,
-        "retry_interval": retry_interval,
-        "use_agent": use_agent,
-        "vars": vars,
-        "volatile": volatile,
+        "check_command": module.params["check_command"],
+        "check_interval": module.params["check_interval"],
+        "check_period": module.params["check_period"],
+        "check_timeout": module.params["check_timeout"],
+        "enable_active_checks": module.params["enable_active_checks"],
+        "enable_event_handler": module.params["enable_event_handler"],
+        "enable_notifications": module.params["enable_notifications"],
+        "enable_passive_checks": module.params["enable_passive_checks"],
+        "enable_perfdata": module.params["enable_perfdata"],
+        "groups": module.params["groups"],
+        "imports": module.params["imports"],
+        "max_check_attempts": module.params["max_check_attempts"],
+        "notes": module.params["notes"],
+        "retry_interval": module.params["retry_interval"],
+        "use_agent": module.params["use_agent"],
+        "vars": module.params["vars"],
+        "volatile": module.params["volatile"],
     }
 
     try:
@@ -300,8 +279,8 @@ def main():
     except Exception as e:
         module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
 
-    changed, diff = icinga_object.update(state)
-    module.exit_json(changed=changed, object_name=object_name, data=icinga_object.data, diff=diff)
+    changed, diff = icinga_object.update(module.params["state"])
+    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
 
 
 # import module snippets
