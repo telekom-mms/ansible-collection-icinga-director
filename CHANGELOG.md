@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.4](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.4) (2020-06-09)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.1.3...1.1.4)
+
+**Implemented enhancements:**
+
+- added required ansible version to readme.md [\#17](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/17) ([xFuture603](https://github.com/xFuture603))
+
 ## [1.1.3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.3) (2020-06-09)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.1.2...1.1.3)
@@ -18,7 +26,6 @@
 - add action to publish to galaxy [\#14](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/14) ([rndmh3ro](https://github.com/rndmh3ro))
 - github-action to automatically create release-drafts [\#12](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/12) ([rndmh3ro](https://github.com/rndmh3ro))
 - remove unused intermediate assignments [\#11](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/11) ([schurzi](https://github.com/schurzi))
-- fix issue \#9 - define assing\_filter as string [\#10](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/10) ([FLiPp3r90](https://github.com/FLiPp3r90))
 
 **Fixed bugs:**
 
@@ -27,6 +34,10 @@
 ## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.1) (2020-06-04)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.1.0...1.1.1)
+
+**Implemented enhancements:**
+
+- fix issue \#9 - define assing\_filter as string [\#10](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/10) ([FLiPp3r90](https://github.com/FLiPp3r90))
 
 ## [1.1.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.0) (2020-05-25)
 
