@@ -1,0 +1,18 @@
+name: Publish collection to Ansible Galaxy
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Deploy the collection
+      uses: artis3n/ansible_galaxy_collection@v2
+      with:
+        api_key: ${{ secrets.GALAXY_API_KEY }}
+        galaxy_version: ${{ github.event.release.tag_name }}
