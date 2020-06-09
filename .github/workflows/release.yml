@@ -30,14 +30,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
 
-      - name: Generate changelog for the release
-        uses: charmixer/auto-changelog-action@8095796
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          since_tag: ${{ steps.previoustag.outputs.tag }}
-          future_release: ${{ steps.version.outputs.next-version }}
-          output: CHANGELOGRELEASE.md
-
       - name: push changelog
         uses: github-actions-x/commit@v2.6
         with:
@@ -48,6 +40,14 @@ jobs:
           files: CHANGELOG.md
           name: T-Systems MMS
           email: frage@t-systems-mms.com
+
+      - name: Generate changelog for the release
+        uses: charmixer/auto-changelog-action@8095796
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          since_tag: ${{ steps.previoustag.outputs.tag }}
+          future_release: ${{ steps.version.outputs.next-version }}
+          output: CHANGELOGRELEASE.md
 
       - name: Read CHANGELOG.md
         id: package
