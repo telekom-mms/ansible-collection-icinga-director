@@ -128,7 +128,7 @@ class Icinga2APIObject:
                 elif ret['code'] == 304:
                     changed = False
                 else:
-                    self.module.fail_json(msg="bad return code while creating: %s. Error message: %s" % (ret['code'], ret['msg']))
+                    self.module.fail_json(msg="bad return code while creating: %d. Error message: %s" % (ret['code'], ret['msg']))
 
         else:
             diff_result.update({'before': 'state: absent\n'})
