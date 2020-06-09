@@ -6,6 +6,8 @@ Icinga Director Collection for Ansible
 
 This collection contains Ansible modules to change objects in Icinga 2 using the director API.
 
+Required Ansible Version: 2.9
+
 Currently supported modules:
 
 * `icinga_command`
