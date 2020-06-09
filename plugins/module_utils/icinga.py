@@ -34,7 +34,7 @@ class Icinga2APIObject:
             body = json.loads(rsp.read())
         if info['status'] >= 400:
             body = info['body']
-        return {'code': info['status'], 'data': body}
+        return {'code': info['status'], 'data': body, 'msg': info['msg']}
 
     def exists(self, find_by='name'):
         ret = self.call_url(
@@ -111,7 +111,7 @@ class Icinga2APIObject:
                             changed = True
                             diff_result.update({'after': 'state: absent\n'})
                         else:
-                            self.module.fail_json(msg="bad return code while deleting: %s" % (ret['data']))
+                            self.module.fail_json(msg="bad return code while creating: %s. Error message: %s" % (ret['code'], ret['msg']))
                     except Exception as e:
                         self.module.fail_json(msg="exception when deleting: " + str(e))
 
@@ -128,7 +128,7 @@ class Icinga2APIObject:
                 elif ret['code'] == 304:
                     changed = False
                 else:
-                    self.module.fail_json(msg="bad return code while modifying: %s" % (ret['data']))
+                    self.module.fail_json(msg="bad return code while creating: %s. Error message: %s" % (ret['code'], ret['msg']))
 
         else:
             diff_result.update({'before': 'state: absent\n'})
@@ -143,7 +143,7 @@ class Icinga2APIObject:
                             changed = True
                             diff_result.update({'after': 'state: created\n'})
                         else:
-                            self.module.fail_json(msg="bad return code while creating: %s" % (ret['data']))
+                            self.module.fail_json(msg="bad return code while creating: %s. Error message: %s" % (ret['code'], ret['msg']))
                     except Exception as e:
                         self.module.fail_json(msg="exception while creating: " + str(e))
         return changed, diff_result
