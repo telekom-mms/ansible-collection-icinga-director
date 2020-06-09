@@ -143,7 +143,7 @@ class Icinga2APIObject:
                             changed = True
                             diff_result.update({'after': 'state: created\n'})
                         else:
-                            self.module.fail_json(msg="bad return code while creating: %s. Error message: %s" % (ret['code'], ret['msg']))
+                            self.module.fail_json(msg="bad return code while creating: %d. Error message: %s" % (ret['code'], ret['msg']))
                     except Exception as e:
                         self.module.fail_json(msg="exception while creating: " + str(e))
         return changed, diff_result
