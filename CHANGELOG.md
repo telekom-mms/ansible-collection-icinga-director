@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- add action to publish to galaxy [\#14](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/14) ([rndmh3ro](https://github.com/rndmh3ro))
 - github-action to automatically create release-drafts [\#12](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/12) ([rndmh3ro](https://github.com/rndmh3ro))
 - remove unused intermediate assignments [\#11](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/11) ([schurzi](https://github.com/schurzi))
 
