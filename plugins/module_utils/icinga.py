@@ -33,8 +33,10 @@ class Icinga2APIObject:
         if rsp:
             body = json.loads(rsp.read())
         if info['status'] >= 400:
-            body = info['body']
-        return {'code': info['status'], 'data': body, 'msg': info['msg']}
+            body = json.loads(info['body'])['error']
+        if info['status'] < 0:
+            body = info['msg']
+        return {'code': info['status'], 'data': body}
 
     def exists(self, find_by='name'):
         ret = self.call_url(
@@ -111,7 +113,7 @@ class Icinga2APIObject:
                             changed = True
                             diff_result.update({'after': 'state: absent\n'})
                         else:
-                            self.module.fail_json(msg="bad return code while creating: %d. Error message: %s" % (ret['code'], ret['msg']))
+                            self.module.fail_json(msg="bad return code while deleting: %d. Error message: %s" % (ret['code'], ret['data']))
                     except Exception as e:
                         self.module.fail_json(msg="exception when deleting: " + str(e))
 
@@ -128,7 +130,7 @@ class Icinga2APIObject:
                 elif ret['code'] == 304:
                     changed = False
                 else:
-                    self.module.fail_json(msg="bad return code while creating: %d. Error message: %s" % (ret['code'], ret['msg']))
+                    self.module.fail_json(msg="bad return code while modifying: %d. Error message: %s" % (ret['code'], ret['data']))
 
         else:
             diff_result.update({'before': 'state: absent\n'})
@@ -143,7 +145,7 @@ class Icinga2APIObject:
                             changed = True
                             diff_result.update({'after': 'state: created\n'})
                         else:
-                            self.module.fail_json(msg="bad return code while creating: %d. Error message: %s" % (ret['code'], ret['msg']))
+                            self.module.fail_json(msg="bad return code while creating: %d. Error message: %s" % (ret['code'], ret['data']))
                     except Exception as e:
                         self.module.fail_json(msg="exception while creating: " + str(e))
         return changed, diff_result
