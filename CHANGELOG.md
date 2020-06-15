@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.5](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.5) (2020-06-15)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.1.4...1.1.5)
+
+**Implemented enhancements:**
+
+- add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- Error creating servicegroups [\#13](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/13)
+
 ## [1.1.4](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.4) (2020-06-12)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.1.3...1.1.4)
