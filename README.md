@@ -68,6 +68,15 @@ See the `examples` directory for a complete list of examples.
           dnscheck: "no"
 ```
 
+Troubleshooting
+---------------
+
+If the following error is thrown, check if you're behind a proxy and use `force_basic_auth: true` in the task.
+
+```
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "bad return code while creating: -1. Error message: Request failed: <urlopen error Tunnel connection failed: 302 Found>"}
+```
+
 License
 -------
 
