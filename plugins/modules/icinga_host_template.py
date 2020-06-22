@@ -119,7 +119,7 @@ options:
       description:
       - The name of the check command.
     required: true
-    type: string
+    type: str
   disabled:
     description:
       - Disabled objects will not be deployed
