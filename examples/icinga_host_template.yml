@@ -1,0 +1,12 @@
+  - name: create host template
+    icinga_host_template:
+      state: present
+      url: "https://example.com"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+      object_name: template-empty-host
+      display_name: template-empty-host
+      imports:
+        - ''
+      vars:
+        check_command: dummy

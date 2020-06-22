@@ -13,6 +13,7 @@ Currently supported modules:
 * `icinga_command`
 * `icinga_command_template`
 * `icinga_host`
+* `icinga_host_template`
 * `icinga_hostgroup`
 * `icinga_notification`
 * `icinga_service_apply`
