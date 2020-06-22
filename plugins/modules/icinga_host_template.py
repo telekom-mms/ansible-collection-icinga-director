@@ -157,8 +157,7 @@ EXAMPLES = '''
       display_name: template-empty-host
       imports:
         - ''
-      vars:
-        check_command: dummy
+      check_command: dummy
 '''
 
 from ansible.module_utils.basic import AnsibleModule
