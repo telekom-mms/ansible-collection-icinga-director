@@ -115,6 +115,11 @@ options:
     required: false
     type: list
     default: []
+  check_command:
+      description:
+      - The name of the check command.
+    required: true
+    type: string
   disabled:
     description:
       - Disabled objects will not be deployed
