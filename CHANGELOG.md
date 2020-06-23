@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.1.5](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.5) (2020-06-15)
+## [1.1.5](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.5) (2020-06-23)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.1.4...1.1.5)
 
 **Implemented enhancements:**
 
+- add gitattributes because of windows line endings [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
