@@ -31,6 +31,9 @@ jobs:
         with:
           python-version: 3.7
 
+      - name: Install tox
+        run: pip install tox --disable-pip-version-check
+
       - name: Check out code
         uses: actions/checkout@v1
 
