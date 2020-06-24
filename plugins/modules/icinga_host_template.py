@@ -116,7 +116,7 @@ options:
     type: list
     default: []
   check_command:
-      description:
+    description:
       - The name of the check command.
     required: false
     type: str
