@@ -1,0 +1,10 @@
+---
+- name: create servicegroup
+  icinga_servicegroup:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: fooservicegroup
+    display_name: fooservicegroup
+    assign_filter: 'host.name="foo"'

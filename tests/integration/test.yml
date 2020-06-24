@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  collections:
+    - t_systems_mms.icinga_director
+  vars:
+    icinga_url: "http://icinga/icingaweb2"
+    icinga_user: "icingaadmin"
+    icinga_pass: "icinga"
+  tasks:
+    - name: sleep for 60 seconds and continue with play
+      wait_for:
+        timeout: 60
+
+    - include_tasks: "{{ item }}"
+      loop:
+        - ./icinga_command_template.yml
+        - ./icinga_command.yml
+        - ./icinga_timeperiod.yml
+        - ./icinga_user_template.yml
+        - ./icinga_user.yml
+        # - ./icinga_notification.yml
+        - ./icinga_hostgroup.yml
+        - ./icinga_servicegroup.yml
+        - ./icinga_service_template.yml
+        - ./icinga_service_apply.yml
+        # - ./icinga_hostgroup.yml
+        # - ./icinga_host.yml

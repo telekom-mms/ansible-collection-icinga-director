@@ -1,0 +1,17 @@
+---
+- name: create a host in icinga
+  icinga_host:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    disabled: false
+    object_name: "foohost"
+    address: "127.0.0.1"
+    display_name: "foohost"
+    groups:
+      - "foohostgroup"
+    imports:
+      - "StandardServer"
+    vars:
+      dnscheck: "no"
