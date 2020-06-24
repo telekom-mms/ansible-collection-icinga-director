@@ -78,6 +78,25 @@ If the following error is thrown, check if you're behind a proxy and use `force_
 fatal: [localhost]: FAILED! => {"changed": false, "msg": "bad return code while creating: -1. Error message: Request failed: <urlopen error Tunnel connection failed: 302 Found>"}
 ```
 
+Local Testing
+-------------
+
+* Linting with tox
+
+```
+> tox -elinters
+```
+
+* Integration tests with docker
+
+```
+# run icinga in a container and forward port 80
+> docker run -it -p 80:80 jordan/icinga2
+
+# run the ansible-playbook against the container
+> ansible-playbook tests/integration/test.yml -e icinga_url=http://127.0.0.1/icingaweb2
+```
+
 License
 -------
 
