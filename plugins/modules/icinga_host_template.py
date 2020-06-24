@@ -118,7 +118,7 @@ options:
   check_command:
       description:
       - The name of the check command.
-    required: true
+    required: false
     type: str
   disabled:
     description:
@@ -130,7 +130,7 @@ options:
   imports:
     description:
       - Choose a Host Template
-    required: true
+    required: false
     type: list
   zone:
     description:
@@ -180,8 +180,8 @@ def main():
         object_name=dict(required=True),
         display_name=dict(required=False),
         groups=dict(type='list', default=[], required=False),
-        check_command=dict(required=True),
-        imports=dict(type='list', required=True),
+        check_command=dict(required=False),
+        imports=dict(type='list', required=False),
         disabled=dict(type='bool', default=False, choices=[True, False]),
         address=dict(required=False),
         zone=dict(type='str', default='master', required=False),
