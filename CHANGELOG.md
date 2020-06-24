@@ -10,6 +10,10 @@
 - add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
 - add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
 
+**Fixed bugs:**
+
+- do not require import and check\_command in host\_template [\#23](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/23) ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Closed issues:**
 
 - Error creating servicegroups [\#13](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/13)
