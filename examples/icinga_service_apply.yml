@@ -2,17 +2,17 @@
 - name: Add service apply rule to icinga
   icinga_service_apply:
     state: present
-    url: "https://example.com"
-    url_username: ""
-    url_password: ""
-    object_name: "SERVICE_promtail"
-    assign_filter: 'host.vars.HostOS="Linux"&host.name="sbk-pilot-api*'
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "SERVICE_dummy"
+    assign_filter: 'host.vars.HostOS="Linux"'
     apply_for: "host.vars.enabled_notifications"
-    display_name: "Promtail process"
+    display_name: "dummy process"
     imports:
-      - http
+      - fooservicetemplate
     groups:
-      - sbk
+      - fooservicegroup
     vars:
       http_address: "$address$"
       http_port: "9080"

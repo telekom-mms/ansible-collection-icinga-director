@@ -149,17 +149,18 @@ options:
 
 EXAMPLES = """
 - name: create host template
-  tags: hosttemplate
   icinga_host_template:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: template-empty-host
-    display_name: template-empty-host
+    object_name: foohosttemplate
+    display_name: foohosttemplate
+    disabled: false
+    groups:
+      - "foohostgroup"
     imports:
       - ''
-    check_command: dummy
 """
 
 from ansible.module_utils.basic import AnsibleModule

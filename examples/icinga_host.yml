@@ -2,14 +2,15 @@
 - name: create a host in icinga
   icinga_host:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "{{ ansible_hostname }}"
-    address: "{{ ansible_default_ipv4.address }}"
-    display_name: "{{ ansible_hostname }}"
+    disabled: false
+    object_name: "foohost"
+    address: "127.0.0.1"
+    display_name: "foohost"
     groups:
-      - "foo"
+      - "foohostgroup"
     imports:
       - "StandardServer"
     vars:

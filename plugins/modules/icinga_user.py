@@ -129,15 +129,16 @@ EXAMPLES = """
 - name: create user
   icinga_user:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    imports:
-      - "user"
     object_name: "rb"
     display_name: "Rufbereitschaft"
     pager: 'SIP/emergency'
     period: '24/7'
+    email: "foouser@example.com"
+    imports:
+      - foousertemplate
 """
 
 from ansible.module_utils.basic import AnsibleModule
