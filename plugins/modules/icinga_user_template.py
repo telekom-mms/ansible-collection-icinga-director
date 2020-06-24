@@ -21,11 +21,13 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
+ANSIBLE_METADATA = {
+    "metadata_version": "1.1",
+    "status": ["preview"],
+    "supported_by": "community",
+}
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: icinga_user_template
 short_description: Manage user templates in Icinga2
@@ -105,23 +107,25 @@ options:
     description:
       - Whether to send notifications for this user
     type: bool
-'''
+"""
 
-EXAMPLES = '''
-  - name: create user template
-    icinga_user_template:
-      state: present
-      url: "https://example.com"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      object_name: "a_user_template"
-      enable_notifications: true
-      period: '24/7'
-'''
+EXAMPLES = """
+- name: create user template
+  icinga_user_template:
+    state: present
+    url: "https://example.com"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "a_user_template"
+    enable_notifications: true
+    period: '24/7'
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import Icinga2APIObject
+from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+    Icinga2APIObject,
+)
 
 
 # ===========================================
@@ -131,40 +135,48 @@ def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
     # remove unnecessary argument 'force'
-    del argument_spec['force']
-    del argument_spec['http_agent']
+    del argument_spec["force"]
+    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
-        imports=dict(type='list', default=[], required=False),
+        imports=dict(type="list", default=[], required=False),
         period=dict(required=False),
         enable_notifications=dict(type="bool", required=False),
     )
 
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec,
-        supports_check_mode=True
+        argument_spec=argument_spec, supports_check_mode=True
     )
 
     data = {
-        'object_name': module.params["object_name"],
-        'object_type': "template",
-        'imports': module.params["imports"],
-        'period': module.params["period"],
-        'enable_notifications': module.params["enable_notifications"],
+        "object_name": module.params["object_name"],
+        "object_type": "template",
+        "imports": module.params["imports"],
+        "period": module.params["period"],
+        "enable_notifications": module.params["enable_notifications"],
     }
 
     try:
-        icinga_object = Icinga2APIObject(module=module, path="/user", data=data)
+        icinga_object = Icinga2APIObject(
+            module=module, path="/user", data=data
+        )
     except Exception as e:
-        module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
+        module.fail_json(
+            msg="unable to connect to Icinga. Exception message: %s" % e
+        )
 
     changed, diff = icinga_object.update(module.params["state"])
-    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
+    module.exit_json(
+        changed=changed,
+        object_name=module.params["object_name"],
+        data=icinga_object.data,
+        diff=diff,
+    )
 
 
 # import module snippets
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

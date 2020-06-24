@@ -21,11 +21,13 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
+ANSIBLE_METADATA = {
+    "metadata_version": "1.1",
+    "status": ["preview"],
+    "supported_by": "community",
+}
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: icinga_servicegroup
 short_description: Manage servicegroup in Icinga2
@@ -103,22 +105,24 @@ options:
          Please feel free to combine as many nested operators as you want
     required: false
     type: str
-'''
+"""
 
-EXAMPLES = '''
-  - name: create servicegroup
-    icinga_servicegroup:
-      state: present
-      url: "https://example.com"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      object_name: customer-servicegroup
-      assign_filter: 'host.name="cust-*"'
-'''
+EXAMPLES = """
+- name: create servicegroup
+  icinga_servicegroup:
+    state: present
+    url: "https://example.com"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: customer-servicegroup
+    assign_filter: 'host.name="cust-*"'
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import Icinga2APIObject
+from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+    Icinga2APIObject,
+)
 
 
 # ===========================================
@@ -130,8 +134,8 @@ def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
     # remove unnecessary argument 'force'
-    del argument_spec['force']
-    del argument_spec['http_agent']
+    del argument_spec["force"]
+    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
@@ -142,26 +146,34 @@ def main():
 
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec,
-        supports_check_mode=True
+        argument_spec=argument_spec, supports_check_mode=True
     )
 
     data = {
-        'object_name': module.params["object_name"],
-        'object_type': "object",
-        'display_name': module.params["display_name"],
-        'assign_filter': module.params["assign_filter"],
+        "object_name": module.params["object_name"],
+        "object_type": "object",
+        "display_name": module.params["display_name"],
+        "assign_filter": module.params["assign_filter"],
     }
 
     try:
-        icinga_object = Icinga2APIObject(module=module, path="/servicegroup", data=data)
+        icinga_object = Icinga2APIObject(
+            module=module, path="/servicegroup", data=data
+        )
     except Exception as e:
-        module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
+        module.fail_json(
+            msg="unable to connect to Icinga. Exception message: %s" % e
+        )
 
     changed, diff = icinga_object.update(module.params["state"])
-    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
+    module.exit_json(
+        changed=changed,
+        object_name=module.params["object_name"],
+        data=icinga_object.data,
+        diff=diff,
+    )
 
 
 # import module snippets
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
