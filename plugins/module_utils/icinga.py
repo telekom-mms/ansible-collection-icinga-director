@@ -90,12 +90,7 @@ class Icinga2APIObject:
 
     def diff(self, find_by="name"):
         ret = self.call_url(
-            path=self.path
-            + "?"
-            + find_by
-            + "="
-            + self.object_id
-            + "&withNull",
+            path=self.path + "?" + find_by + "=" + self.object_id + "&withNull",
             method="GET",
         )
 

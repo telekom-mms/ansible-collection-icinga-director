@@ -160,9 +160,7 @@ def main():
     }
 
     try:
-        icinga_object = Icinga2APIObject(
-            module=module, path="/user", data=data
-        )
+        icinga_object = Icinga2APIObject(module=module, path="/user", data=data)
     except Exception as e:
         module.fail_json(
             msg="unable to connect to Icinga. Exception message: %s" % e
