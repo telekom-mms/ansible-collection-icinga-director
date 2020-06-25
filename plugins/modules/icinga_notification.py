@@ -136,7 +136,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     apply_to: host
-    assign_filter: '"E-Mail"=host.vars.enabled_notifications'
+    assign_filter: 'host.vars.enabled_notifications="E-Mail'
     imports:
       - host
     notification_interval: '0'
