@@ -39,4 +39,4 @@
         method: POST
         user: "{{ icinga_user }}"
         password: "{{ icinga_pass }}"
-        return_content: yes
+        return_content: true
