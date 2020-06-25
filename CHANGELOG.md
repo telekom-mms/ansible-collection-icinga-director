@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.1) (2020-06-25)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.2.0...1.2.1)
+
+**Implemented enhancements:**
+
+- Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.2.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.0) (2020-06-24)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.1.4...1.2.0)
