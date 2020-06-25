@@ -58,6 +58,4 @@ jobs:
           path: ansible-collection-icinga-director/collections/ansible_collections/t_systems_mms/icinga_director
 
       - name: Run integration tests
-        run: ansible-playbook tests/integration/test.yml --diff -v
-        env:
-          ANSIBLE_COLLECTIONS_PATHS: ansible-collection-icinga-director/collections/:../../ansible-collection-icinga-director/collections/:collections/
+        run: ansible-test integration --diff --debug-strategy
