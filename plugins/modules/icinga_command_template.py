@@ -148,7 +148,7 @@ EXAMPLES = """
 - name: create command template
   icinga_command_template:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     arguments:
@@ -187,7 +187,9 @@ EXAMPLES = """
       '--warning':
         value: $centreon_warning$
     command: "/opt/centreon-plugins/centreon_plugins.pl"
-    object_name: centreon-plugins-neu
+    command_type: "PluginCheck"
+    object_name: centreon-plugins-template
+    timeout: "2m"
     disabled: false
     vars:
       centreon_maxrepetitions: 20

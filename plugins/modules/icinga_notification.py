@@ -132,20 +132,20 @@ EXAMPLES = """
 - name: create notification
   icinga_notification:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     apply_to: host
-    assign_filter: '"ABLE_E-Mail"=host.vars.enabled_notifications'
+    assign_filter: 'host.name="foohost"'
     imports:
-      - host
+      - foonotificationtemplate
     notification_interval: '0'
-    object_name: able_E-Mail_host
+    object_name: E-Mail_host
     types:
       - Problem
       - Recovery
     users:
-      - ABLE_E-Mail
+      - rb
 """
 
 from ansible.module_utils.basic import AnsibleModule

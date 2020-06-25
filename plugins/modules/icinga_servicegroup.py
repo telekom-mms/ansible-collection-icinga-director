@@ -111,11 +111,12 @@ EXAMPLES = """
 - name: create servicegroup
   icinga_servicegroup:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: customer-servicegroup
-    assign_filter: 'host.name="cust-*"'
+    object_name: fooservicegroup
+    display_name: fooservicegroup
+    assign_filter: 'host.name="foo"'
 """
 
 from ansible.module_utils.basic import AnsibleModule

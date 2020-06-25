@@ -119,7 +119,8 @@ options:
     default: []
   check_command:
     description:
-      - The name of the check command.
+      - The name of the check command. Though this is not required to be defined in the director,
+        you still have to supply a check_command in a host or host-template
     required: false
     type: str
   disabled:
@@ -149,17 +150,19 @@ options:
 
 EXAMPLES = """
 - name: create host template
-  tags: hosttemplate
   icinga_host_template:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: template-empty-host
-    display_name: template-empty-host
+    object_name: foohosttemplate
+    display_name: foohosttemplate
+    disabled: false
+    check_command: dummy
+    groups:
+      - "foohostgroup"
     imports:
       - ''
-    check_command: dummy
 """
 
 from ansible.module_utils.basic import AnsibleModule

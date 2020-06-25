@@ -15,4 +15,4 @@
       - "foohosttemplate"
     vars:
       dnscheck: "no"
-    check_command: dummy_check
+    check_command: dummy

@@ -113,10 +113,10 @@ EXAMPLES = """
 - name: create user template
   icinga_user_template:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "a_user_template"
+    object_name: "foousertemplate"
     enable_notifications: true
     period: '24/7'
 """

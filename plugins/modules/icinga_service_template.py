@@ -198,10 +198,10 @@ EXAMPLES = """
 - name: create servicetemplate
   tags: servicetemplate
   icinga_service_template:
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: Consul
+    object_name: fooservicetemplate
     use_agent: true
     vars:
       procs_argument: consul

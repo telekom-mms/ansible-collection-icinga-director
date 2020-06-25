@@ -141,24 +141,32 @@ options:
       - Custom properties of the host
     required: false
     type: "dict"
+  check_command:
+    description:
+      - The name of the check command. Though this is not required to be defined in the director,
+        you still have to supply a check_command in a host or host-template
+    required: false
+    type: str
 """
 
 EXAMPLES = """
 - name: create a host in icinga
   icinga_host:
     state: present
-    url: "https://example.com"
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "{{ ansible_hostname }}"
-    address: "{{ ansible_default_ipv4.address }}"
-    display_name: "{{ ansible_hostname }}"
+    disabled: false
+    object_name: "foohost"
+    address: "127.0.0.1"
+    display_name: "foohost"
     groups:
-      - "foo"
+      - "foohostgroup"
     imports:
-      - "StandardServer"
+      - "foohosttemplate"
     vars:
       dnscheck: "no"
+    check_command: dummy
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -188,6 +196,7 @@ def main():
         address=dict(required=False),
         zone=dict(type="str", default="master", required=False),
         vars=dict(type="dict", default=None),
+        check_command=dict(required=False),
     )
 
     # Define the main module
@@ -205,6 +214,7 @@ def main():
         "address": module.params["address"],
         "zone": module.params["zone"],
         "vars": module.params["vars"],
+        "check_command": module.params["check_command"],
     }
 
     try:
