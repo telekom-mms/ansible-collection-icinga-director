@@ -21,11 +21,13 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
+ANSIBLE_METADATA = {
+    "metadata_version": "1.1",
+    "status": ["preview"],
+    "supported_by": "community",
+}
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: icinga_timeperiod
 short_description: Manage timeperiods in Icinga2
@@ -106,27 +108,29 @@ options:
       - A dict of days and timeperiods.
     type: dict
     required: false
-'''
+"""
 
-EXAMPLES = '''
-  - name: create notification
-    icinga_timeperiod:
-      state: present
-      url: "https://example.com"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      object_name: 'werktags'
-      ranges:
-        monday: "09:00-16:00"
-        tuesday: "09:00-16:00"
-        wednesday: "09:00-16:00"
-        thursday: "09:00-16:00"
-        friday: "09:00-16:00"
-'''
+EXAMPLES = """
+- name: create notification
+  icinga_timeperiod:
+    state: present
+    url: "https://example.com"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: 'werktags'
+    ranges:
+      monday: "09:00-16:00"
+      tuesday: "09:00-16:00"
+      wednesday: "09:00-16:00"
+      thursday: "09:00-16:00"
+      friday: "09:00-16:00"
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import Icinga2APIObject
+from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+    Icinga2APIObject,
+)
 
 
 # ===========================================
@@ -136,40 +140,48 @@ def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
     # remove unnecessary argument 'force'
-    del argument_spec['force']
-    del argument_spec['http_agent']
+    del argument_spec["force"]
+    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
         display_name=dict(required=False),
-        imports=dict(type='list', default=[], required=False),
-        ranges=dict(type='dict', required=False)
+        imports=dict(type="list", default=[], required=False),
+        ranges=dict(type="dict", required=False),
     )
 
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec,
-        supports_check_mode=True
+        argument_spec=argument_spec, supports_check_mode=True
     )
 
     data = {
-        'object_name': module.params["object_name"],
-        'object_type': "object",
-        'display_name': module.params["display_name"],
-        'imports': module.params["imports"],
-        'ranges': module.params["ranges"],
+        "object_name": module.params["object_name"],
+        "object_type": "object",
+        "display_name": module.params["display_name"],
+        "imports": module.params["imports"],
+        "ranges": module.params["ranges"],
     }
 
     try:
-        icinga_object = Icinga2APIObject(module=module, path="/timeperiod", data=data)
+        icinga_object = Icinga2APIObject(
+            module=module, path="/timeperiod", data=data
+        )
     except Exception as e:
-        module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
+        module.fail_json(
+            msg="unable to connect to Icinga. Exception message: %s" % e
+        )
 
     changed, diff = icinga_object.update(module.params["state"])
-    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
+    module.exit_json(
+        changed=changed,
+        object_name=module.params["object_name"],
+        data=icinga_object.data,
+        diff=diff,
+    )
 
 
 # import module snippets
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

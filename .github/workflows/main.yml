@@ -1,20 +1,41 @@
+---
 name: ansible-test
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  ansible-sanity-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Python 3.7
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
+
       - name: Check out code
         uses: actions/checkout@v1
         with:
           path: ansible_collections/t_systems_mms/icinga_director
+
       - name: Install Ansible
         run: pip install ansible --disable-pip-version-check
+
       - name: Run sanity tests
         run: ansible-test sanity --docker -v --color
+
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Install tox
+        run: pip install tox --disable-pip-version-check
+
+      - name: Check out code
+        uses: actions/checkout@v1
+
+      - name: Run tox linting
+        run: tox -elinters

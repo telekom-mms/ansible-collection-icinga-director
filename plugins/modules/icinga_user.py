@@ -21,11 +21,13 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
+ANSIBLE_METADATA = {
+    "metadata_version": "1.1",
+    "status": ["preview"],
+    "supported_by": "community",
+}
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: icinga_user
 short_description: Manage users in Icinga2
@@ -121,26 +123,28 @@ options:
     description:
       - The Email address of the user.
     type: str
-'''
+"""
 
-EXAMPLES = '''
-  - name: create user
-    icinga_user:
-      state: present
-      url: "https://example.com"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      imports:
-        - "user"
-      object_name: "rb"
-      display_name: "Rufbereitschaft"
-      pager: 'SIP/emergency'
-      period: '24/7'
-'''
+EXAMPLES = """
+- name: create user
+  icinga_user:
+    state: present
+    url: "https://example.com"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    imports:
+      - "user"
+    object_name: "rb"
+    display_name: "Rufbereitschaft"
+    pager: 'SIP/emergency'
+    period: '24/7'
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import Icinga2APIObject
+from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+    Icinga2APIObject,
+)
 
 
 # ===========================================
@@ -150,15 +154,15 @@ def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
     # remove unnecessary argument 'force'
-    del argument_spec['force']
-    del argument_spec['http_agent']
+    del argument_spec["force"]
+    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
         display_name=dict(required=False),
-        disabled=dict(type='bool', default=False, choices=[True, False]),
-        imports=dict(type='list', required=False),
+        disabled=dict(type="bool", default=False, choices=[True, False]),
+        imports=dict(type="list", required=False),
         email=dict(required=False),
         pager=dict(required=False),
         period=dict(required=False),
@@ -166,30 +170,36 @@ def main():
 
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec,
-        supports_check_mode=True
+        argument_spec=argument_spec, supports_check_mode=True
     )
 
     data = {
-        'object_name': module.params["object_name"],
-        'object_type': "object",
-        'display_name': module.params["display_name"],
-        'imports': module.params["imports"],
-        'disabled': module.params["disabled"],
-        'email': module.params["email"],
-        'pager': module.params["pager"],
-        'period': module.params["period"],
+        "object_name": module.params["object_name"],
+        "object_type": "object",
+        "display_name": module.params["display_name"],
+        "imports": module.params["imports"],
+        "disabled": module.params["disabled"],
+        "email": module.params["email"],
+        "pager": module.params["pager"],
+        "period": module.params["period"],
     }
 
     try:
         icinga_object = Icinga2APIObject(module=module, path="/user", data=data)
     except Exception as e:
-        module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
+        module.fail_json(
+            msg="unable to connect to Icinga. Exception message: %s" % e
+        )
 
     changed, diff = icinga_object.update(module.params["state"])
-    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
+    module.exit_json(
+        changed=changed,
+        object_name=module.params["object_name"],
+        data=icinga_object.data,
+        diff=diff,
+    )
 
 
 # import module snippets
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

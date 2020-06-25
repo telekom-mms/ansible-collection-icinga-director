@@ -1,0 +1,7 @@
+black
+flake8
+mock
+pytest-xdist
+yamllint
+coverage
+ansible-lint

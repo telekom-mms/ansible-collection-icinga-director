@@ -21,11 +21,13 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
+ANSIBLE_METADATA = {
+    "metadata_version": "1.1",
+    "status": ["preview"],
+    "supported_by": "community",
+}
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: icinga_notification
 short_description: Manage notifications in Icinga2
@@ -124,31 +126,33 @@ options:
         Please note that order matters when importing properties from multiple templates - last one wins
     required: false
     type: "list"
-'''
+"""
 
-EXAMPLES = '''
-  - name: create notification
-    icinga_notification:
-      state: present
-      url: "https://example.com"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      apply_to: host
-      assign_filter: '"ABLE_E-Mail"=host.vars.enabled_notifications'
-      imports:
-        - host
-      notification_interval: '0'
-      object_name: able_E-Mail_host
-      types:
-        - Problem
-        - Recovery
-      users:
-        - ABLE_E-Mail
-'''
+EXAMPLES = """
+- name: create notification
+  icinga_notification:
+    state: present
+    url: "https://example.com"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    apply_to: host
+    assign_filter: '"ABLE_E-Mail"=host.vars.enabled_notifications'
+    imports:
+      - host
+    notification_interval: '0'
+    object_name: able_E-Mail_host
+    types:
+      - Problem
+      - Recovery
+    users:
+      - ABLE_E-Mail
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import Icinga2APIObject
+from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+    Icinga2APIObject,
+)
 
 
 # ===========================================
@@ -158,8 +162,8 @@ def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
     # remove unnecessary argument 'force'
-    del argument_spec['force']
-    del argument_spec['http_agent']
+    del argument_spec["force"]
+    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
@@ -169,35 +173,43 @@ def main():
         assign_filter=dict(required=False),
         notification_interval=dict(required=False),
         types=dict(type="list", required=False),
-        users=dict(type="list", required=False)
+        users=dict(type="list", required=False),
     )
 
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec,
-        supports_check_mode=True
+        argument_spec=argument_spec, supports_check_mode=True
     )
 
     data = {
-        'object_name': module.params["object_name"],
-        'object_type': "apply",
-        'imports': module.params["imports"],
-        'apply_to': module.params["apply_to"],
-        'assign_filter': module.params["assign_filter"],
-        'notification_interval': module.params["notification_interval"],
-        'types': module.params["types"],
-        'users': module.params["users"],
+        "object_name": module.params["object_name"],
+        "object_type": "apply",
+        "imports": module.params["imports"],
+        "apply_to": module.params["apply_to"],
+        "assign_filter": module.params["assign_filter"],
+        "notification_interval": module.params["notification_interval"],
+        "types": module.params["types"],
+        "users": module.params["users"],
     }
 
     try:
-        icinga_object = Icinga2APIObject(module=module, path="/notification", data=data)
+        icinga_object = Icinga2APIObject(
+            module=module, path="/notification", data=data
+        )
     except Exception as e:
-        module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
+        module.fail_json(
+            msg="unable to connect to Icinga. Exception message: %s" % e
+        )
 
     changed, diff = icinga_object.update(module.params["state"])
-    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
+    module.exit_json(
+        changed=changed,
+        object_name=module.params["object_name"],
+        data=icinga_object.data,
+        diff=diff,
+    )
 
 
 # import module snippets
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

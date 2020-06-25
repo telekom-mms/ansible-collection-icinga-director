@@ -21,11 +21,13 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
+ANSIBLE_METADATA = {
+    "metadata_version": "1.1",
+    "status": ["preview"],
+    "supported_by": "community",
+}
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: icinga_service_apply
 short_description: Manage service apply rules in Icinga2
@@ -140,9 +142,9 @@ options:
       - Max length 255 characters
     required: false
     type: str
-'''
+"""
 
-EXAMPLES = '''
+EXAMPLES = """
 - name: Add service apply rule to icinga
   icinga_service_apply:
     state: present
@@ -163,44 +165,40 @@ EXAMPLES = '''
       http_uri: "/ready"
       http_string: "Ready"
       http_expect: "Yes"
-'''
-
-import json
-from collections import defaultdict
+"""
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.urls import fetch_url, url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import Icinga2APIObject
+from ansible.module_utils.urls import url_argument_spec
+from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+    Icinga2APIObject,
+)
 
 
 # ===========================================
 # Icinga2 API class
 #
 class ServiceApplyRule(Icinga2APIObject):
-
     def __init__(self, module, data):
-        path = '/service'
+        path = "/service"
         super(ServiceApplyRule, self).__init__(module, path, data)
 
     def exists(self):
-        ret = self.call_url(
-            path="/serviceapplyrules",
-        )
-        if ret['code'] == 200:
-            for existing_rule in ret['data']['objects']:
-                if existing_rule['object_name'] == self.data['object_name']:
-                    self.object_id = existing_rule['id']
+        ret = self.call_url(path="/serviceapplyrules")
+        if ret["code"] == 200:
+            for existing_rule in ret["data"]["objects"]:
+                if existing_rule["object_name"] == self.data["object_name"]:
+                    self.object_id = existing_rule["id"]
                     return self.object_id
         return False
 
     def delete(self):
-        return super(ServiceApplyRule, self).delete(find_by='id')
+        return super(ServiceApplyRule, self).delete(find_by="id")
 
     def modify(self):
-        return super(ServiceApplyRule, self).modify(find_by='id')
+        return super(ServiceApplyRule, self).modify(find_by="id")
 
     def diff(self):
-        return super(ServiceApplyRule, self).diff(find_by='id')
+        return super(ServiceApplyRule, self).diff(find_by="id")
 
 
 # ===========================================
@@ -210,8 +208,8 @@ def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
     # remove unnecessary argument 'force'
-    del argument_spec['force']
-    del argument_spec['http_agent']
+    del argument_spec["force"]
+    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
@@ -219,41 +217,47 @@ def main():
         display_name=dict(required=True),
         apply_for=dict(required=False),
         assign_filter=dict(required=False),
-        imports=dict(type='list', required=False),
-        groups=dict(type='list', default=[], required=False),
-        vars=dict(type='dict', default={}),
-        notes=dict(type='str', required=False),
-        notes_url=dict(type='str', required=False),
+        imports=dict(type="list", required=False),
+        groups=dict(type="list", default=[], required=False),
+        vars=dict(type="dict", default={}),
+        notes=dict(type="str", required=False),
+        notes_url=dict(type="str", required=False),
     )
 
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec,
-        supports_check_mode=True
+        argument_spec=argument_spec, supports_check_mode=True
     )
 
     data = {
-        'object_name': module.params["object_name"],
-        'display_name': module.params["display_name"],
-        'object_type': "apply",
-        'apply_for': module.params["apply_for"],
-        'assign_filter': module.params["assign_filter"],
-        'imports': module.params["imports"],
-        'groups': module.params["groups"],
-        'vars': module.params["vars"],
-        'notes': module.params["notes"],
-        'notes_url': module.params["notes_url"],
+        "object_name": module.params["object_name"],
+        "display_name": module.params["display_name"],
+        "object_type": "apply",
+        "apply_for": module.params["apply_for"],
+        "assign_filter": module.params["assign_filter"],
+        "imports": module.params["imports"],
+        "groups": module.params["groups"],
+        "vars": module.params["vars"],
+        "notes": module.params["notes"],
+        "notes_url": module.params["notes_url"],
     }
 
     try:
         icinga_object = ServiceApplyRule(module=module, data=data)
     except Exception as e:
-        module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
+        module.fail_json(
+            msg="unable to connect to Icinga. Exception message: %s" % e
+        )
 
     changed, diff = icinga_object.update(module.params["state"])
-    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
+    module.exit_json(
+        changed=changed,
+        object_name=module.params["object_name"],
+        data=icinga_object.data,
+        diff=diff,
+    )
 
 
 # import module snippets
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

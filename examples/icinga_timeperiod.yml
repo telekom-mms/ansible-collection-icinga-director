@@ -1,13 +1,14 @@
-  - name: create notification
-    icinga_timeperiod:
-      state: present
-      url: "https://example.com"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      object_name: 'werktags'
-      ranges:
-        monday: "09:00-16:00"
-        tuesday: "09:00-16:00"
-        wednesday: "09:00-16:00"
-        thursday: "09:00-16:00"
-        friday: "09:00-16:00"
+---
+- name: create notification
+  icinga_timeperiod:
+    state: present
+    url: "https://example.com"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: 'werktags'
+    ranges:
+      monday: "09:00-16:00"
+      tuesday: "09:00-16:00"
+      wednesday: "09:00-16:00"
+      thursday: "09:00-16:00"
+      friday: "09:00-16:00"

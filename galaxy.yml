@@ -1,3 +1,4 @@
+---
 namespace: t_systems_mms
 name: icinga_director
 version: 1.2.0
