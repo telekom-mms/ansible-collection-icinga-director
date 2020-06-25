@@ -20,13 +20,15 @@
         - ./icinga_timeperiod.yml
         - ./icinga_user_template.yml
         - ./icinga_user.yml
+        # TODO: create notification template module
         # - ./icinga_notification.yml
         - ./icinga_hostgroup.yml
         - ./icinga_servicegroup.yml
         - ./icinga_service_template.yml
         - ./icinga_service_apply.yml
-        # - ./icinga_hostgroup.yml
-        # - ./icinga_host.yml
+        - ./icinga_hostgroup.yml
+        - ./icinga_host_template.yml
+        - ./icinga_host.yml
 
     - name: deploy changes in icinga
       tags: uri

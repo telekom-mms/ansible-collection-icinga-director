@@ -12,6 +12,7 @@
     groups:
       - "foohostgroup"
     imports:
-      - "StandardServer"
+      - "foohosttemplate"
     vars:
       dnscheck: "no"
+    check_command: dummy

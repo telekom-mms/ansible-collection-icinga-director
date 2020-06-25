@@ -8,6 +8,7 @@
     object_name: foohosttemplate
     display_name: foohosttemplate
     disabled: false
+    check_command: dummy
     groups:
       - "foohostgroup"
     imports:
