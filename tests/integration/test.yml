@@ -27,3 +27,14 @@
         - ./icinga_service_apply.yml
         # - ./icinga_hostgroup.yml
         # - ./icinga_host.yml
+
+    - name: deploy changes in icinga
+      tags: uri
+      uri:
+        url: "{{ icinga_url }}/director/config/deploy"
+        headers:
+          Accept: application/json
+        method: POST
+        user: "{{ icinga_user }}"
+        password: "{{ icinga_pass }}"
+        return_content: yes
