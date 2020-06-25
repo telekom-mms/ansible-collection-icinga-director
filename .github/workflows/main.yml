@@ -43,19 +43,19 @@ jobs:
   integration-tests:
     runs-on: ubuntu-latest
     container: rndmh3ro/docker-centos8-ansible:latest
+    defaults:
+      run:
+        working-directory: ansible_collections/t_systems_mms/icinga_director
     services:
       icinga:
         image: jordan/icinga2
         ports:
           - 80:80
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
       - name: Check out code to collections-folder, so ansible finds it
         uses: actions/checkout@v2
         with:
-          path: ansible-collection-icinga-director/collections/ansible_collections/t_systems_mms/icinga_director
+          path: ansible_collections/t_systems_mms/icinga_director
 
       - name: Run integration tests
         run: ansible-test integration --diff --debug-strategy
