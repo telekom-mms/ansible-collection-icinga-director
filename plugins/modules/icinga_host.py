@@ -134,7 +134,6 @@ options:
     description:
       - Set the zone
     required: false
-    default: master
     type: str
   vars:
     description:
@@ -194,7 +193,7 @@ def main():
         imports=dict(type="list", required=True),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         address=dict(required=False),
-        zone=dict(type="str", default="master", required=False),
+        zone=dict(required=False, default=None),
         vars=dict(type="dict", default=None),
         check_command=dict(required=False),
     )
