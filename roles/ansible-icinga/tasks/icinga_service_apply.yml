@@ -24,3 +24,4 @@
   loop: "{{ icinga_service_applies|subelements('service_apply_object') }}"
   loop_control:
     loop_var: service_apply
+  tags: service_apply

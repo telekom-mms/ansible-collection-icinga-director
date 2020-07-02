@@ -18,3 +18,4 @@
   loop: "{{ icinga_hostgroups|subelements('hostgroup_object') }}"
   loop_control:
     loop_var: hostgroup
+  tags: hostgroup

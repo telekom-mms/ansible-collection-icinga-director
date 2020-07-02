@@ -18,3 +18,4 @@
   loop: "{{ icinga_servicegroups|subelements('servicegroup_object') }}"
   loop_control:
     loop_var: servicegroup
+  tags: servicegroup

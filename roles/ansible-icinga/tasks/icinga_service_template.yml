@@ -35,3 +35,4 @@
   loop: "{{ icinga_service_templates|subelements('service_template_object') }}"
   loop_control:
     loop_var: service_template
+  tags: service_template

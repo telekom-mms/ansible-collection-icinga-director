@@ -25,3 +25,4 @@
   loop: "{{ icinga_command_templates|subelements('command_template_object') }}"
   loop_control:
     loop_var: command_template
+  tags: command_template

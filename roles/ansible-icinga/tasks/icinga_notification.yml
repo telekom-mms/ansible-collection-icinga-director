@@ -22,3 +22,4 @@
   loop: "{{ icinga_notifications|subelements('notification_object') }}"
   loop_control:
     loop_var: notification
+  tags: notification

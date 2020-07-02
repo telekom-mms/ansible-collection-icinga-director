@@ -19,3 +19,4 @@
   loop: "{{ icinga_timeperiods|subelements('timeperiod_object') }}"
   loop_control:
     loop_var: timeperiod
+  tags: timeperiod

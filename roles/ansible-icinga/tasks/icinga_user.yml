@@ -22,3 +22,4 @@
   loop: "{{ icinga_users|subelements('user_object') }}"
   loop_control:
     loop_var: user
+  tags: user

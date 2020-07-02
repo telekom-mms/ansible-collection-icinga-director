@@ -19,3 +19,4 @@
   loop: "{{ icinga_user_templates|subelements('user_template_object') }}"
   loop_control:
     loop_var: user_template
+  tags: user_template

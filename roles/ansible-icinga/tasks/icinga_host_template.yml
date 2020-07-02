@@ -24,3 +24,4 @@
   loop: "{{ icinga_host_templates|subelements('host_template_object') }}"
   loop_control:
     loop_var: host_template
+  tags: host_template
