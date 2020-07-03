@@ -16,7 +16,7 @@ collections:
 roles:
   - name: icinga
     src: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
-    version: 1.2.2
+    version: 1.2.3
 ```
 
 * install the collections:
@@ -29,7 +29,7 @@ ansible-galaxy install -r requirements.yml
 ## Dependencies
 
 collections:
-t_systems_mms.icinga_director >= 1.1.4
+t_systems_mms.icinga_director >= 1.2.2
 
 ## Role Variables
 
