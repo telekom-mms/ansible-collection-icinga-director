@@ -13,7 +13,7 @@
     client_key: "{{ icinga_client_key | default(omit) }}"
     state: "{{ service_apply.0.state | default(omit) }}"
     object_name: "{{ service_apply.1 }}"
-    display_name: "{{ service_apply.0.display_name | default(omit) }}"
+    display_name: "{{ service_apply.0.display_name | default(service_apply.1) }}"
     groups: "{{ service_apply.0.groups | default(omit) }}"
     apply_for: "{{ service_apply.0.apply_for | default(omit) }}"
     assign_filter: "{{ service_apply.0.assign_filter | default(omit) }}"

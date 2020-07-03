@@ -12,12 +12,18 @@ collections:
   - name: t_systems_mms.icinga_director
     src: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
     version: 1.2.2
+
+roles:
+  - name: icinga
+    src: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
+    version: 1.2.2
 ```
 
 * install the collections:
 
 ```bash
 ansible-galaxy collection install -r requirements.yml -p collections/
+ansible-galaxy install -r requirements.yml
 ```
 
 ## Dependencies

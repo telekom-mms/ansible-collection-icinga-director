@@ -15,7 +15,7 @@
     object_name: "{{ host.1 }}"
     display_name: "{{ host.0.display_name | default(omit) }}"
     address: "{{ host.0.address | default(omit) }}"
-    groups: "{{ host.0.address | default(omit) }}"
+    groups: "{{ host.0.groups | default(omit) }}"
     disabled: "{{ host.0.disabled | default(omit) }}"
     imports: "{{ host.0.imports | default(icinga_host_imports) }}"
     zone: "{{ host.0.zone | default(omit) }}"
