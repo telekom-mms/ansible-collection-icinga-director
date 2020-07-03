@@ -12,18 +12,12 @@ collections:
   - name: t_systems_mms.icinga_director
     src: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
     version: 1.2.2
-
-roles:
-  - name: icinga
-    src: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
-    version: 1.2.3
 ```
 
 * install the collections:
 
 ```bash
 ansible-galaxy collection install -r requirements.yml -p collections/
-ansible-galaxy install -r requirements.yml
 ```
 
 ## Dependencies
@@ -152,14 +146,15 @@ t_systems_mms.icinga_director >= 1.2.2
 ```bash
 ---
 - hosts: localhost
-  connection: local
   gather_facts: false
+  collections:
+  - t_systems_mms.icinga_director
   roles:
-  - icinga
+    - ansible-icinga
   vars:
     icinga_url: "https://example.com"
-    icinga_user: xxx
-    icinga_pass: xxx
+    icinga_user: "{{ icinga_user }}"
+    icinga_pass: "{{ icinga_pass }}"
     icinga_timeperiods:
       - timeperiod_object:
         - "8x5"
@@ -195,7 +190,3 @@ t_systems_mms.icinga_director >= 1.2.2
       - host_object:
         - "service_abbreviation-environement-web01"
 ```
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
