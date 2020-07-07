@@ -3,7 +3,7 @@ Icinga Director Collection for Ansible
 
 [![ci-ansible-test](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/workflows/ansible-test/badge.svg)](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/actions?query=workflow%3Aansible-test)
 
-This collection contains Ansible [modules](plugins/modules/) and a [role](roles/ansible-icinga/) to change objects in Icinga 2 using the director API.
+This collection contains Ansible [modules](plugins/modules/) and a [role](roles/ansible_icinga/) to change objects in Icinga 2 using the director API.
 
 Required Ansible version: 2.9
 
@@ -71,7 +71,7 @@ See the `examples` directory for a complete list of examples.
 Examples using the role
 -----------------------
 
-Please see the [README](roles/ansible-icinga/README.md) of the role.
+Please see the [README](roles/ansible_icinga/README.md) of the role.
 
 Troubleshooting
 ---------------
