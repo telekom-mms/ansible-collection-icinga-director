@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.0) (2020-07-07)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.2.2...1.3.0)
+
+**Implemented enhancements:**
+
+- Ansible icinga role [\#28](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/28) ([michaelamattes](https://github.com/michaelamattes))
+
 ## [1.2.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.2) (2020-06-26)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.2.1...1.2.2)
@@ -34,6 +42,7 @@
 - add gitattributes because of windows line endings [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
 - add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
+- remove unused intermediate assignments [\#11](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/11) ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
 
@@ -51,7 +60,6 @@
 
 - further improve error messages for different errors [\#18](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/18) ([rndmh3ro](https://github.com/rndmh3ro))
 - added required ansible version to readme.md [\#17](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/17) ([xFuture603](https://github.com/xFuture603))
-- add steps to update galaxy.yml in publish action [\#15](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/15) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.1.3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.3) (2020-06-09)
 
@@ -60,6 +68,7 @@
 **Implemented enhancements:**
 
 - try to improve error messages [\#16](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/16) ([rndmh3ro](https://github.com/rndmh3ro))
+- add steps to update galaxy.yml in publish action [\#15](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/15) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.1.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.2) (2020-06-09)
 
@@ -69,7 +78,6 @@
 
 - add action to publish to galaxy [\#14](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/14) ([rndmh3ro](https://github.com/rndmh3ro))
 - github-action to automatically create release-drafts [\#12](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/12) ([rndmh3ro](https://github.com/rndmh3ro))
-- remove unused intermediate assignments [\#11](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/11) ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
 
