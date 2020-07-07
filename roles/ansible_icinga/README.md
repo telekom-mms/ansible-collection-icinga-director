@@ -150,7 +150,7 @@ t_systems_mms.icinga_director >= 1.2.2
   collections:
   - t_systems_mms.icinga_director
   roles:
-    - ansible-icinga
+    - ansible_icinga
   vars:
     icinga_url: "https://example.com"
     icinga_user: "{{ icinga_user }}"

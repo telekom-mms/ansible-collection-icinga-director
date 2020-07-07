@@ -15,4 +15,4 @@ rules:
     level: error
   line-length:
     ignore: |
-      roles/ansible-icinga/tasks
+      roles/ansible_icinga/tasks
