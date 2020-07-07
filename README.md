@@ -2,9 +2,8 @@ Icinga Director Collection for Ansible
 =========
 
 [![ci-ansible-test](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/workflows/ansible-test/badge.svg)](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/actions?query=workflow%3Aansible-test)
-[![ci-ansible-lint](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/workflows/Ansible%20Lint/badge.svg)](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/actions?query=workflow%3A%22Ansible+Lint%22)
 
-This collection contains Ansible modules to change objects in Icinga 2 using the director API.
+This collection contains Ansible [modules](plugins/modules/) and a [role](roles/ansible-icinga/) to change objects in Icinga 2 using the director API.
 
 Required Ansible version: 2.9
 
@@ -42,8 +41,8 @@ collections:
 - t_systems_mms.icinga_director
 ```
 
-Examples
---------
+Examples using the modules
+--------------------------
 
 See the `examples` directory for a complete list of examples.
 
@@ -68,6 +67,11 @@ See the `examples` directory for a complete list of examples.
         vars:
           dnscheck: "no"
 ```
+
+Examples using the role
+-----------------------
+
+Please see the [README](roles/ansible-icinga/README.md) of the role.
 
 Troubleshooting
 ---------------
@@ -107,3 +111,4 @@ Author Information
 
 * Sebastian Gumprich
 * Lars Krahl
+* Michaela Mattes
