@@ -1,7 +1,22 @@
 ---
-- name: sleep for 60 seconds and continue with play
-  wait_for:
-    timeout: 60
+
+- name: wait for icinga to become ready
+  uri:
+    url: "{{ icinga_url }}/monitoring/health/info"
+    method: GET
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    return_content: true
+    force_basic_auth: true
+    headers:
+      Accept: "application/json"
+  register: result
+  until:
+    - result.json is defined
+    - result.json[0] is defined
+    - result.json[0].is_currently_running == "1"
+  retries: 30
+  delay: 3
 
 - include_tasks: "{{ item }}"
   loop:
