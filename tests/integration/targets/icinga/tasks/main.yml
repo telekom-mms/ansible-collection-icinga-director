@@ -18,6 +18,20 @@
   retries: 30
   delay: 3
 
+- name: wait for icinga director to become ready
+  uri:
+    url: "{{ icinga_url }}/director/hosts"
+    method: GET
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    force_basic_auth: true
+    headers:
+      Accept: "application/json"
+  register: _result
+  until: _result.status == 200
+  retries: 30
+  delay: 3
+
 - include_tasks: "{{ item }}"
   loop:
     - ./icinga_command_template.yml
