@@ -109,6 +109,28 @@ t_systems_mms.icinga_director >= 1.2.2
 | imports                    | no       |
 | zone                       | no       |
 | vars                       | no       |
+| **icinga_service**
+| icinga_services            | no       | []
+| display_name               | no       |
+| disabled                   | no       |
+| check_command              | no       |
+| check_interval             | no       |
+| check_period               | no       |
+| check_timeout              | no       |
+| enable_active_checks       | no       |
+| enable_event_handler       | no       |
+| enable_notifications       | no       |
+| enable_passive_checks      | no       |
+| enable_perfdata            | no       |
+| groups                     | no       |
+| host                       | yes      |
+| imports                    | no       |
+| max_check_attempts         | no       |
+| notes                      | no       |
+| retry_interval             | no       |
+| use_agent                  | no       |
+| vars                       | no       |
+| volatile                   | no       |
 | **icinga_service_template**
 | icinga_service_templates   | no       | []
 | display_name               | no       |

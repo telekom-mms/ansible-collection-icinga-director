@@ -43,7 +43,7 @@ class Icinga2APIObject:
             try:
                 content = json.loads(info["body"])
                 error = content["error"]
-            except ValueError:
+            except:
                 error = info["msg"]
         if info["status"] < 0:
             error = info["msg"]

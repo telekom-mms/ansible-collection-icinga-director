@@ -49,6 +49,11 @@
   when: icinga_commands is defined
   tags: command
 
+- name: icinga service configuration
+  include_tasks: icinga_service.yml
+  when: icinga_services is defined
+  tags: service
+
 - name: icinga service_template configuration
   include_tasks: icinga_service_template.yml
   when: icinga_service_templates is defined

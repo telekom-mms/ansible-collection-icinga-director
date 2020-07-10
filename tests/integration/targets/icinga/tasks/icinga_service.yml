@@ -1,0 +1,14 @@
+---
+- name: create service
+  tags: service
+  icinga_service:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: fooservice
+    use_agent: true
+    host: foohost
+    vars:
+      procs_argument: consul
+      procs_critical: '1:'
+      procs_warning: '1:'
