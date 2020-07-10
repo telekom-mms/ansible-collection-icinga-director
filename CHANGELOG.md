@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.1...1.3.2)
 
+**Implemented enhancements:**
+
+- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Merged pull requests:**
 
 - update examples and bash script for new testing paths [\#31](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -35,7 +39,6 @@
 **Fixed bugs:**
 
 - zone: defaults to master but i do not want to configure zone at all. [\#25](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/25)
-- do not require import and check\_command in host\_template [\#23](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/23) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Merged pull requests:**
 
@@ -59,6 +62,10 @@
 - add gitattributes because of windows line endings [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
 - add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- do not require import and check\_command in host\_template [\#23](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/23) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
