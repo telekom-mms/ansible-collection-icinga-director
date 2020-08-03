@@ -64,6 +64,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | icinga_host_templates      | no       | []
 | display_name               | no       |
 | address                    | no       |
+| address6                   | no       |
 | groups                     | no       |
 | check_command              | no       |
 | disabled                   | no       |
@@ -74,6 +75,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | icinga_hosts               | no       | []
 | display_name               | no       |
 | address                    | no       |
+| address6                   | no       |
 | groups                     | no       |
 | disabled                   | no       |
 | imports                    | yes      | []
