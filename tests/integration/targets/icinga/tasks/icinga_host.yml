@@ -8,6 +8,7 @@
     disabled: false
     object_name: "foohost"
     address: "127.0.0.1"
+    address6: "::1"
     display_name: "foohost"
     groups:
       - "foohostgroup"

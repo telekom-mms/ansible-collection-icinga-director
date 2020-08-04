@@ -15,6 +15,7 @@
     object_name: "{{ host_template.1 }}"
     display_name: "{{ host_template.0.display_name | default(omit) }}"
     address: "{{ host_template.0.address | default(omit) }}"
+    address6: "{{ host_template.0.address6 | default(omit) }}"
     groups: "{{ host_template.0.address | default(omit) }}"
     check_command: "{{ host_template.0.check_command | default(omit) }}"
     disabled: "{{ host_template.0.disabled | default(omit) }}"

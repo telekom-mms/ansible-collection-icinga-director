@@ -108,6 +108,11 @@ options:
       - Host address. Usually an IPv4 address, but may be any kind of address your check plugin is able to deal with
     required: false
     type: str
+  address6:
+    description:
+      - Host IPv6 address. Usually an IPv6 address, but may be any kind of address your check plugin is able to deal with
+    required: false
+    type: str
   groups:
     description:
       - Hostgroups that should be directly assigned to this node. Hostgroups can be useful for various reasons.
@@ -158,6 +163,7 @@ EXAMPLES = """
     disabled: false
     object_name: "foohost"
     address: "127.0.0.1"
+    address6: "::1"
     display_name: "foohost"
     groups:
       - "foohostgroup"
@@ -193,6 +199,7 @@ def main():
         imports=dict(type="list", required=True),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         address=dict(required=False),
+        address6=dict(required=False),
         zone=dict(required=False, default=None),
         vars=dict(type="dict", default=None),
         check_command=dict(required=False),
@@ -211,6 +218,7 @@ def main():
         "imports": module.params["imports"],
         "disabled": module.params["disabled"],
         "address": module.params["address"],
+        "address6": module.params["address6"],
         "zone": module.params["zone"],
         "vars": module.params["vars"],
         "check_command": module.params["check_command"],
