@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.0) (2020-08-04)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.2...1.4.0)
+
+**Implemented enhancements:**
+
+- add support for address6 on host object [\#37](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/37) ([schurzi](https://github.com/schurzi))
+
+**Closed issues:**
+
+- No IPv6-Address Variable for Hosts [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/36)
+
 ## [1.3.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.2) (2020-07-15)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.1...1.3.2)
@@ -8,9 +20,12 @@
 
 - make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - added code in icinga\_command.yml to make it work like the other tasks in our role [\#35](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/35) ([xFuture603](https://github.com/xFuture603))
+
+**Merged pull requests:**
+
 - update examples and bash script for new testing paths [\#31](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.3.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.1) (2020-07-07)
