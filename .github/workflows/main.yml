@@ -13,13 +13,12 @@ jobs:
           # Testing against `devel` may fail as new tests are added.
           - stable-2.9
           - stable-2.10
-          - devel
         python:
           - 2.7
           - 3.7
           - 3.8
-#        exclude:
-#          - python: 3.8  # blocked by ansible/ansible#70155
+        exclude:
+          - python: 3.8  # blocked by ansible/ansible#70155
     runs-on: ubuntu-latest
     steps:
       # ansible-test requires the collection to be in a directory in the form
@@ -37,7 +36,7 @@ jobs:
 
       # Install the head of the given branch (devel, stable-2.10)
       - name: Install ansible-base (${{ matrix.ansible }})
-        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+        run: python -m pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
 
       # run ansible-test sanity inside of Docker.
       # The docker container has all the pinned dependencies that are required.
@@ -67,7 +66,7 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install dependencies
-        run: pip install flake8 tox
+        run: python -m pip install flake8 tox
 
       - name: Run lint test
         run: tox -elinters -vv
@@ -81,7 +80,6 @@ jobs:
         ansible:
           - stable-2.9
           - stable-2.10
-          - devel
         python:
           - 2.7
           - 3.7
@@ -107,7 +105,7 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install ansible-base (${{ matrix.ansible }})
-        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+        run: python -m pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
 
       - name: Run integration tests
         run: ansible-test integration -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
