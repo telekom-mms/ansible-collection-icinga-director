@@ -20,7 +20,35 @@
   ignore_errors: true
   register: result
 
-- name:
+- name: assert that the previous task failed with 401
   assert:
     that:
-       - 'result.failed'
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized'"
+
+- name: login to non-existing host
+  icinga_host:
+    state: present
+    url: "http://nonexistinghost"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_password }}"
+    disabled: false
+    object_name: "foohost"
+    address: "127.0.0.1"
+    address6: "::1"
+    display_name: "foohost"
+    groups:
+      - "foohostgroup"
+    imports:
+      - "foohosttemplate"
+    vars:
+      dnscheck: "no"
+    check_command: dummy
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with -1
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'"
