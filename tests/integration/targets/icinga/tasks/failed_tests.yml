@@ -51,4 +51,4 @@
   assert:
     that:
       - "result.failed"
-      - "result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'"
+      - "result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>'"
