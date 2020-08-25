@@ -1,0 +1,23 @@
+- name: create host template
+  icinga_host_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "iamwrong"
+    object_name: foohosttemplate
+    display_name: foohosttemplate
+    disabled: false
+    check_command: dummy
+    groups:
+      - "foohostgroup"
+    imports:
+      - ''
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized'"  # noqa

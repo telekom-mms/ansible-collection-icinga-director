@@ -1,0 +1,22 @@
+- name: create user
+  icinga_user:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "iamwrong"
+    object_name: "rb"
+    display_name: "Rufbereitschaft"
+    pager: 'SIP/emergency'
+    period: '24/7'
+    email: "foouser@example.com"
+    imports:
+      - foousertemplate
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized'"  # noqa

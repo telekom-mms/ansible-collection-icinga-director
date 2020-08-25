@@ -1,0 +1,21 @@
+- name: create servicetemplate
+  tags: servicetemplate
+  icinga_service_template:
+    url: "http://nonexistant"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: fooservicetemplate
+    use_agent: true
+    vars:
+      procs_argument: consul
+      procs_critical: '1:'
+      procs_warning: '1:'
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>'"  # noqa

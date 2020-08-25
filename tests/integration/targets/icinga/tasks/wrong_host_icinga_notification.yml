@@ -1,0 +1,26 @@
+- name: create notification
+  icinga_notification:
+    state: present
+    url: "http://nonexistant"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    apply_to: host
+    assign_filter: 'host.name="foohost"'
+    imports:
+      - foonotificationtemplate
+    notification_interval: '0'
+    object_name: E-Mail_host
+    types:
+      - Problem
+      - Recovery
+    users:
+      - rb
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>'"  # noqa
