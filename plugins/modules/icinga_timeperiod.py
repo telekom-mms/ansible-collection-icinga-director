@@ -148,6 +148,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
+        url=dict(required=True),
         object_name=dict(required=True),
         display_name=dict(required=False),
         imports=dict(type="list", elements="str", default=[], required=False),

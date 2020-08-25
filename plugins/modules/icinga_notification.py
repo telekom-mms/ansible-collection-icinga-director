@@ -167,9 +167,11 @@ def main():
     # remove unnecessary argument 'force'
     del argument_spec["force"]
     del argument_spec["http_agent"]
+
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
+        url=dict(required=True),
         object_name=dict(required=True),
         imports=dict(type="list", elements="str", required=True),
         apply_to=dict(required=True, choices=["service", "host"]),

@@ -230,6 +230,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
+        url=dict(required=True),
         object_name=dict(required=True),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         check_command=dict(required=False),
