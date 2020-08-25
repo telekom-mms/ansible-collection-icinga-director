@@ -1,8 +1,4 @@
 ---
-- name: sleep for 60 seconds and continue with play
-  wait_for:
-    timeout: 60
-
 - include_tasks: "{{ item }}"
   loop:
     - ./icinga_command_template.yml

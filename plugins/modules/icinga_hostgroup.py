@@ -33,7 +33,7 @@ module: icinga_hostgroup
 short_description: Manage hostgroups in Icinga2
 description:
    - "Add or remove a hostgroup to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:

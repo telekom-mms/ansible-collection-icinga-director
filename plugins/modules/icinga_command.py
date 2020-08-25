@@ -33,7 +33,7 @@ module: icinga_command
 short_description: Manage commands in Icinga2
 description:
    - "Add or remove a command to Icinga2 through the director API."
-author: Sebastian Gumprich
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -121,6 +121,7 @@ options:
       - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
     required: false
     type: list
+    elements: str
   timeout:
     description:
       - Optional command timeout. Allowed values are seconds or durations postfixed with a specific unit (e.g. 1m or also 3m 30s).
@@ -225,12 +226,12 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
-        imports=dict(type="list", required=False, default=[]),
+        imports=dict(type="list", elements="str", required=False, default=[]),
         disabled=dict(
             type="bool", required=False, default=False, choices=[True, False]
         ),
         vars=dict(type="dict", default={}),
-        command=dict(required=False),
+        command=dict(required=True),
         command_type=dict(
             default="PluginCheck",
             choices=["PluginCheck", "PluginNotification", "PluginEvent"],

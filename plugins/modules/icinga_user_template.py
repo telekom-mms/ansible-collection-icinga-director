@@ -33,7 +33,7 @@ module: icinga_user_template
 short_description: Manage user templates in Icinga2
 description:
    - "Add or remove a user template to Icinga2 through the director API."
-author: "Lars Krahl"
+author: Lars Krahl (@mmslkr)
 options:
   url:
     description:
@@ -98,6 +98,7 @@ options:
       - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
     required: false
     type: list
+    elements: str
   period:
     description:
       - The name of a time period which determines when notifications to this User should be triggered. Not set by default.
@@ -141,7 +142,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
-        imports=dict(type="list", default=[], required=False),
+        imports=dict(type="list", elements="str", default=[], required=False),
         period=dict(required=False),
         enable_notifications=dict(type="bool", required=False),
     )

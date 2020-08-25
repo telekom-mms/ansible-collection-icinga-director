@@ -33,7 +33,7 @@ module: icinga_user
 short_description: Manage users in Icinga2
 description:
    - "Add or remove a user to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -103,6 +103,7 @@ options:
       - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
     required: false
     type: list
+    elements: str
   pager:
     description:
       - The pager address of the user.
@@ -163,7 +164,7 @@ def main():
         object_name=dict(required=True),
         display_name=dict(required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
-        imports=dict(type="list", required=False),
+        imports=dict(type="list", elements="str", required=False),
         email=dict(required=False),
         pager=dict(required=False),
         period=dict(required=False),

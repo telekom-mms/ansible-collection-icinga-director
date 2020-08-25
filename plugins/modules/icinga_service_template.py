@@ -33,7 +33,7 @@ module: icinga_service_template
 short_description: Manage service templates in Icinga2
 description:
    - "Add or remove a service template to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -147,6 +147,7 @@ options:
         Service groups can be directly assigned to single services or to service templates.
     required: false
     type: "list"
+    elements: "str"
     default: []
   imports:
     description:
@@ -154,6 +155,7 @@ options:
         Please note that order matters when importing properties from multiple templates - last one wins
     required: false
     type: "list"
+    elements: "str"
     default: []
   max_check_attempts:
     description:
@@ -239,8 +241,8 @@ def main():
         enable_notifications=dict(type="bool", required=False),
         enable_passive_checks=dict(type="bool", required=False),
         enable_perfdata=dict(type="bool", required=False),
-        groups=dict(type="list", default=[], required=False),
-        imports=dict(type="list", default=[], required=False),
+        groups=dict(type="list", elements="str", default=[], required=False),
+        imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
         notes=dict(required=False),
         retry_interval=dict(required=False),

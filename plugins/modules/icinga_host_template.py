@@ -33,7 +33,7 @@ module: icinga_host_template
 short_description: Manage host templates in Icinga2
 description:
    - "Add or remove a host template to Icinga2 through the director API."
-author: "Michaela Mattes"
+author: Michaela Mattes (@michaelamattes)
 options:
   url:
     description:
@@ -121,6 +121,7 @@ options:
         You might also want to consider assigning hostgroups using apply rules
     required: false
     type: list
+    elements: str
     default: []
   check_command:
     description:
@@ -140,6 +141,7 @@ options:
       - Choose a Host Template
     required: false
     type: list
+    elements: str
   zone:
     description:
       - Set the zone
@@ -190,9 +192,9 @@ def main():
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
         display_name=dict(required=False),
-        groups=dict(type="list", default=[], required=False),
+        groups=dict(type="list", elements="str", default=[], required=False),
         check_command=dict(required=False),
-        imports=dict(type="list", required=False),
+        imports=dict(type="list", elements="str", required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         address=dict(required=False),
         address6=dict(required=False),

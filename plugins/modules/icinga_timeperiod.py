@@ -33,7 +33,7 @@ module: icinga_timeperiod
 short_description: Manage timeperiods in Icinga2
 description:
    - "Add or remove a timeperiod to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -103,6 +103,7 @@ options:
       - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
     required: false
     type: list
+    elements: str
   ranges:
     description:
       - A dict of days and timeperiods.
@@ -149,7 +150,7 @@ def main():
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
         display_name=dict(required=False),
-        imports=dict(type="list", default=[], required=False),
+        imports=dict(type="list", elements="str", default=[], required=False),
         ranges=dict(type="dict", required=False),
     )
 

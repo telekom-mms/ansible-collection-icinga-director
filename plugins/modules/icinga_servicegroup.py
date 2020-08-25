@@ -33,7 +33,7 @@ module: icinga_servicegroup
 short_description: Manage servicegroup in Icinga2
 description:
    - "Add or remove a servicegroup to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:

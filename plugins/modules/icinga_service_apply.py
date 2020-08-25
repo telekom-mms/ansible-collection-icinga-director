@@ -33,7 +33,7 @@ module: icinga_service_apply
 short_description: Manage service apply rules in Icinga2
 description:
    - "Add or remove a service apply rule to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -107,6 +107,7 @@ options:
         Service groups can be directly assigned to single services or to service templates.
     required: false
     type: "list"
+    elements: str
   apply_for:
     description:
       - Evaluates the apply for rule for all objects with the custom attribute specified.
@@ -125,6 +126,7 @@ options:
         Please note that order matters when importing properties from multiple templates - last one wins
     required: false
     type: "list"
+    elements: str
   vars:
     description:
       - Custom properties of the host
@@ -214,11 +216,11 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
-        display_name=dict(required=True),
+        display_name=dict(required=False),
         apply_for=dict(required=False),
         assign_filter=dict(required=False),
-        imports=dict(type="list", required=False),
-        groups=dict(type="list", default=[], required=False),
+        imports=dict(type="list", elements="str", required=False),
+        groups=dict(type="list", elements="str", default=[], required=False),
         vars=dict(type="dict", default={}),
         notes=dict(type="str", required=False),
         notes_url=dict(type="str", required=False),

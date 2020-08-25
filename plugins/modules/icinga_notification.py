@@ -33,7 +33,7 @@ module: icinga_notification
 short_description: Manage notifications in Icinga2
 description:
    - "Add or remove a notification to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -104,15 +104,17 @@ options:
       - The state transition types you want to get notifications for
     required: false
     type: "list"
+    elements: str
   users:
     description:
       - Users that should be notified by this notifications
     required: false
     type: "list"
+    elements: str
   apply_to:
     description:
       - Whether this notification should affect hosts or services
-    required: false
+    required: true
     type: str
     choices: ["host", "service"]
   assign_filter:
@@ -124,8 +126,9 @@ options:
     description:
       - Importable templates, add as many as you want.
         Please note that order matters when importing properties from multiple templates - last one wins
-    required: false
+    required: true
     type: "list"
+    elements: str
 """
 
 EXAMPLES = """
@@ -168,12 +171,12 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         object_name=dict(required=True),
-        imports=dict(type="list", required=True),
+        imports=dict(type="list", elements="str", required=True),
         apply_to=dict(required=True, choices=["service", "host"]),
         assign_filter=dict(required=False),
         notification_interval=dict(required=False),
-        types=dict(type="list", required=False),
-        users=dict(type="list", required=False),
+        types=dict(type="list", elements="str", required=False),
+        users=dict(type="list", elements="str", required=False),
     )
 
     # Define the main module
