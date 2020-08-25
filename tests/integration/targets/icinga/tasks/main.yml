@@ -17,8 +17,7 @@
     - ./icinga_host_template.yml
     - ./icinga_host.yml
 
-### run them again for idempotency codecoverage checks
-
+    ### run them again for idempotency codecoverage checks
     - ./icinga_command_template.yml
     - ./icinga_command.yml
     - ./icinga_timeperiod.yml
