@@ -5,44 +5,88 @@ on: [push, pull_request]
 
 jobs:
   ansible-sanity-tests:
+    name: Sanity (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
+    strategy:
+      matrix:
+        ansible:
+          # It's important that Sanity is tested against all stable-X.Y branches
+          # Testing against `devel` may fail as new tests are added.
+          - stable-2.9
+          - stable-2.10
+          - devel
+        python:
+          - 2.7
+          - 3.7
+          - 3.8
+#        exclude:
+#          - python: 3.8  # blocked by ansible/ansible#70155
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
+      # ansible-test requires the collection to be in a directory in the form
+      # .../ansible_collections/NAMESPACE/COLLECTION_NAME/
 
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           path: ansible_collections/t_systems_mms/icinga_director
 
-      - name: Install Ansible
-        run: pip install ansible --disable-pip-version-check
+      - name: Set up Python ${{ matrix.ansible }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
 
+      # Install the head of the given branch (devel, stable-2.10)
+      - name: Install ansible-base (${{ matrix.ansible }})
+        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+
+      # run ansible-test sanity inside of Docker.
+      # The docker container has all the pinned dependencies that are required.
+      # Explicity specify the version of Python we want to test
       - name: Run sanity tests
-        run: ansible-test sanity --docker -v --color
+        run: ansible-test sanity --docker -v --color --python ${{ matrix.python }}
+        working-directory: ./ansible_collections/t_systems_mms/icinga_director
 
   linting:
+    name: Tox-Lint (py${{ matrix.python }})
+    strategy:
+      matrix:
+        python:
+          - 2.7
+          - 3.7
+          - 3.8
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-
-      - name: Install tox
-        run: pip install tox --disable-pip-version-check
-
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/t_systems_mms/icinga_director
 
-      - name: Run tox linting
-        run: tox -elinters
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install dependencies
+        run: pip install flake8 tox
+
+      - name: Run lint test
+        run: tox -elinters -vv
+        working-directory: ./ansible_collections/t_systems_mms/icinga_director
 
   integration-tests:
     runs-on: ubuntu-latest
-    container: rndmh3ro/docker-centos8-ansible:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ansible:
+          - stable-2.9
+          - stable-2.10
+          - devel
+        python:
+          - 2.7
+          - 3.7
+        exclude:
+          - python: 3.8  # blocked by ansible/ansible#70155
     defaults:
       run:
         working-directory: ansible_collections/t_systems_mms/icinga_director
@@ -57,5 +101,24 @@ jobs:
         with:
           path: ansible_collections/t_systems_mms/icinga_director
 
+      - name: Set up Python ${{ matrix.ansible }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install ansible-base (${{ matrix.ansible }})
+        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+
       - name: Run integration tests
-        run: ansible-test integration --diff --debug-strategy
+        run: ansible-test integration -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
+        working-directory: ./ansible_collections/t_systems_mms/icinga_director
+
+        # ansible-test support producing code coverage date
+      - name: Generate coverage report
+        run: ansible-test coverage xml -v --requirements --group-by command --group-by version
+        working-directory: ./ansible_collections/t_systems_mms/icinga_director
+
+      # See the reports at https://codecov.io/gh/T-Systems-MMS/ansible-collection-icinga-director
+      - uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: false
