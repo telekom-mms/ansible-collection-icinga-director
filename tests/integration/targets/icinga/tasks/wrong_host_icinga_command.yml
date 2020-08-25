@@ -1,3 +1,4 @@
+---
 - name: create command
   icinga_command:
     state: present
