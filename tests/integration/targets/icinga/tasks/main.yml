@@ -1,7 +1,10 @@
 ---
 - include_tasks: "{{ item }}"
   with_fileglob:
-    - ./*.yml
+    - "tasks/icinga_*.yml"
+    - "tasks/wrong_*.yml"
+    - "tasks/absent*.yml"
+    - "tasks/failed_tests.yml"
 
 - name: deploy changes in icinga
   tags: uri
