@@ -33,8 +33,7 @@ module: icinga_host
 short_description: Manage hosts in Icinga2
 description:
    - "Add or remove a host to Icinga2 through the director API."
-author:
-  - "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -122,6 +121,7 @@ options:
         You might also want to consider assigning hostgroups using apply rules
     required: false
     type: list
+    elements: str
     default: []
   disabled:
     description:
@@ -135,6 +135,7 @@ options:
       - Choose a Host Template
     required: true
     type: list
+    elements: str
   zone:
     description:
       - Set the zone
@@ -193,10 +194,11 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
+        url=dict(required=True),
         object_name=dict(required=True),
         display_name=dict(required=False),
-        groups=dict(type="list", default=[], required=False),
-        imports=dict(type="list", required=True),
+        groups=dict(type="list", elements="str", default=[], required=False),
+        imports=dict(type="list", elements="str", required=True),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         address=dict(required=False),
         address6=dict(required=False),

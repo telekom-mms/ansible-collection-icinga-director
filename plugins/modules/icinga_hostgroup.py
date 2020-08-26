@@ -33,7 +33,7 @@ module: icinga_hostgroup
 short_description: Manage hostgroups in Icinga2
 description:
    - "Add or remove a hostgroup to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -140,6 +140,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
+        url=dict(required=True),
         object_name=dict(required=True),
         display_name=dict(required=False),
         assign_filter=dict(required=False),
