@@ -78,7 +78,9 @@
     - ./absent_icinga_hostgroup.yml
     - ./absent_icinga_host_template.yml
     - ./absent_icinga_host.yml
-   ### we need to run everything in check mode
+
+
+    ### we need to run everything in check mode
 
 - name: deploy changes in icinga
   tags: uri
