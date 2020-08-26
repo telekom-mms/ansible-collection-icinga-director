@@ -1,0 +1,14 @@
+---
+- name: create user
+  icinga_user:
+    state: absent
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "rb"
+    display_name: "Rufbereitschaft"
+    pager: 'SIP/emergency'
+    period: '24/7'
+    email: "foouser@example.com"
+    imports:
+      - foousertemplate
