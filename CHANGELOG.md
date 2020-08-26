@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.1) (2020-08-26)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.0...1.4.1)
+
+**Implemented enhancements:**
+
+- Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- No IPv6-Address Variable for Hosts [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/36)
+
 ## [1.4.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.0) (2020-08-04)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.2...1.4.0)
@@ -7,10 +19,6 @@
 **Implemented enhancements:**
 
 - add support for address6 on host object [\#37](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/37) ([schurzi](https://github.com/schurzi))
-
-**Closed issues:**
-
-- No IPv6-Address Variable for Hosts [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/36)
 
 ## [1.3.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.2) (2020-07-15)
 
@@ -68,6 +76,7 @@
 
 - Integration testing [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
+- add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.2.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.0) (2020-06-24)
 
@@ -77,7 +86,6 @@
 
 - add gitattributes because of windows line endings [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
-- add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
