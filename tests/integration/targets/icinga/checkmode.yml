@@ -1,6 +1,6 @@
 ---
 - name: run tasks in check mode
-  hosts: testhost
+  hosts: localhost
   tasks:
     - include_tasks: "{{ item }}"
       loop:
