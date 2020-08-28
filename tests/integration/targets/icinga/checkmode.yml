@@ -1,12 +1,10 @@
 ---
 - name: run tasks in check mode
   hosts: localhost
-  vars:
-    icinga_url: "http://127.0.0.1/icingaweb2"
-    icinga_user: "icingaadmin"
-    icinga_pass: "icinga"
   tasks:
-    - include_tasks: "{{ item }}"
+    - include_role:
+        name: "icinga"
+        tasks_from: "{{ item }}"
       loop:
         - tasks/icinga_command_template.yml
         - tasks/icinga_command.yml
