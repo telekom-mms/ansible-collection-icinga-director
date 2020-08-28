@@ -2,5 +2,5 @@
 
 set -eux
 
-ansible-playbook checkmode.yml --check --diff
 ansible-playbook normalmode.yml
+ansible-playbook checkmode.yml --check --diff
