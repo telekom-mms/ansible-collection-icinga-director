@@ -6,7 +6,7 @@
     - ./icinga_timeperiod.yml
     - ./icinga_user_template.yml
     - ./icinga_user.yml
-     - ./icinga_notification.yml
+    - ./icinga_notification.yml
     - ./icinga_hostgroup.yml
     - ./icinga_servicegroup.yml
     - ./icinga_service_template.yml

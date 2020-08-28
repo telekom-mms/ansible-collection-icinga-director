@@ -32,4 +32,3 @@
         - icinga_hostgroup.yml
         - icinga_host_template.yml
         - icinga_host.yml
-
