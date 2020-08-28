@@ -1,7 +1,6 @@
 ---
 - include_tasks: "{{ item }}"
   loop:
-    - ./failed_tests.yml
     - ./icinga_command_template.yml
     - ./icinga_command.yml
     - ./icinga_timeperiod.yml
