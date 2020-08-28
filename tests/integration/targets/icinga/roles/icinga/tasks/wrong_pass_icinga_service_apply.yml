@@ -1,0 +1,30 @@
+---
+- name: Add service apply rule to icinga
+  icinga_service_apply:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "iamwrong"
+    object_name: "SERVICE_dummy"
+    assign_filter: 'host.vars.HostOS="Linux"'
+    apply_for: "host.vars.enabled_notifications"
+    display_name: "dummy process"
+    imports:
+      - fooservicetemplate
+    groups:
+      - fooservicegroup
+    vars:
+      http_address: "$address$"
+      http_port: "9080"
+      http_uri: "/ready"
+      http_string: "Ready"
+      http_expect: "Yes"
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized'"  # noqa

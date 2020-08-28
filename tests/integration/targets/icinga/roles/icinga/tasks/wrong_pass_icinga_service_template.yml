@@ -1,0 +1,22 @@
+---
+- name: create servicetemplate
+  tags: servicetemplate
+  icinga_service_template:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "iamwrong"
+    object_name: fooservicetemplate
+    use_agent: true
+    vars:
+      procs_argument: consul
+      procs_critical: '1:'
+      procs_warning: '1:'
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized'"  # noqa

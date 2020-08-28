@@ -1,0 +1,28 @@
+---
+- name: create a host in icinga
+  icinga_host:
+    state: present
+    url: "http://nonexistant"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    disabled: false
+    object_name: "foohost"
+    address: "127.0.0.1"
+    address6: "::1"
+    display_name: "foohost"
+    groups:
+      - "foohostgroup"
+    imports:
+      - "foohosttemplate"
+    vars:
+      dnscheck: "no"
+    check_command: dummy
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>'"  # noqa

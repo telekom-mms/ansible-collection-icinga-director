@@ -1,0 +1,23 @@
+---
+- name: create user
+  icinga_user:
+    state: present
+    url: "http://nonexistant"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "rb"
+    display_name: "Rufbereitschaft"
+    pager: 'SIP/emergency'
+    period: '24/7'
+    email: "foouser@example.com"
+    imports:
+      - foousertemplate
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>'"  # noqa

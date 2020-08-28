@@ -16,3 +16,4 @@ rules:
   line-length:
     ignore: |
       roles/ansible_icinga/tasks
+      tests/integration/targets/icinga/

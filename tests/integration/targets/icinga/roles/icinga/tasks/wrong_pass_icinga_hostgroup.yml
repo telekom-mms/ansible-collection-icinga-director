@@ -1,0 +1,19 @@
+---
+- name: create hostgroup
+  icinga_hostgroup:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "iamwrong"
+    object_name: foohostgroup
+    display_name: foohostgroup
+    assign_filter: 'host.name="foohost"'
+
+  ignore_errors: true
+  register: result
+
+- name: assert that the previous task failed with 401
+  assert:
+    that:
+      - "result.failed"
+      - "result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized'"  # noqa

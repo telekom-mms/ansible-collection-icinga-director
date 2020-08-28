@@ -1,0 +1,36 @@
+---
+- name: run tasks in check mode
+  hosts: localhost
+  tasks:
+    - include_role:
+        name: "icinga"
+        tasks_from: "{{ item }}"
+      loop:
+        - absent_icinga_host_template.yml
+        - absent_icinga_hostgroup.yml
+        - absent_icinga_service_apply.yml
+        - absent_icinga_service_template.yml
+        - absent_icinga_servicegroup.yml
+        - absent_icinga_hostgroup.yml
+        # TODO: create notification template module
+        # - absent_icinga_notification.yml
+        - absent_icinga_user.yml
+        - absent_icinga_user_template.yml
+        - absent_icinga_timeperiod.yml
+        - absent_icinga_command.yml
+        - absent_icinga_command_template.yml
+
+        - icinga_command_template.yml
+        - icinga_command.yml
+        - icinga_timeperiod.yml
+        - icinga_user_template.yml
+        - icinga_user.yml
+        # TODO: create notification template module
+        # - icinga_notification.yml
+        - icinga_hostgroup.yml
+        - icinga_servicegroup.yml
+        - icinga_service_template.yml
+        - icinga_service_apply.yml
+        - icinga_hostgroup.yml
+        - icinga_host_template.yml
+        - icinga_host.yml

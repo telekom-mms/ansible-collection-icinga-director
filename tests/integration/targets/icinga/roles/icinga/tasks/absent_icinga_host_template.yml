@@ -1,0 +1,15 @@
+---
+- name: create host template
+  icinga_host_template:
+    state: absent
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: foohosttemplate
+    display_name: foohosttemplate
+    disabled: false
+    check_command: dummy
+    groups:
+      - "foohostgroup"
+    imports:
+      - ''

@@ -1,0 +1,93 @@
+---
+- include_tasks: "{{ item }}"
+  loop:
+    - ./icinga_command_template.yml
+    - ./icinga_command.yml
+    - ./icinga_timeperiod.yml
+    - ./icinga_user_template.yml
+    - ./icinga_user.yml
+    # TODO: create notification template module
+    # - ./icinga_notification.yml
+    - ./icinga_hostgroup.yml
+    - ./icinga_servicegroup.yml
+    - ./icinga_service_template.yml
+    - ./icinga_service_apply.yml
+    - ./icinga_hostgroup.yml
+    - ./icinga_host_template.yml
+    - ./icinga_host.yml
+
+    ### run them again for idempotency codecoverage checks
+    - ./icinga_command_template.yml
+    - ./icinga_command.yml
+    - ./icinga_timeperiod.yml
+    - ./icinga_user_template.yml
+    - ./icinga_user.yml
+    # TODO: create notification template module
+    # - ./icinga_notification.yml
+    - ./icinga_hostgroup.yml
+    - ./icinga_servicegroup.yml
+    - ./icinga_service_template.yml
+    - ./icinga_service_apply.yml
+    - ./icinga_hostgroup.yml
+    - ./icinga_host_template.yml
+    - ./icinga_host.yml
+
+    ### failing tests
+    - ./wrong_host_icinga_command_template.yml
+    - ./wrong_host_icinga_command.yml
+    - ./wrong_host_icinga_timeperiod.yml
+    - ./wrong_host_icinga_user_template.yml
+    - ./wrong_host_icinga_user.yml
+    # TODO: create notification template module
+    # - ./wrong_host_icinga_notification.yml
+    - ./wrong_host_icinga_hostgroup.yml
+    - ./wrong_host_icinga_servicegroup.yml
+    - ./wrong_host_icinga_service_template.yml
+    - ./wrong_host_icinga_service_apply.yml
+    - ./wrong_host_icinga_hostgroup.yml
+    - ./wrong_host_icinga_host_template.yml
+    - ./wrong_host_icinga_host.yml
+
+    - ./wrong_pass_icinga_command_template.yml
+    - ./wrong_pass_icinga_command.yml
+    - ./wrong_pass_icinga_timeperiod.yml
+    - ./wrong_pass_icinga_user_template.yml
+    - ./wrong_pass_icinga_user.yml
+    # TODO: create notification template module
+    # - ./wrong_pass_icinga_notification.yml
+    - ./wrong_pass_icinga_hostgroup.yml
+    - ./wrong_pass_icinga_servicegroup.yml
+    - ./wrong_pass_icinga_service_template.yml
+    - ./wrong_pass_icinga_service_apply.yml
+    - ./wrong_pass_icinga_hostgroup.yml
+    - ./wrong_pass_icinga_host_template.yml
+    - ./wrong_pass_icinga_host.yml
+
+    - ./absent_icinga_host.yml
+    - ./absent_icinga_host_template.yml
+    - ./absent_icinga_hostgroup.yml
+    - ./absent_icinga_service_apply.yml
+    - ./absent_icinga_service_template.yml
+    - ./absent_icinga_servicegroup.yml
+    - ./absent_icinga_hostgroup.yml
+    # TODO: create notification template module
+    # - ./absent_icinga_notification.yml
+    - ./absent_icinga_user.yml
+    - ./absent_icinga_user_template.yml
+    - ./absent_icinga_timeperiod.yml
+    - ./absent_icinga_command.yml
+    - ./absent_icinga_command_template.yml
+
+
+    ### we need to run everything in check mode
+
+- name: deploy changes in icinga
+  tags: uri
+  uri:
+    url: "{{ icinga_url }}/director/config/deploy"
+    headers:
+      Accept: application/json
+    method: POST
+    user: "{{ icinga_user }}"
+    password: "{{ icinga_pass }}"
+    return_content: true
