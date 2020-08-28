@@ -6,7 +6,8 @@
     - ./icinga_timeperiod.yml
     - ./icinga_user_template.yml
     - ./icinga_user.yml
-    - ./icinga_notification.yml
+    # TODO: create notification template module
+    # - ./icinga_notification.yml
     - ./icinga_hostgroup.yml
     - ./icinga_servicegroup.yml
     - ./icinga_service_template.yml
@@ -21,7 +22,8 @@
     - ./icinga_timeperiod.yml
     - ./icinga_user_template.yml
     - ./icinga_user.yml
-    - ./icinga_notification.yml
+    # TODO: create notification template module
+    # - ./icinga_notification.yml
     - ./icinga_hostgroup.yml
     - ./icinga_servicegroup.yml
     - ./icinga_service_template.yml
@@ -36,7 +38,8 @@
     - ./wrong_host_icinga_timeperiod.yml
     - ./wrong_host_icinga_user_template.yml
     - ./wrong_host_icinga_user.yml
-    - ./wrong_host_icinga_notification.yml
+    # TODO: create notification template module
+    # - ./wrong_host_icinga_notification.yml
     - ./wrong_host_icinga_hostgroup.yml
     - ./wrong_host_icinga_servicegroup.yml
     - ./wrong_host_icinga_service_template.yml
@@ -50,7 +53,8 @@
     - ./wrong_pass_icinga_timeperiod.yml
     - ./wrong_pass_icinga_user_template.yml
     - ./wrong_pass_icinga_user.yml
-    - ./wrong_pass_icinga_notification.yml
+    # TODO: create notification template module
+    # - ./wrong_pass_icinga_notification.yml
     - ./wrong_pass_icinga_hostgroup.yml
     - ./wrong_pass_icinga_servicegroup.yml
     - ./wrong_pass_icinga_service_template.yml
@@ -66,7 +70,8 @@
     - ./absent_icinga_service_template.yml
     - ./absent_icinga_servicegroup.yml
     - ./absent_icinga_hostgroup.yml
-    - ./absent_icinga_notification.yml
+    # TODO: create notification template module
+    # - ./absent_icinga_notification.yml
     - ./absent_icinga_user.yml
     - ./absent_icinga_user_template.yml
     - ./absent_icinga_timeperiod.yml
