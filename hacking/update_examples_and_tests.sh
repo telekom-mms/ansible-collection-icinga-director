@@ -32,7 +32,7 @@ for module in ../plugins/modules/*.py; do
   assert:
     that:
       - \"result.failed\"
-      - \"result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>'\"  # noqa
+      - \"result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'\"  # noqa
 " >> "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml"
 
     # create failing tests with wrong host
@@ -51,6 +51,6 @@ for module in ../plugins/modules/*.py; do
   assert:
     that:
       - \"result.failed\"
-      - \"result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'\"  # noqa
+      - \"result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'\"  # noqa
 " >> "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml"
 done
