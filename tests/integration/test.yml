@@ -3,6 +3,6 @@
   gather_facts: false
   tasks:
     - include_role:
-        name: tests/integration/targets/icinga
+        name: tests/integration/targets/icinga/roles/icinga
   collections:
     - t_systems_mms.icinga_director
