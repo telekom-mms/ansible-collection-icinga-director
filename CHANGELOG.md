@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.4.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.1) (2020-08-28)
+## [1.4.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.1) (2020-09-02)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.0...1.4.1)
 
 **Implemented enhancements:**
 
+- make local testing without ansible-test work [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/41) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 
@@ -45,10 +46,6 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.0...1.3.1)
 
-**Implemented enhancements:**
-
-- Use ansible-test to run integration tests [\#27](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/27) ([rndmh3ro](https://github.com/rndmh3ro))
-
 **Merged pull requests:**
 
 - replace hyphen in role name with underscore [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/29) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -64,6 +61,10 @@
 ## [1.2.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.2) (2020-06-26)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.2.1...1.2.2)
+
+**Implemented enhancements:**
+
+- Use ansible-test to run integration tests [\#27](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/27) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
