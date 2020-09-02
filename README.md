@@ -96,10 +96,11 @@ Local Testing
 
 ```
 # run icinga in a container and forward port 80
-> docker run -it -p 80:80 jordan/icinga2
+> docker run -d -p 80:80 jordan/icinga2
 
-# run the ansible-playbook against the container
-> ansible-playbook tests/integration/test.yml -e icinga_url=http://127.0.0.1/icingaweb2
+# run the ansible playbooks against the container
+> ansible-playbook tests/integration/targets/icinga/normalmode.yml
+> ansible-playbook tests/integration/targets/icinga/checkmode.yml
 ```
 
 License
