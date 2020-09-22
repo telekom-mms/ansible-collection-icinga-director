@@ -19,6 +19,7 @@
     apply_to: "{{ notification.0.apply_to | default(omit) }}"
     assign_filter: "{{ notification.0.assign_filter | default(omit) }}"
     imports: "{{ notification.0.imports | default(omit) }}"
+  delegate_to: "{{ icinga_delegate_to_host | default(omit) }}"
   loop: "{{ icinga_notifications|subelements('notification_object') }}"
   loop_control:
     loop_var: notification

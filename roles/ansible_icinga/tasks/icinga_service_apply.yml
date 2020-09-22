@@ -21,6 +21,7 @@
     vars: "{{ service_apply.0.vars | default(omit) }}"
     notes: "{{ service_apply.0.notes | default(omit) }}"
     notes_url: "{{ service_apply.0.notes_url | default(omit) }}"
+  delegate_to: "{{ icinga_delegate_to_host | default(omit) }}"
   loop: "{{ icinga_service_applies|subelements('service_apply_object') }}"
   loop_control:
     loop_var: service_apply

@@ -21,6 +21,7 @@
     imports: "{{ host.0.imports | default(icinga_host_imports) }}"
     zone: "{{ host.0.zone | default(omit) }}"
     vars: "{{ host.0.vars | default(omit) }}"
+  delegate_to: "{{ icinga_delegate_to_host | default(omit) }}"
   loop: "{{ icinga_hosts|subelements('host_object') }}"
   loop_control:
     loop_var: host

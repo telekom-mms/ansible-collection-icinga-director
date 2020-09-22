@@ -19,6 +19,7 @@
     period: "{{ user.0.period | default(omit) }}"
     disabled: "{{ user.0.disabled | default(omit) }}"
     email: "{{ user.0.email | default(icinga_user_email) }}"
+  delegate_to: "{{ icinga_delegate_to_host | default(omit) }}"
   loop: "{{ icinga_users|subelements('user_object') }}"
   loop_control:
     loop_var: user

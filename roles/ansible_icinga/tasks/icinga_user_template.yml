@@ -16,6 +16,7 @@
     imports: "{{ user_template.0.imports | default(omit) }}"
     period: "{{ user_template.0.period | default(omit) }}"
     enable_notifications: "{{ user_template.0.enable_notifications | default(omit) }}"
+  delegate_to: "{{ icinga_delegate_to_host | default(omit) }}"
   loop: "{{ icinga_user_templates|subelements('user_template_object') }}"
   loop_control:
     loop_var: user_template

@@ -16,6 +16,7 @@
     display_name: "{{ timeperiod.0.display_name | default(omit) }}"
     imports: "{{ timeperiod.0.imports | default(omit) }}"
     ranges: "{{ timeperiod.0.ranges | default(omit) }}"
+  delegate_to: "{{ icinga_delegate_to_host | default(omit) }}"
   loop: "{{ icinga_timeperiods|subelements('timeperiod_object') }}"
   loop_control:
     loop_var: timeperiod

@@ -32,6 +32,7 @@
     use_agent: "{{ service_template.0.use_agent | default(omit) }}"
     vars: "{{ service_template.0.vars | default(omit) }}"
     volatile: "{{ service_template.0.volatile | default(omit) }}"
+  delegate_to: "{{ icinga_delegate_to_host | default(omit) }}"
   loop: "{{ icinga_service_templates|subelements('service_template_object') }}"
   loop_control:
     loop_var: service_template
