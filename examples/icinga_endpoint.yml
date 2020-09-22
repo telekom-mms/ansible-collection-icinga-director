@@ -1,0 +1,10 @@
+---
+- name: create an endpoint in icinga
+  icinga_endpoint:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "fooendpoint"
+    host: "127.0.0.1"
+    zone: "foozone"

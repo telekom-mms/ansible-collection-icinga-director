@@ -1,0 +1,9 @@
+---
+- name: create a zone in icinga
+  icinga_zone:
+    state: absent
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "foozone"
+    parent: "master"
