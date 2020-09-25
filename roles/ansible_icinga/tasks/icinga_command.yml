@@ -17,6 +17,7 @@
     disabled: "{{ command.0.disabled | default(icinga_command_disabled) }}"
     object_name: "{{ command.1 }}"
     imports: "{{ command.0.imports | default(omit) }}"
+    timeout: "{{ command.0.timeout | default(omit) }}"
     zone: "{{ command.0.zone | default(omit) }}"
     vars: "{{ command.0.vars | default(omit) }}"
     arguments: "{{ command.0.arguments | default(omit) }}"
