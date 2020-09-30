@@ -40,12 +40,9 @@
         set_if: $centreon_verbose$
       '--warning':
         value: $centreon_warning$
-    command: "/opt/centreon-plugins/centreon_plugins.pl"
     command_type: "PluginCheck"
     disabled: false
     object_name: centreon-plugins
-    imports:
-      - centreon-plugins-template
     timeout: "1m"
     vars:
       centreon_maxrepetitions: 20

@@ -12,8 +12,6 @@
     display_name: "foohost"
     groups:
       - "foohostgroup"
-    imports:
-      - "foohosttemplate"
     vars:
       dnscheck: "no"
     check_command: dummy

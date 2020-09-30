@@ -7,8 +7,6 @@
     url_password: "{{ icinga_pass }}"
     apply_to: host
     assign_filter: 'host.name="foohost"'
-    imports:
-      - foonotificationtemplate
     notification_interval: '0'
     object_name: E-Mail_host
     types:
