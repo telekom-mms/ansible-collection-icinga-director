@@ -126,7 +126,6 @@ options:
     description:
       - Importable templates, add as many as you want. Required when state is C(present).
         Please note that order matters when importing properties from multiple templates - last one wins
-    required: true
     type: "list"
     elements: str
 """
