@@ -16,6 +16,9 @@ for module in ../plugins/modules/*.py; do
     echo "---" | tee "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" 1> /dev/null
     sed -n '/EXAMPLES/,/"""/{/EXAMPLES/b;/"""/b;p}' "${module}" | tee -a "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" 1> /dev/null
     sed -i 's/state: present/state: absent/g' "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml"
+
+    # delete imports and command from the tests, because they aren't necessary to delete an object
+    # regression test for https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44
     sed -i '/imports:/,+1d' "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml"
     sed -i '/^\s*command:/d' "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml"
 
