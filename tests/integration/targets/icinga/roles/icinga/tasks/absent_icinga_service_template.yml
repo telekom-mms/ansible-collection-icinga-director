@@ -1,6 +1,4 @@
----
 - name: create servicetemplate
-  tags: servicetemplate
   icinga_service_template:
     state: absent
     url: "{{ icinga_url }}"

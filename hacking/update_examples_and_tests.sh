@@ -12,50 +12,54 @@ for module in ../plugins/modules/*.py; do
     echo "---" | tee "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" 1> /dev/null
     sed -n '/EXAMPLES/,/"""/{/EXAMPLES/b;/"""/b;p}' "${module}" | tee -a "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" 1> /dev/null
 
+    yq r -d* "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" | sponge "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml"
+
     # create working tests deleting the hosts
     echo "---" | tee "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" 1> /dev/null
     sed -n '/EXAMPLES/,/"""/{/EXAMPLES/b;/"""/b;p}' "${module}" | tee -a "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" 1> /dev/null
-    sed -i 's/state: present/state: absent/g' "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml"
+    yq w -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" "[].${module_name}.state" "absent"
 
     # delete imports and command from the tests, because they aren't necessary to delete an object
     # regression test for https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44
-    sed -i '/imports:/,+1d' "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml"
-    sed -i '/^\s*command:/d' "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml"
+    yq d -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" ".${module_name}.imports"
+    yq d -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" ".${module_name}.command"
+
+    yq r -d* "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" | sponge "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml"
 
     # create failing tests with wrong password
     echo "---" | tee "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" 1> /dev/null
     sed -n '/EXAMPLES/,/"""/{/EXAMPLES/b;/"""/b;p}' "${module}" | tee -a "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" 1> /dev/null
+
     # replace password variable with wrong password
-    sed -i 's/{{ icinga_pass }}/iamwrong/g' "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml"
+    yq w -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" ".${module_name}.url_password" "iamwrong"
 
-    # add ignore_errors to the creation-task and an assert task that checks for failure
-    echo -n "
-  ignore_errors: true
-  register: result
+    # add ignore_errors to the creation-task
+    yq w -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "[].ignore_errors" "true"
+    yq w -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "[].register" "result"
 
-- name: assert that the previous task failed with 401
-  assert:
-    that:
-      - \"result.failed\"
-      - \"result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'\"  # noqa
-" >> "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml"
+    # add an assert task that checks for failure
+    yq m -d* -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" merge.yml
+
+    #
+    yq r -d* "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" | sponge "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml"
 
     # create failing tests with wrong host
     # add test
     echo "---" | tee "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" 1> /dev/null
     sed -n '/EXAMPLES/,/"""/{/EXAMPLES/b;/"""/b;p}' "${module}" | tee -a "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" 1> /dev/null
+
     # replace url varuable with nonexisting url
-    sed -i 's/{{ icinga_url }}/http:\/\/nonexistant/g' "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml"
+    yq w -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" ".${module_name}.url" "http://nonexistant"
 
-    # add ignore_errors to the creation-task and an assert task that checks for failure
-    echo -n "
-  ignore_errors: true
-  register: result
+    # add an assert task that checks for failure
+    yq w -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" "[].ignore_errors" "true"
 
-- name: assert that the previous task failed with 401
-  assert:
-    that:
-      - \"result.failed\"
-      - \"result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'\"  # noqa
-" >> "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml"
+    # add ignore_errors to the creation-task
+    yq w -d* -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" "[].register" "result"
+
+    # add an assert task that checks for failure
+    yq m -d* -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" merge.yml
+
+    yq r -d* "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" | sponge "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml"
+
 done

@@ -1,14 +1,5 @@
-- name: create a zone in icinga
-  icinga_zone:
-    state: present
-    url: "{{ icinga_url }}"
-    url_username: "{{ icinga_user }}"
-    url_password: iamwrong
-    object_name: "foozone"
-    parent: "master"
-  ignore_errors: true
-  register: result
 - assert:
     that:
       - result.failed
       - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>"'
+

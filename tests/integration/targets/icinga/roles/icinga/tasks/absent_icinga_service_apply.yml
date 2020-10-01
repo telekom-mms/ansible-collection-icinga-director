@@ -1,4 +1,3 @@
----
 - name: Add service apply rule to icinga
   icinga_service_apply:
     state: absent

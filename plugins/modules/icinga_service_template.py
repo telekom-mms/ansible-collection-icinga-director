@@ -198,7 +198,6 @@ options:
 
 EXAMPLES = """
 - name: create servicetemplate
-  tags: servicetemplate
   icinga_service_template:
     state: present
     url: "{{ icinga_url }}"

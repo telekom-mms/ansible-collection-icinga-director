@@ -1,4 +1,3 @@
----
 - name: create host template
   icinga_host_template:
     state: present
