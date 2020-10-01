@@ -124,9 +124,8 @@ options:
     type: "str"
   imports:
     description:
-      - Importable templates, add as many as you want.
+      - Importable templates, add as many as you want. Required when state is C(present).
         Please note that order matters when importing properties from multiple templates - last one wins
-    required: true
     type: "list"
     elements: str
 """
@@ -173,7 +172,7 @@ def main():
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
         object_name=dict(required=True),
-        imports=dict(type="list", elements="str", required=True),
+        imports=dict(type="list", elements="str", required=False),
         apply_to=dict(required=True, choices=["service", "host"]),
         assign_filter=dict(required=False),
         notification_interval=dict(required=False),
@@ -181,9 +180,16 @@ def main():
         users=dict(type="list", elements="str", required=False),
     )
 
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present
+    required_if = [("state", "present", ["imports"])]
+
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec, supports_check_mode=True
+        argument_spec=argument_spec,
+        supports_check_mode=True,
+        required_if=required_if,
     )
 
     data = {

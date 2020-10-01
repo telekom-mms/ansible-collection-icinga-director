@@ -132,8 +132,7 @@ options:
     choices: [True, False]
   imports:
     description:
-      - Choose a Host Template
-    required: true
+      - Choose a Host Template. Required when state is C(present).
     type: list
     elements: str
   zone:
@@ -198,7 +197,7 @@ def main():
         object_name=dict(required=True),
         display_name=dict(required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
-        imports=dict(type="list", elements="str", required=True),
+        imports=dict(type="list", elements="str", required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         address=dict(required=False),
         address6=dict(required=False),
@@ -207,9 +206,16 @@ def main():
         check_command=dict(required=False),
     )
 
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present
+    required_if = [("state", "present", ["imports"])]
+
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec, supports_check_mode=True
+        argument_spec=argument_spec,
+        supports_check_mode=True,
+        required_if=required_if,
     )
 
     data = {

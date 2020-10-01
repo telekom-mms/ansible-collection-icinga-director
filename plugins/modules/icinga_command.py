@@ -90,12 +90,11 @@ options:
     type: str
   command:
     description:
-      - The command Icinga should run.
+      - The command Icinga should run. Required when state is C(present).
       - Absolute paths are accepted as provided, relative paths are prefixed with "PluginDir + ", similar Constant prefixes are allowed.
       - Spaces will lead to separation of command path and standalone arguments.
       - Please note that this means that we do not support spaces in plugin names and paths right now.
     type: str
-    required: True
   command_type:
     description:
       - Plugin Check commands are what you need when running checks agains your infrastructure.
@@ -232,7 +231,7 @@ def main():
             type="bool", required=False, default=False, choices=[True, False]
         ),
         vars=dict(type="dict", default={}),
-        command=dict(required=True),
+        command=dict(required=False),
         command_type=dict(
             default="PluginCheck",
             choices=["PluginCheck", "PluginNotification", "PluginEvent"],
@@ -242,9 +241,16 @@ def main():
         arguments=dict(type="dict", default=None),
     )
 
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present
+    required_if = [("state", "present", ["command"])]
+
     # Define the main module
     module = AnsibleModule(
-        argument_spec=argument_spec, supports_check_mode=True
+        argument_spec=argument_spec,
+        supports_check_mode=True,
+        required_if=required_if,
     )
 
     # typ von arguments ist eigentlich dict, also ohne Angabe = {}

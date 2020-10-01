@@ -9,8 +9,6 @@
     assign_filter: 'host.vars.HostOS="Linux"'
     apply_for: "host.vars.enabled_notifications"
     display_name: "dummy process"
-    imports:
-      - fooservicetemplate
     groups:
       - fooservicegroup
     vars:
