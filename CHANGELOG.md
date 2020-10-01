@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.4](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.4) (2020-10-01)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.3...1.4.4)
+
+**Implemented enhancements:**
+
+- Create codeql-analysis.yml [\#47](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/47) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.4.3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.3) (2020-10-01)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.2...1.4.3)
