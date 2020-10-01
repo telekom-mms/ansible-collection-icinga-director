@@ -241,8 +241,10 @@ def main():
         arguments=dict(type="dict", default=None),
     )
 
-    # When deleting objects, only the name is necessary
-    required_if = [("state", "present", ["url", "object_name", "command"])]
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present
+    required_if = [("state", "present", ["command"])]
 
     # Define the main module
     module = AnsibleModule(
