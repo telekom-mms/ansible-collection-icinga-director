@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.3) (2020-10-01)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.2...1.4.3)
+
+**Fixed bugs:**
+
+- Hosts in state absent don't require import parameter [\#44](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44)
+- when deleting objects, only the object\_name is required  [\#45](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/45) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.4.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.2) (2020-09-25)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.1...1.4.2)
@@ -54,6 +63,10 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.0...1.3.1)
 
+**Merged pull requests:**
+
+- replace hyphen in role name with underscore [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/29) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.3.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.0) (2020-07-07)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.2.2...1.3.0)
@@ -86,10 +99,6 @@
 
 - Integration testing [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
-
-**Merged pull requests:**
-
-- replace hyphen in role name with underscore [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/29) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.2.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.0) (2020-06-24)
 
