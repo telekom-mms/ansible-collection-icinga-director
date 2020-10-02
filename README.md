@@ -10,21 +10,20 @@ Required Ansible version: 2.9
 
 Currently supported modules:
 
-* `icinga_command`
 * `icinga_command_template`
+* `icinga_command`
 * `icinga_endpoint`
-* `icinga_zone`
-* `icinga_host`
 * `icinga_host_template`
+* `icinga_host`
 * `icinga_hostgroup`
 * `icinga_notification`
 * `icinga_service_apply`
 * `icinga_service_template`
 * `icinga_servicegroup`
 * `icinga_timeperiod`
-* `icinga_user`
 * `icinga_user_template`
-
+* `icinga_user`
+* `icinga_zone`
 
 Installation
 ------------
