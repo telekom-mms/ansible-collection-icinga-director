@@ -143,7 +143,6 @@
 **Implemented enhancements:**
 
 - try to improve error messages [\#16](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/16) ([rndmh3ro](https://github.com/rndmh3ro))
-- add steps to update galaxy.yml in publish action [\#15](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/15) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.1.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.2) (2020-06-09)
 
@@ -182,6 +181,10 @@
 ## [1.0.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.0.0) (2020-05-15)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/2492296965515a9ac885c6a4874acba8a7475895...1.0.0)
+
+**Implemented enhancements:**
+
+- add steps to update galaxy.yml in publish action [\#15](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/15) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Merged pull requests:**
 
