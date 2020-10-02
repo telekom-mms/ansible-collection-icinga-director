@@ -56,6 +56,16 @@ t_systems_mms.icinga_director >= 1.2.2
 | period                     | no       |
 | disabled                   | no       |
 | email                      | yes      | null
+| **icinga_zone**
+| icinga_zones               | no       | []
+| is_global                  | no       |
+| parent                     | no       |
+| **icinga_endpoint**
+| icinga_endpoints           | no       | []
+| host                       | no       |
+| port                       | no       |
+| log_duration               | no       |
+| zone                       | no       |
 | **icinga_hostgroup**
 | icinga_hostgroups          | no       | []
 | display_name               | no       |

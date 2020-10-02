@@ -12,6 +12,8 @@ Currently supported modules:
 
 * `icinga_command`
 * `icinga_command_template`
+* `icinga_endpoint`
+* `icinga_zone`
 * `icinga_host`
 * `icinga_host_template`
 * `icinga_hostgroup`

@@ -14,6 +14,16 @@
   when: icinga_users is defined
   tags: user
 
+- name: icinga zone configuration
+  include_tasks: icinga_zone.yml
+  when: icinga_zones is defined
+  tags: zone
+
+- name: icinga endpoint configuration
+  include_tasks: icinga_endpoint.yml
+  when: icinga_endpoints is defined
+  tags: endpoint
+
 - name: icinga hostgroup configuration
   include_tasks: icinga_hostgroup.yml
   when: icinga_hostgroups is defined

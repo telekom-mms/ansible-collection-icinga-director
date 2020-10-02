@@ -11,6 +11,12 @@ icinga_user_imports: []
 icinga_user_disabled: false
 icinga_user_email: null
 
+# icinga_endpoints
+icinga_endpoints: []
+
+# icinga_zone
+icinga_zones: []
+
 # icinga_hostgroup
 icinga_hostgroups: []
 
