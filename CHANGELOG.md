@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.4.4](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.4) (2020-10-01)
+## [1.5.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.5.0) (2020-10-02)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.3...1.4.4)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.3...1.5.0)
 
 **Implemented enhancements:**
 
+- Add Support for Zones and Endpoints [\#48](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/48) ([arbu](https://github.com/arbu))
 - Create codeql-analysis.yml [\#47](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/47) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.4.3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.3) (2020-10-01)
