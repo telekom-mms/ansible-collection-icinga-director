@@ -231,7 +231,7 @@ class IcingaServiceObject(Icinga2APIObject):
     module = None
 
     def __init__(self, module, path, data):
-        super(IcingaServiceObject, self).__init__()
+        super(IcingaServiceObject, self).__init__(module, path, data)
         self.module = module
         self.params = module.params
         self.path = path
@@ -239,7 +239,7 @@ class IcingaServiceObject(Icinga2APIObject):
         self.object_id = None
 
     def exists(self, find_by="name"):
-        ret = super().call_url(
+        ret = super(IcingaServiceObject, self).call_url(
             path="/service"
             + "?"
             + "name="
@@ -254,7 +254,7 @@ class IcingaServiceObject(Icinga2APIObject):
         return False
 
     def delete(self, find_by="name"):
-        ret = super().call_url(
+        ret = super(IcingaServiceObject, self).call_url(
             path="/service"
             + "?"
             + "name="
@@ -267,7 +267,7 @@ class IcingaServiceObject(Icinga2APIObject):
         return ret
 
     def modify(self, find_by="name"):
-        ret = super().call_url(
+        ret = super(IcingaServiceObject, self).call_url(
             path="/service"
             + "?"
             + "name="
@@ -281,7 +281,7 @@ class IcingaServiceObject(Icinga2APIObject):
         return ret
 
     def diff(self, find_by="name"):
-        ret = super().call_url(
+        ret = super(IcingaServiceObject, self).call_url(
             path="/service"
             + "?"
             + "name="
