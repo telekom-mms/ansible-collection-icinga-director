@@ -33,7 +33,7 @@ module: icinga_service
 short_description: Manage services in Icinga2
 description:
    - "Add or remove a service to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
     description:
@@ -147,6 +147,7 @@ options:
         Service groups can be directly assigned to single services or to service templates.
     required: false
     type: "list"
+    elements: "str"
     default: []
   host:
     description:
@@ -159,6 +160,7 @@ options:
         Please note that order matters when importing properties from multiple templates - last one wins
     required: false
     type: "list"
+    elements: "str"
     default: []
   max_check_attempts:
     description:
@@ -313,6 +315,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
+        url=dict(required=True),
         object_name=dict(required=True),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         check_command=dict(required=False),
