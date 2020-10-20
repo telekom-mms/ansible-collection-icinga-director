@@ -217,13 +217,12 @@ EXAMPLES = """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible.module_utils.urls import fetch_url
-from ansible.module_utils.six import iteritems
 from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
 import json
 from collections import defaultdict
+
 
 class IcingaServiceObject(Icinga2APIObject):
     module = None
@@ -237,7 +236,13 @@ class IcingaServiceObject(Icinga2APIObject):
 
     def exists(self, find_by="name"):
         ret = super().call_url(
-            path="/service" + "?" + "name=" + self.data["object_name"] + "&" + "host=" + self.data["host"]
+            path="/service"
+            + "?"
+            + "name="
+            + self.data["object_name"]
+            + "&"
+            + "host="
+            + self.data["host"]
         )
         self.object_id = self.data["object_name"]
         if ret["code"] == 200:
@@ -246,14 +251,26 @@ class IcingaServiceObject(Icinga2APIObject):
 
     def delete(self, find_by="name"):
         ret = super().call_url(
-            path="/service" + "?" + "name=" + self.data["object_name"] + "&" + "host=" + self.data["host"],
+            path="/service"
+            + "?"
+            + "name="
+            + self.data["object_name"]
+            + "&"
+            + "host="
+            + self.data["host"],
             method="DELETE",
         )
         return ret
 
     def modify(self, find_by="name"):
         ret = super().call_url(
-            path="/service" + "?" + "name=" + self.data["object_name"] + "&" + "host=" + self.data["host"],
+            path="/service"
+            + "?"
+            + "name="
+            + self.data["object_name"]
+            + "&"
+            + "host="
+            + self.data["host"],
             data=self.module.jsonify(self.data),
             method="POST",
         )
@@ -261,7 +278,13 @@ class IcingaServiceObject(Icinga2APIObject):
 
     def diff(self, find_by="name"):
         ret = super().call_url(
-            path="/service" + "?" + "name=" + self.data["object_name"] + "&" + "host=" + self.data["host"],
+            path="/service"
+            + "?"
+            + "name="
+            + self.data["object_name"]
+            + "&"
+            + "host="
+            + self.data["host"],
             method="GET",
         )
 
