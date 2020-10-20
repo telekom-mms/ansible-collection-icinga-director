@@ -200,6 +200,7 @@ EXAMPLES = """
 - name: create servicetemplate
   tags: servicetemplate
   icinga_service_template:
+    state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"

@@ -205,6 +205,7 @@ EXAMPLES = """
 - name: create service
   tags: service
   icinga_service:
+    state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
@@ -230,6 +231,7 @@ class IcingaServiceObject(Icinga2APIObject):
     module = None
 
     def __init__(self, module, path, data):
+        super(IcingaServiceObject, self).__init__()
         self.module = module
         self.params = module.params
         self.path = path
@@ -327,9 +329,9 @@ def main():
         enable_notifications=dict(type="bool", required=False),
         enable_passive_checks=dict(type="bool", required=False),
         enable_perfdata=dict(type="bool", required=False),
-        groups=dict(type="list", default=[], required=False),
         host=dict(required=True),
-        imports=dict(type="list", default=[], required=False),
+        groups=dict(type="list", elements="str", default=[], required=False),
+        imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
         notes=dict(required=False),
         retry_interval=dict(required=False),
