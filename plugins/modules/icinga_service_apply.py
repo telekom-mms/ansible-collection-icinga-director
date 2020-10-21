@@ -245,12 +245,7 @@ def main():
         "notes_url": module.params["notes_url"],
     }
 
-    try:
-        icinga_object = ServiceApplyRule(module=module, data=data)
-    except Exception as e:
-        module.fail_json(
-            msg="unable to connect to Icinga. Exception message: %s" % e
-        )
+    icinga_object = ServiceApplyRule(module=module, data=data)
 
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(

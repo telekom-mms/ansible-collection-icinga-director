@@ -159,12 +159,7 @@ def main():
     if module.params["parent"] is not None:
         data["parent"] = module.params["parent"]
 
-    try:
-        icinga_object = Icinga2APIObject(module=module, path="/zone", data=data)
-    except Exception as e:
-        module.fail_json(
-            msg="unable to connect to Icinga. Exception message: %s" % e
-        )
+    icinga_object = Icinga2APIObject(module=module, path="/zone", data=data)
 
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
