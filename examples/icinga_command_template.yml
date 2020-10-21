@@ -1,4 +1,3 @@
----
 - name: create command template
   icinga_command_template:
     state: present
@@ -55,7 +54,6 @@
       snmpv3_auth_key: authkey
       snmpv3_priv_key: privkey
       snmpv3_user: user
-
 - name: create command template
   icinga_command_template:
     state: present

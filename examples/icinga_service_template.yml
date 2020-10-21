@@ -1,4 +1,3 @@
----
 - name: create servicetemplate
   icinga_service_template:
     state: present

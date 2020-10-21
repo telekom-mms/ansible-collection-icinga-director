@@ -20,4 +20,5 @@ rules:
       tests/integration/targets/icinga/
   document-start:
     ignore: |
+      examples/
       tests/integration/targets/icinga/

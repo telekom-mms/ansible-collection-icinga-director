@@ -1,4 +1,3 @@
----
 - name: create user
   icinga_user:
     state: present

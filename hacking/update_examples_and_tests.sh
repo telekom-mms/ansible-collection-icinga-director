@@ -7,6 +7,7 @@ for module in ../plugins/modules/*.py; do
     echo "---" | tee "../examples/${module_name}.yml" 1> /dev/null
     # https://stackoverflow.com/a/22221307
     sed -n '/EXAMPLES/,/"""/{/EXAMPLES/b;/"""/b;p}' "${module}" | tee -a "../examples/${module_name}.yml" 1> /dev/null
+    yq r -d* "../examples/${module_name}.yml" | sponge "../examples/${module_name}.yml"
 
     # create tests
     echo "---" | tee "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" 1> /dev/null
