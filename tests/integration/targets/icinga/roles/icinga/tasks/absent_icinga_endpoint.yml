@@ -1,3 +1,4 @@
+---
 - name: create an endpoint in icinga
   icinga_endpoint:
     state: absent

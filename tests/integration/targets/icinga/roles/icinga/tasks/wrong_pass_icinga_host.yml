@@ -1,3 +1,4 @@
+---
 - name: create a host in icinga
   icinga_host:
     state: present

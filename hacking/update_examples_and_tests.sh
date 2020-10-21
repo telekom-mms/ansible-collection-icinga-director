@@ -18,7 +18,7 @@ for module in ../plugins/modules/*.py; do
       yq m -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" merge.yml
 
       # create working tests deleting the hosts
-      yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" "[].${module_name}.state" "absent"
+      yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" "(name==*).${module_name}.state" "absent"
 
       # delete imports and command from the tests, because they aren't necessary to delete an object
       # regression test for https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44
@@ -42,5 +42,9 @@ for module in ../plugins/modules/*.py; do
 
       # add ignore_errors to the creation-task
       yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" "(name==*).register" "result"
+
     done
+      sed -i '1 i ---' "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml"
+      sed -i '1 i ---' "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml"
+      sed -i '1 i ---' "../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml"
 done

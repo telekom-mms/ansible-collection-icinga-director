@@ -1,3 +1,4 @@
+---
 - name: create command template
   icinga_command_template:
     state: absent

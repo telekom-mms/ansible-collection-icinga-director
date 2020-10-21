@@ -1,3 +1,4 @@
+---
 - name: create servicegroup
   icinga_servicegroup:
     state: absent

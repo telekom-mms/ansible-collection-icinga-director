@@ -1,3 +1,4 @@
+---
 - name: create a zone in icinga
   icinga_zone:
     state: present

@@ -1,3 +1,4 @@
+---
 - name: create user template
   icinga_user_template:
     state: absent

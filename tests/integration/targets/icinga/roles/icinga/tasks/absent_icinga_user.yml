@@ -1,3 +1,4 @@
+---
 - name: create user
   icinga_user:
     state: absent
