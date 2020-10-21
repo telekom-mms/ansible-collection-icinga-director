@@ -18,7 +18,3 @@ rules:
     ignore: |
       roles/ansible_icinga/tasks
       tests/integration/targets/icinga/
-  document-start:
-    ignore: |
-      examples/
-      tests/integration/targets/icinga/

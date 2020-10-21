@@ -203,7 +203,7 @@ EXAMPLES = """
       snmpv3_auth_key: authkey
       snmpv3_priv_key: privkey
       snmpv3_user: user
----
+
 - name: create command
   icinga_command:
     state: present
