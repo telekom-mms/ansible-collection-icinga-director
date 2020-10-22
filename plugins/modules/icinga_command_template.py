@@ -202,6 +202,15 @@ EXAMPLES = """
       snmpv3_auth_key: authkey
       snmpv3_priv_key: privkey
       snmpv3_user: user
+
+- name: create command template
+  icinga_command_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    command: "/opt/centreon-plugins/centreon_plugins_2.pl"
+    object_name: centreon-plugins-template-2
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -264,14 +273,7 @@ def main():
         "arguments": module.params["arguments"],
     }
 
-    try:
-        icinga_object = Icinga2APIObject(
-            module=module, path="/command", data=data
-        )
-    except Exception as e:
-        module.fail_json(
-            msg="unable to connect to Icinga. Exception message: %s" % e
-        )
+    icinga_object = Icinga2APIObject(module=module, path="/command", data=data)
 
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(

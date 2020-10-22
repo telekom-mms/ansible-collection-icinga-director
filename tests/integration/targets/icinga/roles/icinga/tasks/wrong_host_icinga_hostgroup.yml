@@ -2,18 +2,15 @@
 - name: create hostgroup
   icinga_hostgroup:
     state: present
-    url: "http://nonexistant"
+    url: http://nonexistant
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foohostgroup
     display_name: foohostgroup
     assign_filter: 'host.name="foohost"'
-
   ignore_errors: true
   register: result
-
-- name: assert that the previous task failed with 401
-  assert:
+- assert:
     that:
-      - "result.failed"
-      - "result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'"  # noqa
+      - result.failed
+      - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>"'

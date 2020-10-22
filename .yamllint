@@ -5,6 +5,7 @@ ignore: |
   .tox
   .github
   galaxy.yml
+  hacking/merge.yml
 
 rules:
   braces:

@@ -1,14 +1,3 @@
----
-- name: create a zone in icinga
-  icinga_zone:
-    state: present
-    url: http://nonexistant
-    url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    object_name: "foozone"
-    parent: "master"
-  ignore_errors: true
-  register: result
 - assert:
     that:
       - result.failed
