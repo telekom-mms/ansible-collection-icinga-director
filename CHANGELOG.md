@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.6.1) (2020-10-22)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.6.0...1.6.1)
+
+**Closed issues:**
+
+- Add object "Service" for a Host [\#42](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/42)
+
+**Merged pull requests:**
+
+- add example and test for command without args [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/46) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.6.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.6.0) (2020-10-22)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.5.0...1.6.0)
@@ -56,16 +68,13 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.2...1.4.0)
 
-**Implemented enhancements:**
-
-- add support for address6 on host object [\#37](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/37) ([schurzi](https://github.com/schurzi))
-
 ## [1.3.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.2) (2020-07-15)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.1...1.3.2)
 
 **Implemented enhancements:**
 
+- add support for address6 on host object [\#37](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/37) ([schurzi](https://github.com/schurzi))
 - make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
