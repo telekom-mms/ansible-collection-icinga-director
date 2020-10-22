@@ -36,6 +36,9 @@ icinga_commands: []
 icinga_command_type: PluginCheck
 icinga_command_disabled: false
 
+# icinga_service
+icinga_services: []
+
 # icinga_service_template
 icinga_service_templates: []
 

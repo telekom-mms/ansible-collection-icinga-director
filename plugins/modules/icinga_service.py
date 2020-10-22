@@ -29,10 +29,10 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_service_template
-short_description: Manage service templates in Icinga2
+module: icinga_service
+short_description: Manage services in Icinga2
 description:
-   - "Add or remove a service template to Icinga2 through the director API."
+   - "Add or remove a service to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
@@ -90,7 +90,7 @@ options:
     type: str
   object_name:
     description:
-      - Name of the service template
+      - Name of the service
     required: true
     type: str
   check_command:
@@ -149,6 +149,11 @@ options:
     type: "list"
     elements: "str"
     default: []
+  host:
+    description:
+      - Choose the host this single service should be assigned to
+    required: true
+    type: "str"
   imports:
     description:
       - Importable templates, add as many as you want.
@@ -179,7 +184,7 @@ options:
     type: "bool"
   vars:
     description:
-      - Custom properties of the template
+      - Custom properties of the service
     required: false
     type: "dict"
     default: {}
@@ -197,15 +202,16 @@ options:
 """
 
 EXAMPLES = """
-- name: create servicetemplate
-  tags: servicetemplate
-  icinga_service_template:
+- name: create service
+  tags: service
+  icinga_service:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: fooservicetemplate
+    object_name: fooservice
     use_agent: true
+    host: foohost
     vars:
       procs_argument: consul
       procs_critical: '1:'
@@ -217,6 +223,86 @@ from ansible.module_utils.urls import url_argument_spec
 from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
+import json
+from collections import defaultdict
+
+
+class IcingaServiceObject(Icinga2APIObject):
+    module = None
+
+    def __init__(self, module, path, data):
+        super(IcingaServiceObject, self).__init__(module, path, data)
+        self.module = module
+        self.params = module.params
+        self.path = path
+        self.data = data
+        self.object_id = None
+
+    def exists(self, find_by="name"):
+        ret = super(IcingaServiceObject, self).call_url(
+            path="/service"
+            + "?"
+            + "name="
+            + self.data["object_name"]
+            + "&"
+            + "host="
+            + self.data["host"]
+        )
+        self.object_id = self.data["object_name"]
+        if ret["code"] == 200:
+            return True
+        return False
+
+    def delete(self, find_by="name"):
+        ret = super(IcingaServiceObject, self).call_url(
+            path="/service"
+            + "?"
+            + "name="
+            + self.data["object_name"]
+            + "&"
+            + "host="
+            + self.data["host"],
+            method="DELETE",
+        )
+        return ret
+
+    def modify(self, find_by="name"):
+        ret = super(IcingaServiceObject, self).call_url(
+            path="/service"
+            + "?"
+            + "name="
+            + self.data["object_name"]
+            + "&"
+            + "host="
+            + self.data["host"],
+            data=self.module.jsonify(self.data),
+            method="POST",
+        )
+        return ret
+
+    def diff(self, find_by="name"):
+        ret = super(IcingaServiceObject, self).call_url(
+            path="/service"
+            + "?"
+            + "name="
+            + self.data["object_name"]
+            + "&"
+            + "host="
+            + self.data["host"],
+            method="GET",
+        )
+
+        data_from_director = json.loads(self.module.jsonify(ret["data"]))
+        data_from_task = json.loads(self.module.jsonify(self.data))
+
+        diff = defaultdict(dict)
+        for key, value in data_from_director.items():
+            value = self.scrub_diff_value(value)
+            if key in data_from_task.keys() and value != data_from_task[key]:
+                diff["before"][key] = "{val}".format(val=value)
+                diff["after"][key] = "{val}".format(val=data_from_task[key])
+
+        return diff
 
 
 # ===========================================
@@ -243,6 +329,7 @@ def main():
         enable_notifications=dict(type="bool", required=False),
         enable_passive_checks=dict(type="bool", required=False),
         enable_perfdata=dict(type="bool", required=False),
+        host=dict(required=True),
         groups=dict(type="list", elements="str", default=[], required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
@@ -261,7 +348,7 @@ def main():
     data = {
         "object_name": module.params["object_name"],
         "disabled": module.params["disabled"],
-        "object_type": "template",
+        "object_type": "object",
         "check_command": module.params["check_command"],
         "check_interval": module.params["check_interval"],
         "check_period": module.params["check_period"],
@@ -272,6 +359,7 @@ def main():
         "enable_passive_checks": module.params["enable_passive_checks"],
         "enable_perfdata": module.params["enable_perfdata"],
         "groups": module.params["groups"],
+        "host": module.params["host"],
         "imports": module.params["imports"],
         "max_check_attempts": module.params["max_check_attempts"],
         "notes": module.params["notes"],
@@ -282,7 +370,7 @@ def main():
     }
 
     try:
-        icinga_object = Icinga2APIObject(
+        icinga_object = IcingaServiceObject(
             module=module, path="/service", data=data
         )
     except Exception as e:

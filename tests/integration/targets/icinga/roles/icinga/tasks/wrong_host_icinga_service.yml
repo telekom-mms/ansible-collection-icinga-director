@@ -1,13 +1,14 @@
 ---
-- name: create servicetemplate
-  tags: servicetemplate
-  icinga_service_template:
+- name: create service
+  tags: service
+  icinga_service:
     state: present
     url: "http://nonexistant"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: fooservicetemplate
+    object_name: fooservice
     use_agent: true
+    host: foohost
     vars:
       procs_argument: consul
       procs_critical: '1:'
