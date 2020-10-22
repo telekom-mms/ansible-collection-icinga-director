@@ -21,6 +21,7 @@
         - absent_icinga_command_template.yml
         - absent_icinga_endpoint.yml
         - absent_icinga_zone.yml
+        - absent_icinga_service.yml
 
         - icinga_zone.yml
         - icinga_endpoint.yml
@@ -38,3 +39,4 @@
         - icinga_hostgroup.yml
         - icinga_host_template.yml
         - icinga_host.yml
+        - icinga_service.yml
