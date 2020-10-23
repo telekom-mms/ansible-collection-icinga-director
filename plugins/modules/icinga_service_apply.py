@@ -98,6 +98,11 @@ options:
       - Alternative displayed name of the service apply rule
     required: false
     type: str
+  check_command:
+    description:
+      - Check command definition
+    required: false
+    type: str
   groups:
     description:
       - Service groups that should be directly assigned to this service.
@@ -156,6 +161,7 @@ EXAMPLES = """
     object_name: "SERVICE_dummy"
     assign_filter: 'host.vars.HostOS="Linux"'
     apply_for: "host.vars.enabled_notifications"
+    check_command: "hostalive"
     display_name: "dummy process"
     imports:
       - fooservicetemplate
@@ -218,6 +224,7 @@ def main():
         url=dict(required=True),
         object_name=dict(required=True),
         display_name=dict(required=False),
+        check_command=dict(required=False),
         apply_for=dict(required=False),
         assign_filter=dict(required=False),
         imports=dict(type="list", elements="str", required=False),
@@ -237,6 +244,7 @@ def main():
         "display_name": module.params["display_name"],
         "object_type": "apply",
         "apply_for": module.params["apply_for"],
+        "check_command": module.params["check_command"],
         "assign_filter": module.params["assign_filter"],
         "imports": module.params["imports"],
         "groups": module.params["groups"],
