@@ -171,7 +171,7 @@ EXAMPLES = """
       - "foohosttemplate"
     vars:
       dnscheck: "no"
-    check_command: dummy
+    check_command: hostalive
 """
 
 from ansible.module_utils.basic import AnsibleModule

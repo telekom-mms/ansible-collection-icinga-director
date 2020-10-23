@@ -154,8 +154,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "SERVICE_dummy"
-    assign_filter: 'host.vars.HostOS="Linux"'
-    apply_for: "host.vars.enabled_notifications"
+    assign_filter: 'host.name="foohost"'
     display_name: "dummy process"
     imports:
       - fooservicetemplate
