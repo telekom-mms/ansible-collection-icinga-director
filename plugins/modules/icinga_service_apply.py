@@ -160,6 +160,7 @@ EXAMPLES = """
     url_password: "{{ icinga_pass }}"
     object_name: "SERVICE_dummy"
     assign_filter: 'host.name="foohost"'
+    check_command: hostalive
     display_name: "dummy process"
     imports:
       - fooservicetemplate
