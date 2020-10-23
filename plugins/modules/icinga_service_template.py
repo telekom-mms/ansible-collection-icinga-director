@@ -204,7 +204,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: fooservicetemplate
-    use_agent: true
+    use_agent: false
     vars:
       procs_argument: consul
       procs_critical: '1:'

@@ -19,6 +19,19 @@
     - icinga_host.yml
     - icinga_service.yml
 
+- name: deploy changes in icinga
+  tags: uri
+  uri:
+    url: "{{ icinga_url }}/director/config/deploy"
+    headers:
+      Accept: application/json
+    method: POST
+    user: "{{ icinga_user }}"
+    password: "{{ icinga_pass }}"
+    return_content: true
+
+- include_tasks: "{{ item }}"
+  loop:
     ### run them again for idempotency codecoverage checks
     - icinga_command_template.yml
     - icinga_command.yml

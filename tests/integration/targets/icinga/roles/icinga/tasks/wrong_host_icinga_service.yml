@@ -3,22 +3,20 @@
   tags: service
   icinga_service:
     state: present
-    url: "http://nonexistant"
+    url: http://nonexistant
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: fooservice
-    use_agent: true
+    check_command: hostalive
+    use_agent: false
     host: foohost
     vars:
       procs_argument: consul
       procs_critical: '1:'
       procs_warning: '1:'
-
   ignore_errors: true
   register: result
-
-- name: assert that the previous task failed with 401
-  assert:
+- assert:
     that:
-      - "result.failed"
-      - "result.msg == 'bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>' or result.msg == 'bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>'"  # noqa
+      - result.failed
+      - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>"'
