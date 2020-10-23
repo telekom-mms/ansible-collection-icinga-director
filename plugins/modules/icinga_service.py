@@ -220,6 +220,8 @@ EXAMPLES = """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
+from ansible.module_utils._text import to_text
+from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
 from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
@@ -243,12 +245,12 @@ class IcingaServiceObject(Icinga2APIObject):
             path="/service"
             + "?"
             + "name="
-            + self.data["object_name"]
+            + to_text(urlquote(self.data["object_name"]))
             + "&"
             + "host="
-            + self.data["host"]
+            + to_text(urlquote(self.data["host"]))
         )
-        self.object_id = self.data["object_name"]
+        self.object_id = to_text(urlquote(self.data["object_name"]))
         if ret["code"] == 200:
             return True
         return False
@@ -258,10 +260,10 @@ class IcingaServiceObject(Icinga2APIObject):
             path="/service"
             + "?"
             + "name="
-            + self.data["object_name"]
+            + to_text(urlquote(self.data["object_name"]))
             + "&"
             + "host="
-            + self.data["host"],
+            + to_text(urlquote(self.data["host"])),
             method="DELETE",
         )
         return ret
@@ -271,10 +273,10 @@ class IcingaServiceObject(Icinga2APIObject):
             path="/service"
             + "?"
             + "name="
-            + self.data["object_name"]
+            + to_text(urlquote(self.data["object_name"]))
             + "&"
             + "host="
-            + self.data["host"],
+            + to_text(urlquote(self.data["host"])),
             data=self.module.jsonify(self.data),
             method="POST",
         )
@@ -285,10 +287,10 @@ class IcingaServiceObject(Icinga2APIObject):
             path="/service"
             + "?"
             + "name="
-            + self.data["object_name"]
+            + to_text(urlquote(self.data["object_name"]))
             + "&"
             + "host="
-            + self.data["host"],
+            + to_text(urlquote(self.data["host"])),
             method="GET",
         )
 
