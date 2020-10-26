@@ -220,7 +220,7 @@ EXAMPLES = """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible.module_utils._text import to_text
+from ansible.module_utils.common.text.converters import to_text
 from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
 from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
