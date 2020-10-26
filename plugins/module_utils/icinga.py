@@ -9,6 +9,8 @@ from collections import defaultdict
 
 from ansible.module_utils.urls import fetch_url
 from ansible.module_utils.six import iteritems
+from ansible.module_utils.common.text.converters import to_text
+from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
 
 
 class Icinga2APIObject:
@@ -51,9 +53,13 @@ class Icinga2APIObject:
 
     def exists(self, find_by="name"):
         ret = self.call_url(
-            path=self.path + "?" + find_by + "=" + self.data["object_name"]
+            path=self.path
+            + "?"
+            + find_by
+            + "="
+            + to_text(urlquote(self.data["object_name"]))
         )
-        self.object_id = self.data["object_name"]
+        self.object_id = to_text(urlquote(self.data["object_name"]))
         if ret["code"] == 200:
             return True
         return False

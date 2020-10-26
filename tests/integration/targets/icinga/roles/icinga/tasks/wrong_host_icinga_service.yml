@@ -6,7 +6,7 @@
     url: http://nonexistant
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: fooservice
+    object_name: "foo service"
     check_command: hostalive
     use_agent: false
     host: foohost
