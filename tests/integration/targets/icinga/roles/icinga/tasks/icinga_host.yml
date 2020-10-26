@@ -16,4 +16,4 @@
       - "foohosttemplate"
     vars:
       dnscheck: "no"
-    check_command: dummy
+    check_command: hostalive

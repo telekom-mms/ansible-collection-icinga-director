@@ -210,7 +210,8 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service"
-    use_agent: true
+    check_command: hostalive
+    use_agent: false
     host: foohost
     vars:
       procs_argument: consul
