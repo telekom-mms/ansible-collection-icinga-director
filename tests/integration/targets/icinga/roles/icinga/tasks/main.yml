@@ -38,10 +38,6 @@
     - icinga_host.yml
     - icinga_service.yml
 
-    ### special cases
-    - special_whitespace.yml
-    - special_whitespace.yml
-
     ### failing tests
     - wrong_host_icinga_command_template.yml
     - wrong_host_icinga_command.yml

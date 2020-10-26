@@ -209,7 +209,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: fooservice
+    object_name: "foo service"
     use_agent: true
     host: foohost
     vars:
