@@ -81,6 +81,8 @@ t_systems_mms.icinga_director >= 1.2.2
 | imports                    | no       |
 | zone                       | no       |
 | vars                       | no       |
+| notes                      | no       |
+| notes_url                  | no       |
 | **icinga_host**
 | icinga_hosts               | no       | []
 | display_name               | no       |
