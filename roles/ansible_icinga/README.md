@@ -153,6 +153,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | imports                    | no       |
 | max_check_attempts         | no       |
 | notes                      | no       |
+| notes_url                  | no       |
 | retry_interval             | no       |
 | use_agent                  | no       |
 | vars                       | no       |
