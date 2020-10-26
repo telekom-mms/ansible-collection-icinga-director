@@ -88,6 +88,7 @@
     - wrong_pass_icinga_host.yml
     - wrong_pass_icinga_service.yml
 
+    - absent_icinga_service.yml
     - absent_icinga_host.yml
     - absent_icinga_host_template.yml
     - absent_icinga_hostgroup.yml
@@ -104,7 +105,6 @@
     - absent_icinga_timeperiod.yml
     - absent_icinga_command.yml
     - absent_icinga_command_template.yml
-    - absent_icinga_service.yml
 
 - name: deploy changes in icinga
   tags: uri

@@ -372,14 +372,9 @@ def main():
         "volatile": module.params["volatile"],
     }
 
-    try:
-        icinga_object = IcingaServiceObject(
-            module=module, path="/service", data=data
-        )
-    except Exception as e:
-        module.fail_json(
-            msg="unable to connect to Icinga. Exception message: %s" % e
-        )
+    icinga_object = IcingaServiceObject(
+        module=module, path="/service", data=data
+    )
 
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
