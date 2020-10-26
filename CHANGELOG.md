@@ -6,7 +6,12 @@
 
 **Fixed bugs:**
 
+- Icinga Object "Service" rerun - failed to recreate if object\_name contains spaces [\#52](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/52)
 - allow using whitespaces in object names [\#55](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/55) ([schurzi](https://github.com/schurzi))
+
+**Merged pull requests:**
+
+- improve coverage of new service module [\#51](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.7.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.7.0) (2020-10-23)
 
@@ -166,7 +171,6 @@
 
 **Implemented enhancements:**
 
-- further improve error messages for different errors [\#18](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/18) ([rndmh3ro](https://github.com/rndmh3ro))
 - added required ansible version to readme.md [\#17](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/17) ([xFuture603](https://github.com/xFuture603))
 
 ## [1.1.3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.3) (2020-06-09)
@@ -184,6 +188,7 @@
 
 **Implemented enhancements:**
 
+- further improve error messages for different errors [\#18](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/18) ([rndmh3ro](https://github.com/rndmh3ro))
 - add action to publish to galaxy [\#14](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/14) ([rndmh3ro](https://github.com/rndmh3ro))
 - github-action to automatically create release-drafts [\#12](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/12) ([rndmh3ro](https://github.com/rndmh3ro))
 - remove unused intermediate assignments [\#11](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/11) ([schurzi](https://github.com/schurzi))
