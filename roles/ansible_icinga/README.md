@@ -91,6 +91,8 @@ t_systems_mms.icinga_director >= 1.2.2
 | imports                    | yes      | []
 | zone                       | no       |
 | vars                       | no       |
+| notes                      | no       |
+| notes_url                  | no       |
 | **icinga_command_template**
 | icinga_command_templates   | no       | []
 | display_name               | no       |
