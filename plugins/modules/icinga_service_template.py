@@ -216,6 +216,8 @@ EXAMPLES = """
       procs_argument: consul
       procs_critical: '1:'
       procs_warning: '1:'
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
 """
 
 from ansible.module_utils.basic import AnsibleModule

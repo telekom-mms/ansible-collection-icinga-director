@@ -184,6 +184,8 @@ EXAMPLES = """
     vars:
       dnscheck: "no"
     check_command: hostalive
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
 """
 
 from ansible.module_utils.basic import AnsibleModule
