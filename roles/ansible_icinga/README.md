@@ -81,6 +81,8 @@ t_systems_mms.icinga_director >= 1.2.2
 | imports                    | no       |
 | zone                       | no       |
 | vars                       | no       |
+| notes                      | no       |
+| notes_url                  | no       |
 | **icinga_host**
 | icinga_hosts               | no       | []
 | display_name               | no       |
@@ -91,6 +93,8 @@ t_systems_mms.icinga_director >= 1.2.2
 | imports                    | yes      | []
 | zone                       | no       |
 | vars                       | no       |
+| notes                      | no       |
+| notes_url                  | no       |
 | **icinga_command_template**
 | icinga_command_templates   | no       | []
 | display_name               | no       |
@@ -127,6 +131,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | imports                    | no       |
 | max_check_attempts         | no       |
 | notes                      | no       |
+| notes_url                  | no       |
 | retry_interval             | no       |
 | use_agent                  | no       |
 | vars                       | no       |
@@ -148,6 +153,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | imports                    | no       |
 | max_check_attempts         | no       |
 | notes                      | no       |
+| notes_url                  | no       |
 | retry_interval             | no       |
 | use_agent                  | no       |
 | vars                       | no       |

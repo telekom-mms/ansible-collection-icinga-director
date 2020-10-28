@@ -172,6 +172,13 @@ options:
       - Additional notes for this object
     required: false
     type: str
+  notes_url:
+    description:
+      - An URL pointing to additional notes for this object.
+      - Separate multiple urls like this "'http://url1' 'http://url2'".
+      - Max length 255 characters
+    required: false
+    type: str
   retry_interval:
     description:
       - Retry interval, will be applied after a state change unless the next hard state is reached
@@ -217,6 +224,8 @@ EXAMPLES = """
       procs_argument: consul
       procs_critical: '1:'
       procs_warning: '1:'
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -336,7 +345,8 @@ def main():
         groups=dict(type="list", elements="str", default=[], required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
-        notes=dict(required=False),
+        notes=dict(type="str", required=False),
+        notes_url=dict(type="str", required=False),
         retry_interval=dict(required=False),
         use_agent=dict(type="bool", required=False),
         vars=dict(type="dict", default={}, required=False),
@@ -366,6 +376,7 @@ def main():
         "imports": module.params["imports"],
         "max_check_attempts": module.params["max_check_attempts"],
         "notes": module.params["notes"],
+        "notes_url": module.params["notes_url"],
         "retry_interval": module.params["retry_interval"],
         "use_agent": module.params["use_agent"],
         "vars": module.params["vars"],

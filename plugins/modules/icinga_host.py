@@ -151,6 +151,18 @@ options:
         you still have to supply a check_command in a host or host-template
     required: false
     type: str
+  notes:
+    description:
+      - Additional notes for this object
+    required: false
+    type: str
+  notes_url:
+    description:
+      - An URL pointing to additional notes for this object.
+      - Separate multiple urls like this "'http://url1' 'http://url2'".
+      - Max length 255 characters
+    required: false
+    type: str
 """
 
 EXAMPLES = """
@@ -172,6 +184,8 @@ EXAMPLES = """
     vars:
       dnscheck: "no"
     check_command: hostalive
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -204,6 +218,8 @@ def main():
         zone=dict(required=False, default=None),
         vars=dict(type="dict", default=None),
         check_command=dict(required=False),
+        notes=dict(type="str", required=False),
+        notes_url=dict(type="str", required=False),
     )
 
     # When deleting objects, only the name is necessary, so we cannot use
@@ -230,6 +246,8 @@ def main():
         "zone": module.params["zone"],
         "vars": module.params["vars"],
         "check_command": module.params["check_command"],
+        "notes": module.params["notes"],
+        "notes_url": module.params["notes_url"],
     }
 
     icinga_object = Icinga2APIObject(module=module, path="/host", data=data)

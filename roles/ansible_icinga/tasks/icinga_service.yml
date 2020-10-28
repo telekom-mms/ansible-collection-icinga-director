@@ -29,6 +29,7 @@
     imports: "{{ service.0.imports | default(omit) }}"
     max_check_attempts: "{{ service.0.max_check_attempts | default(omit) }}"
     notes: "{{ service.0.notes | default(omit) }}"
+    notes_url: "{{ service.0.notes_url | default(omit) }}"
     retry_interval: "{{ service.0.retry_interval | default(omit) }}"
     use_agent: "{{ service.0.use_agent | default(omit) }}"
     vars: "{{ service.0.vars | default(omit) }}"
