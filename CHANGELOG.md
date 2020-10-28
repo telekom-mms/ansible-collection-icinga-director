@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.8.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.8.0) (2020-10-28)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.7.1...1.8.0)
+
+**Implemented enhancements:**
+
+- Unsupported parameter "Notes" for icinga\_host [\#50](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/50)
+- Add support for notes and notes\_url to all relevant objects [\#56](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/56) ([mmslkr](https://github.com/mmslkr))
+
 ## [1.7.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.7.1) (2020-10-26)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.7.0...1.7.1)
@@ -171,6 +180,7 @@
 
 **Implemented enhancements:**
 
+- further improve error messages for different errors [\#18](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/18) ([rndmh3ro](https://github.com/rndmh3ro))
 - added required ansible version to readme.md [\#17](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/17) ([xFuture603](https://github.com/xFuture603))
 
 ## [1.1.3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.3) (2020-06-09)
@@ -188,7 +198,6 @@
 
 **Implemented enhancements:**
 
-- further improve error messages for different errors [\#18](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/18) ([rndmh3ro](https://github.com/rndmh3ro))
 - add action to publish to galaxy [\#14](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/14) ([rndmh3ro](https://github.com/rndmh3ro))
 - github-action to automatically create release-drafts [\#12](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/12) ([rndmh3ro](https://github.com/rndmh3ro))
 - remove unused intermediate assignments [\#11](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/11) ([schurzi](https://github.com/schurzi))
