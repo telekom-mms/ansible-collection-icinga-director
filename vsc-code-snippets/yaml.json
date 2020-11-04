@@ -1,0 +1,122 @@
+{
+
+	"notification default template": {
+		"prefix": "notification",
+		"body":["- notification_object:",
+			"\t\t-",
+		"\tapply_to:",
+		"\tassign_filter:",
+		"\timports:",
+		  "\t\t-",
+		"\tnotification_interval: \"0\"",
+		"\tusers:",
+		  "\t\t- \"\"",
+		"\ttypes:",
+		  "\t\t- Problem",
+			"\t\t- Recovery"
+		]
+	},
+
+	"user default template": {
+		"prefix": "user",
+		"body":["- user_object:",
+			"\t\t-",
+		"\tperiod: \"24x7\"",
+		"\temail: \"foo.bar@foobar.de\"",
+		"\tpager: \"SIP/foobar\"",
+		"\timports:",
+		  "\t\t-"
+		]
+	},
+
+	"host_template default template": {
+		"prefix": "hosttemp",
+		"body":["- host_template_object:",
+			"\t\t- \"\"",
+		"\timports:",
+			"\t\t-",
+		"\tvars:"
+		]
+	},
+
+	"host_group default template": {
+		"prefix": "hostgroup",
+		"body":["- hostgroup_object:",
+			"\t\t- \"\""
+		]
+	},
+
+	"host default template": {
+		"prefix": "host",
+		"body":["- host_object:",
+			"\t\t- \"\"",
+		"\timports:",
+			"\t\t-",
+		"\taddress:"
+		]
+	},
+
+	"timeperiod default template": {
+		"prefix": "time",
+		"body":["- timeperiod_object:",
+			"\t\t-",
+		"\tranges:",
+			"\t\t-"
+		]
+	},
+
+	"service_group default template": {
+		"prefix": "servicegroup",
+		"body":["- servicegroup_object:",
+			"\t\t- \"\"",
+		"\tassign_filter:"
+		]
+	},
+
+	"service_apply default template": {
+		"prefix": "service-apply",
+		"body":["- service_apply_object:",
+			"\t\t-",
+		"\timports:",
+			"\t\t-",
+		"\tassign_filter: 'host.name=\"\"'",
+		"\tvars:"
+		]
+	},
+
+	"service_template default template": {
+		"prefix": "servicetemp",
+		"body":["- service_template_object:",
+			"\t\t- \"\"",
+		"\tcheck_command: foo",
+		"\tcheck_interval: 60",
+		"\tretry_interval: 30",
+		"\tuse_agent: true"
+		]
+	},
+
+	"command_template default template": {
+		"prefix": "commandtemp",
+		"body":["- command_template_object:",
+			"\t\t- \"\"",
+		"\targuments:",
+			"\t\t\"-foo\":",
+			  "\t\t\trequired: false",
+				"\t\t\tvalue: \"\\$foo$\"",
+		"\tcommand: \"foo.sh\"",
+		"\ttimeout: 60"
+		]
+	},
+
+	"command default template": {
+		"prefix": "commandic",
+		"body":["- command_object:",
+			"\t\t- \"\"",
+		"\tdisabled: false",
+		"\tcommand_type: \"PluginCheck\"",
+		"\timports:",
+		"\t\t-"
+		]
+	}
+
+}
