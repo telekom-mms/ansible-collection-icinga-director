@@ -101,6 +101,14 @@ Local Testing
 > ansible-playbook tests/integration/test.yml -e icinga_url=http://127.0.0.1/icingaweb2
 ```
 
+Extras
+------
+
+* Use our code snippets template supported in Visual Studio Code
+
+Please see the [README](vsc-snippets/README.md) for more information.
+
+
 License
 -------
 

@@ -17,3 +17,5 @@ repository: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director
 documentation: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
 homepage: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
 issues: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues'
+build_ignore:
+- vsc-snippets
