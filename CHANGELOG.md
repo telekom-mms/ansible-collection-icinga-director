@@ -1,12 +1,20 @@
 # Changelog
 
+## [1.8.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.8.1) (2020-11-05)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.8.0...1.8.1)
+
+**Implemented enhancements:**
+
+- Unsupported parameter "Notes" for icinga\_host [\#50](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/50)
+- added vsc code snippets [\#57](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/57) ([xFuture603](https://github.com/xFuture603))
+
 ## [1.8.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.8.0) (2020-10-28)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.7.1...1.8.0)
 
 **Implemented enhancements:**
 
-- Unsupported parameter "Notes" for icinga\_host [\#50](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/50)
 - Add support for notes and notes\_url to all relevant objects [\#56](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/56) ([mmslkr](https://github.com/mmslkr))
 
 ## [1.7.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.7.1) (2020-10-26)
