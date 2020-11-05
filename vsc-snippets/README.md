@@ -2,7 +2,7 @@
 
 ## Instruction on how to add those snippets:
 
-```sh
+```
 - open VSC
 - File -> Preferences -> User Snippets
 - add a new one for YAML context
@@ -14,7 +14,7 @@
 
 For example you can type in `servicetemp` in your .yaml file and get the following output:
 
-```sh
+```yaml
 - service_template_object:
     - ""
   check_command: foo
