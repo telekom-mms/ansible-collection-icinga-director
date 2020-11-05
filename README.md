@@ -105,6 +105,14 @@ Local Testing
 > ansible-playbook tests/integration/targets/icinga/checkmode.yml
 ```
 
+Extras
+------
+
+* Use our code snippets template supported in Visual Studio Code
+
+Please see the [README](vsc-snippets/README.md) for more information.
+
+
 License
 -------
 
