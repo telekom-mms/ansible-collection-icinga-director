@@ -25,4 +25,4 @@ For example you can type in `servicetemp` in your .yaml file and get the followi
 
 ## Change snippet prefix to a specific value:
 
-You can change the string that you need to type in to create the actual code from the snippet by changing the ```"prefix": "$Change_me,``` in your User Snippets file for your YAML code (yaml.json by default).
+You can change the string that you need to type in to create the actual code from the snippet by changing the ```"prefix": "$Change_me"``` in your User Snippets file for your YAML code (yaml.json by default).
