@@ -13,3 +13,5 @@
       - "foohostgroup"
     imports:
       - ''
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
