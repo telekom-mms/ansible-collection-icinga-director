@@ -11,8 +11,10 @@
       - foonotificationtemplate
     notification_interval: '0'
     object_name: E-Mail_host
+    states:
+      - Up
+      - Down
     types:
       - Problem
       - Recovery
-    users:
-      - rb
+    disabled: false

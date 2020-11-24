@@ -105,9 +105,9 @@ options:
     required: false
     type: "list"
     elements: str
-  users:
+  states:
     description:
-      - Users that should be notified by this notifications
+      - The host/service states you want to get notifications for
     required: false
     type: "list"
     elements: str
@@ -128,6 +128,12 @@ options:
         Please note that order matters when importing properties from multiple templates - last one wins
     type: "list"
     elements: str
+  disabled:
+    description:
+      - Disabled objects will not be deployed
+    type: bool
+    default: False
+    choices: [True, False]
 """
 
 EXAMPLES = """
@@ -143,11 +149,13 @@ EXAMPLES = """
       - foonotificationtemplate
     notification_interval: '0'
     object_name: E-Mail_host
+    states:
+      - Up
+      - Down
     types:
       - Problem
       - Recovery
-    users:
-      - rb
+    disabled: false
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -175,9 +183,12 @@ def main():
         imports=dict(type="list", elements="str", required=False),
         apply_to=dict(required=True, choices=["service", "host"]),
         assign_filter=dict(required=False),
+        disabled=dict(
+            type="bool", required=False, default=False, choices=[True, False]
+        ),
         notification_interval=dict(required=False),
+        states=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
-        users=dict(type="list", elements="str", required=False),
     )
 
     # When deleting objects, only the name is necessary, so we cannot use
@@ -197,10 +208,11 @@ def main():
         "object_type": "apply",
         "imports": module.params["imports"],
         "apply_to": module.params["apply_to"],
+        "disabled": module.params["disabled"],
         "assign_filter": module.params["assign_filter"],
         "notification_interval": module.params["notification_interval"],
+        "states": module.params["states"],
         "types": module.params["types"],
-        "users": module.params["users"],
     }
 
     icinga_object = Icinga2APIObject(
