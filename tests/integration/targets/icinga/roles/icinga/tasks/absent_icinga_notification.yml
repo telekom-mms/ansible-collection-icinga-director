@@ -15,4 +15,6 @@
     types:
       - Problem
       - Recovery
+    users:
+      - rb
     disabled: false

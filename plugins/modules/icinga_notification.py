@@ -105,6 +105,12 @@ options:
     required: false
     type: "list"
     elements: str
+  users:
+    description:
+      - Users that should be notified by this notifications
+    required: false
+    type: "list"
+    elements: str
   states:
     description:
       - The host/service states you want to get notifications for
@@ -155,6 +161,8 @@ EXAMPLES = """
     types:
       - Problem
       - Recovery
+    users:
+      - rb
     disabled: false
 """
 
@@ -188,6 +196,7 @@ def main():
         ),
         notification_interval=dict(required=False),
         states=dict(type="list", elements="str", required=False),
+        users=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
     )
 
@@ -212,6 +221,7 @@ def main():
         "assign_filter": module.params["assign_filter"],
         "notification_interval": module.params["notification_interval"],
         "states": module.params["states"],
+        "users": module.params["users"],
         "types": module.params["types"],
     }
 
