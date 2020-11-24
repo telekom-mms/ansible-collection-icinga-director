@@ -1,0 +1,17 @@
+---
+- name: create notification template
+  icinga_notification_template:
+    state: absent
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    notification_interval: '0'
+    object_name: foonotificationtemplate
+    states:
+      - Up
+      - Down
+    types:
+      - Problem
+      - Recovery
+    times_begin: 20
+    times_end: 120
