@@ -29,10 +29,10 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_notification
-short_description: Manage notifications in Icinga2
+module: icinga_notification_template
+short_description: Manage notification templates in Icinga2
 description:
-   - "Add or remove a notification to Icinga2 through the director API."
+   - "Add or remove a notification template to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 options:
   url:
@@ -90,7 +90,7 @@ options:
     type: str
   object_name:
     description:
-      - Name of the notification
+      - Name of the notification template
     required: true
     type: str
   notification_interval:
@@ -105,65 +105,48 @@ options:
     required: false
     type: "list"
     elements: str
-  users:
-    description:
-      - Users that should be notified by this notifications
-    required: false
-    type: "list"
-    elements: str
   states:
     description:
       - The host/service states you want to get notifications for
     required: false
     type: "list"
     elements: str
-  apply_to:
+  times_begin:
     description:
-      - Whether this notification should affect hosts or services
-    required: true
-    type: str
-    choices: ["host", "service"]
-  assign_filter:
-    description:
-      - The filter where the service apply rule will take effect
+      - First notification delay
+      - Delay unless the first notification should be sent
     required: false
-    type: "str"
-  imports:
+    type: "int"
+  times_end:
     description:
-      - Importable templates, add as many as you want. Required when state is C(present).
-        Please note that order matters when importing properties from multiple templates - last one wins
-    type: "list"
-    elements: str
-  disabled:
+      - Last notification
+      - When the last notification should be sent
+    required: false
+    type: "int"
+  zone:
     description:
-      - Disabled objects will not be deployed
-    type: bool
-    default: False
-    choices: [True, False]
+      - Set the zone
+    required: false
+    type: str
 """
 
 EXAMPLES = """
-- name: create notification
-  icinga_notification:
+- name: create notification template
+  icinga_notification_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    apply_to: host
-    assign_filter: 'host.name="foohost"'
-    imports:
-      - foonotificationtemplate
     notification_interval: '0'
-    object_name: E-Mail_host
+    object_name: foonotificationtemplate
     states:
       - Up
       - Down
     types:
       - Problem
       - Recovery
-    users:
-      - rb
-    disabled: false
+    times_begin: 20
+    times_end: 120
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -188,41 +171,29 @@ def main():
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
         object_name=dict(required=True),
-        imports=dict(type="list", elements="str", required=False),
-        apply_to=dict(required=True, choices=["service", "host"]),
-        assign_filter=dict(required=False),
-        disabled=dict(
-            type="bool", required=False, default=False, choices=[True, False]
-        ),
         notification_interval=dict(required=False),
         states=dict(type="list", elements="str", required=False),
-        users=dict(type="list", elements="str", required=False),
+        times_begin=dict(type="int", required=False),
+        times_end=dict(type="int", required=False),
         types=dict(type="list", elements="str", required=False),
+        zone=dict(required=False, default=None),
     )
-
-    # When deleting objects, only the name is necessary, so we cannot use
-    # required=True in the argument_spec. Instead we define here what is
-    # necessary when state is present
-    required_if = [("state", "present", ["imports"])]
 
     # Define the main module
     module = AnsibleModule(
         argument_spec=argument_spec,
         supports_check_mode=True,
-        required_if=required_if,
     )
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "apply",
-        "imports": module.params["imports"],
-        "apply_to": module.params["apply_to"],
-        "disabled": module.params["disabled"],
-        "assign_filter": module.params["assign_filter"],
+        "object_type": "template",
         "notification_interval": module.params["notification_interval"],
         "states": module.params["states"],
-        "users": module.params["users"],
+        "times_begin": module.params["times_begin"],
+        "times_end": module.params["times_end"],
         "types": module.params["types"],
+        "zone": module.params["zone"],
     }
 
     icinga_object = Icinga2APIObject(

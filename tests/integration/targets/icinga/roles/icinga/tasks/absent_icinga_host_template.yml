@@ -11,3 +11,5 @@
     check_command: dummy
     groups:
       - "foohostgroup"
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"

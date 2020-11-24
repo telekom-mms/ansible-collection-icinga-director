@@ -17,6 +17,8 @@
     vars:
       dnscheck: "no"
     check_command: hostalive
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
   ignore_errors: true
   register: result
 - assert:

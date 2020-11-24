@@ -1,20 +1,17 @@
 ---
-- name: create notification
-  icinga_notification:
+- name: create notification template
+  icinga_notification_template:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    apply_to: host
-    assign_filter: 'host.name="foohost"'
     notification_interval: '0'
-    object_name: E-Mail_host
+    object_name: foonotificationtemplate
     states:
       - Up
       - Down
     types:
       - Problem
       - Recovery
-    users:
-      - rb
-    disabled: false
+    times_begin: 20
+    times_end: 120

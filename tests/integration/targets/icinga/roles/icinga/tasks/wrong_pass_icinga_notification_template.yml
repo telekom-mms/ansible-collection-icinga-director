@@ -1,18 +1,20 @@
 ---
-- name: create servicetemplate
-  icinga_service_template:
+- name: create notification template
+  icinga_notification_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    object_name: fooservicetemplate
-    use_agent: false
-    vars:
-      procs_argument: consul
-      procs_critical: '1:'
-      procs_warning: '1:'
-    notes: "example note"
-    notes_url: "'http://url1' 'http://url2'"
+    notification_interval: '0'
+    object_name: foonotificationtemplate
+    states:
+      - Up
+      - Down
+    types:
+      - Problem
+      - Recovery
+    times_begin: 20
+    times_end: 120
   ignore_errors: true
   register: result
 - assert:
