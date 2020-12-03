@@ -163,6 +163,24 @@ options:
       - Max length 255 characters
     required: false
     type: str
+  has_agent:
+    description:
+      - Whether this host has the Icinga 2 Agent installed
+    required: False
+    type: bool
+    choices: [True, False]
+  master_should_connect:
+    description:
+      - Whether the parent (master) node should actively try to connect to this agent
+    required: False
+    type: bool
+    choices: [True, False]
+  accept_config:
+    description:
+      - Whether the agent is configured to accept config
+    required: False
+    type: bool
+    choices: [True, False]
 """
 
 EXAMPLES = """
@@ -186,6 +204,9 @@ EXAMPLES = """
     check_command: hostalive
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
+    has_agent: true
+    master_should_connect: true
+    accept_config: true
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -220,6 +241,9 @@ def main():
         check_command=dict(required=False),
         notes=dict(type="str", required=False),
         notes_url=dict(type="str", required=False),
+        has_agent=dict(type="bool", choices=[True, False]),
+        master_should_connect=dict(type="bool", choices=[True, False]),
+        accept_config=dict(type="bool", choices=[True, False]),
     )
 
     # When deleting objects, only the name is necessary, so we cannot use
@@ -248,6 +272,9 @@ def main():
         "check_command": module.params["check_command"],
         "notes": module.params["notes"],
         "notes_url": module.params["notes_url"],
+        "has_agent": module.params["has_agent"],
+        "master_should_connect": module.params["master_should_connect"],
+        "accept_config": module.params["accept_config"],
     }
 
     icinga_object = Icinga2APIObject(module=module, path="/host", data=data)
