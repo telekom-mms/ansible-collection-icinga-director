@@ -103,6 +103,56 @@ options:
       - Check command definition
     required: false
     type: str
+  check_interval:
+    description:
+      - Your regular check interval
+    required: false
+    type: str
+  check_period:
+    description:
+      - The name of a time period which determines when this object should be monitored. Not limited by default.
+    required: false
+    type: str
+  check_timeout:
+    description:
+      - Check command timeout in seconds. Overrides the CheckCommand's timeout attribute
+    required: false
+    type: str
+  enable_active_checks:
+    description:
+      - Whether to actively check this object
+    required: false
+    type: "bool"
+  enable_event_handler:
+    description:
+      - Whether to enable event handlers this object
+    required: false
+    type: "bool"
+  enable_notifications:
+    description:
+      - Whether to send notifications for this object
+    required: false
+    type: "bool"
+  enable_passive_checks:
+    description:
+      - Whether to accept passive check results for this object
+    required: false
+    type: "bool"
+  enable_perfdata:
+    description:
+      - Whether to process performance data provided by this object
+    required: false
+    type: "bool"
+  max_check_attempts:
+    description:
+      - Defines after how many check attempts a new hard state is reached
+    required: false
+    type: str
+  retry_interval:
+    description:
+      - Retry interval, will be applied after a state change unless the next hard state is reached
+    required: false
+    type: str
   groups:
     description:
       - Service groups that should be directly assigned to this service.
@@ -224,6 +274,16 @@ def main():
         object_name=dict(required=True),
         display_name=dict(required=False),
         check_command=dict(required=False),
+        check_interval=dict(required=False),
+        check_period=dict(required=False),
+        check_timeout=dict(required=False),
+        enable_active_checks=dict(type="bool", required=False),
+        enable_event_handler=dict(type="bool", required=False),
+        enable_notifications=dict(type="bool", required=False),
+        enable_passive_checks=dict(type="bool", required=False),
+        enable_perfdata=dict(type="bool", required=False),
+        max_check_attempts=dict(required=False),
+        retry_interval=dict(required=False),
         apply_for=dict(required=False),
         assign_filter=dict(required=False),
         imports=dict(type="list", elements="str", required=False),
@@ -244,12 +304,23 @@ def main():
         "object_type": "apply",
         "apply_for": module.params["apply_for"],
         "check_command": module.params["check_command"],
+        "check_interval": module.params["check_interval"],
+        "check_period": module.params["check_period"],
+        "check_timeout": module.params["check_timeout"],
+        "enable_active_checks": module.params["enable_active_checks"],
+        "enable_event_handler": module.params["enable_event_handler"],
+        "enable_notifications": module.params["enable_notifications"],
+        "enable_passive_checks": module.params["enable_passive_checks"],
+        "enable_perfdata": module.params["enable_perfdata"],
+        "max_check_attempts": module.params["max_check_attempts"],
+        "retry_interval": module.params["retry_interval"],
         "assign_filter": module.params["assign_filter"],
         "imports": module.params["imports"],
         "groups": module.params["groups"],
         "vars": module.params["vars"],
         "notes": module.params["notes"],
         "notes_url": module.params["notes_url"],
+
     }
 
     icinga_object = ServiceApplyRule(module=module, data=data)
