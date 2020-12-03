@@ -320,7 +320,6 @@ def main():
         "vars": module.params["vars"],
         "notes": module.params["notes"],
         "notes_url": module.params["notes_url"],
-
     }
 
     icinga_object = ServiceApplyRule(module=module, data=data)
