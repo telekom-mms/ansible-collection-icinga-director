@@ -23,6 +23,9 @@
     vars: "{{ host.0.vars | default(omit) }}"
     notes: "{{ host.0.notes | default(omit) }}"
     notes_url: "{{ host.0.notes_url | default(omit) }}"
+    has_agent: "{{ host.0.has_agent | default(omit) }}"
+    master_should_connect: "{{ host.0.master_should_connect | default(omit) }}"
+    accept_config: "{{ host.0.accept_config | default(omit) }}"
   loop: "{{ icinga_hosts|subelements('host_object') }}"
   loop_control:
     loop_var: host
