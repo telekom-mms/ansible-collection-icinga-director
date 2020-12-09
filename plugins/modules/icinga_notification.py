@@ -140,6 +140,12 @@ options:
     type: bool
     default: False
     choices: [True, False]
+  vars:
+    description:
+      - Custom properties of the notification
+    required: false
+    type: "dict"
+
 """
 
 EXAMPLES = """
@@ -164,6 +170,8 @@ EXAMPLES = """
     users:
       - rb
     disabled: false
+    vars:
+      foo: bar
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -198,6 +206,7 @@ def main():
         states=dict(type="list", elements="str", required=False),
         users=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
+        vars=dict(type="dict", default={}, required=False),
     )
 
     # When deleting objects, only the name is necessary, so we cannot use
@@ -223,6 +232,7 @@ def main():
         "states": module.params["states"],
         "users": module.params["users"],
         "types": module.params["types"],
+        "vars": module.params["vars"],
     }
 
     icinga_object = Icinga2APIObject(

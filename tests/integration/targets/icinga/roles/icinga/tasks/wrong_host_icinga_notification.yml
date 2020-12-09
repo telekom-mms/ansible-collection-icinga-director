@@ -20,6 +20,8 @@
     users:
       - rb
     disabled: false
+    vars:
+      foo: bar
   ignore_errors: true
   register: result
 - assert:
