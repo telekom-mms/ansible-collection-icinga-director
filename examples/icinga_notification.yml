@@ -20,3 +20,5 @@
     users:
       - rb
     disabled: false
+    vars:
+      foo: bar
