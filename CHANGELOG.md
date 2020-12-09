@@ -6,12 +6,14 @@
 
 **Implemented enhancements:**
 
+- add vars option to icinga\_notification [\#68](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
 - improve support for API parameters [\#66](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/66) ([schurzi](https://github.com/schurzi))
 - Notification templates [\#64](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/64) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
 - icinga\_commands with "imports" not working [\#63](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/63)
+- Add ability to create notification\_template [\#62](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/62)
 - Can't use fields available in API - e.g. host\_template - has\_agent [\#59](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/59)
 
 ## [1.8.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.8.1) (2020-11-05)
