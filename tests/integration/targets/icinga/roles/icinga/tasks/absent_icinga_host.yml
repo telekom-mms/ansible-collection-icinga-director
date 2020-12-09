@@ -17,3 +17,6 @@
     check_command: hostalive
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
+    has_agent: true
+    master_should_connect: true
+    accept_config: true
