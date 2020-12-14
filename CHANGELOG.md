@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.9.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.0) (2020-12-09)
+## [1.9.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.0) (2020-12-14)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.8.1...1.9.0)
 
@@ -9,6 +9,10 @@
 - add vars option to icinga\_notification [\#68](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
 - improve support for API parameters [\#66](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/66) ([schurzi](https://github.com/schurzi))
 - Notification templates [\#64](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/64) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- fixed "command is missing" while trying to create a command [\#69](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/69) ([xFuture603](https://github.com/xFuture603))
 
 **Closed issues:**
 
@@ -66,10 +70,6 @@
 ## [1.6.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.6.0) (2020-10-22)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.5.0...1.6.0)
-
-**Implemented enhancements:**
-
-- add new service module [\#32](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.5.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.5.0) (2020-10-02)
 
@@ -177,6 +177,7 @@
 
 **Implemented enhancements:**
 
+- add new service module [\#32](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
 - Integration testing [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
 
