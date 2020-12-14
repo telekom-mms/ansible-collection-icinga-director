@@ -253,7 +253,7 @@ def main():
     # When deleting objects, only the name is necessary, so we cannot use
     # required=True in the argument_spec. Instead we define here what is
     # necessary when state is present
-    required_if = [("state", "present", ["command"])]
+    required_if = [("state", "present", ["object_name"])]
 
     # Define the main module
     module = AnsibleModule(
