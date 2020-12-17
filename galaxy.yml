@@ -11,7 +11,9 @@ description: >-
 license:
   - GPL-2.0-or-later
 license_file: ''
-tags: []
+tags:
+  - icinga
+  - monitoring
 dependencies: {}
 repository: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
 documentation: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
