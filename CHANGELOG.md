@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Create CONTRIBUTING.md [\#74](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/74) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create runtime.yml [\#72](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/72) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create LICENSE [\#71](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/71) ([rndmh3ro](https://github.com/rndmh3ro))
 - run tests on a schedule [\#70](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/70) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -118,7 +119,6 @@
 **Implemented enhancements:**
 
 - make local testing without ansible-test work [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/41) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
@@ -143,6 +143,7 @@
 
 **Implemented enhancements:**
 
+- Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
