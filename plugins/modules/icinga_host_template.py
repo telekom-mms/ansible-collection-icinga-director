@@ -186,7 +186,7 @@ options:
 
 EXAMPLES = """
 - name: create host template
-  icinga_host_template:
+  t_systems_mms.icinga_director.icinga_host_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

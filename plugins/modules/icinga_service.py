@@ -211,7 +211,7 @@ options:
 EXAMPLES = """
 - name: create service
   tags: service
-  icinga_service:
+  t_systems_mms.icinga_director.icinga_service:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

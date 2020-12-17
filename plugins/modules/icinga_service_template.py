@@ -205,7 +205,7 @@ options:
 
 EXAMPLES = """
 - name: create servicetemplate
-  icinga_service_template:
+  t_systems_mms.icinga_director.icinga_service_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
