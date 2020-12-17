@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_user
+module: t_systems_mms.icinga_director.icinga_user
 short_description: Manage users in Icinga2
 description:
    - "Add or remove a user to Icinga2 through the director API."
@@ -128,7 +128,7 @@ options:
 
 EXAMPLES = """
 - name: create user
-  icinga_user:
+  t_systems_mms.icinga_director.icinga_user:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

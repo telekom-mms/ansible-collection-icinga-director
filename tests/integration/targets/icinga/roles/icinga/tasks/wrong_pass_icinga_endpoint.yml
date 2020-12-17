@@ -1,13 +1,15 @@
 ---
 - name: create an endpoint in icinga
-  icinga_endpoint:
+  t_systems_mms.icinga_director.icinga_endpoint:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: iamwrong
+    url_password: "{{ icinga_pass }}"
     object_name: "fooendpoint"
     host: "127.0.0.1"
     zone: "foozone"
+  icinga_endpoint:
+    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

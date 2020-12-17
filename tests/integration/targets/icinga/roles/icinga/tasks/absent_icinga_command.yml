@@ -1,7 +1,7 @@
 ---
 - name: create command
-  icinga_command:
-    state: absent
+  t_systems_mms.icinga_director.icinga_command:
+    state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
@@ -40,9 +40,12 @@
         set_if: $centreon_verbose$
       '--warning':
         value: $centreon_warning$
+    command: "/opt/centreon-plugins/centreon_plugins.pl"
     command_type: "PluginCheck"
     disabled: false
     object_name: centreon-plugins
+    imports:
+      - centreon-plugins-template
     timeout: "1m"
     vars:
       centreon_maxrepetitions: 20
@@ -54,10 +57,15 @@
       snmpv3_auth_key: authkey
       snmpv3_priv_key: privkey
       snmpv3_user: user
-- name: create command
   icinga_command:
     state: absent
+- name: create command
+  t_systems_mms.icinga_director.icinga_command:
+    state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
+    command: "/opt/centreon-plugins/centreon_plugins_2.pl"
     object_name: centreon-plugins_2
+  icinga_command:
+    state: absent

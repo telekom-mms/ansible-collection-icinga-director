@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_host
+module: t_systems_mms.icinga_director.icinga_host
 short_description: Manage hosts in Icinga2
 description:
    - "Add or remove a host to Icinga2 through the director API."
@@ -185,7 +185,7 @@ options:
 
 EXAMPLES = """
 - name: create a host in icinga
-  icinga_host:
+  t_systems_mms.icinga_director.icinga_host:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_notification_template
+module: t_systems_mms.icinga_director.icinga_notification_template
 short_description: Manage notification templates in Icinga2
 description:
    - "Add or remove a notification template to Icinga2 through the director API."
@@ -132,7 +132,7 @@ options:
 
 EXAMPLES = """
 - name: create notification template
-  icinga_notification_template:
+  t_systems_mms.icinga_director.icinga_notification_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

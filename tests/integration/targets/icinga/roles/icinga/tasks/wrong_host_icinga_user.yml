@@ -1,8 +1,8 @@
 ---
 - name: create user
-  icinga_user:
+  t_systems_mms.icinga_director.icinga_user:
     state: present
-    url: http://nonexistant
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "rb"
@@ -12,6 +12,8 @@
     email: "foouser@example.com"
     imports:
       - foousertemplate
+  icinga_user:
+    url: http://nonexistant
   ignore_errors: true
   register: result
 - assert:

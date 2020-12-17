@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_endpoint
+module: t_systems_mms.icinga_director.icinga_endpoint
 short_description: Manage endpoints in Icinga2
 description:
    - "Add or remove an endpoint to Icinga2 through the director API."
@@ -122,7 +122,7 @@ options:
 
 EXAMPLES = """
 - name: create an endpoint in icinga
-  icinga_endpoint:
+  t_systems_mms.icinga_director.icinga_endpoint:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

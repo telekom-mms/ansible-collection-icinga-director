@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_command
+module: t_systems_mms.icinga_director.icinga_command
 short_description: Manage commands in Icinga2
 description:
    - "Add or remove a command to Icinga2 through the director API."
@@ -146,7 +146,7 @@ options:
 
 EXAMPLES = """
 - name: create command
-  icinga_command:
+  t_systems_mms.icinga_director.icinga_command:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -205,7 +205,7 @@ EXAMPLES = """
       snmpv3_user: user
 
 - name: create command
-  icinga_command:
+  t_systems_mms.icinga_director.icinga_command:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

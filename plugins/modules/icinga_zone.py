@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_zone
+module: t_systems_mms.icinga_director.icinga_zone
 short_description: Manage zones in Icinga2
 description:
    - "Add or remove a zone to Icinga2 through the director API."
@@ -111,7 +111,7 @@ options:
 
 EXAMPLES = """
 - name: create a zone in icinga
-  icinga_zone:
+  t_systems_mms.icinga_director.icinga_zone:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

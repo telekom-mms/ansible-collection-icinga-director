@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_servicegroup
+module: t_systems_mms.icinga_director.icinga_servicegroup
 short_description: Manage servicegroup in Icinga2
 description:
    - "Add or remove a servicegroup to Icinga2 through the director API."
@@ -109,7 +109,7 @@ options:
 
 EXAMPLES = """
 - name: create servicegroup
-  icinga_servicegroup:
+  t_systems_mms.icinga_director.icinga_servicegroup:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

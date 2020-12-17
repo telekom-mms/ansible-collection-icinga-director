@@ -1,8 +1,8 @@
 ---
 - name: create servicetemplate
-  icinga_service_template:
+  t_systems_mms.icinga_director.icinga_service_template:
     state: present
-    url: http://nonexistant
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: fooservicetemplate
@@ -13,6 +13,8 @@
       procs_warning: '1:'
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
+  icinga_service_template:
+    url: http://nonexistant
   ignore_errors: true
   register: result
 - assert:

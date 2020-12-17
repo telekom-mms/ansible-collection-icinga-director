@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_service_template
+module: t_systems_mms.icinga_director.icinga_service_template
 short_description: Manage service templates in Icinga2
 description:
    - "Add or remove a service template to Icinga2 through the director API."
@@ -205,7 +205,7 @@ options:
 
 EXAMPLES = """
 - name: create servicetemplate
-  icinga_service_template:
+  t_systems_mms.icinga_director.icinga_service_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

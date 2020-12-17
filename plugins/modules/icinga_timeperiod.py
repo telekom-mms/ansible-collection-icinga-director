@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_timeperiod
+module: t_systems_mms.icinga_director.icinga_timeperiod
 short_description: Manage timeperiods in Icinga2
 description:
    - "Add or remove a timeperiod to Icinga2 through the director API."
@@ -113,7 +113,7 @@ options:
 
 EXAMPLES = """
 - name: create notification
-  icinga_timeperiod:
+  t_systems_mms.icinga_director.icinga_timeperiod:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

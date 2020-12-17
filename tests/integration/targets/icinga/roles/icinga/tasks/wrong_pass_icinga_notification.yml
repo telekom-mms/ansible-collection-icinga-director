@@ -1,10 +1,10 @@
 ---
 - name: create notification
-  icinga_notification:
+  t_systems_mms.icinga_director.icinga_notification:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: iamwrong
+    url_password: "{{ icinga_pass }}"
     apply_to: host
     assign_filter: 'host.name="foohost"'
     imports:
@@ -22,6 +22,8 @@
     disabled: false
     vars:
       foo: bar
+  icinga_notification:
+    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

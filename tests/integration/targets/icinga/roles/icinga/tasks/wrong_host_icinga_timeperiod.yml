@@ -1,8 +1,8 @@
 ---
 - name: create notification
-  icinga_timeperiod:
+  t_systems_mms.icinga_director.icinga_timeperiod:
     state: present
-    url: http://nonexistant
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: '24/7'
@@ -14,6 +14,8 @@
       friday: "00:00-23:59"
       saturday: "00:00-23:59"
       sunday: "00:00-23:59"
+  icinga_timeperiod:
+    url: http://nonexistant
   ignore_errors: true
   register: result
 - assert:

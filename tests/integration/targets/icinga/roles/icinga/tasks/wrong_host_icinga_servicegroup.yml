@@ -1,13 +1,15 @@
 ---
 - name: create servicegroup
-  icinga_servicegroup:
+  t_systems_mms.icinga_director.icinga_servicegroup:
     state: present
-    url: http://nonexistant
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: fooservicegroup
     display_name: fooservicegroup
     assign_filter: 'host.name="foo"'
+  icinga_servicegroup:
+    url: http://nonexistant
   ignore_errors: true
   register: result
 - assert:

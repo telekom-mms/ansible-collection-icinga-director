@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_service_apply
+module: t_systems_mms.icinga_director.icinga_service_apply
 short_description: Manage service apply rules in Icinga2
 description:
    - "Add or remove a service apply rule to Icinga2 through the director API."
@@ -153,7 +153,7 @@ options:
 
 EXAMPLES = """
 - name: Add service apply rule to icinga
-  icinga_service_apply:
+  t_systems_mms.icinga_director.icinga_service_apply:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

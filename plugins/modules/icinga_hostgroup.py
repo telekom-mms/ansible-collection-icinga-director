@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_hostgroup
+module: t_systems_mms.icinga_director.icinga_hostgroup
 short_description: Manage hostgroups in Icinga2
 description:
    - "Add or remove a hostgroup to Icinga2 through the director API."
@@ -109,7 +109,7 @@ options:
 
 EXAMPLES = """
 - name: create hostgroup
-  icinga_hostgroup:
+  t_systems_mms.icinga_director.icinga_hostgroup:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

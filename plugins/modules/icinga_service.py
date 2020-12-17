@@ -29,7 +29,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: icinga_service
+module: t_systems_mms.icinga_director.icinga_service
 short_description: Manage services in Icinga2
 description:
    - "Add or remove a service to Icinga2 through the director API."
@@ -211,7 +211,7 @@ options:
 EXAMPLES = """
 - name: create service
   tags: service
-  icinga_service:
+  t_systems_mms.icinga_director.icinga_service:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

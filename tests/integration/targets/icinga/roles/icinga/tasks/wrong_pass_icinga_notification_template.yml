@@ -1,10 +1,10 @@
 ---
 - name: create notification template
-  icinga_notification_template:
+  t_systems_mms.icinga_director.icinga_notification_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: iamwrong
+    url_password: "{{ icinga_pass }}"
     notification_interval: '0'
     object_name: foonotificationtemplate
     states:
@@ -15,6 +15,8 @@
       - Recovery
     times_begin: 20
     times_end: 120
+  icinga_notification_template:
+    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:
