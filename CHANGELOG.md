@@ -6,6 +6,8 @@
 
 **Merged pull requests:**
 
+- Create runtime.yml [\#72](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/72) ([rndmh3ro](https://github.com/rndmh3ro))
+- Create LICENSE [\#71](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/71) ([rndmh3ro](https://github.com/rndmh3ro))
 - run tests on a schedule [\#70](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/70) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.9.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.0) (2020-12-14)
@@ -126,7 +128,6 @@
 **Merged pull requests:**
 
 - add badge to readme [\#40](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/40) ([rndmh3ro](https://github.com/rndmh3ro))
-- do not set zone to master in host and hosttemplate [\#26](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/26) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.4.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.0) (2020-08-04)
 
@@ -179,6 +180,10 @@
 **Fixed bugs:**
 
 - zone: defaults to master but i do not want to configure zone at all. [\#25](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/25)
+
+**Merged pull requests:**
+
+- do not set zone to master in host and hosttemplate [\#26](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/26) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.2.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.1) (2020-06-25)
 
