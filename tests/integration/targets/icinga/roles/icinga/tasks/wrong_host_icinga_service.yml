@@ -3,7 +3,7 @@
   tags: service
   t_systems_mms.icinga_director.icinga_service:
     state: present
-    url: "{{ icinga_url }}"
+    url: http://nonexistant
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service"
@@ -16,8 +16,6 @@
       procs_warning: '1:'
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
-  icinga_service:
-    url: http://nonexistant
   ignore_errors: true
   register: result
 - assert:

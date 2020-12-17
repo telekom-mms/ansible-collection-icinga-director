@@ -4,7 +4,7 @@
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     object_name: fooservicetemplate
     use_agent: false
     vars:
@@ -13,8 +13,6 @@
       procs_warning: '1:'
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
-  icinga_service_template:
-    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

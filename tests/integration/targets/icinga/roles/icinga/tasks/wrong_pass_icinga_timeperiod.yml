@@ -4,7 +4,7 @@
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     object_name: '24/7'
     ranges:
       monday: "00:00-23:59"
@@ -14,8 +14,6 @@
       friday: "00:00-23:59"
       saturday: "00:00-23:59"
       sunday: "00:00-23:59"
-  icinga_timeperiod:
-    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

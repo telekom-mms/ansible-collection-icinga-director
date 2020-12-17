@@ -4,12 +4,10 @@
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     object_name: "foousertemplate"
     enable_notifications: true
     period: '24/7'
-  icinga_user_template:
-    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

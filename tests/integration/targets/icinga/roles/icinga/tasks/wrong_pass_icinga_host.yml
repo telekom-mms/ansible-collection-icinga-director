@@ -4,7 +4,7 @@
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     disabled: false
     object_name: "foohost"
     address: "127.0.0.1"
@@ -22,8 +22,6 @@
     has_agent: true
     master_should_connect: true
     accept_config: true
-  icinga_host:
-    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

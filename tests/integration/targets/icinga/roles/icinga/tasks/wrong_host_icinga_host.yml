@@ -2,7 +2,7 @@
 - name: create a host in icinga
   t_systems_mms.icinga_director.icinga_host:
     state: present
-    url: "{{ icinga_url }}"
+    url: http://nonexistant
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     disabled: false
@@ -22,8 +22,6 @@
     has_agent: true
     master_should_connect: true
     accept_config: true
-  icinga_host:
-    url: http://nonexistant
   ignore_errors: true
   register: result
 - assert:

@@ -4,7 +4,7 @@
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     notification_interval: '0'
     object_name: foonotificationtemplate
     states:
@@ -15,8 +15,6 @@
       - Recovery
     times_begin: 20
     times_end: 120
-  icinga_notification_template:
-    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

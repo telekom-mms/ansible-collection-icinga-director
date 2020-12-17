@@ -4,12 +4,10 @@
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     object_name: "fooendpoint"
     host: "127.0.0.1"
     zone: "foozone"
-  icinga_endpoint:
-    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

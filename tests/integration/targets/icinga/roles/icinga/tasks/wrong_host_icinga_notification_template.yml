@@ -2,7 +2,7 @@
 - name: create notification template
   t_systems_mms.icinga_director.icinga_notification_template:
     state: present
-    url: "{{ icinga_url }}"
+    url: http://nonexistant
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     notification_interval: '0'
@@ -15,8 +15,6 @@
       - Recovery
     times_begin: 20
     times_end: 120
-  icinga_notification_template:
-    url: http://nonexistant
   ignore_errors: true
   register: result
 - assert:

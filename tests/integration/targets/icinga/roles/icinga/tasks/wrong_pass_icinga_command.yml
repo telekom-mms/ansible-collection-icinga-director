@@ -4,7 +4,7 @@
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     arguments:
       '--authpassphrase':
         value: $snmpv3_priv_key$
@@ -57,8 +57,6 @@
       snmpv3_auth_key: authkey
       snmpv3_priv_key: privkey
       snmpv3_user: user
-  icinga_command:
-    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:
@@ -70,11 +68,9 @@
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     command: "/opt/centreon-plugins/centreon_plugins_2.pl"
     object_name: centreon-plugins_2
-  icinga_command:
-    url_password: iamwrong
   ignore_errors: true
   register: result
 - assert:

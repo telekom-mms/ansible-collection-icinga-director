@@ -2,14 +2,12 @@
 - name: create hostgroup
   t_systems_mms.icinga_director.icinga_hostgroup:
     state: present
-    url: "{{ icinga_url }}"
+    url: http://nonexistant
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foohostgroup
     display_name: foohostgroup
     assign_filter: 'host.name="foohost"'
-  icinga_hostgroup:
-    url: http://nonexistant
   ignore_errors: true
   register: result
 - assert:
