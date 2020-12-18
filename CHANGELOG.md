@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.9.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.1) (2020-12-17)
+## [1.9.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.1) (2020-12-18)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.9.0...1.9.1)
 
 **Merged pull requests:**
 
+- use fqcn in all examples, fix example and test generation [\#76](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/76) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create CONTRIBUTING.md [\#74](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/74) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create runtime.yml [\#72](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/72) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create LICENSE [\#71](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/71) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -119,6 +120,7 @@
 **Implemented enhancements:**
 
 - make local testing without ansible-test work [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/41) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
@@ -143,7 +145,6 @@
 
 **Implemented enhancements:**
 
-- Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
