@@ -122,7 +122,7 @@ options:
 
 EXAMPLES = """
 - name: create an endpoint in icinga
-  icinga_endpoint:
+  t_systems_mms.icinga_director.icinga_endpoint:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

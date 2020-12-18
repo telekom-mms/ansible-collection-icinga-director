@@ -109,7 +109,7 @@ options:
 
 EXAMPLES = """
 - name: create servicegroup
-  icinga_servicegroup:
+  t_systems_mms.icinga_director.icinga_servicegroup:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

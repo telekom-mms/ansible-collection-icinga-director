@@ -109,7 +109,7 @@ options:
 
 EXAMPLES = """
 - name: create hostgroup
-  icinga_hostgroup:
+  t_systems_mms.icinga_director.icinga_hostgroup:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

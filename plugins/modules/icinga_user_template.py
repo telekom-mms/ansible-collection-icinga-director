@@ -112,7 +112,7 @@ options:
 
 EXAMPLES = """
 - name: create user template
-  icinga_user_template:
+  t_systems_mms.icinga_director.icinga_user_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

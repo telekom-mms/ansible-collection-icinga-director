@@ -132,7 +132,7 @@ options:
 
 EXAMPLES = """
 - name: create notification template
-  icinga_notification_template:
+  t_systems_mms.icinga_director.icinga_notification_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

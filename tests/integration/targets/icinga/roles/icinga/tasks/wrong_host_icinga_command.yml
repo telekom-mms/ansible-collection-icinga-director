@@ -1,6 +1,6 @@
 ---
 - name: create command
-  icinga_command:
+  t_systems_mms.icinga_director.icinga_command:
     state: present
     url: http://nonexistant
     url_username: "{{ icinga_user }}"
@@ -64,7 +64,7 @@
       - result.failed
       - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>"'
 - name: create command
-  icinga_command:
+  t_systems_mms.icinga_director.icinga_command:
     state: present
     url: http://nonexistant
     url_username: "{{ icinga_user }}"

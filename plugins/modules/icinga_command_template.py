@@ -147,7 +147,7 @@ options:
 
 EXAMPLES = """
 - name: create command template
-  icinga_command_template:
+  t_systems_mms.icinga_director.icinga_command_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -204,7 +204,7 @@ EXAMPLES = """
       snmpv3_user: user
 
 - name: create command template
-  icinga_command_template:
+  t_systems_mms.icinga_director.icinga_command_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

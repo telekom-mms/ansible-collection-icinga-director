@@ -113,7 +113,7 @@ options:
 
 EXAMPLES = """
 - name: create notification
-  icinga_timeperiod:
+  t_systems_mms.icinga_director.icinga_timeperiod:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

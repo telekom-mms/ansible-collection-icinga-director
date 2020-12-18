@@ -153,7 +153,7 @@ options:
 
 EXAMPLES = """
 - name: Add service apply rule to icinga
-  icinga_service_apply:
+  t_systems_mms.icinga_director.icinga_service_apply:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

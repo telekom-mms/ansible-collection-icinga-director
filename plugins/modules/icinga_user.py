@@ -128,7 +128,7 @@ options:
 
 EXAMPLES = """
 - name: create user
-  icinga_user:
+  t_systems_mms.icinga_director.icinga_user:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

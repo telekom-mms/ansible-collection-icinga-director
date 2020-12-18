@@ -111,7 +111,7 @@ options:
 
 EXAMPLES = """
 - name: create a zone in icinga
-  icinga_zone:
+  t_systems_mms.icinga_director.icinga_zone:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
