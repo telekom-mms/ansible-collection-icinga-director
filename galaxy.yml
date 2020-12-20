@@ -21,3 +21,12 @@ homepage: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
 issues: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues'
 build_ignore:
 - vsc-snippets
+- codecov.yml
+- .github
+- hacking
+- requirements.txt
+- test-requirements.txt
+- tests
+- .tox
+- tox.ini
+- .yamllint
