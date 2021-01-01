@@ -34,54 +34,8 @@ short_description: Manage service templates in Icinga2
 description:
    - "Add or remove a service template to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
+extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
 options:
-  url:
-    description:
-      - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
-    required: true
-    type: str
-  use_proxy:
-    description:
-      - If C(no), it will not use a proxy, even if one is defined in
-        an environment variable on the target hosts.
-    type: bool
-    default: 'yes'
-  validate_certs:
-    description:
-      - If C(no), SSL certificates will not be validated. This should only be used
-        on personally controlled sites using self-signed certificates.
-    type: bool
-    default: 'yes'
-  url_username:
-    description:
-      - The username for use in HTTP basic authentication.
-      - This parameter can be used without C(url_password) for sites that allow empty passwords.
-    type: str
-  url_password:
-    description:
-      - The password for use in HTTP basic authentication.
-      - If the C(url_username) parameter is not specified, the C(url_password) parameter will not be used.
-    type: str
-  force_basic_auth:
-    description:
-      - httplib2, the library used by the uri module only sends authentication information when a webservice
-        responds to an initial request with a 401 status. Since some basic auth services do not properly
-        send a 401, logins will fail. This option forces the sending of the Basic authentication header
-        upon initial request.
-    type: bool
-    default: 'no'
-  client_cert:
-    description:
-      - PEM formatted certificate chain file to be used for SSL client
-        authentication. This file can also include the key as well, and if
-        the key is included, C(client_key) is not required.
-    type: path
-  client_key:
-    description:
-      - PEM formatted file that contains your private key to be used for SSL
-        client authentication. If C(client_cert) contains both the certificate
-        and key, this option is not required.
-    type: path
   state:
     description:
       - Apply feature state.
