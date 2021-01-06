@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.9.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.1) (2021-01-01)
+## [1.9.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.1) (2021-01-06)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.9.0...1.9.1)
 
@@ -17,6 +17,7 @@
 
 **Merged pull requests:**
 
+- fix copyright notice in all files [\#79](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/79) ([rndmh3ro](https://github.com/rndmh3ro))
 - use fqcn in all examples, fix example and test generation [\#76](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/76) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create CONTRIBUTING.md [\#74](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/74) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create runtime.yml [\#72](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/72) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -56,13 +57,13 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.7.1...1.8.0)
 
-**Implemented enhancements:**
-
-- Add support for notes and notes\_url to all relevant objects [\#56](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/56) ([mmslkr](https://github.com/mmslkr))
-
 ## [1.7.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.7.1) (2020-10-26)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.7.0...1.7.1)
+
+**Implemented enhancements:**
+
+- Add support for notes and notes\_url to all relevant objects [\#56](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/56) ([mmslkr](https://github.com/mmslkr))
 
 **Fixed bugs:**
 
@@ -149,14 +150,11 @@
 **Implemented enhancements:**
 
 - add support for address6 on host object [\#37](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/37) ([schurzi](https://github.com/schurzi))
+- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.3.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.2) (2020-07-15)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.1...1.3.2)
-
-**Implemented enhancements:**
-
-- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
