@@ -35,6 +35,7 @@ description:
    - "Add or remove a user to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+version_added: '1.0.0'
 options:
   state:
     description:

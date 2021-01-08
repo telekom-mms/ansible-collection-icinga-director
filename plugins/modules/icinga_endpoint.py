@@ -35,6 +35,7 @@ description:
    - "Add or remove an endpoint to Icinga2 through the director API."
 author: Aaron Bulmahn (@arbu)
 extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+version_added: '1.5.0'
 options:
   state:
     description:

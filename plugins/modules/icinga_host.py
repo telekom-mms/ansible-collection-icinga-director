@@ -35,6 +35,7 @@ description:
    - "Add or remove a host to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+version_added: '1.0.0'
 options:
   state:
     description:
@@ -66,6 +67,7 @@ options:
       - Host IPv6 address. Usually an IPv6 address, but may be any kind of address your check plugin is able to deal with
     required: false
     type: str
+    version_added: '1.4.0'
   groups:
     description:
       - Hostgroups that should be directly assigned to this node. Hostgroups can be useful for various reasons.
@@ -110,6 +112,7 @@ options:
       - Additional notes for this object
     required: false
     type: str
+    version_added: '1.8.0'
   notes_url:
     description:
       - An URL pointing to additional notes for this object.
@@ -117,24 +120,28 @@ options:
       - Max length 255 characters
     required: false
     type: str
+    version_added: '1.8.0'
   has_agent:
     description:
       - Whether this host has the Icinga 2 Agent installed
     required: False
     type: bool
     choices: [True, False]
+    version_added: '1.9.0'
   master_should_connect:
     description:
       - Whether the parent (master) node should actively try to connect to this agent
     required: False
     type: bool
     choices: [True, False]
+    version_added: '1.9.0'
   accept_config:
     description:
       - Whether the agent is configured to accept config
     required: False
     type: bool
     choices: [True, False]
+    version_added: '1.9.0'
 """
 
 EXAMPLES = """

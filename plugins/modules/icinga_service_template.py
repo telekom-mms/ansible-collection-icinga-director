@@ -35,6 +35,7 @@ description:
    - "Add or remove a service template to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+version_added: '1.0.0'
 options:
   state:
     description:
@@ -121,6 +122,7 @@ options:
       - Additional notes for this object
     required: false
     type: str
+    version_added: '1.8.0'
   notes_url:
     description:
       - An URL pointing to additional notes for this object.
@@ -128,6 +130,7 @@ options:
       - Max length 255 characters
     required: false
     type: str
+    version_added: '1.8.0'
   retry_interval:
     description:
       - Retry interval, will be applied after a state change unless the next hard state is reached

@@ -35,6 +35,7 @@ description:
    - "Add or remove a notification to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+version_added: '1.0.0'
 options:
   state:
     description:
@@ -71,6 +72,7 @@ options:
     required: false
     type: "list"
     elements: str
+    version_added: "1.9.0"
   apply_to:
     description:
       - Whether this notification should affect hosts or services
@@ -94,12 +96,13 @@ options:
     type: bool
     default: False
     choices: [True, False]
+    version_added: "1.9.0"
   vars:
     description:
       - Custom properties of the notification
     required: false
     type: "dict"
-
+    version_added: "1.9.0"
 """
 
 EXAMPLES = """
