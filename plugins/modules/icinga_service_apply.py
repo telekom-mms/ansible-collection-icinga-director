@@ -44,7 +44,8 @@ options:
     type: str
   object_name:
     description:
-      - Name for the Icinga service you are going to create
+      - Name for the Icinga service apply rule
+    aliases: ['name']
     required: true
     type: str
   display_name:
@@ -175,7 +176,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         check_command=dict(required=False),
         apply_for=dict(required=False),

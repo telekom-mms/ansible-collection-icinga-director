@@ -49,6 +49,7 @@ options:
         To make things easier for your users we strongly suggest to use meaningful names for templates.
         E.g. "generic-endpoint" is ugly, "Standard Linux Server" is easier to understand
     required: true
+    aliases: ['name']
     type: str
   host:
     description:
@@ -106,7 +107,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         host=dict(required=False),
         port=dict(required=False, type="int"),
         log_duration=dict(required=False),

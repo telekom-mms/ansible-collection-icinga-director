@@ -45,6 +45,7 @@ options:
   object_name:
     description:
       - Name of the user template
+    aliases: ['name']
     required: true
     type: str
   imports:
@@ -96,7 +97,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         imports=dict(type="list", elements="str", default=[], required=False),
         period=dict(required=False),
         enable_notifications=dict(type="bool", required=False),
