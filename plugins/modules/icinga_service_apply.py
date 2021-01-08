@@ -35,6 +35,7 @@ description:
    - "Add or remove a service apply rule to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+version_added: '1.0.0'
 options:
   state:
     description:
@@ -58,6 +59,7 @@ options:
       - Check command definition
     required: false
     type: str
+    version_added: '1.7.0'
   groups:
     description:
       - Service groups that should be directly assigned to this service.
