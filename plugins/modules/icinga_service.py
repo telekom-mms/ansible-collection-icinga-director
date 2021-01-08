@@ -45,6 +45,7 @@ options:
   object_name:
     description:
       - Name of the service
+    aliases: ['name']
     required: true
     type: str
   check_command:
@@ -284,7 +285,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         check_command=dict(required=False),
         check_interval=dict(required=False),

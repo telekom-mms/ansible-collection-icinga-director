@@ -44,7 +44,8 @@ options:
     type: str
   object_name:
     description:
-      - Name of the service apply rule
+      - Name of the time period
+    aliases: ['name']
     required: true
     type: str
   display_name:
@@ -103,7 +104,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         ranges=dict(type="dict", required=False),

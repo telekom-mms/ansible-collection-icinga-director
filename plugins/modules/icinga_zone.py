@@ -48,6 +48,7 @@ options:
         This is usually a fully qualified host name but it could basically be any kind of string.
         To make things easier for your users we strongly suggest to use meaningful names for templates.
         E.g. "generic-zone" is ugly, "Standard Linux Server" is easier to understand
+    aliases: ['name']
     required: true
     type: str
   is_global:
@@ -94,7 +95,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         is_global=dict(required=False, type="bool", default=False),
         parent=dict(required=False),
     )

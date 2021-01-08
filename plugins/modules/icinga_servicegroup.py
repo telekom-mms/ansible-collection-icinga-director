@@ -44,7 +44,8 @@ options:
     type: str
   object_name:
     description:
-      - Icinga object name for this servicegroup.
+      - Name for the Icinga servicegroup
+    aliases: ['name']
     required: true
     type: str
   display_name:
@@ -95,7 +96,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         assign_filter=dict(required=False),
     )
