@@ -14,6 +14,8 @@ from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
 
 
 class Icinga2APIObject:
+    """Interact with the icinga2 director API"""
+
     module = None
 
     def __init__(self, module, path, data):
@@ -24,6 +26,19 @@ class Icinga2APIObject:
         self.object_id = None
 
     def call_url(self, path, data="", method="GET"):
+        """
+        Execute the request against the API with the provided arguments and return json.
+
+        Parameters:
+            path: type str, the path of the api to call
+            data: type str, the module params passed to the api
+            method: type str, default "GET", the method to run against the api.
+                    GET to check objects, POST to create or modify objects, DELETE to delete objects
+
+        Returns:
+            jsonString with return code, the resulting data from the api-call and errors if there are any
+        """
+
         headers = {
             "Accept": "application/json",
             "X-HTTP-Method-Override": method,
@@ -52,6 +67,16 @@ class Icinga2APIObject:
         return {"code": info["status"], "data": content, "error": error}
 
     def exists(self, find_by="name"):
+        """
+        Check if the object already exists in the director.
+
+        Parameters:
+            find_by: type str, default "name", the object key to search for. by default 'name' of the object,
+                     however service apply rules have no name and have to be found by their id.
+        Returns:
+            boolean that tells wether the object exists
+        """
+
         ret = self.call_url(
             path=self.path
             + "?"
@@ -65,12 +90,32 @@ class Icinga2APIObject:
         return False
 
     def create(self):
+        """
+        Create the object in the director and return the result of the api-call.
+
+        Parameters:
+            none
+
+        Returns:
+            the result of the api-call
+        """
+
         ret = self.call_url(
             path=self.path, data=self.module.jsonify(self.data), method="POST"
         )
         return ret
 
     def delete(self, find_by="name"):
+        """
+        Delete the object in the director and return the result of the api-call.
+
+        Parameters:
+            find_by: type str, default "name", the object key to search for. by default 'name' of the object,
+                     however service apply rules have no name and have to be found by their id.
+        Returns:
+            the result of the api-call
+        """
+
         ret = self.call_url(
             path=self.path + "?" + find_by + "=" + self.object_id,
             method="DELETE",
@@ -78,6 +123,16 @@ class Icinga2APIObject:
         return ret
 
     def modify(self, find_by="name"):
+        """
+        Modify the object in the director and return the result of the api-call.
+
+        Parameters:
+            find_by: type str, default "name", the object key to search for. by default 'name' of the object,
+                     however service apply rules have no name and have to be found by their id.
+        Returns:
+            the result of the api-call
+        """
+
         ret = self.call_url(
             path=self.path + "?" + find_by + "=" + self.object_id,
             data=self.module.jsonify(self.data),
@@ -86,7 +141,18 @@ class Icinga2APIObject:
         return ret
 
     def scrub_diff_value(self, value):
-        # /command-API gibt in den Arguments das jeweilige command_id mit, das macht die diffs unnuetz
+        """
+        Scrub the 'command_id' key from the returned data.
+
+        The command api returns the command_id, rendering the diff useless
+
+        Parameters:
+            value: type dict, the dict to remove the command_id key from
+
+        Returns:
+            the dict value without the key command_id
+        """
+
         if isinstance(value, dict):
             for k, v in iteritems(value.copy()):
                 if isinstance(value[k], dict):
@@ -95,6 +161,17 @@ class Icinga2APIObject:
         return value
 
     def diff(self, find_by="name"):
+        """
+        Produce the diff for the changed object and return it.
+
+        Parameters:
+            find_by: type str, default "name", the object key to search for. by default 'name' of the object,
+                     however service apply rules have no name and have to be found by their id.
+
+        Returns:
+            the generated diff
+        """
+
         ret = self.call_url(
             path=self.path + "?" + find_by + "=" + self.object_id + "&withNull",
             method="GET",
@@ -113,6 +190,17 @@ class Icinga2APIObject:
         return diff
 
     def update(self, state):
+        """
+        Create, update or delete the objects in the director.
+
+        Parameters:
+            state: type str, the state of the object, present or absent
+
+        Returns:
+            changed: wether the object was changed
+            diff_result: the diff of the object
+        """
+
         changed = False
         diff_result = {"before": "", "after": ""}
         if self.exists():
