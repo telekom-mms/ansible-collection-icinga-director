@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.10.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.10.0) (2021-01-08)
+## [1.10.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.10.0) (2021-01-10)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.9.1...1.10.0)
 
 **Implemented enhancements:**
 
+- change class to make compatible for python2 [\#84](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/84) ([rndmh3ro](https://github.com/rndmh3ro))
 - add version\_added to modules and module options [\#82](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/82) ([rndmh3ro](https://github.com/rndmh3ro))
 - add docstrings to the functions of the icinga class [\#81](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/81) ([rndmh3ro](https://github.com/rndmh3ro))
 - add name alias for object\_name [\#80](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/80) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -17,7 +18,6 @@
 **Implemented enhancements:**
 
 - use doc\_fragments for modules documentation [\#78](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/78) ([rndmh3ro](https://github.com/rndmh3ro))
-- added wished files and directories to build\_ignore list [\#77](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/77) ([xFuture603](https://github.com/xFuture603))
 
 **Closed issues:**
 
@@ -40,6 +40,7 @@
 
 **Implemented enhancements:**
 
+- added wished files and directories to build\_ignore list [\#77](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/77) ([xFuture603](https://github.com/xFuture603))
 - add vars option to icinga\_notification [\#68](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
 - improve support for API parameters [\#66](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/66) ([schurzi](https://github.com/schurzi))
 - Notification templates [\#64](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/64) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -105,10 +106,6 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.5.0...1.6.0)
 
-**Implemented enhancements:**
-
-- add new service module [\#32](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
-
 ## [1.5.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.5.0) (2020-10-02)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.3...1.5.0)
@@ -144,6 +141,7 @@
 - make local testing without ansible-test work [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/41) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
+- add new service module [\#32](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
