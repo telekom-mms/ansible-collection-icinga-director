@@ -34,7 +34,8 @@ short_description: Manage service apply rules in Icinga2
 description:
    - "Add or remove a service apply rule to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
-extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+extends_documentation_fragment:
+  - ansible.builtin.url
 version_added: '1.0.0'
 options:
   state:
@@ -171,13 +172,9 @@ class ServiceApplyRule(Icinga2APIObject):
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    # remove unnecessary argument 'force'
-    del argument_spec["force"]
-    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         check_command=dict(required=False),

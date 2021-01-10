@@ -35,7 +35,8 @@ description:
    - "Add or remove a command to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 version_added: '1.0.0'
-extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+extends_documentation_fragment:
+  - ansible.builtin.url
 options:
   state:
     description:
@@ -183,13 +184,9 @@ from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icin
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    # remove unnecessary argument 'force'
-    del argument_spec["force"]
-    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True),
         object_name=dict(required=True, aliases=["name"]),
         imports=dict(type="list", elements="str", required=False, default=[]),
         disabled=dict(
