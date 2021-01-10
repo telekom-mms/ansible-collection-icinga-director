@@ -34,7 +34,8 @@ short_description: Manage endpoints in Icinga2
 description:
    - "Add or remove an endpoint to Icinga2 through the director API."
 author: Aaron Bulmahn (@arbu)
-extends_documentation_fragment: url
+extends_documentation_fragment:
+  - ansible.builtin.url
 version_added: '1.5.0'
 options:
   state:

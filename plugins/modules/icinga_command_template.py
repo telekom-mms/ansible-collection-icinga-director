@@ -34,7 +34,8 @@ short_description: Manage command templates in Icinga2
 description:
    - "Add or remove a command template to Icinga2 through the director API."
 author: Lars Krahl (@mmslkr)
-extends_documentation_fragment: url
+extends_documentation_fragment:
+  - ansible.builtin.url
 version_added: '1.1.0'
 options:
   state:

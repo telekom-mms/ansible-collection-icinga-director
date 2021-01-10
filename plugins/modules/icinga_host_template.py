@@ -34,7 +34,8 @@ short_description: Manage host templates in Icinga2
 description:
    - "Add or remove a host template to Icinga2 through the director API."
 author: Michaela Mattes (@michaelamattes)
-extends_documentation_fragment: url
+extends_documentation_fragment:
+  - ansible.builtin.url
 version_added: '1.2.0'
 options:
   state:

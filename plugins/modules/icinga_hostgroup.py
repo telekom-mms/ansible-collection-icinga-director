@@ -34,7 +34,8 @@ short_description: Manage hostgroups in Icinga2
 description:
    - "Add or remove a hostgroup to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
-extends_documentation_fragment: url
+extends_documentation_fragment:
+  - ansible.builtin.url
 version_added: '1.0.0'
 options:
   state:

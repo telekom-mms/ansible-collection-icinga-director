@@ -35,7 +35,8 @@ description:
    - "Add or remove a command to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
 version_added: '1.0.0'
-extends_documentation_fragment: url
+extends_documentation_fragment:
+  - ansible.builtin.url
 options:
   state:
     description:

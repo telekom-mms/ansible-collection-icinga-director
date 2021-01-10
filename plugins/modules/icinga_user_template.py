@@ -34,7 +34,8 @@ short_description: Manage user templates in Icinga2
 description:
    - "Add or remove a user template to Icinga2 through the director API."
 author: Lars Krahl (@mmslkr)
-extends_documentation_fragment: url
+extends_documentation_fragment:
+  - ansible.builtin.url
 version_added: '1.0.0'
 options:
   state:
