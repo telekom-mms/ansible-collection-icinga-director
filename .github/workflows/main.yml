@@ -90,7 +90,6 @@ jobs:
           - stable-2.10
           - devel
         python:
-          - 2.6
           - 2.7
           - 3.5
           - 3.6
