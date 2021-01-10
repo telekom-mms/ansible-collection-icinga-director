@@ -174,7 +174,6 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         check_command=dict(required=False),
@@ -184,7 +183,6 @@ def main():
         groups=dict(type="list", elements="str", default=[], required=False),
         vars=dict(type="dict", default={}),
         notes=dict(type="str", required=False),
-        notes_url=dict(type="str", required=False),
     )
 
     # Define the main module

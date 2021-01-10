@@ -104,7 +104,6 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True),
         object_name=dict(required=True, aliases=["name"]),
         host=dict(required=False),
         port=dict(required=False, type="int"),

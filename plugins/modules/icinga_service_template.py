@@ -194,7 +194,6 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True),
         object_name=dict(required=True, aliases=["name"]),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         check_command=dict(required=False),
@@ -210,7 +209,6 @@ def main():
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
         notes=dict(type="str", required=False),
-        notes_url=dict(type="str", required=False),
         retry_interval=dict(required=False),
         use_agent=dict(type="bool", required=False),
         vars=dict(type="dict", default={}, required=False),
