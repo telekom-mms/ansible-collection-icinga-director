@@ -300,6 +300,7 @@ def main():
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
         notes=dict(type="str", required=False),
+        notes_url=dict(type="str", required=False),
         retry_interval=dict(required=False),
         use_agent=dict(type="bool", required=False),
         vars=dict(type="dict", default={}, required=False),

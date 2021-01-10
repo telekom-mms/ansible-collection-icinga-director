@@ -183,6 +183,7 @@ def main():
         groups=dict(type="list", elements="str", default=[], required=False),
         vars=dict(type="dict", default={}),
         notes=dict(type="str", required=False),
+        notes_url=dict(type="str", required=False),
     )
 
     # Define the main module

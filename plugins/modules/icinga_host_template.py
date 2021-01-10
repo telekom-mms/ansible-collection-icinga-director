@@ -194,6 +194,7 @@ def main():
         zone=dict(required=False, default=None),
         vars=dict(type="dict", default=None),
         notes=dict(type="str", required=False),
+        notes_url=dict(type="str", required=False),
         has_agent=dict(type="bool", choices=[True, False]),
         master_should_connect=dict(type="bool", choices=[True, False]),
         accept_config=dict(type="bool", choices=[True, False]),
