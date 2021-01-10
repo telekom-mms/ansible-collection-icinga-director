@@ -113,7 +113,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         with:
-          path: path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
+          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
       - name: Set up Python ${{ matrix.python }}
         uses: actions/setup-python@v2
