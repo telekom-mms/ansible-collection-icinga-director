@@ -13,7 +13,7 @@ from ansible.module_utils.common.text.converters import to_text
 from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
 
 
-class Icinga2APIObject:
+class Icinga2APIObject(object):
     """Interact with the icinga2 director API"""
 
     module = None
