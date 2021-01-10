@@ -34,7 +34,7 @@ short_description: Manage zones in Icinga2
 description:
    - "Add or remove a zone to Icinga2 through the director API."
 author: Aaron Bulmahn (@arbu)
-extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+extends_documentation_fragment: url
 version_added: '1.5.0'
 options:
   state:
@@ -89,9 +89,6 @@ from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icin
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    # remove unnecessary argument 'force'
-    del argument_spec["force"]
-    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),

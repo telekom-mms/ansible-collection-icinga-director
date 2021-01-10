@@ -34,7 +34,7 @@ short_description: Manage services in Icinga2
 description:
    - "Add or remove a service to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
-extends_documentation_fragment: t_systems_mms.icinga_director.auth_options
+extends_documentation_fragment: url
 version_added: '1.0.0'
 options:
   state:
@@ -281,9 +281,6 @@ class IcingaServiceObject(Icinga2APIObject):
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    # remove unnecessary argument 'force'
-    del argument_spec["force"]
-    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
