@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_user_template
-short_description: Manage user templates in Icinga2
+short_description: Manage user templates in Icinga2.
 description:
    - "Add or remove a user template to Icinga2 through the director API."
 author: Lars Krahl (@mmslkr)
@@ -45,13 +45,14 @@ options:
     type: str
   object_name:
     description:
-      - Name of the user template
+      - Name of the user template.
     aliases: ['name']
     required: true
     type: str
   imports:
     description:
-      - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
+      - Importable templates, add as many as you want.
+      - Please note that order matters when importing properties from multiple templates - last one wins.
     required: false
     type: list
     elements: str
@@ -62,7 +63,7 @@ options:
     type: str
   enable_notifications:
     description:
-      - Whether to send notifications for this user
+      - Whether to send notifications for this user.
     type: bool
 """
 

@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_user
-short_description: Manage users in Icinga2
+short_description: Manage users in Icinga2.
 description:
    - "Add or remove a user to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
@@ -45,18 +45,20 @@ options:
     type: str
   object_name:
     description:
-      - Name of the user
+      - Name of the user.
     aliases: ['name']
     required: true
     type: str
   display_name:
     description:
-      - Alternative name for this user. In case your object name is a username, this could be the full name of the corresponding person
+      - Alternative name for this user.
+      - In case your object name is a username, this could be the full name of the corresponding person.
     type: str
     required: false
   imports:
     description:
-      - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
+      - Importable templates, add as many as you want.
+      - Please note that order matters when importing properties from multiple templates - last one wins.
     required: false
     type: list
     elements: str
@@ -72,7 +74,7 @@ options:
     type: str
   disabled:
     description:
-      - Disabled objects will not be deployed
+      - Disabled objects will not be deployed.
     type: bool
     default: False
     choices: [True, False]

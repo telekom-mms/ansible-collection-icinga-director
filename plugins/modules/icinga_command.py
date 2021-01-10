@@ -61,13 +61,13 @@ options:
     type: str
   disabled:
     description:
-      - Disabled objects will not be deployed
+      - Disabled objects will not be deployed.
     type: bool
     default: False
     choices: [True, False]
   object_name:
     description:
-      - Name of the command
+      - Name of the command.
     aliases: ['name']
     required: true
     type: str
@@ -85,17 +85,17 @@ options:
   zone:
     description:
       - Icinga cluster zone. Allows to manually override Directors decisions of where to deploy your config to.
-      - You should consider not doing so unless you gained deep understanding of how an Icinga Cluster stack works
+      - You should consider not doing so unless you gained deep understanding of how an Icinga Cluster stack works.
     required: false
     type: str
   vars:
     description:
-      - Custom properties of the command
+      - Custom properties of the command.
     required: false
     type: "dict"
   arguments:
     description:
-      - arguments of the command
+      - Arguments of the command.
     required: false
     type: "dict"
 """

@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_command_template
-short_description: Manage command templates in Icinga2
+short_description: Manage command templates in Icinga2.
 description:
    - "Add or remove a command template to Icinga2 through the director API."
 author: Lars Krahl (@mmslkr)
@@ -62,19 +62,19 @@ options:
     type: str
   disabled:
     description:
-      - Disabled objects will not be deployed
+      - Disabled objects will not be deployed.
     type: bool
     default: False
     choices: [True, False]
   object_name:
     description:
-      - Name of the command template
+      - Name of the command template.
     aliases: ['name']
     required: true
     type: str
   imports:
     description:
-      - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
+      - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins.
     required: false
     type: list
     elements: str
@@ -86,17 +86,17 @@ options:
   zone:
     description:
       - Icinga cluster zone. Allows to manually override Directors decisions of where to deploy your config to.
-      - You should consider not doing so unless you gained deep understanding of how an Icinga Cluster stack works
+      - You should consider not doing so unless you gained deep understanding of how an Icinga Cluster stack works.
     required: false
     type: str
   vars:
     description:
-      - Custom properties of the command template
+      - Custom properties of the command template.
     required: false
     type: "dict"
   arguments:
     description:
-      - arguments of the command template
+      - Arguments of the command template.
     required: false
     type: "dict"
 """

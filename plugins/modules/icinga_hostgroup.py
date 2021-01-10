@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_hostgroup
-short_description: Manage hostgroups in Icinga2
+short_description: Manage hostgroups in Icinga2.
 description:
    - "Add or remove a hostgroup to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
@@ -52,13 +52,13 @@ options:
   display_name:
     description:
       - An alternative display name for this group.
-        If you wonder how this could be helpful just leave it blank
+      - If you wonder how this could be helpful just leave it blank.
     required: false
     type: str
   assign_filter:
     description:
       - This allows you to configure an assignment filter.
-         Please feel free to combine as many nested operators as you want
+      - Please feel free to combine as many nested operators as you want.
     required: false
     type: str
 """

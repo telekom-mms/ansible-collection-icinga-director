@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_timeperiod
-short_description: Manage timeperiods in Icinga2
+short_description: Manage timeperiods in Icinga2.
 description:
    - "Add or remove a timeperiod to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
@@ -45,18 +45,19 @@ options:
     type: str
   object_name:
     description:
-      - Name of the time period
+      - Name of the time period.
     aliases: ['name']
     required: true
     type: str
   display_name:
     description:
-      - Alternative name for this timeperiod
+      - Alternative name for this timeperiod.
     type: str
     required: false
   imports:
     description:
-      - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
+      - Importable templates, add as many as you want.
+      - Please note that order matters when importing properties from multiple templates - last one wins.
     required: false
     type: list
     elements: str

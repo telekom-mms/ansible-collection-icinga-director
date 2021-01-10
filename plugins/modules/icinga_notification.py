@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_notification
-short_description: Manage notifications in Icinga2
+short_description: Manage notifications in Icinga2.
 description:
    - "Add or remove a notification to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
@@ -45,7 +45,7 @@ options:
     type: str
   object_name:
     description:
-      - Name of the notification
+      - Name of the notification.
     aliases: ['name']
     required: true
     type: str
@@ -57,50 +57,50 @@ options:
     type: str
   types:
     description:
-      - The state transition types you want to get notifications for
+      - The state transition types you want to get notifications for.
     required: false
     type: "list"
     elements: str
   users:
     description:
-      - Users that should be notified by this notifications
+      - Users that should be notified by this notification.
     required: false
     type: "list"
     elements: str
   states:
     description:
-      - The host/service states you want to get notifications for
+      - The host or service states you want to get notifications for.
     required: false
     type: "list"
     elements: str
     version_added: "1.9.0"
   apply_to:
     description:
-      - Whether this notification should affect hosts or services
+      - Whether this notification should affect hosts or services.
     required: true
     type: str
     choices: ["host", "service"]
   assign_filter:
     description:
-      - The filter where the service apply rule will take effect
+      - The filter where the notification will take effect.
     required: false
     type: "str"
   imports:
     description:
       - Importable templates, add as many as you want. Required when state is C(present).
-        Please note that order matters when importing properties from multiple templates - last one wins
+      - Please note that order matters when importing properties from multiple templates - last one wins.
     type: "list"
     elements: str
   disabled:
     description:
-      - Disabled objects will not be deployed
+      - Disabled objects will not be deployed.
     type: bool
     default: False
     choices: [True, False]
     version_added: "1.9.0"
   vars:
     description:
-      - Custom properties of the notification
+      - Custom properties of the notification.
     required: false
     type: "dict"
     version_added: "1.9.0"
