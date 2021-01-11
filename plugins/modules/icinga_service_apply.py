@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_service_apply
-short_description: Manage service apply rules in Icinga2
+short_description: Manage service apply rules in Icinga2.
 description:
    - "Add or remove a service apply rule to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
@@ -46,65 +46,64 @@ options:
     type: str
   object_name:
     description:
-      - Name for the Icinga service apply rule
+      - Name for the Icinga service apply rule.
     aliases: ['name']
     required: true
     type: str
   display_name:
     description:
-      - Alternative displayed name of the service apply rule
+      - Alternative displayed name of the service apply rule.
     required: false
     type: str
   check_command:
     description:
-      - Check command definition
+      - Check command definition.
     required: false
     type: str
     version_added: '1.7.0'
   groups:
     description:
       - Service groups that should be directly assigned to this service.
-        Servicegroups can be useful for various reasons.
-        They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards
-        or as an instrument to enforce restrictions.
-        Service groups can be directly assigned to single services or to service templates.
+      - Servicegroups can be useful for various reasons.
+      - They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards or as an instrument to enforce restrictions.
+      - Service groups can be directly assigned to single services or to service templates.
     required: false
     type: "list"
     elements: str
   apply_for:
     description:
       - Evaluates the apply for rule for all objects with the custom attribute specified.
-        E.g selecting "host.vars.custom_attr" will generate "for (config in host.vars.array_var)" where "config"
-        will be accessible through "$config$". NOTE - only custom variables of type "Array" are eligible.
+      - E.g selecting "host.vars.custom_attr" will generate "for (config in host.vars.array_var)" where "config" will be accessible through "$config$".
+      - NOTE - only custom variables of type "Array" are eligible.
     required: false
     type: str
   assign_filter:
     description:
-      - The filter where the service apply rule will take effect
+      - The filter where the service apply rule will take effect.
     required: false
     type: str
   imports:
     description:
       - Importable templates, add as many as you want.
-        Please note that order matters when importing properties from multiple templates - last one wins
+      - Please note that order matters when importing properties from multiple templates - last one wins.
     required: false
     type: "list"
     elements: str
   vars:
     description:
-      - Custom properties of the host
+      - Custom properties of the service apply rule.
     required: false
     type: "dict"
   notes:
     description:
-      - Additional notes for this object
+      - Additional notes for this object.
     required: false
     type: str
   notes_url:
     description:
       - An URL pointing to additional notes for this object.
       - Separate multiple urls like this "'http://url1' 'http://url2'".
-      - Max length 255 characters
+      - Maximum length is 255 characters.
     required: false
     type: str
 """

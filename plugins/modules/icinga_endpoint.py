@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_endpoint
-short_description: Manage endpoints in Icinga2
+short_description: Manage endpoints in Icinga2.
 description:
    - "Add or remove an endpoint to Icinga2 through the director API."
 author: Aaron Bulmahn (@arbu)
@@ -47,9 +47,9 @@ options:
   object_name:
     description:
       - Icinga object name for this endpoint.
-        This is usually a fully qualified host name but it could basically be any kind of string.
-        To make things easier for your users we strongly suggest to use meaningful names for templates.
-        E.g. "generic-endpoint" is ugly, "Standard Linux Server" is easier to understand
+      - This is usually a fully qualified host name but it could basically be any kind of string.
+      - To make things easier for your users we strongly suggest to use meaningful names for templates.
+      - E.g. "generic-endpoint" is ugly, "Standard Linux Server" is easier to understand.
     required: true
     aliases: ['name']
     type: str

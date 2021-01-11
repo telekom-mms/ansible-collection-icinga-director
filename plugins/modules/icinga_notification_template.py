@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_notification_template
-short_description: Manage notification templates in Icinga2
+short_description: Manage notification templates in Icinga2.
 description:
    - "Add or remove a notification template to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
@@ -46,7 +46,7 @@ options:
     type: str
   object_name:
     description:
-      - Name of the notification template
+      - Name of the notification template.
     aliases: ['name']
     required: true
     type: str
@@ -58,31 +58,31 @@ options:
     type: str
   types:
     description:
-      - The state transition types you want to get notifications for
+      - The state transition types you want to get notifications for.
     required: false
     type: "list"
     elements: str
   states:
     description:
-      - The host/service states you want to get notifications for
+      - The host or service states you want to get notifications for.
     required: false
     type: "list"
     elements: str
   times_begin:
     description:
-      - First notification delay
-      - Delay unless the first notification should be sent
+      - First notification delay.
+      - Delay unless the first notification should be sent.
     required: false
     type: "int"
   times_end:
     description:
-      - Last notification
-      - When the last notification should be sent
+      - Last notification.
+      - When the last notification should be sent.
     required: false
     type: "int"
   zone:
     description:
-      - Set the zone
+      - Set the zone.
     required: false
     type: str
 """

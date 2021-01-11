@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_zone
-short_description: Manage zones in Icinga2
+short_description: Manage zones in Icinga2.
 description:
    - "Add or remove a zone to Icinga2 through the director API."
 author: Aaron Bulmahn (@arbu)
@@ -47,9 +47,9 @@ options:
   object_name:
     description:
       - Icinga object name for this zone.
-        This is usually a fully qualified host name but it could basically be any kind of string.
-        To make things easier for your users we strongly suggest to use meaningful names for templates.
-        E.g. "generic-zone" is ugly, "Standard Linux Server" is easier to understand
+      - This is usually a fully qualified host name but it could basically be any kind of string.
+      - To make things easier for your users we strongly suggest to use meaningful names for templates.
+      - E.g. "generic-zone" is ugly, "Standard Linux Server" is easier to understand
     aliases: ['name']
     required: true
     type: str
