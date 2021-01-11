@@ -55,10 +55,10 @@ class Icinga2APIObject(object):
         content = ""
         error = ""
         if rsp:
-            content = json.loads(rsp.read())
+            content = json.loads(rsp.read().decode("utf-8"))
         if info["status"] >= 400:
             try:
-                content = json.loads(info["body"])
+                content = json.loads(info["body"].decode("utf-8"))
                 error = content["error"]
             except (ValueError, KeyError):
                 error = info["msg"]
