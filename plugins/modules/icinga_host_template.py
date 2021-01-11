@@ -71,8 +71,7 @@ options:
   groups:
     description:
       - Hostgroups that should be directly assigned to this node. Hostgroups can be useful for various reasons.
-      - You might assign service checks based on assigned hostgroup. They are also often used as an instrument to
-        enforce restricted views in Icinga Web 2.
+      - You might assign service checks based on assigned hostgroup. They are also often used as an instrument to enforce restricted views in Icinga Web 2.
       - Hostgroups can be directly assigned to single hosts or to host templates.
       - You might also want to consider assigning hostgroups using apply rules.
     required: false

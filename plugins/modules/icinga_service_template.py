@@ -98,8 +98,7 @@ options:
     description:
       - Service groups that should be directly assigned to this service.
       - Servicegroups can be useful for various reasons.
-      - They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards
-        or as an instrument to enforce restrictions.
+      - They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards or as an instrument to enforce restrictions.
       - Service groups can be directly assigned to single services or to service templates.
     required: false
     type: "list"
