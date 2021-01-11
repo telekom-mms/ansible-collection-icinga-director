@@ -82,8 +82,7 @@ options:
   check_command:
     description:
       - The name of the check command.
-      - Though this is not required to be defined in the director,
-        you still have to supply a check_command in a host or host-template.
+      - Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
     required: false
     type: str
   disabled:

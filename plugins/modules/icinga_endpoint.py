@@ -46,9 +46,9 @@ options:
   object_name:
     description:
       - Icinga object name for this endpoint.
-        This is usually a fully qualified host name but it could basically be any kind of string.
-        To make things easier for your users we strongly suggest to use meaningful names for templates.
-        E.g. "generic-endpoint" is ugly, "Standard Linux Server" is easier to understand.
+      - This is usually a fully qualified host name but it could basically be any kind of string.
+      - To make things easier for your users we strongly suggest to use meaningful names for templates.
+      - E.g. "generic-endpoint" is ugly, "Standard Linux Server" is easier to understand.
     required: true
     aliases: ['name']
     type: str
