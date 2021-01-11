@@ -11,7 +11,7 @@
 - add docstrings to the functions of the icinga class [\#81](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/81) ([rndmh3ro](https://github.com/rndmh3ro))
 - add name alias for object\_name [\#80](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/80) ([rndmh3ro](https://github.com/rndmh3ro))
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Fix url spec [\#85](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/85) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix spelling in module docs [\#83](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/83) ([rndmh3ro](https://github.com/rndmh3ro))
