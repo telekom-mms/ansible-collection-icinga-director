@@ -26,8 +26,5 @@ class ModuleDocFragment(object):
     DOCUMENTATION = r"""
     options:
       url:
-        description:
-          - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
         required: true
-        type: strA
      """
