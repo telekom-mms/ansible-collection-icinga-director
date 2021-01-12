@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- remove period from short description [\#93](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/93) ([rndmh3ro](https://github.com/rndmh3ro))
 - remove unneeded return values [\#88](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/88) ([schurzi](https://github.com/schurzi))
 
 ## [1.10.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.10.1) (2021-01-11)
