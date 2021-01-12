@@ -37,6 +37,7 @@ author: Sebastian Gumprich (@rndmh3ro)
 version_added: '1.0.0'
 extends_documentation_fragment:
   - ansible.builtin.url
+  - t_systems_mms.icinga_director.common_options
 options:
   state:
     description:
