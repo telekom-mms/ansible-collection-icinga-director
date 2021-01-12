@@ -36,6 +36,7 @@ description:
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
+  - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
 options:
   state:
@@ -96,6 +97,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
+        url=dict(required=True),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         assign_filter=dict(required=False),
