@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.10.1...1.11.0)
 
+**Fixed bugs:**
+
+- add back url parameter [\#92](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/92) ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Merged pull requests:**
 
 - remove period from short description [\#93](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/93) ([rndmh3ro](https://github.com/rndmh3ro))
