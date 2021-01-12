@@ -38,6 +38,8 @@ extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.5.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -50,36 +52,32 @@ options:
       - Icinga object name for this endpoint.
       - This is usually a fully qualified host name but it could basically be any kind of string.
       - To make things easier for your users we strongly suggest to use meaningful names for templates.
-      - E.g. "generic-endpoint" is ugly, "Standard Linux Server" is easier to understand.
+      - For example "generic-endpoint" is ugly, "Standard Linux Server" is easier to understand.
     required: true
     aliases: ['name']
     type: str
   host:
     description:
       - The hostname/IP address of the remote Icinga 2 instance.
-    required: false
     type: str
   port:
     description:
       - The service name/port of the remote Icinga 2 instance. Defaults to 5665.
-    required: false
     type: int
   log_duration:
     description:
       - Duration for keeping replay logs on connection loss. Defaults to 1d (86400 seconds).
         Attribute is specified in seconds. If log_duration is set to 0, replaying logs is disabled.
         You could also specify the value in human readable format like 10m for 10 minutes or 1h for one hour.
-    required: false
     type: str
   zone:
     description:
       - The name of the zone this endpoint is part of.
-    required: false
     type: str
 """
 
 EXAMPLES = """
-- name: create an endpoint in icinga
+- name: Create an endpoint in icinga
   t_systems_mms.icinga_director.icinga_endpoint:
     state: present
     url: "{{ icinga_url }}"

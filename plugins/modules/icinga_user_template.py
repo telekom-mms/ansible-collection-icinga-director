@@ -38,6 +38,8 @@ extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -55,13 +57,11 @@ options:
     description:
       - Importable templates, add as many as you want.
       - Please note that order matters when importing properties from multiple templates - last one wins.
-    required: false
     type: list
     elements: str
   period:
     description:
       - The name of a time period which determines when notifications to this User should be triggered. Not set by default.
-    required: false
     type: str
   enable_notifications:
     description:
@@ -70,7 +70,7 @@ options:
 """
 
 EXAMPLES = """
-- name: create user template
+- name: Create user template
   t_systems_mms.icinga_director.icinga_user_template:
     state: present
     url: "{{ icinga_url }}"

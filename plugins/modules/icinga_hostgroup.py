@@ -38,6 +38,8 @@ extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -55,18 +57,16 @@ options:
     description:
       - An alternative display name for this group.
       - If you wonder how this could be helpful just leave it blank.
-    required: false
     type: str
   assign_filter:
     description:
       - This allows you to configure an assignment filter.
       - Please feel free to combine as many nested operators as you want.
-    required: false
     type: str
 """
 
 EXAMPLES = """
-- name: create hostgroup
+- name: Create hostgroup
   t_systems_mms.icinga_director.icinga_hostgroup:
     state: present
     url: "{{ icinga_url }}"

@@ -38,6 +38,8 @@ extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -54,12 +56,10 @@ options:
   display_name:
     description:
       - Alternative displayed name of the service apply rule.
-    required: false
     type: str
   check_command:
     description:
       - Check command definition.
-    required: false
     type: str
     version_added: '1.7.0'
   groups:
@@ -68,44 +68,37 @@ options:
       - Servicegroups can be useful for various reasons.
       - They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards or as an instrument to enforce restrictions.
       - Service groups can be directly assigned to single services or to service templates.
-    required: false
     type: "list"
     elements: str
   apply_for:
     description:
       - Evaluates the apply for rule for all objects with the custom attribute specified.
-      - E.g selecting "host.vars.custom_attr" will generate "for (config in host.vars.array_var)" where "config" will be accessible through "$config$".
-      - NOTE - only custom variables of type "Array" are eligible.
-    required: false
+      - For example selecting "host.vars.custom_attr" will generate "for (config in host.vars.array_var)" where "config" will be accessible through "$config$".
+      - Note - only custom variables of type "Array" are eligible.
     type: str
   assign_filter:
     description:
       - The filter where the service apply rule will take effect.
-    required: false
     type: str
   imports:
     description:
       - Importable templates, add as many as you want.
       - Please note that order matters when importing properties from multiple templates - last one wins.
-    required: false
     type: "list"
     elements: str
   vars:
     description:
       - Custom properties of the service apply rule.
-    required: false
     type: "dict"
   notes:
     description:
       - Additional notes for this object.
-    required: false
     type: str
   notes_url:
     description:
       - An URL pointing to additional notes for this object.
       - Separate multiple urls like this "'http://url1' 'http://url2'".
       - Maximum length is 255 characters.
-    required: false
     type: str
 """
 

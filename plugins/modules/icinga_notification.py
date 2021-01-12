@@ -38,6 +38,8 @@ extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -55,24 +57,20 @@ options:
     description:
       - The notification interval (in seconds). This interval is used for active notifications.
       - Defaults to 30 minutes. If set to 0, re-notifications are disabled.
-    required: false
     type: str
   types:
     description:
       - The state transition types you want to get notifications for.
-    required: false
     type: "list"
     elements: str
   users:
     description:
       - Users that should be notified by this notification.
-    required: false
     type: "list"
     elements: str
   states:
     description:
       - The host or service states you want to get notifications for.
-    required: false
     type: "list"
     elements: str
     version_added: "1.9.0"
@@ -85,7 +83,6 @@ options:
   assign_filter:
     description:
       - The filter where the notification will take effect.
-    required: false
     type: "str"
   imports:
     description:
@@ -103,13 +100,12 @@ options:
   vars:
     description:
       - Custom properties of the notification.
-    required: false
     type: "dict"
     version_added: "1.9.0"
 """
 
 EXAMPLES = """
-- name: create notification
+- name: Create notification
   t_systems_mms.icinga_director.icinga_notification:
     state: present
     url: "{{ icinga_url }}"

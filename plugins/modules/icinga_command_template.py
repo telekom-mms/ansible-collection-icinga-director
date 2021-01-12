@@ -38,6 +38,8 @@ extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.1.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -52,13 +54,12 @@ options:
       - Spaces will lead to separation of command path and standalone arguments.
       - Please note that this means that we do not support spaces in plugin names and paths right now.
     type: str
-    required: False
   command_type:
     description:
-      - Plugin Check commands are what you need when running checks agains your infrastructure.
+      - Plugin Check commands are what you need when running checks against your infrastructure.
       - Notification commands will be used when it comes to notify your users.
       - Event commands allow you to trigger specific actions when problems occur.
-      - Some people use them for auto-healing mechanisms, like restarting services or rebooting systems at specific thresholds
+      - Some people use them for auto-healing mechanisms, like restarting services or rebooting systems at specific thresholds.
     choices: ["PluginCheck", "PluginNotification", "PluginEvent"]
     default: "PluginCheck"
     type: str
@@ -77,34 +78,29 @@ options:
   imports:
     description:
       - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins.
-    required: false
     type: list
     elements: str
   timeout:
     description:
-      - Optional command timeout. Allowed values are seconds or durations postfixed with a specific unit (e.g. 1m or also 3m 30s).
-    required: false
+      - Optional command timeout. Allowed values are seconds or durations postfixed with a specific unit (for example 1m or also 3m 30s).
     type: str
   zone:
     description:
       - Icinga cluster zone. Allows to manually override Directors decisions of where to deploy your config to.
       - You should consider not doing so unless you gained deep understanding of how an Icinga Cluster stack works.
-    required: false
     type: str
   vars:
     description:
       - Custom properties of the command template.
-    required: false
     type: "dict"
   arguments:
     description:
       - Arguments of the command template.
-    required: false
     type: "dict"
 """
 
 EXAMPLES = """
-- name: create command template
+- name: Create command template
   t_systems_mms.icinga_director.icinga_command_template:
     state: present
     url: "{{ icinga_url }}"
@@ -161,7 +157,7 @@ EXAMPLES = """
       snmpv3_priv_key: privkey
       snmpv3_user: user
 
-- name: create command template
+- name: Create command template
   t_systems_mms.icinga_director.icinga_command_template:
     state: present
     url: "{{ icinga_url }}"

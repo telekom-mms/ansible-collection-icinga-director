@@ -38,6 +38,8 @@ extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.2.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -50,7 +52,7 @@ options:
       - Icinga object name for this host template.
       - This is usually a fully qualified host name but it could basically be any kind of string.
       - To make things easier for your users we strongly suggest to use meaningful names for templates.
-      - E.g. "generic-host" is ugly, "Standard Linux Server" is easier to understand.
+      - For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
     aliases: ['name']
     required: true
     type: str
@@ -58,17 +60,14 @@ options:
     description:
       - Alternative name for this host.
       - Might be a host alias or and kind of string helping your users to identify this host.
-    required: false
     type: str
   address:
     description:
       - Host address. Usually an IPv4 address, but may be any kind of address your check plugin is able to deal with.
-    required: false
     type: str
   address6:
     description:
       - Host IPv6 address. Usually an IPv64 address, but may be any kind of address your check plugin is able to deal with.
-    required: false
     type: str
   groups:
     description:
@@ -76,7 +75,6 @@ options:
       - You might assign service checks based on assigned hostgroup. They are also often used as an instrument to enforce restricted views in Icinga Web 2.
       - Hostgroups can be directly assigned to single hosts or to host templates.
       - You might also want to consider assigning hostgroups using apply rules.
-    required: false
     type: list
     elements: str
     default: []
@@ -84,35 +82,29 @@ options:
     description:
       - The name of the check command.
       - Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
-    required: false
     type: str
   disabled:
     description:
       - Disabled objects will not be deployed.
-    required: False
     default: False
     type: bool
     choices: [True, False]
   imports:
     description:
       - Choose a host-template.
-    required: false
     type: list
     elements: str
   zone:
     description:
       - Set the zone.
-    required: false
     type: str
   vars:
     description:
       - Custom properties of the host.
-    required: false
     type: "dict"
   notes:
     description:
       - Additional notes for this object.
-    required: false
     type: str
     version_added: '1.8.0'
   notes_url:
@@ -120,34 +112,30 @@ options:
       - An URL pointing to additional notes for this object.
       - Separate multiple urls like this "'http://url1' 'http://url2'".
       - Maximum length is 255 characters.
-    required: false
     type: str
     version_added: '1.8.0'
   has_agent:
     description:
       - Whether this host has the Icinga 2 Agent installed.
-    required: False
     type: bool
     choices: [True, False]
     version_added: '1.9.0'
   master_should_connect:
     description:
       - Whether the parent (master) node should actively try to connect to this agent.
-    required: False
     type: bool
     choices: [True, False]
     version_added: '1.9.0'
   accept_config:
     description:
       - Whether the agent is configured to accept config.
-    required: False
     type: bool
     choices: [True, False]
     version_added: '1.9.0'
 """
 
 EXAMPLES = """
-- name: create host template
+- name: Create host template
   t_systems_mms.icinga_director.icinga_host_template:
     state: present
     url: "{{ icinga_url }}"
