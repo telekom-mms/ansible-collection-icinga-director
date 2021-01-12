@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.11.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.11.0) (2021-01-12)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.10.1...1.11.0)
+
+**Merged pull requests:**
+
+- remove unneeded return values [\#88](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/88) ([schurzi](https://github.com/schurzi))
+
 ## [1.10.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.10.1) (2021-01-11)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.10.0...1.10.1)
@@ -179,6 +187,10 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.1...1.3.2)
 
+**Implemented enhancements:**
+
+- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Fixed bugs:**
 
 - added code in icinga\_command.yml to make it work like the other tasks in our role [\#35](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/35) ([xFuture603](https://github.com/xFuture603))
@@ -201,7 +213,6 @@
 
 **Implemented enhancements:**
 
-- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 - Ansible icinga role [\#28](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/28) ([michaelamattes](https://github.com/michaelamattes))
 
 ## [1.2.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.2) (2020-06-26)
