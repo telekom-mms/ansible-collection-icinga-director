@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_hostgroup
-short_description: Manage hostgroups in Icinga2.
+short_description: Manage hostgroups in Icinga2
 description:
    - "Add or remove a hostgroup to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)

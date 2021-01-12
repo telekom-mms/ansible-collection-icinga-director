@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_endpoint
-short_description: Manage endpoints in Icinga2.
+short_description: Manage endpoints in Icinga2
 description:
    - "Add or remove an endpoint to Icinga2 through the director API."
 author: Aaron Bulmahn (@arbu)

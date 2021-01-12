@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_zone
-short_description: Manage zones in Icinga2.
+short_description: Manage zones in Icinga2
 description:
    - "Add or remove a zone to Icinga2 through the director API."
 author: Aaron Bulmahn (@arbu)

@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_command_template
-short_description: Manage command templates in Icinga2.
+short_description: Manage command templates in Icinga2
 description:
    - "Add or remove a command template to Icinga2 through the director API."
 author: Lars Krahl (@mmslkr)

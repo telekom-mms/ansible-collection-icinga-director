@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_notification_template
-short_description: Manage notification templates in Icinga2.
+short_description: Manage notification templates in Icinga2
 description:
    - "Add or remove a notification template to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
