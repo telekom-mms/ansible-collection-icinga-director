@@ -101,7 +101,8 @@ options:
     type: "dict"
   check_command:
     description:
-      - The name of the check command. Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
+      - The name of the check command.
+      - Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
     type: str
   notes:
     description:
