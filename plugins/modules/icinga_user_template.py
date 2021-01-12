@@ -80,6 +80,8 @@ EXAMPLES = """
     period: '24/7'
 """
 
+RETURN = r""" # """
+
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
 from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
@@ -120,8 +122,6 @@ def main():
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
         changed=changed,
-        object_name=module.params["object_name"],
-        data=icinga_object.data,
         diff=diff,
     )
 
