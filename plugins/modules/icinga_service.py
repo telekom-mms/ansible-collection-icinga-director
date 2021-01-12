@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_service
-short_description: Manage services in Icinga2.
+short_description: Manage services in Icinga2
 description:
    - "Add or remove a service to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)

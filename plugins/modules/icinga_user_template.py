@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_user_template
-short_description: Manage user templates in Icinga2.
+short_description: Manage user templates in Icinga2
 description:
    - "Add or remove a user template to Icinga2 through the director API."
 author: Lars Krahl (@mmslkr)

@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_service_template
-short_description: Manage service templates in Icinga2.
+short_description: Manage service templates in Icinga2
 description:
    - "Add or remove a service template to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)

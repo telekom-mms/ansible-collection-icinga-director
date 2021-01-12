@@ -30,7 +30,7 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: icinga_host
-short_description: Manage hosts in Icinga2.
+short_description: Manage hosts in Icinga2
 description:
    - "Add or remove a host to Icinga2 through the director API."
 author: Sebastian Gumprich (@rndmh3ro)
