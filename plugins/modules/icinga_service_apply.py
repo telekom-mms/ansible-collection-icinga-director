@@ -105,7 +105,7 @@ options:
     type: str
   check_interval:
     description:
-      - Your regular check interval
+      - Your regular check interval-
     required: false
     type: str
   check_period:
@@ -115,42 +115,42 @@ options:
     type: str
   check_timeout:
     description:
-      - Check command timeout in seconds. Overrides the CheckCommand's timeout attribute
+      - Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
     required: false
     type: str
   enable_active_checks:
     description:
-      - Whether to actively check this object
+      - Whether to actively check this object.
     required: false
     type: "bool"
   enable_event_handler:
     description:
-      - Whether to enable event handlers this object
+      - Whether to enable event handlers this object.
     required: false
     type: "bool"
   enable_notifications:
     description:
-      - Whether to send notifications for this object
+      - Whether to send notifications for this object.
     required: false
     type: "bool"
   enable_passive_checks:
     description:
-      - Whether to accept passive check results for this object
+      - Whether to accept passive check results for this object.
     required: false
     type: "bool"
   enable_perfdata:
     description:
-      - Whether to process performance data provided by this object
+      - Whether to process performance data provided by this object.
     required: false
     type: "bool"
   max_check_attempts:
     description:
-      - Defines after how many check attempts a new hard state is reached
+      - Defines after how many check attempts a new hard state is reached.
     required: false
     type: str
   retry_interval:
     description:
-      - Retry interval, will be applied after a state change unless the next hard state is reached
+      - Retry interval, will be applied after a state change unless the next hard state is reached.
     required: false
     type: str
   groups:
