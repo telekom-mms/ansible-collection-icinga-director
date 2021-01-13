@@ -1,6 +1,6 @@
 ---
-- name: create a host in icinga
-  icinga_host:
+- name: Create a host in icinga
+  t_systems_mms.icinga_director.icinga_host:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -17,3 +17,6 @@
     check_command: hostalive
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
+    has_agent: true
+    master_should_connect: true
+    accept_config: true

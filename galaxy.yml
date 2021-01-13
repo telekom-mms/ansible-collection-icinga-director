@@ -1,6 +1,6 @@
 namespace: t_systems_mms
 name: icinga_director
-version: 1.2.2
+version: 1.11.0
 readme: README.md
 authors:
   - Sebastian Gumprich <sebastian.gumprich@t-systems.com>
@@ -11,11 +11,22 @@ description: >-
 license:
   - GPL-2.0-or-later
 license_file: ''
-tags: []
+tags:
+  - icinga
+  - monitoring
 dependencies: {}
 repository: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
 documentation: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
 homepage: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
 issues: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues'
 build_ignore:
-- vsc-snippets
+  - vsc-snippets
+  - codecov.yml
+  - .github
+  - hacking
+  - requirements.txt
+  - test-requirements.txt
+  - tests
+  - .tox
+  - tox.ini
+  - .yamllint

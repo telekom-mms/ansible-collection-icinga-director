@@ -1,6 +1,6 @@
 ---
-- name: create a zone in icinga
-  icinga_zone:
+- name: Create a zone in icinga
+  t_systems_mms.icinga_director.icinga_zone:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

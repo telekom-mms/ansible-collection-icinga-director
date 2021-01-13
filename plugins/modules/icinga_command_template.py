@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2019 Ansible Project
+# Copyright (c) 2020 T-Systems Multimedia Solutions GmbH
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 #
 # This module is free software: you can redistribute it and/or modify
@@ -21,67 +21,20 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 DOCUMENTATION = """
 ---
 module: icinga_command_template
 short_description: Manage command templates in Icinga2
 description:
-   - "Add or remove a command template to Icinga2 through the director API."
+   - Add or remove a command template to Icinga2 through the director API.
 author: Lars Krahl (@mmslkr)
+extends_documentation_fragment:
+  - ansible.builtin.url
+  - t_systems_mms.icinga_director.common_options
+version_added: '1.1.0'
+notes:
+  - This module supports check mode.
 options:
-  url:
-    description:
-      - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
-    required: true
-    type: str
-  use_proxy:
-    description:
-      - If C(no), it will not use a proxy, even if one is defined in
-        an environment variable on the target hosts.
-    type: bool
-    default: 'yes'
-  validate_certs:
-    description:
-      - If C(no), SSL certificates will not be validated. This should only be used
-        on personally controlled sites using self-signed certificates.
-    type: bool
-    default: 'yes'
-  url_username:
-    description:
-      - The username for use in HTTP basic authentication.
-      - This parameter can be used without C(url_password) for sites that allow empty passwords.
-    type: str
-  url_password:
-    description:
-      - The password for use in HTTP basic authentication.
-      - If the C(url_username) parameter is not specified, the C(url_password) parameter will not be used.
-    type: str
-  force_basic_auth:
-    description:
-      - httplib2, the library used by the uri module only sends authentication information when a webservice
-        responds to an initial request with a 401 status. Since some basic auth services do not properly
-        send a 401, logins will fail. This option forces the sending of the Basic authentication header
-        upon initial request.
-    type: bool
-    default: 'no'
-  client_cert:
-    description:
-      - PEM formatted certificate chain file to be used for SSL client
-        authentication. This file can also include the key as well, and if
-        the key is included, C(client_key) is not required.
-    type: path
-  client_key:
-    description:
-      - PEM formatted file that contains your private key to be used for SSL
-        client authentication. If C(client_cert) contains both the certificate
-        and key, this option is not required.
-    type: path
   state:
     description:
       - Apply feature state.
@@ -95,59 +48,54 @@ options:
       - Spaces will lead to separation of command path and standalone arguments.
       - Please note that this means that we do not support spaces in plugin names and paths right now.
     type: str
-    required: False
   command_type:
     description:
-      - Plugin Check commands are what you need when running checks agains your infrastructure.
+      - Plugin Check commands are what you need when running checks against your infrastructure.
       - Notification commands will be used when it comes to notify your users.
       - Event commands allow you to trigger specific actions when problems occur.
-      - Some people use them for auto-healing mechanisms, like restarting services or rebooting systems at specific thresholds
+      - Some people use them for auto-healing mechanisms, like restarting services or rebooting systems at specific thresholds.
     choices: ["PluginCheck", "PluginNotification", "PluginEvent"]
     default: "PluginCheck"
     type: str
   disabled:
     description:
-      - Disabled objects will not be deployed
+      - Disabled objects will not be deployed.
     type: bool
     default: False
     choices: [True, False]
   object_name:
     description:
-      - Name of the service apply rule
+      - Name of the command template.
+    aliases: ['name']
     required: true
     type: str
   imports:
     description:
-      - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins
-    required: false
+      - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins.
     type: list
     elements: str
   timeout:
     description:
-      - Optional command timeout. Allowed values are seconds or durations postfixed with a specific unit (e.g. 1m or also 3m 30s).
-    required: false
+      - Optional command timeout. Allowed values are seconds or durations postfixed with a specific unit (for example 1m or also 3m 30s).
     type: str
   zone:
     description:
       - Icinga cluster zone. Allows to manually override Directors decisions of where to deploy your config to.
-      - You should consider not doing so unless you gained deep understanding of how an Icinga Cluster stack works
-    required: false
+      - You should consider not doing so unless you gained deep understanding of how an Icinga Cluster stack works.
     type: str
   vars:
     description:
-      - Custom properties of the command template
-    required: false
+      - Custom properties of the command template.
     type: "dict"
   arguments:
     description:
-      - arguments of the command template
-    required: false
+      - Arguments of the command template.
     type: "dict"
 """
 
 EXAMPLES = """
-- name: create command template
-  icinga_command_template:
+- name: Create command template
+  t_systems_mms.icinga_director.icinga_command_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -203,8 +151,8 @@ EXAMPLES = """
       snmpv3_priv_key: privkey
       snmpv3_user: user
 
-- name: create command template
-  icinga_command_template:
+- name: Create command template
+  t_systems_mms.icinga_director.icinga_command_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -212,6 +160,8 @@ EXAMPLES = """
     command: "/opt/centreon-plugins/centreon_plugins_2.pl"
     object_name: centreon-plugins-template-2
 """
+
+RETURN = r""" # """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
@@ -226,14 +176,11 @@ from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icin
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    # remove unnecessary argument 'force'
-    del argument_spec["force"]
-    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         imports=dict(type="list", elements="str", required=False, default=[]),
         disabled=dict(
             type="bool", required=False, default=False, choices=[True, False]
@@ -278,8 +225,6 @@ def main():
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
         changed=changed,
-        object_name=module.params["object_name"],
-        data=icinga_object.data,
         diff=diff,
     )
 

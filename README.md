@@ -56,7 +56,7 @@ See the `examples` directory for a complete list of examples.
     - t_systems_mms.icinga_director
   tasks:
     - name: create a host in icinga
-      icinga_host:
+      t_systems_mms.icinga_director.icinga_host:
         state: present
         url: "https://example.com"
         url_username: "{{ icinga_user }}"

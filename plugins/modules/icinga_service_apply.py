@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2019 Ansible Project
+# Copyright (c) 2020 T-Systems Multimedia Solutions GmbH
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 #
 # This module is free software: you can redistribute it and/or modify
@@ -21,67 +21,20 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 DOCUMENTATION = """
 ---
 module: icinga_service_apply
 short_description: Manage service apply rules in Icinga2
 description:
-   - "Add or remove a service apply rule to Icinga2 through the director API."
+   - Add or remove a service apply rule to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
+extends_documentation_fragment:
+  - ansible.builtin.url
+  - t_systems_mms.icinga_director.common_options
+version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
-  url:
-    description:
-      - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
-    required: true
-    type: str
-  use_proxy:
-    description:
-      - If C(no), it will not use a proxy, even if one is defined in
-        an environment variable on the target hosts.
-    type: bool
-    default: 'yes'
-  validate_certs:
-    description:
-      - If C(no), SSL certificates will not be validated. This should only be used
-        on personally controlled sites using self-signed certificates.
-    type: bool
-    default: 'yes'
-  url_username:
-    description:
-      - The username for use in HTTP basic authentication.
-      - This parameter can be used without C(url_password) for sites that allow empty passwords.
-    type: str
-  url_password:
-    description:
-      - The password for use in HTTP basic authentication.
-      - If the C(url_username) parameter is not specified, the C(url_password) parameter will not be used.
-    type: str
-  force_basic_auth:
-    description:
-      - httplib2, the library used by the uri module only sends authentication information when a webservice
-        responds to an initial request with a 401 status. Since some basic auth services do not properly
-        send a 401, logins will fail. This option forces the sending of the Basic authentication header
-        upon initial request.
-    type: bool
-    default: 'no'
-  client_cert:
-    description:
-      - PEM formatted certificate chain file to be used for SSL client
-        authentication. This file can also include the key as well, and if
-        the key is included, C(client_key) is not required.
-    type: path
-  client_key:
-    description:
-      - PEM formatted file that contains your private key to be used for SSL
-        client authentication. If C(client_cert) contains both the certificate
-        and key, this option is not required.
-    type: path
   state:
     description:
       - Apply feature state.
@@ -90,22 +43,22 @@ options:
     type: str
   object_name:
     description:
-      - Name for the Icinga service you are going to create
+      - Name for the Icinga service apply rule.
+    aliases: ['name']
     required: true
     type: str
   display_name:
     description:
-      - Alternative displayed name of the service apply rule
-    required: false
+      - Alternative displayed name of the service apply rule.
     type: str
   check_command:
     description:
-      - Check command definition
-    required: false
+      - Check command definition.
     type: str
+    version_added: '1.7.0'
   check_interval:
     description:
-      - Your regular check interval-
+      - Your regular check interval.
     required: false
     type: str
   check_period:
@@ -156,54 +109,46 @@ options:
   groups:
     description:
       - Service groups that should be directly assigned to this service.
-        Servicegroups can be useful for various reasons.
-        They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards
-        or as an instrument to enforce restrictions.
-        Service groups can be directly assigned to single services or to service templates.
-    required: false
+      - Servicegroups can be useful for various reasons.
+      - They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards or as an instrument to enforce restrictions.
+      - Service groups can be directly assigned to single services or to service templates.
     type: "list"
     elements: str
   apply_for:
     description:
       - Evaluates the apply for rule for all objects with the custom attribute specified.
-        E.g selecting "host.vars.custom_attr" will generate "for (config in host.vars.array_var)" where "config"
-        will be accessible through "$config$". NOTE - only custom variables of type "Array" are eligible.
-    required: false
+      - For example selecting "host.vars.custom_attr" will generate "for (config in host.vars.array_var)" where "config" will be accessible through "$config$".
+      - Note - only custom variables of type "Array" are eligible.
     type: str
   assign_filter:
     description:
-      - The filter where the service apply rule will take effect
-    required: false
+      - The filter where the service apply rule will take effect.
     type: str
   imports:
     description:
       - Importable templates, add as many as you want.
-        Please note that order matters when importing properties from multiple templates - last one wins
-    required: false
+      - Please note that order matters when importing properties from multiple templates - last one wins.
     type: "list"
     elements: str
   vars:
     description:
-      - Custom properties of the host
-    required: false
+      - Custom properties of the service apply rule.
     type: "dict"
   notes:
     description:
-      - Additional notes for this object
-    required: false
+      - Additional notes for this object.
     type: str
   notes_url:
     description:
       - An URL pointing to additional notes for this object.
       - Separate multiple urls like this "'http://url1' 'http://url2'".
-      - Max length 255 characters
-    required: false
+      - Maximum length is 255 characters.
     type: str
 """
 
 EXAMPLES = """
 - name: Add service apply rule to icinga
-  icinga_service_apply:
+  t_systems_mms.icinga_director.icinga_service_apply:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -233,6 +178,8 @@ EXAMPLES = """
       http_string: "Ready"
       http_expect: "Yes"
 """
+
+RETURN = r""" # """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
@@ -274,14 +221,11 @@ class ServiceApplyRule(Icinga2APIObject):
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    # remove unnecessary argument 'force'
-    del argument_spec["force"]
-    del argument_spec["http_agent"]
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
-        object_name=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         check_command=dict(required=False),
         check_interval=dict(required=False),
@@ -337,8 +281,6 @@ def main():
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
         changed=changed,
-        object_name=module.params["object_name"],
-        data=icinga_object.data,
         diff=diff,
     )
 

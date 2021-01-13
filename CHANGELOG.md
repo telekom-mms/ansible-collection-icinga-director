@@ -1,16 +1,93 @@
 # Changelog
 
-## [Unreleased](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/HEAD)
+## [1.11.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.11.1) (2021-01-13)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.8.1...HEAD)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.11.0...1.11.1)
 
 **Implemented enhancements:**
 
+- spelling fixes, add notes-section, remove useless sections [\#94](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [1.11.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.11.0) (2021-01-12)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.10.1...1.11.0)
+
+**Fixed bugs:**
+
+- add back url parameter [\#92](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/92) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Merged pull requests:**
+
+- remove period from short description [\#93](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/93) ([rndmh3ro](https://github.com/rndmh3ro))
+- remove unneeded return values [\#88](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/88) ([schurzi](https://github.com/schurzi))
+
+## [1.10.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.10.1) (2021-01-11)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.10.0...1.10.1)
+
+**Implemented enhancements:**
+
+- Update tests [\#86](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/86) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [1.10.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.10.0) (2021-01-11)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.9.1...1.10.0)
+
+**Implemented enhancements:**
+
+- change class to make compatible for python2 [\#84](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/84) ([rndmh3ro](https://github.com/rndmh3ro))
+- add version\_added to modules and module options [\#82](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/82) ([rndmh3ro](https://github.com/rndmh3ro))
+- add docstrings to the functions of the icinga class [\#81](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/81) ([rndmh3ro](https://github.com/rndmh3ro))
+- add name alias for object\_name [\#80](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/80) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- Fix url spec [\#85](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/85) ([rndmh3ro](https://github.com/rndmh3ro))
+- fix spelling in module docs [\#83](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/83) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [1.9.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.1) (2021-01-06)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.9.0...1.9.1)
+
+**Implemented enhancements:**
+
+- use doc\_fragments for modules documentation [\#78](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/78) ([rndmh3ro](https://github.com/rndmh3ro))
+- added wished files and directories to build\_ignore list [\#77](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/77) ([xFuture603](https://github.com/xFuture603))
+
+**Closed issues:**
+
+- Update module docs with FQCN [\#61](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/61)
+- Add meta directory with runtime.yml to collection [\#60](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/60)
+- Remove unwanted files from release-tarball [\#58](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/58)
+
+**Merged pull requests:**
+
+- fix copyright notice in all files [\#79](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/79) ([rndmh3ro](https://github.com/rndmh3ro))
+- use fqcn in all examples, fix example and test generation [\#76](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/76) ([rndmh3ro](https://github.com/rndmh3ro))
+- Create CONTRIBUTING.md [\#74](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/74) ([rndmh3ro](https://github.com/rndmh3ro))
+- Create runtime.yml [\#72](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/72) ([rndmh3ro](https://github.com/rndmh3ro))
+- Create LICENSE [\#71](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/71) ([rndmh3ro](https://github.com/rndmh3ro))
+- run tests on a schedule [\#70](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/70) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [1.9.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.9.0) (2020-12-14)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.8.1...1.9.0)
+
+**Implemented enhancements:**
+
+- add vars option to icinga\_notification [\#68](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
+- improve support for API parameters [\#66](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/66) ([schurzi](https://github.com/schurzi))
 - Notification templates [\#64](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/64) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- fixed "command is missing" while trying to create a command [\#69](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/69) ([xFuture603](https://github.com/xFuture603))
 
 **Closed issues:**
 
 - icinga\_commands with "imports" not working [\#63](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/63)
+- Add ability to create notification\_template [\#62](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/62)
+- Can't use fields available in API - e.g. host\_template - has\_agent [\#59](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/59)
 
 ## [1.8.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.8.1) (2020-11-05)
 
@@ -55,10 +132,6 @@
 
 - Add object "Service" for a Host [\#42](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/42)
 
-**Merged pull requests:**
-
-- add example and test for command without args [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/46) ([rndmh3ro](https://github.com/rndmh3ro))
-
 ## [1.6.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.6.0) (2020-10-22)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.5.0...1.6.0)
@@ -84,6 +157,10 @@
 
 - Hosts in state absent don't require import parameter [\#44](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44)
 - when deleting objects, only the object\_name is required  [\#45](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/45) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Merged pull requests:**
+
+- add example and test for command without args [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/46) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.4.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.2) (2020-09-25)
 
@@ -175,7 +252,7 @@
 
 - Integration testing [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
-- add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
+- add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.2.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.0) (2020-06-24)
 
@@ -184,7 +261,7 @@
 **Implemented enhancements:**
 
 - add gitattributes because of windows line endings [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
-- add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
+- add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
 
 **Fixed bugs:**
 
