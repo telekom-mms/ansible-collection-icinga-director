@@ -212,6 +212,16 @@ EXAMPLES = """
     assign_filter: 'host.name="foohost"'
     check_command: hostalive
     display_name: "dummy process"
+    check_interval: "10m"
+    check_period: "24x7"
+    check_timeout: "1m"
+    enable_active_checks: true
+    enable_event_handler: true
+    enable_notifications: true
+    enable_passive_checks: false
+    enable_perfdata: false
+    max_check_attempts: 5
+    retry_interval: "3m"
     imports:
       - fooservicetemplate
     groups:
