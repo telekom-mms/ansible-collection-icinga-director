@@ -26,7 +26,7 @@ DOCUMENTATION = """
 module: icinga_service_template
 short_description: Manage service templates in Icinga2
 description:
-   - "Add or remove a service template to Icinga2 through the director API."
+   - Add or remove a service template to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url

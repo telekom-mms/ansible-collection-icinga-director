@@ -26,7 +26,7 @@ DOCUMENTATION = """
 module: icinga_host_template
 short_description: Manage host templates in Icinga2
 description:
-   - "Add or remove a host template to Icinga2 through the director API."
+   - Add or remove a host template to Icinga2 through the director API.
 author: Michaela Mattes (@michaelamattes)
 extends_documentation_fragment:
   - ansible.builtin.url

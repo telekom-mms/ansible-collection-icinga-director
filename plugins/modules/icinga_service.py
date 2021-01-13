@@ -26,7 +26,7 @@ DOCUMENTATION = """
 module: icinga_service
 short_description: Manage services in Icinga2
 description:
-   - "Add or remove a service to Icinga2 through the director API."
+   - Add or remove a service to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url

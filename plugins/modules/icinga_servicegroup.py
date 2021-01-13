@@ -26,7 +26,7 @@ DOCUMENTATION = """
 module: icinga_servicegroup
 short_description: Manage servicegroups in Icinga2
 description:
-   - "Add or remove a servicegroup to Icinga2 through the director API."
+   - Add or remove a servicegroup to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url

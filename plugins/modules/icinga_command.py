@@ -26,7 +26,7 @@ DOCUMENTATION = """
 module: icinga_command
 short_description: Manage commands in Icinga2
 description:
-   - "Add or remove a command to Icinga2 through the director API."
+   - Add or remove a command to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 version_added: '1.0.0'
 extends_documentation_fragment:

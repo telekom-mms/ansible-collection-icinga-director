@@ -26,7 +26,7 @@ DOCUMENTATION = """
 module: icinga_user
 short_description: Manage users in Icinga2
 description:
-   - "Add or remove a user to Icinga2 through the director API."
+   - Add or remove a user to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
