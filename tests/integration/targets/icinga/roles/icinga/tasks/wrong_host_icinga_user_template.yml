@@ -1,5 +1,5 @@
 ---
-- name: create user template
+- name: Create user template
   t_systems_mms.icinga_director.icinga_user_template:
     state: present
     url: http://nonexistant

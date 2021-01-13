@@ -21,23 +21,19 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 DOCUMENTATION = """
 ---
 module: icinga_servicegroup
 short_description: Manage servicegroups in Icinga2
 description:
-   - "Add or remove a servicegroup to Icinga2 through the director API."
+   - Add or remove a servicegroup to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -55,18 +51,16 @@ options:
     description:
       - An alternative display name for this group.
       - If you wonder how this could be helpful just leave it blank.
-    required: false
     type: str
   assign_filter:
     description:
       - This allows you to configure an assignment filter.
-      - Please feel free to combine as many nested operators as you want
-    required: false
+      - Please feel free to combine as many nested operators as you want.
     type: str
 """
 
 EXAMPLES = """
-- name: create servicegroup
+- name: Create servicegroup
   t_systems_mms.icinga_director.icinga_servicegroup:
     state: present
     url: "{{ icinga_url }}"

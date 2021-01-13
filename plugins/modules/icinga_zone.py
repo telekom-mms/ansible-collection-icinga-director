@@ -21,23 +21,19 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 DOCUMENTATION = """
 ---
 module: icinga_zone
 short_description: Manage zones in Icinga2
 description:
-   - "Add or remove a zone to Icinga2 through the director API."
+   - Add or remove a zone to Icinga2 through the director API.
 author: Aaron Bulmahn (@arbu)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.5.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -50,25 +46,23 @@ options:
       - Icinga object name for this zone.
       - This is usually a fully qualified host name but it could basically be any kind of string.
       - To make things easier for your users we strongly suggest to use meaningful names for templates.
-      - E.g. "generic-zone" is ugly, "Standard Linux Server" is easier to understand
+      - For example "generic-zone" is ugly, "Standard Linux Server" is easier to understand.
     aliases: ['name']
     required: true
     type: str
   is_global:
     description:
       - Whether configuration files for this zone should be synced to all endpoints.
-    required: false
     default: false
     type: bool
   parent:
     description:
       - The name of the parent zone.
-    required: false
     type: str
 """
 
 EXAMPLES = """
-- name: create a zone in icinga
+- name: Create a zone in icinga
   t_systems_mms.icinga_director.icinga_zone:
     state: present
     url: "{{ icinga_url }}"

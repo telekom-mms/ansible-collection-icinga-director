@@ -21,23 +21,19 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 DOCUMENTATION = """
 ---
 module: icinga_timeperiod
 short_description: Manage timeperiods in Icinga2
 description:
-   - "Add or remove a timeperiod to Icinga2 through the director API."
+   - Add or remove a timeperiod to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -55,23 +51,20 @@ options:
     description:
       - Alternative name for this timeperiod.
     type: str
-    required: false
   imports:
     description:
       - Importable templates, add as many as you want.
       - Please note that order matters when importing properties from multiple templates - last one wins.
-    required: false
     type: list
     elements: str
   ranges:
     description:
       - A dict of days and timeperiods.
     type: dict
-    required: false
 """
 
 EXAMPLES = """
-- name: create notification
+- name: Create notification
   t_systems_mms.icinga_director.icinga_timeperiod:
     state: present
     url: "{{ icinga_url }}"

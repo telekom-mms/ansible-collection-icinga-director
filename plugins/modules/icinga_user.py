@@ -21,23 +21,19 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 DOCUMENTATION = """
 ---
 module: icinga_user
 short_description: Manage users in Icinga2
 description:
-   - "Add or remove a user to Icinga2 through the director API."
+   - Add or remove a user to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -56,23 +52,19 @@ options:
       - Alternative name for this user.
       - In case your object name is a username, this could be the full name of the corresponding person.
     type: str
-    required: false
   imports:
     description:
       - Importable templates, add as many as you want.
       - Please note that order matters when importing properties from multiple templates - last one wins.
-    required: false
     type: list
     elements: str
   pager:
     description:
       - The pager address of the user.
-    required: false
     type: str
   period:
     description:
       - The name of a time period which determines when notifications to this User should be triggered. Not set by default.
-    required: false
     type: str
   disabled:
     description:
@@ -87,7 +79,7 @@ options:
 """
 
 EXAMPLES = """
-- name: create user
+- name: Create user
   t_systems_mms.icinga_director.icinga_user:
     state: present
     url: "{{ icinga_url }}"

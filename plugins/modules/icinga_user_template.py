@@ -21,23 +21,19 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 DOCUMENTATION = """
 ---
 module: icinga_user_template
 short_description: Manage user templates in Icinga2
 description:
-   - "Add or remove a user template to Icinga2 through the director API."
+   - Add or remove a user template to Icinga2 through the director API.
 author: Lars Krahl (@mmslkr)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -55,13 +51,11 @@ options:
     description:
       - Importable templates, add as many as you want.
       - Please note that order matters when importing properties from multiple templates - last one wins.
-    required: false
     type: list
     elements: str
   period:
     description:
       - The name of a time period which determines when notifications to this User should be triggered. Not set by default.
-    required: false
     type: str
   enable_notifications:
     description:
@@ -70,7 +64,7 @@ options:
 """
 
 EXAMPLES = """
-- name: create user template
+- name: Create user template
   t_systems_mms.icinga_director.icinga_user_template:
     state: present
     url: "{{ icinga_url }}"

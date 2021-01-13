@@ -21,23 +21,19 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    "metadata_version": "1.1",
-    "status": ["preview"],
-    "supported_by": "community",
-}
-
 DOCUMENTATION = """
 ---
 module: icinga_service
 short_description: Manage services in Icinga2
 description:
-   - "Add or remove a service to Icinga2 through the director API."
+   - Add or remove a service to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
 version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
   state:
     description:
@@ -54,47 +50,38 @@ options:
   check_command:
     description:
       - Check command definition.
-    required: false
     type: str
   check_interval:
     description:
       - Your regular check interval.
-    required: false
     type: str
   check_period:
     description:
       - The name of a time period which determines when this object should be monitored. Not limited by default.
-    required: false
     type: str
   check_timeout:
     description:
       - Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
-    required: false
     type: str
   enable_active_checks:
     description:
       - Whether to actively check this object.
-    required: false
     type: "bool"
   enable_event_handler:
     description:
       - Whether to enable event handlers this object.
-    required: false
     type: "bool"
   enable_notifications:
     description:
       - Whether to send notifications for this object.
-    required: false
     type: "bool"
   enable_passive_checks:
     description:
       - Whether to accept passive check results for this object.
-    required: false
     type: "bool"
   enable_perfdata:
     description:
       - Whether to process performance data provided by this object.
-    required: false
     type: "bool"
   groups:
     description:
@@ -102,7 +89,6 @@ options:
       - Servicegroups can be useful for various reasons.
       - They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards or as an instrument to enforce restrictions.
       - Service groups can be directly assigned to single services or to service templates.
-    required: false
     type: "list"
     elements: "str"
     default: []
@@ -115,19 +101,16 @@ options:
     description:
       - Importable templates, add as many as you want.
       - Please note that order matters when importing properties from multiple templates - last one wins.
-    required: false
     type: "list"
     elements: "str"
     default: []
   max_check_attempts:
     description:
       - Defines after how many check attempts a new hard state is reached.
-    required: false
     type: str
   notes:
     description:
       - Additional notes for this object.
-    required: false
     type: str
     version_added: '1.8.0'
   notes_url:
@@ -135,29 +118,24 @@ options:
       - An URL pointing to additional notes for this object.
       - Separate multiple urls like this "'http://url1' 'http://url2'".
       - Maximum length is 255 characters.
-    required: false
     type: str
     version_added: '1.8.0'
   retry_interval:
     description:
       - Retry interval, will be applied after a state change unless the next hard state is reached.
-    required: false
     type: str
   use_agent:
     description:
-      - Whether the check commmand for this service should be executed on the Icinga agent.
-    required: false
+      - Whether the check command for this service should be executed on the Icinga agent.
     type: "bool"
   vars:
     description:
       - Custom properties of the service.
-    required: false
     type: "dict"
     default: {}
   volatile:
     description:
       - Whether this check is volatile.
-    required: false
     type: "bool"
   disabled:
     description:
@@ -168,7 +146,7 @@ options:
 """
 
 EXAMPLES = """
-- name: create service
+- name: Create service
   tags: service
   t_systems_mms.icinga_director.icinga_service:
     state: present
