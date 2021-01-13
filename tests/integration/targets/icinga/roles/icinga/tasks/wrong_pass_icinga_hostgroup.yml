@@ -1,5 +1,5 @@
 ---
-- name: create hostgroup
+- name: Create hostgroup
   t_systems_mms.icinga_director.icinga_hostgroup:
     state: present
     url: "{{ icinga_url }}"
