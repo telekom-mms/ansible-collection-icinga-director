@@ -9,6 +9,7 @@
     display_name: foohosttemplate
     disabled: false
     check_command: dummy
+    check_interval: 90s
     groups:
       - "foohostgroup"
     imports:
