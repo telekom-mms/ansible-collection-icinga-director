@@ -18,6 +18,7 @@
     address6: "{{ host_template.0.address6 | default(omit) }}"
     groups: "{{ host_template.0.address | default(omit) }}"
     check_command: "{{ host_template.0.check_command | default(omit) }}"
+    check_interval: "{{ host_template.0.check_interval | default(omit) }}"
     disabled: "{{ host_template.0.disabled | default(omit) }}"
     imports: "{{ host_template.0.imports | default(omit) }}"
     zone: "{{ host_template.0.zone | default(omit) }}"

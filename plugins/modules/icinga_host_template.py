@@ -77,6 +77,10 @@ options:
       - The name of the check command.
       - Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
     type: str
+  check_interval:
+    description:
+      - Your regular check interval.
+    type: str
   disabled:
     description:
       - Disabled objects will not be deployed.
@@ -139,6 +143,7 @@ EXAMPLES = """
     display_name: foohosttemplate
     disabled: false
     check_command: dummy
+    check_interval: 90s
     groups:
       - "foohostgroup"
     imports:
@@ -173,6 +178,7 @@ def main():
         display_name=dict(required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
         check_command=dict(required=False),
+        check_interval=dict(required=False),
         imports=dict(type="list", elements="str", required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         address=dict(required=False),
@@ -197,6 +203,7 @@ def main():
         "display_name": module.params["display_name"],
         "groups": module.params["groups"],
         "check_command": module.params["check_command"],
+        "check_interval": module.params["check_interval"],
         "imports": module.params["imports"],
         "disabled": module.params["disabled"],
         "address": module.params["address"],

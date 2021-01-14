@@ -77,6 +77,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | address6                   | no       |
 | groups                     | no       |
 | check_command              | no       |
+| check_interval             | no       |
 | disabled                   | no       |
 | imports                    | no       |
 | zone                       | no       |
