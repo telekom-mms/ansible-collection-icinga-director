@@ -98,7 +98,7 @@ class Icinga2APIObject(object):
                    the name of the resource. Usually that means 'object_name', but for services it also covers
                    the host name.
             resolved: type bool, default False, resolve all object variables. If True, this will include all
-                      variables inheritet via templates.
+                      variables inherited via imports.
 
         Returns:
             the result of the api-call
