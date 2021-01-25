@@ -95,7 +95,7 @@ class Icinga2APIObject(object):
 
         Parameters:
             query: type str, default "", searchstring to limit the results. By default Director will search in
-                   the name of the ressource. Usually that means 'object_name', but for services it also covers
+                   the name of the resource. Usually that means 'object_name', but for services it also covers
                    the host name.
             resolved: type bool, default False, resolve all object variables. If True, this will include all
                       variables inheritet via templates.
