@@ -228,8 +228,6 @@ def main():
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
         changed=changed,
-        object_name=module.params["object_name"],
-        data=icinga_object.data,
         diff=diff,
     )
 
