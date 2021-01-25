@@ -89,6 +89,29 @@ class Icinga2APIObject(object):
             return True
         return False
 
+    def list(self, query="", resolved=False):
+        """
+        Find all matching obejcts in the director and return the result of the api-call.
+
+        Parameters:
+            query: type str, default "", searchstring to limit the results. By default Director will search in
+                   the name of the ressource. Usually that means 'object_name', but for services it also covers
+                   the host name.
+            resolved: type bool, default False, resolve all object variables. If True, this will include all
+                      variables inheritet via templates.
+
+        Returns:
+            the result of the api-call
+        """
+
+        ret = self.call_url(
+            path=self.path
+            + "?q="
+            + to_text(urlquote(query))
+            + ("&resolved" if resolved else "")
+        )
+        return ret
+
     def create(self):
         """
         Create the object in the director and return the result of the api-call.

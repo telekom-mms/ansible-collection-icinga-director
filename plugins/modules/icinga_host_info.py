@@ -35,22 +35,38 @@ version_added: '1.0.0'
 notes:
   - This module supports check mode.
 options:
-  object_name:
+  query:
     description:
-      - Icinga object name for this host.
-      - This is usually a fully qualified host name but it could basically be any kind of string.
-      - To make things easier for your users we strongly suggest to use meaningful names for templates.
-      - For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
-    aliases: ['name']
+      - Text to filter search results.
+      - The text is matched on object_name.
+      - Only objects containing this text will be returned in the resultset.
     required: true
     type: str
+    default: ""
+  resolved:
+    description:
+      - Resolve all inherited object properties and omit templates in output.
+    type: bool
+    default: False
+    choices: [True, False]
 """
 
 EXAMPLES = """
-
+- name: Query a host in icinga
+  t_systems_mms.icinga_director.icinga_host_info:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    query: "foohost"
 """
 
-RETURN = r""" # """
+RETURN = r"""
+objects:
+  description: A list of returned Director objects.
+  returned: always
+  type: list
+  elements: complex
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
@@ -68,7 +84,8 @@ def main():
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
-        object_name=dict(required=True, aliases=["name"]),
+        query=dict(type="str",required=False, default=""),
+        resolved=dict(type="bool", default=False, choices=[True, False]),
     )
 
     # Define the main module
@@ -77,11 +94,11 @@ def main():
         supports_check_mode=True,
     )
 
-    icinga_object = Icinga2APIObject(module=module, path="/host", data=[])
+    icinga_object = Icinga2APIObject(module=module, path="/hosts", data=[])
 
-    object_list = icinga_object.call_url(path="/hosts?q=" + module.params["object_name"])
+    object_list = icinga_object.list(query=module.params["query"], resolved=module.params["resolved"])
     module.exit_json(
-        data=object_list["data"],
+        objects=object_list["data"],
     )
 
 
