@@ -62,7 +62,10 @@ EXAMPLES = """
 
 RETURN = r"""
 objects:
-  description: A list of returned Director objects.
+  description: 
+    - A list of returned Director objects.
+    - The list contains all objects matching the query filter.
+    - If the filter does not match any object, the list will be empty.
   returned: always
   type: list
 """
