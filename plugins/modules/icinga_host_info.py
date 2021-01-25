@@ -26,12 +26,12 @@ DOCUMENTATION = """
 module: icinga_host_info
 short_description: Manage hosts in Icinga2
 description:
-   - Add or remove a host to Icinga2 through the director API.
+   - Get a list of host objects from Icinga2 through the director API.
 author: Martin Schurz (@schurzi)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
-version_added: '1.0.0'
+version_added: '1.10.0'
 notes:
   - This module supports check mode.
 options:
