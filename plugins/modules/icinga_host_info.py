@@ -23,11 +23,11 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: icinga_host_info_list
+module: icinga_host_info
 short_description: Manage hosts in Icinga2
 description:
    - Add or remove a host to Icinga2 through the director API.
-author: Sebastian Gumprich (@rndmh3ro)
+author: Martin Schurz (@schurzi)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
@@ -40,7 +40,7 @@ options:
       - Text to filter search results.
       - The text is matched on object_name.
       - Only objects containing this text will be returned in the resultset.
-    required: true
+    required: false
     type: str
     default: ""
   resolved:
@@ -65,7 +65,6 @@ objects:
   description: A list of returned Director objects.
   returned: always
   type: list
-  elements: complex
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -84,7 +83,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
-        query=dict(type="str",required=False, default=""),
+        query=dict(type="str", required=False, default=""),
         resolved=dict(type="bool", default=False, choices=[True, False]),
     )
 
@@ -96,7 +95,9 @@ def main():
 
     icinga_object = Icinga2APIObject(module=module, path="/hosts", data=[])
 
-    object_list = icinga_object.list(query=module.params["query"], resolved=module.params["resolved"])
+    object_list = icinga_object.list(
+        query=module.params["query"], resolved=module.params["resolved"]
+    )
     module.exit_json(
         objects=object_list["data"],
     )
