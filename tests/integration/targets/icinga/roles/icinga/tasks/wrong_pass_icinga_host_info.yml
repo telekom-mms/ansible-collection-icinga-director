@@ -3,7 +3,7 @@
   t_systems_mms.icinga_director.icinga_host_info:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     query: "foohost"
   ignore_errors: true
   register: result
