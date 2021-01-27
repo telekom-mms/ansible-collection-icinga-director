@@ -103,7 +103,7 @@ def main():
         query=module.params["query"], resolved=module.params["resolved"]
     )
     module.exit_json(
-        objects=object_list["data"],
+        objects=object_list["data"]["objects"],
     )
 
 
