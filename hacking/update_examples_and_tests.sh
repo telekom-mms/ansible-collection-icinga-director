@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 for module in ../plugins/modules/*.py; do
-    [[ $module == *info* ]]
 
     module_name="$(basename "${module}" .py)"
     fqcn_name="t_systems_mms.icinga_director.$(basename "${module}" .py)"
