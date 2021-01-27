@@ -58,7 +58,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    query: "foocommandtemplate"
+    query: "centreon-plugins-template"
 """
 
 RETURN = r"""

@@ -58,7 +58,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    query: "foonotification"
+    query: "E-Mail_host"
 """
 
 RETURN = r"""

@@ -4,7 +4,7 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    query: "footimeperiod"
+    query: "24/7"
   ignore_errors: true
   register: result
 - assert:
