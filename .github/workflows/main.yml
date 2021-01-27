@@ -105,7 +105,7 @@ jobs:
         working-directory: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
     services:
       icinga:
-        image: jordan/icinga2
+        image: schurzi/icinga2
         ports:
           - 80:80
     steps:

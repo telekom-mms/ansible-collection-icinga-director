@@ -40,6 +40,7 @@ options:
       - Text to filter search results.
       - The text is matched on object_name.
       - Only objects containing this text will be returned in the resultset.
+      - Requires Icinga Director 1.8.0+, in earlier versions this parameter is ignored and all objects are returned.
     required: false
     type: str
     default: ""
