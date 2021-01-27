@@ -117,9 +117,7 @@ class Icinga2APIObject(object):
                     % (ret["code"], ret["error"])
                 )
         except Exception as e:
-            self.module.fail_json(
-                msg="exception when searching: " + str(e)
-            )
+            self.module.fail_json(msg="exception when searching: " + str(e))
 
         return ret
 
