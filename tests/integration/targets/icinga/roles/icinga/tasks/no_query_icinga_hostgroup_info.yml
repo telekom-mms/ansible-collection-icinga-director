@@ -7,4 +7,4 @@
   register: result
 - assert:
     that:
-      - '(result.objects | length) == 1'
+      - '(result.objects | length) == 1 or (result.objects | length) == 2'

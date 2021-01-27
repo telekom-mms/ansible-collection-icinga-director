@@ -159,7 +159,7 @@
     - wrong_query_icinga_host_template_info.yml
     - wrong_query_icinga_host_info.yml
     - wrong_query_icinga_service_info.yml
-    
+
     - absent_icinga_service.yml
     - absent_icinga_host.yml
     - absent_icinga_host_template.yml
