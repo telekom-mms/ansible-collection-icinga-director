@@ -5,7 +5,6 @@ ignore: |
   .tox
   .github
   galaxy.yml
-  hacking/merge.yml
 
 rules:
   braces:
@@ -16,5 +15,5 @@ rules:
     level: error
   line-length:
     ignore: |
+      hacking/
       roles/ansible_icinga/tasks
-      tests/integration/targets/icinga/
