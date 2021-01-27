@@ -60,7 +60,7 @@
 - assert:
     that:
       - result.failed
-      - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>"'
+      - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>" or result.msg == "bad return code while searching: 401. Error message: HTTP Error 401: Unauthorized"'
 - name: Create command template
   t_systems_mms.icinga_director.icinga_command_template:
     state: present
@@ -74,4 +74,4 @@
 - assert:
     that:
       - result.failed
-      - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>"'
+      - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>" or result.msg == "bad return code while searching: 401. Error message: HTTP Error 401: Unauthorized"'

@@ -1,3 +1,4 @@
+---
 - assert:
     that:
       - '(result.objects | length) == 1'

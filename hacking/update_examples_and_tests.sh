@@ -15,6 +15,8 @@ for module in ../plugins/modules/*.py; do
         tee "../examples/${module_name}.yml" \
             "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" \
             "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" \
+            "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" \
+            "../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml" \
             1> /dev/null
 
       # this gets the number of lists in the module so we can interate over them and change them
@@ -25,15 +27,25 @@ for module in ../plugins/modules/*.py; do
           tee -a "../examples/${module_name}.yml" \
                  "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" \
                  "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" \
+                 "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" \
+                 "../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml" \
                  1> /dev/null
 
         # this adds an assert task that checks for response length
         # yq does this by appending the contents of "assert_info.yml"
-        yq m -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" assert_info.yml
+        yq m -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" assert_info_found.yml
+        yq m -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml" assert_info_found.yml
+        yq m -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" assert_info_notfound.yml
 
         # this adds an assert task that checks for failure
         # yq does this by appending the contents of "assert_fail.yml" to the wrong_pass/host tests
         yq m -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" assert_fail.yml
+
+        # this replaces the password variable with a wrong password, so the login will fail
+        yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" "(name==*).\"${fqcn_name}\".query" "nooqbjecttofind"
+
+        # delete query to get all objects
+        yq d -i "../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml" "(name==*).\"${fqcn_name}\".query"
 
         # this adds ignore_errors and result-registering to the task because it will fail as expected
         yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "(name==*).ignore_errors" "true"
@@ -41,10 +53,15 @@ for module in ../plugins/modules/*.py; do
 
         # this adds result-registering to the task because we need to assert the response
         yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" "(name==*).register" "result"
+        yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" "(name==*).register" "result"
+        yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml" "(name==*).register" "result"
       done
 
       # this adds back three dashes that are removed when using "yq w" on the task
       sed -i '1 i ---' "../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml"
+      sed -i '1 i ---' "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml"
+      sed -i '1 i ---' "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml"
+      sed -i '1 i ---' "../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml"
     else
       echo  "---" | \
         tee "../examples/${module_name}.yml" \

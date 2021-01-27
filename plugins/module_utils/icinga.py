@@ -104,12 +104,23 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
-            path=self.path
-            + "?q="
-            + to_text(urlquote(query))
-            + ("&resolved" if resolved else "")
-        )
+        try:
+            ret = self.call_url(
+                path=self.path
+                + "?q="
+                + to_text(urlquote(query))
+                + ("&resolved" if resolved else "")
+            )
+            if ret["code"] != 200:
+                self.module.fail_json(
+                    msg="bad return code while searching: %d. Error message: %s"
+                    % (ret["code"], ret["error"])
+                )
+        except Exception as e:
+            self.module.fail_json(
+                msg="exception when searching: " + str(e)
+            )
+
         return ret
 
     def create(self):
