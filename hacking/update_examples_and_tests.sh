@@ -42,7 +42,7 @@ for module in ../plugins/modules/*.py; do
         yq m -a -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" assert_fail.yml
 
         # this replaces the query variable with a wrong object, so nothing is found
-        yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" "(name==*).\"${fqcn_name}\".query" "nooqbjecttofind"
+        yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" "(name==*).\"${fqcn_name}\".query" "noobjecttofind"
 
         # this replaces the password variable with a wrong password, so the login will fail
         yq w -i "../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "(name==*).\"${fqcn_name}\".url_password" "iamwrong"
