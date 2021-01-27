@@ -23,10 +23,10 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: icinga_host_info
-short_description: Query hosts in Icinga2
+module: icinga_notification_info
+short_description: Query notifications in Icinga2
 description:
-   - Get a list of host objects from Icinga2 through the director API.
+   - Get a list of notification objects from Icinga2 through the director API.
 author: Martin Schurz (@schurzi)
 extends_documentation_fragment:
   - ansible.builtin.url
@@ -53,12 +53,12 @@ options:
 """
 
 EXAMPLES = """
-- name: Query a host in icinga
-  t_systems_mms.icinga_director.icinga_host_info:
+- name: Query a notification in icinga
+  t_systems_mms.icinga_director.icinga_notification_info:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    query: "foohost"
+    query: "foonotification"
 """
 
 RETURN = r"""
@@ -97,7 +97,9 @@ def main():
         supports_check_mode=True,
     )
 
-    icinga_object = Icinga2APIObject(module=module, path="/hosts", data=[])
+    icinga_object = Icinga2APIObject(
+        module=module, path="/notifications", data=[]
+    )
 
     object_list = icinga_object.list(
         query=module.params["query"], resolved=module.params["resolved"]
