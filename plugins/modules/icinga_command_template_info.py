@@ -107,9 +107,10 @@ def main():
 
     # icinga also returns normal objects when querying templates,
     # we need to filter these
-    filtered_list = [
-        i for i in object_list["data"]["objects"] if i.object_type == "template"
-    ]
+    filtered_list = filter(
+        lambda t: t["object_type"] == "template", object_list["data"]["objects"]
+    )
+
     module.exit_json(
         objects=filtered_list,
     )
