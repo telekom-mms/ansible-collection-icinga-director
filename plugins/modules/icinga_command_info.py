@@ -113,13 +113,15 @@ def main():
     # icinga also returns normal objects when querying templates,
     # we need to filter these
     filtered_list = [
-        i for i in object_list["data"]["objects"] if i["object_type"] != "template"
+        i
+        for i in object_list["data"]["objects"]
+        if i["object_type"] != "template"
     ]
 
-    if (!module.params["external"]):
-      filtered_list = [
-          i for i in filtered_list if i["object_type"] != "external_object"
-      ]
+    if not module.params["external"]:
+        filtered_list = [
+            i for i in filtered_list if i["object_type"] != "external_object"
+        ]
 
     module.exit_json(
         objects=object_list["data"]["objects"],
