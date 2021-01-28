@@ -98,25 +98,15 @@ def main():
     )
 
     icinga_object = Icinga2APIObject(
-        module=module, path="/serviceapplyrules", data=[]
+        module=module, path="/services/applyrules", data=[]
     )
 
     object_list = icinga_object.query(
         query=module.params["query"], resolved=module.params["resolved"]
     )
 
-    filtered_list = object_list["data"]["objects"]
-
-    # workaround for Icinga bug, query is not supported on this endpoint
-    if module.params["query"]:
-        filtered_list = [
-            i
-            for i in filtered_list
-            if module.params["query"] in i["object_name"]
-        ]
-
     module.exit_json(
-        objects=filtered_list,
+        objects=object_list["data"]["objects"],
     )
 
 
