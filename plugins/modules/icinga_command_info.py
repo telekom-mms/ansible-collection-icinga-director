@@ -50,6 +50,12 @@ options:
     type: bool
     default: False
     choices: [True, False]
+  external:
+    description:
+      - Also include external objects in output.
+    type: bool
+    default: False
+    choices: [True, False]
 """
 
 EXAMPLES = """
@@ -89,6 +95,7 @@ def main():
         url=dict(required=True),
         query=dict(type="str", required=False, default=""),
         resolved=dict(type="bool", default=False, choices=[True, False]),
+        external=dict(type="bool", default=False, choices=[True, False]),
     )
 
     # Define the main module
@@ -102,6 +109,18 @@ def main():
     object_list = icinga_object.query(
         query=module.params["query"], resolved=module.params["resolved"]
     )
+
+    # icinga also returns normal objects when querying templates,
+    # we need to filter these
+    filtered_list = [
+        i for i in object_list["data"]["objects"] if i["object_type"] != "template"
+    ]
+
+    if (!module.params["external"]):
+      filtered_list = [
+          i for i in filtered_list if i["object_type"] != "external_object"
+      ]
+
     module.exit_json(
         objects=object_list["data"]["objects"],
     )
