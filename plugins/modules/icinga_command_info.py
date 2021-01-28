@@ -124,7 +124,7 @@ def main():
         ]
 
     module.exit_json(
-        objects=object_list["data"]["objects"],
+        objects=filtered_list,
     )
 
 
