@@ -98,7 +98,7 @@ def main():
     )
 
     icinga_object = Icinga2APIObject(
-        module=module, path="/notifications", data=[]
+        module=module, path="/notifications/applyrules", data=[]
     )
 
     object_list = icinga_object.query(
