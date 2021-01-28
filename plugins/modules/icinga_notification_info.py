@@ -31,7 +31,7 @@ author: Martin Schurz (@schurzi)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
-version_added: '1.10.0'
+version_added: '1.13.0'
 notes:
   - This module supports check mode.
 options:
@@ -101,7 +101,7 @@ def main():
         module=module, path="/notifications", data=[]
     )
 
-    object_list = icinga_object.list(
+    object_list = icinga_object.query(
         query=module.params["query"], resolved=module.params["resolved"]
     )
     module.exit_json(

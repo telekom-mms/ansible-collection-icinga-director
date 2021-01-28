@@ -1,5 +1,5 @@
 ---
-- name: Query a endpoint in icinga
+- name: Query an endpoint in icinga
   t_systems_mms.icinga_director.icinga_endpoint_info:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

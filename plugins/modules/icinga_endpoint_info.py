@@ -31,7 +31,7 @@ author: Martin Schurz (@schurzi)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
-version_added: '1.10.0'
+version_added: '1.13.0'
 notes:
   - This module supports check mode.
 options:
@@ -53,7 +53,7 @@ options:
 """
 
 EXAMPLES = """
-- name: Query a endpoint in icinga
+- name: Query an endpoint in icinga
   t_systems_mms.icinga_director.icinga_endpoint_info:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -99,7 +99,7 @@ def main():
 
     icinga_object = Icinga2APIObject(module=module, path="/endpoints", data=[])
 
-    object_list = icinga_object.list(
+    object_list = icinga_object.query(
         query=module.params["query"], resolved=module.params["resolved"]
     )
     module.exit_json(

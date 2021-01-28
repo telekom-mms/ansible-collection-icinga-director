@@ -89,7 +89,7 @@ class Icinga2APIObject(object):
             return True
         return False
 
-    def list(self, query="", resolved=False):
+    def query(self, query="", resolved=False):
         """
         Find all matching obejcts in the director and return the result of the api-call.
 
@@ -113,11 +113,11 @@ class Icinga2APIObject(object):
             )
             if ret["code"] != 200:
                 self.module.fail_json(
-                    msg="bad return code while searching: %d. Error message: %s"
+                    msg="bad return code while querying: %d. Error message: %s"
                     % (ret["code"], ret["error"])
                 )
         except Exception as e:
-            self.module.fail_json(msg="exception when searching: " + str(e))
+            self.module.fail_json(msg="exception when querying: " + str(e))
 
         return ret
 
