@@ -1,0 +1,4 @@
+---
+- assert:
+    that:
+      - '(result.objects | length) == 0'
