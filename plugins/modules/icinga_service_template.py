@@ -83,6 +83,13 @@ options:
     description:
       - Whether to process performance data provided by this object.
     type: "bool"
+  event_command:
+    description:
+      - Event command for service which gets called on every check execution if one of these conditions matches:
+      - The service is in a soft state
+      - The service state changes into a hard state
+      - The service state recovers from a soft or hard state to OK/Up
+    type: "str"
   groups:
     description:
       - Service groups that should be directly assigned to this service.
@@ -187,6 +194,7 @@ def main():
         enable_notifications=dict(type="bool", required=False),
         enable_passive_checks=dict(type="bool", required=False),
         enable_perfdata=dict(type="bool", required=False),
+        event_command=dict(type="str", required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
@@ -216,6 +224,7 @@ def main():
         "enable_notifications": module.params["enable_notifications"],
         "enable_passive_checks": module.params["enable_passive_checks"],
         "enable_perfdata": module.params["enable_perfdata"],
+        "event_command": module.params["event_command"],
         "groups": module.params["groups"],
         "imports": module.params["imports"],
         "max_check_attempts": module.params["max_check_attempts"],
