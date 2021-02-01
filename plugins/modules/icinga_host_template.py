@@ -79,7 +79,7 @@ options:
     type: str
   event_command:
     description:
-      - Event command for host which gets called on every check execution if one of these conditions matches:
+      - Event command for host which gets called on every check execution if one of these conditions matches
       - The host is in a soft state
       - The host state changes into a hard state
       - The host state recovers from a soft or hard state to OK/Up
