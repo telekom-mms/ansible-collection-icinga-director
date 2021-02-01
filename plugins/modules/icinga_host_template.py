@@ -83,8 +83,7 @@ options:
       - The host is in a soft state
       - The host state changes into a hard state
       - The host state recovers from a soft or hard state to OK/Up
-    type: "str"
-  groups:
+    type: str
   check_interval:
     description:
       - Your regular check interval.
