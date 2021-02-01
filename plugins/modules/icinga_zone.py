@@ -105,10 +105,8 @@ def main():
         "object_name": module.params["object_name"],
         "object_type": "object",
         "is_global": module.params["is_global"],
+        "parent": module.params["parent"],
     }
-
-    if module.params["parent"] is not None:
-        data["parent"] = module.params["parent"]
 
     icinga_object = Icinga2APIObject(module=module, path="/zone", data=data)
 
