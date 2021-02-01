@@ -85,7 +85,7 @@ options:
     type: "bool"
   event_command:
     description:
-      - Event command for service which gets called on every check execution if one of these conditions matches:
+      - Event command for service which gets called on every check execution if one of these conditions matches
       - The service is in a soft state
       - The service state changes into a hard state
       - The service state recovers from a soft or hard state to OK/Up
