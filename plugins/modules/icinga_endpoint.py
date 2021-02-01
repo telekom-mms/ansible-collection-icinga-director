@@ -122,7 +122,6 @@ def main():
         "zone": module.params["zone"],
     }
 
-
     icinga_object = Icinga2APIObject(module=module, path="/endpoint", data=data)
 
     changed, diff = icinga_object.update(module.params["state"])
@@ -130,6 +129,7 @@ def main():
         changed=changed,
         diff=diff,
     )
+
 
 # import module snippets
 if __name__ == "__main__":
