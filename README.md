@@ -26,7 +26,7 @@ Currently supported modules:
 * `icinga_user`
 * `icinga_zone`
 
-Additionally all supported modules have an approriate `*_info`-module to gather facts about the existing objects in the director.
+Additionally all supported modules have an appropriate `*_info`-module to gather facts about the existing objects in the director.
 
 ## Installation
 
