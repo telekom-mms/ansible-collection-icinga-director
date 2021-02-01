@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.13.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.13.0) (2021-01-29)
+## [1.13.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.13.0) (2021-02-01)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.12.0...1.13.0)
 
@@ -11,9 +11,12 @@
 **Closed issues:**
 
 - Append properties [\#96](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/96)
+- Provide modules to get information from Icinga Director [\#89](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/89)
+- Parameters for check execution at Service Apply level are ignored [\#65](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/65)
 
 **Merged pull requests:**
 
+- update readme with new stuff [\#103](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/103) ([rndmh3ro](https://github.com/rndmh3ro))
 - use version for github action, short sha is no longer supported [\#99](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/99) ([schurzi](https://github.com/schurzi))
 - remove unneeded return values for host [\#97](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/97) ([schurzi](https://github.com/schurzi))
 
@@ -134,10 +137,6 @@
 - Icinga Object "Service" rerun - failed to recreate if object\_name contains spaces [\#52](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/52)
 - allow using whitespaces in object names [\#55](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/55) ([schurzi](https://github.com/schurzi))
 
-**Merged pull requests:**
-
-- improve coverage of new service module [\#51](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
-
 ## [1.7.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.7.0) (2020-10-23)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.6.0...1.7.0)
@@ -153,6 +152,7 @@
 
 **Merged pull requests:**
 
+- improve coverage of new service module [\#51](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
 - add example and test for command without args [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/46) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.6.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.6.0) (2020-10-22)
@@ -235,10 +235,6 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.0...1.3.1)
 
-**Merged pull requests:**
-
-- replace hyphen in role name with underscore [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/29) ([rndmh3ro](https://github.com/rndmh3ro))
-
 ## [1.3.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.0) (2020-07-07)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.2.2...1.3.0)
@@ -246,6 +242,10 @@
 **Implemented enhancements:**
 
 - Ansible icinga role [\#28](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/28) ([michaelamattes](https://github.com/michaelamattes))
+
+**Merged pull requests:**
+
+- replace hyphen in role name with underscore [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/29) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.2.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.2) (2020-06-26)
 
