@@ -5,6 +5,7 @@ ignore: |
   .tox
   .github
   galaxy.yml
+  tests/
 
 rules:
   braces:
