@@ -5,7 +5,6 @@ ignore: |
   .tox
   .github
   galaxy.yml
-  tests/
 
 rules:
   braces:
@@ -18,3 +17,4 @@ rules:
     ignore: |
       hacking/
       roles/ansible_icinga/tasks
+      tests/
