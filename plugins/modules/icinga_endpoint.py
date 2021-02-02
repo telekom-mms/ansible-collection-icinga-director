@@ -116,11 +116,11 @@ def main():
     data = {
         "object_name": module.params["object_name"],
         "object_type": "object",
+        "host": module.params["host"],
+        "port": module.params["port"],
+        "log_duration": module.params["log_duration"],
+        "zone": module.params["zone"],
     }
-
-    for key in ("host", "port", "log_duration", "zone"):
-        if module.params[key] is not None:
-            data[key] = module.params[key]
 
     icinga_object = Icinga2APIObject(module=module, path="/endpoint", data=data)
 

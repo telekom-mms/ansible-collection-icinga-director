@@ -1,5 +1,4 @@
-Icinga Director Collection for Ansible
-=========
+# Icinga Director Collection for Ansible
 
 [![ci-ansible-test](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/workflows/ansible-test/badge.svg)](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/actions?query=workflow%3Aansible-test)
 [![codecov](https://codecov.io/gh/T-Systems-MMS/ansible-collection-icinga-director/branch/master/graph/badge.svg)](https://codecov.io/gh/T-Systems-MMS/ansible-collection-icinga-director)
@@ -27,8 +26,9 @@ Currently supported modules:
 * `icinga_user`
 * `icinga_zone`
 
-Installation
-------------
+Additionally all supported modules have an appropriate `*_info`-module to gather facts about the existing objects in the director.
+
+## Installation
 
 These modules are distributed as [collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html).
 To install them, run:
@@ -45,8 +45,7 @@ collections:
 - t_systems_mms.icinga_director
 ```
 
-Examples using the modules
---------------------------
+## Examples using the modules
 
 See the `examples` directory for a complete list of examples.
 
@@ -72,13 +71,21 @@ See the `examples` directory for a complete list of examples.
           dnscheck: "no"
 ```
 
-Examples using the role
------------------------
+```
+- name: Query a service apply rule in icinga
+  t_systems_mms.icinga_director.icinga_service_apply_info:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    query: "SERVICE_dummy"
+  register: result
+```
+
+## Examples using the role
 
 Please see the [README](roles/ansible_icinga/README.md) of the role.
 
-Troubleshooting
----------------
+## Troubleshooting
 
 If the following error is thrown, check if you're behind a proxy and use `force_basic_auth: true` in the task.
 
@@ -86,42 +93,45 @@ If the following error is thrown, check if you're behind a proxy and use `force_
 fatal: [localhost]: FAILED! => {"changed": false, "msg": "bad return code while creating: -1. Error message: Request failed: <urlopen error Tunnel connection failed: 302 Found>"}
 ```
 
-Local Testing
--------------
+## Local Development and testing
 
-* Linting with tox
+### Linting with tox
 
 ```
 > tox -elinters
 ```
 
-* Integration tests with docker
+### Updating the tests and examples
+
+If you add new features or arguments to the existing modules, please add them to the examples in the module itself.
+The integration tests and examples in our documentation are then generated from the module-examples.
+
+To trigger this generation, you need to run the script `hacking/update_examples_and_tests.sh` from the root of the repository. For this you need to have yq in version 3 installed (see https://mikefarah.gitbook.io/yq/v/v3.x/).
+
+### Integration tests with docker
 
 ```
 # run icinga in a container and forward port 80
-> docker run -d -p 80:80 jordan/icinga2
+> docker run -d -p 80:80 schurzi/icinga2
 
 # run the ansible playbooks against the container
 > ansible-playbook tests/integration/targets/icinga/normalmode.yml
 > ansible-playbook tests/integration/targets/icinga/checkmode.yml
 ```
 
-Extras
-------
+## Extras
 
 * Use our code snippets template supported in Visual Studio Code
 
 Please see the [README](vsc-snippets/README.md) for more information.
 
-
-License
--------
+## License
 
 GPLv3
 
-Author Information
-------------------
+## Author Information
 
 * Sebastian Gumprich
 * Lars Krahl
 * Michaela Mattes
+* Martin Schurz

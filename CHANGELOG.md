@@ -1,15 +1,31 @@
 # Changelog
 
-## [1.12.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.12.1) (2021-01-26)
+## [1.13.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.13.1) (2021-02-02)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.12.0...1.12.1)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.13.0...1.13.1)
+
+**Merged pull requests:**
+
+- make it possible to run the script from the root dir and hacking dir [\#105](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/105) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fix zone [\#104](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/104) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [1.13.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.13.0) (2021-02-01)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.12.0...1.13.0)
+
+**Implemented enhancements:**
+
+- add info modules for Director objects [\#98](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/98) ([schurzi](https://github.com/schurzi))
 
 **Closed issues:**
 
 - Append properties [\#96](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/96)
+- Provide modules to get information from Icinga Director [\#89](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/89)
+- Parameters for check execution at Service Apply level are ignored [\#65](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/65)
 
 **Merged pull requests:**
 
+- update readme with new stuff [\#103](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/103) ([rndmh3ro](https://github.com/rndmh3ro))
 - use version for github action, short sha is no longer supported [\#99](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/99) ([schurzi](https://github.com/schurzi))
 - remove unneeded return values for host [\#97](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/97) ([schurzi](https://github.com/schurzi))
 
@@ -130,6 +146,10 @@
 - Icinga Object "Service" rerun - failed to recreate if object\_name contains spaces [\#52](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/52)
 - allow using whitespaces in object names [\#55](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/55) ([schurzi](https://github.com/schurzi))
 
+**Merged pull requests:**
+
+- improve coverage of new service module [\#51](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.7.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.7.0) (2020-10-23)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.6.0...1.7.0)
@@ -145,7 +165,6 @@
 
 **Merged pull requests:**
 
-- improve coverage of new service module [\#51](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
 - add example and test for command without args [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/46) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.6.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.6.0) (2020-10-22)
@@ -155,6 +174,10 @@
 **Implemented enhancements:**
 
 - add new service module [\#32](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- added code in icinga\_command.yml to make it work like the other tasks in our role [\#35](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/35) ([xFuture603](https://github.com/xFuture603))
 
 ## [1.5.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.5.0) (2020-10-02)
 
@@ -216,10 +239,6 @@
 
 - make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
-**Fixed bugs:**
-
-- added code in icinga\_command.yml to make it work like the other tasks in our role [\#35](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/35) ([xFuture603](https://github.com/xFuture603))
-
 **Merged pull requests:**
 
 - update examples and bash script for new testing paths [\#31](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -263,6 +282,7 @@
 **Implemented enhancements:**
 
 - Integration testing [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.2.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.0) (2020-06-24)
 
@@ -270,7 +290,6 @@
 
 **Implemented enhancements:**
 
-- Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
 - add gitattributes because of windows line endings [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
 - add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -331,13 +350,13 @@
 
 - Add icinga command template [\#8](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/8) ([mmslkr](https://github.com/mmslkr))
 
-## [1.0.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.0.0) (2020-05-15)
-
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/2492296965515a9ac885c6a4874acba8a7475895...1.0.0)
-
 **Fixed bugs:**
 
 - fix name of imports [\#7](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/7) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [1.0.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.0.0) (2020-05-15)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/2492296965515a9ac885c6a4874acba8a7475895...1.0.0)
 
 **Merged pull requests:**
 
