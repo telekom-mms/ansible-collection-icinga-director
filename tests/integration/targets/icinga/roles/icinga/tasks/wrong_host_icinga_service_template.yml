@@ -19,3 +19,20 @@
     that:
       - result.failed
       - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>"'
+- name: Create servicetemplate with event command
+  t_systems_mms.icinga_director.icinga_service_template:
+    state: present
+    url: http://nonexistant
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: apache_check_servicetemplate
+    use_agent: false
+    event_command: restart_httpd
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      - 'result.msg == "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>" or result.msg == "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>"'
