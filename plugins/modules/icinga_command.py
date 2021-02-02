@@ -161,6 +161,23 @@ EXAMPLES = """
     url_password: "{{ icinga_pass }}"
     command: "/opt/centreon-plugins/centreon_plugins_2.pl"
     object_name: centreon-plugins_2
+
+- name: Create event command
+  t_systems_mms.icinga_director.icinga_command:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    command: "/opt/scripts/restart_httpd"
+    object_name: "restart_httpd"
+    arguments:
+      '-s':
+        value: $service.state$
+      '-t':
+        value: $service.state_type$
+      '-a':
+        set_if: $service.check_attempt$
+        value: $restart_service$
 """
 
 RETURN = r""" # """

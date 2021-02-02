@@ -77,6 +77,13 @@ options:
       - The name of the check command.
       - Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
     type: str
+  event_command:
+    description:
+      - Event command for host which gets called on every check execution if one of these conditions matches
+      - The host is in a soft state
+      - The host state changes into a hard state
+      - The host state recovers from a soft or hard state to OK/Up
+    type: str
   check_interval:
     description:
       - Your regular check interval.
@@ -190,6 +197,7 @@ def main():
         has_agent=dict(type="bool", choices=[True, False]),
         master_should_connect=dict(type="bool", choices=[True, False]),
         accept_config=dict(type="bool", choices=[True, False]),
+        event_command=dict(type="str", required=False),
     )
 
     # Define the main module
@@ -215,6 +223,7 @@ def main():
         "has_agent": module.params["has_agent"],
         "master_should_connect": module.params["master_should_connect"],
         "accept_config": module.params["accept_config"],
+        "event_command": module.params["event_command"],
     }
 
     icinga_object = Icinga2APIObject(module=module, path="/host", data=data)
