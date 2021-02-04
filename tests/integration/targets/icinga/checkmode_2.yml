@@ -6,6 +6,23 @@
         name: "icinga"
         tasks_from: "{{ item }}"
       loop:
+        - icinga_zone.yml
+        - icinga_endpoint.yml
+        - icinga_command_template.yml
+        - icinga_command.yml
+        - icinga_timeperiod.yml
+        - icinga_user_template.yml
+        - icinga_user.yml
+        - icinga_notification_template.yml
+        - icinga_notification.yml
+        - icinga_servicegroup.yml
+        - icinga_service_template.yml
+        - icinga_service_apply.yml
+        - icinga_hostgroup.yml
+        - icinga_host_template.yml
+        - icinga_host.yml
+        - icinga_service.yml
+
         - absent_icinga_host.yml
         - absent_icinga_host_template.yml
         - absent_icinga_hostgroup.yml
@@ -40,19 +57,3 @@
         - icinga_host.yml
         - icinga_service.yml
 
-        - absent_icinga_host.yml
-        - absent_icinga_host_template.yml
-        - absent_icinga_hostgroup.yml
-        - absent_icinga_service_apply.yml
-        - absent_icinga_service_template.yml
-        - absent_icinga_servicegroup.yml
-        - absent_icinga_notification.yml
-        - absent_icinga_notification_template.yml
-        - absent_icinga_user.yml
-        - absent_icinga_user_template.yml
-        - absent_icinga_timeperiod.yml
-        - absent_icinga_command.yml
-        - absent_icinga_command_template.yml
-        - absent_icinga_endpoint.yml
-        - absent_icinga_zone.yml
-        - absent_icinga_service.yml
