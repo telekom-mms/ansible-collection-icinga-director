@@ -1,8 +1,12 @@
 # Changelog
 
-## [1.14.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.14.1) (2021-02-04)
+## [1.14.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.14.1) (2021-02-08)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.14.0...1.14.1)
+
+**Fixed bugs:**
+
+- fix naming for timeperiod test task [\#102](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/102) ([BenjaminBoehm](https://github.com/BenjaminBoehm))
 
 **Closed issues:**
 
@@ -53,7 +57,6 @@
 
 - Add check\_interval parameter to host\_template [\#95](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/95) ([mmslkr](https://github.com/mmslkr))
 - spelling fixes, add notes-section, remove useless sections [\#94](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add execution parms [\#67](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/67) ([AnBenn](https://github.com/AnBenn))
 
 ## [1.11.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.11.0) (2021-01-12)
 
@@ -100,6 +103,7 @@
 
 - use doc\_fragments for modules documentation [\#78](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/78) ([rndmh3ro](https://github.com/rndmh3ro))
 - added wished files and directories to build\_ignore list [\#77](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/77) ([xFuture603](https://github.com/xFuture603))
+- Add execution parms [\#67](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/67) ([AnBenn](https://github.com/AnBenn))
 
 **Closed issues:**
 
@@ -204,10 +208,6 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.2...1.4.3)
 
-**Implemented enhancements:**
-
-- Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
-
 **Fixed bugs:**
 
 - Hosts in state absent don't require import parameter [\#44](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44)
@@ -229,6 +229,7 @@
 
 - make local testing without ansible-test work [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/41) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
+- Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
