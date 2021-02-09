@@ -18,6 +18,7 @@
     apply_for: "{{ service_apply.0.apply_for | default(omit) }}"
     assign_filter: "{{ service_apply.0.assign_filter | default(omit) }}"
     imports: "{{ service_apply.0.imports | default(omit) }}"
+    imports: "{{ service_apply.0.command_endpoint | default(omit) }}"
     vars: "{{ service_apply.0.vars | default(omit) }}"
     notes: "{{ service_apply.0.notes | default(omit) }}"
     notes_url: "{{ service_apply.0.notes_url | default(omit) }}"
