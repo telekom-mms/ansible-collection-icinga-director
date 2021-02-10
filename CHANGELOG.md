@@ -1,8 +1,13 @@
 # Changelog
 
-## [1.14.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.14.1) (2021-02-08)
+## [1.15.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.0) (2021-02-10)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.14.0...1.14.1)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.14.0...1.15.0)
+
+**Implemented enhancements:**
+
+- Add support to change the check\_source / command\_endpoint parameter [\#107](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/107)
+- Add support to change the check\_source / command\_endpoint parameter [\#108](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/108) ([xFuture603](https://github.com/xFuture603))
 
 **Fixed bugs:**
 
@@ -57,6 +62,7 @@
 
 - Add check\_interval parameter to host\_template [\#95](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/95) ([mmslkr](https://github.com/mmslkr))
 - spelling fixes, add notes-section, remove useless sections [\#94](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add execution parms [\#67](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/67) ([AnBenn](https://github.com/AnBenn))
 
 ## [1.11.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.11.0) (2021-01-12)
 
@@ -103,7 +109,6 @@
 
 - use doc\_fragments for modules documentation [\#78](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/78) ([rndmh3ro](https://github.com/rndmh3ro))
 - added wished files and directories to build\_ignore list [\#77](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/77) ([xFuture603](https://github.com/xFuture603))
-- Add execution parms [\#67](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/67) ([AnBenn](https://github.com/AnBenn))
 
 **Closed issues:**
 
