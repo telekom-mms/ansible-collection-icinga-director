@@ -124,6 +124,10 @@ options:
     description:
       - The filter where the service apply rule will take effect.
     type: str
+  command_endpoint:
+    description:
+      - The host where the service should be executed on.
+    type: str
   imports:
     description:
       - Importable templates, add as many as you want.
@@ -177,6 +181,32 @@ EXAMPLES = """
       http_uri: "/ready"
       http_string: "Ready"
       http_expect: "Yes"
+
+- name: Add service apply rule with command_endpoint
+  t_systems_mms.icinga_director.icinga_service_apply:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "SERVICE_dummy"
+    assign_filter: 'host.name="foohost"'
+    check_command: hostalive
+    display_name: "dummy process"
+    check_interval: "10m"
+    check_period: "24/7"
+    check_timeout: "1m"
+    enable_active_checks: true
+    enable_event_handler: true
+    enable_notifications: true
+    enable_passive_checks: false
+    enable_perfdata: false
+    max_check_attempts: "5"
+    retry_interval: "3m"
+    command_endpoint: "fooendpoint"
+    imports:
+      - fooservicetemplate
+    groups:
+      - fooservicegroup
 """
 
 RETURN = r""" # """
@@ -240,6 +270,7 @@ def main():
         retry_interval=dict(required=False),
         apply_for=dict(required=False),
         assign_filter=dict(required=False),
+        command_endpoint=dict(required=False),
         imports=dict(type="list", elements="str", required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
         vars=dict(type="dict", default={}),
@@ -268,6 +299,7 @@ def main():
         "enable_perfdata": module.params["enable_perfdata"],
         "max_check_attempts": module.params["max_check_attempts"],
         "retry_interval": module.params["retry_interval"],
+        "command_endpoint": module.params["command_endpoint"],
         "assign_filter": module.params["assign_filter"],
         "imports": module.params["imports"],
         "groups": module.params["groups"],
