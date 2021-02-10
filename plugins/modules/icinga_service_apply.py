@@ -124,7 +124,7 @@ options:
     description:
       - The filter where the service apply rule will take effect.
     type: str
-  commnand_endpoint:
+  command_endpoint:
     description:
       - The host where the service should be executed on.
     type: str
