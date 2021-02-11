@@ -15,6 +15,10 @@
       - Recovery
     times_begin: 20
     times_end: 120
+    time_period: "24/7"
+    notification_command: "mail-host-notification"
+    users:
+      - "rb"
   ignore_errors: true
   register: result
 - assert:
