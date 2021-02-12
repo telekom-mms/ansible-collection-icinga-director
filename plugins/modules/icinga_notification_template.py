@@ -80,11 +80,13 @@ options:
     description:
       - The name of a time period which determines when this notification should be triggered.
     type: "str"
+    aliases: ['period']
     version_added: "1.15.0"
   notification_command:
     description:
       - Check command definition
     type: "str"
+    aliases: ['command']
     version_added: "1.15.0"
   users:
     description:
@@ -144,8 +146,8 @@ def main():
         times_end=dict(type="int", required=False),
         types=dict(type="list", elements="str", required=False),
         zone=dict(required=False, default=None),
-        time_period=dict(required=False),
-        notification_command=dict(required=False),
+        time_period=dict(required=False, aliases=["period"]),
+        notification_command=dict(required=False, aliases=["command"]),
         users=dict(type="list", elements="str", required=False),
     )
 

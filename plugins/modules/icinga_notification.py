@@ -100,6 +100,7 @@ options:
     description:
       - The name of a time period which determines when this notification should be triggered.
     type: "str"
+    aliases: ['period']
     version_added: "1.15.0"
   times_begin:
     description:
@@ -176,7 +177,7 @@ def main():
         users=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
         vars=dict(type="dict", default={}, required=False),
-        time_period=dict(required=False),
+        time_period=dict(required=False, aliases=["period"]),
         times_begin=dict(type="int", required=False),
         times_end=dict(type="int", required=False),
     )
