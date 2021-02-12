@@ -117,6 +117,8 @@ EXAMPLES = """
     notification_command: "mail-host-notification"
     users:
       - "rb"
+    user_group:
+      - "OnCall"
 """
 
 RETURN = r""" # """
