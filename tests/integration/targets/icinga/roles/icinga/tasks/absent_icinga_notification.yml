@@ -20,3 +20,6 @@
     disabled: false
     vars:
       foo: bar
+    time_period: "24/7"
+    times_begin: 20
+    times_end: 120

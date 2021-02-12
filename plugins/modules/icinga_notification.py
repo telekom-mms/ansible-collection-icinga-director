@@ -96,6 +96,24 @@ options:
       - Custom properties of the notification.
     type: "dict"
     version_added: "1.9.0"
+  time_period:
+    description:
+      - The name of a time period which determines when this notification should be triggered.
+    type: "str"
+    aliases: ['period']
+    version_added: "1.15.0"
+  times_begin:
+    description:
+      - First notification delay.
+      - Delay unless the first notification should be sent.
+    type: "int"
+    version_added: "1.15.0"
+  times_end:
+    description:
+      - Last notification.
+      - When the last notification should be sent.
+    type: "int"
+    version_added: "1.15.0"
 """
 
 EXAMPLES = """
@@ -122,6 +140,9 @@ EXAMPLES = """
     disabled: false
     vars:
       foo: bar
+    time_period: "24/7"
+    times_begin: 20
+    times_end: 120
 """
 
 RETURN = r""" # """
@@ -156,6 +177,9 @@ def main():
         users=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
         vars=dict(type="dict", default={}, required=False),
+        time_period=dict(required=False, aliases=["period"]),
+        times_begin=dict(type="int", required=False),
+        times_end=dict(type="int", required=False),
     )
 
     # When deleting objects, only the name is necessary, so we cannot use
@@ -182,6 +206,9 @@ def main():
         "users": module.params["users"],
         "types": module.params["types"],
         "vars": module.params["vars"],
+        "period": module.params["time_period"],
+        "times_begin": module.params["times_begin"],
+        "times_end": module.params["times_end"],
     }
 
     icinga_object = Icinga2APIObject(

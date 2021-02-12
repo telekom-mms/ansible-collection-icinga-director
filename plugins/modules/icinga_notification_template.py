@@ -76,6 +76,24 @@ options:
     description:
       - Set the zone.
     type: str
+  time_period:
+    description:
+      - The name of a time period which determines when this notification should be triggered.
+    type: "str"
+    aliases: ['period']
+    version_added: "1.15.0"
+  notification_command:
+    description:
+      - Check command definition
+    type: "str"
+    aliases: ['command']
+    version_added: "1.15.0"
+  users:
+    description:
+      - Users that should be notified by this notification
+    type: "list"
+    elements: str
+    version_added: "1.15.0"
 """
 
 EXAMPLES = """
@@ -95,6 +113,10 @@ EXAMPLES = """
       - Recovery
     times_begin: 20
     times_end: 120
+    time_period: "24/7"
+    notification_command: "mail-host-notification"
+    users:
+      - "rb"
 """
 
 RETURN = r""" # """
@@ -124,6 +146,9 @@ def main():
         times_end=dict(type="int", required=False),
         types=dict(type="list", elements="str", required=False),
         zone=dict(required=False, default=None),
+        time_period=dict(required=False, aliases=["period"]),
+        notification_command=dict(required=False, aliases=["command"]),
+        users=dict(type="list", elements="str", required=False),
     )
 
     # Define the main module
@@ -141,6 +166,9 @@ def main():
         "times_end": module.params["times_end"],
         "types": module.params["types"],
         "zone": module.params["zone"],
+        "period": module.params["time_period"],
+        "command": module.params["notification_command"],
+        "users": module.params["users"],
     }
 
     icinga_object = Icinga2APIObject(
