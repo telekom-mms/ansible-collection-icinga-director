@@ -1,12 +1,13 @@
 # Changelog
 
-## [1.15.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.0) (2021-02-10)
+## [1.15.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.0) (2021-02-12)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.14.0...1.15.0)
 
 **Implemented enhancements:**
 
 - Add support to change the check\_source / command\_endpoint parameter [\#107](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/107)
+- add new options to notification and notification template [\#110](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/110) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add support to change the check\_source / command\_endpoint parameter [\#108](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/108) ([xFuture603](https://github.com/xFuture603))
 
 **Fixed bugs:**
@@ -15,6 +16,7 @@
 
 **Closed issues:**
 
+- icinga\_notification | time period [\#109](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/109)
 - Support Event Commands [\#100](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/100)
 
 **Merged pull requests:**
