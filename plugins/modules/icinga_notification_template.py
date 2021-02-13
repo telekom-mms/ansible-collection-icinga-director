@@ -151,6 +151,7 @@ def main():
         time_period=dict(required=False, aliases=["period"]),
         notification_command=dict(required=False, aliases=["command"]),
         users=dict(type="list", elements="str", required=False),
+        user_group=dict(type="list", elements="str", required=False),
     )
 
     # Define the main module
@@ -171,6 +172,7 @@ def main():
         "period": module.params["time_period"],
         "command": module.params["notification_command"],
         "users": module.params["users"],
+        "user_groups": module.params["user_group"],
     }
 
     icinga_object = Icinga2APIObject(
