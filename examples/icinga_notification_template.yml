@@ -19,5 +19,5 @@
     notification_command: "mail-host-notification"
     users:
       - "rb"
-    user_group:
+    users_groups:
       - "onCall"
