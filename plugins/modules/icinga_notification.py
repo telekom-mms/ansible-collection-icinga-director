@@ -114,10 +114,11 @@ options:
       - When the last notification should be sent.
     type: "int"
     version_added: "1.15.0"
-  user_group:
+  users_groups:
     description:
       - User Group that should be notified by this notification.
     type: "list"
+    elements: str
 """
 
 EXAMPLES = """
@@ -141,7 +142,7 @@ EXAMPLES = """
       - Recovery
     users:
       - rb
-    user_group:
+    users_groups:
       - OnCall
     disabled: false
     vars:
@@ -181,7 +182,7 @@ def main():
         notification_interval=dict(required=False),
         states=dict(type="list", elements="str", required=False),
         users=dict(type="list", elements="str", required=False),
-        users_group=dict(type="list", elements="str", required=False),
+        users_groups=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
         vars=dict(type="dict", default={}, required=False),
         time_period=dict(required=False, aliases=["period"]),
@@ -211,7 +212,7 @@ def main():
         "notification_interval": module.params["notification_interval"],
         "states": module.params["states"],
         "users": module.params["users"],
-        "user_groups": module.params["users_group"],
+        "users_groups": module.params["users_groups"],
         "types": module.params["types"],
         "vars": module.params["vars"],
         "period": module.params["time_period"],

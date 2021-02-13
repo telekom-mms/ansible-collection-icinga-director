@@ -94,6 +94,11 @@ options:
     type: "list"
     elements: str
     version_added: "1.15.0"
+  users_groups:
+    description:
+      - User Group that should be notified by this notification.
+    type: "list"
+    elements: str
 """
 
 EXAMPLES = """
@@ -117,7 +122,7 @@ EXAMPLES = """
     notification_command: "mail-host-notification"
     users:
       - "rb"
-    users_group:
+    users_groups:
       - "OnCall"
 """
 
@@ -151,7 +156,7 @@ def main():
         time_period=dict(required=False, aliases=["period"]),
         notification_command=dict(required=False, aliases=["command"]),
         users=dict(type="list", elements="str", required=False),
-        users_group=dict(type="list", elements="str", required=False),
+        users_groups=dict(type="list", elements="str", required=False),
     )
 
     # Define the main module
@@ -172,7 +177,7 @@ def main():
         "period": module.params["time_period"],
         "command": module.params["notification_command"],
         "users": module.params["users"],
-        "users_group": module.params["users_group"],
+        "users_groups": module.params["users_groups"],
     }
 
     icinga_object = Icinga2APIObject(
