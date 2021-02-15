@@ -176,9 +176,9 @@
     - absent_icinga_notification_template.yml
     - absent_icinga_endpoint.yml
     - absent_icinga_zone.yml
-    - absent_icinga_user_template.yml
-    - absent_icinga_user_group.yml
     - absent_icinga_user.yml
+    - absent_icinga_user_group.yml
+    - absent_icinga_user_template.yml
     - absent_icinga_timeperiod.yml
     - absent_icinga_command.yml
     - absent_icinga_command_template.yml
