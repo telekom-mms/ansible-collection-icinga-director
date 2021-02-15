@@ -178,7 +178,7 @@ def main():
         "period": module.params["time_period"],
         "command": module.params["notification_command"],
         "users": module.params["users"],
-        "user_groups": module.params["users_groups"],
+        "user_groups": module.params["user_groups"],
     }
 
     icinga_object = Icinga2APIObject(
