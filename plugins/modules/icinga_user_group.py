@@ -108,7 +108,9 @@ def main():
         "disabled": module.params["disabled"],
     }
 
-    icinga_object = Icinga2APIObject(module=module, path="/usergroup", data=data)
+    icinga_object = Icinga2APIObject(
+        module=module, path="/usergroup", data=data
+    )
 
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
