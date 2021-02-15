@@ -213,7 +213,7 @@ def main():
         "notification_interval": module.params["notification_interval"],
         "states": module.params["states"],
         "users": module.params["users"],
-        "users_groups": module.params["users_groups"],
+        "user_groups": module.params["user_groups"],
         "types": module.params["types"],
         "vars": module.params["vars"],
         "period": module.params["time_period"],
