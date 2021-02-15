@@ -157,7 +157,7 @@ def main():
         time_period=dict(required=False, aliases=["period"]),
         notification_command=dict(required=False, aliases=["command"]),
         users=dict(type="list", elements="str", required=False),
-        users_groups=dict(type="list", elements="str", required=False),
+        user_groups=dict(type="list", elements="str", required=False),
     )
 
     # Define the main module
