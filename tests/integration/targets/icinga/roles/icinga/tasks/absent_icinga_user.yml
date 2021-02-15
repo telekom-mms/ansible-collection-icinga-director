@@ -10,3 +10,5 @@
     pager: 'SIP/emergency'
     period: '24/7'
     email: "foouser@example.com"
+    groups:
+      - onCall

@@ -12,6 +12,8 @@
     email: "foouser@example.com"
     imports:
       - foousertemplate
+    groups:
+      - onCall
   ignore_errors: true
   register: result
 - assert:

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2020 T-Systems Multimedia Solutions GmbH
+# Copyright (c) 2021 T-Systems Multimedia Solutions GmbH
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 #
 # This module is free software: you can redistribute it and/or modify
@@ -23,15 +23,15 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: icinga_user
-short_description: Manage users in Icinga2
+module: icinga_user_group
+short_description: Manage users groups in Icinga2
 description:
-   - Add or remove a user to Icinga2 through the director API.
+   - Add or remove a user group to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
-version_added: '1.0.0'
+version_added: '1.16.0'
 notes:
   - This module supports check mode.
 options:
@@ -43,28 +43,14 @@ options:
     type: str
   object_name:
     description:
-      - Name of the user.
+      - Name of the user group.
     aliases: ['name']
     required: true
     type: str
   display_name:
     description:
-      - Alternative name for this user.
+      - Alternative name for this user group.
       - In case your object name is a username, this could be the full name of the corresponding person.
-    type: str
-  imports:
-    description:
-      - Importable templates, add as many as you want.
-      - Please note that order matters when importing properties from multiple templates - last one wins.
-    type: list
-    elements: str
-  pager:
-    description:
-      - The pager address of the user.
-    type: str
-  period:
-    description:
-      - The name of a time period which determines when notifications to this User should be triggered. Not set by default.
     type: str
   disabled:
     description:
@@ -72,34 +58,18 @@ options:
     type: bool
     default: False
     choices: [True, False]
-  email:
-    description:
-      - The Email address of the user.
-    type: str
-  groups:
-    description:
-      - User groups that should be directly assigned to this user.
-      - Groups can be useful for various reasons. You might prefer to send notifications to groups instead of single users.
-    type: list
-    elements: str
 """
 
 EXAMPLES = """
-- name: Create user
-  t_systems_mms.icinga_director.icinga_user:
+- name: Create user group
+  t_systems_mms.icinga_director.icinga_user_group:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "rb"
-    display_name: "Rufbereitschaft"
-    pager: 'SIP/emergency'
-    period: '24/7'
-    email: "foouser@example.com"
-    imports:
-      - foousertemplate
-    groups:
-      - onCall
+    object_name: "onCall"
+    display_name: "on call group"
+    disabled: false
 """
 
 RETURN = r""" # """
@@ -124,11 +94,6 @@ def main():
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
-        imports=dict(type="list", elements="str", required=False),
-        email=dict(required=False),
-        pager=dict(required=False),
-        period=dict(required=False),
-        groups=dict(type="list", elements="str", required=False),
     )
 
     # Define the main module
@@ -140,15 +105,12 @@ def main():
         "object_name": module.params["object_name"],
         "object_type": "object",
         "display_name": module.params["display_name"],
-        "imports": module.params["imports"],
         "disabled": module.params["disabled"],
-        "email": module.params["email"],
-        "pager": module.params["pager"],
-        "period": module.params["period"],
-        "groups": module.params["groups"],
     }
 
-    icinga_object = Icinga2APIObject(module=module, path="/user", data=data)
+    icinga_object = Icinga2APIObject(
+        module=module, path="/usergroup", data=data
+    )
 
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
