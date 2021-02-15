@@ -59,6 +59,7 @@
     - icinga_timeperiod_info.yml
     - icinga_user_template_info.yml
     - icinga_user_info.yml
+    - icinga_user_group_info.yml
     - icinga_zone_info.yml
     - icinga_endpoint_info.yml
     - icinga_notification_template_info.yml
@@ -76,6 +77,7 @@
     - no_query_icinga_timeperiod_info.yml
     - no_query_icinga_user_template_info.yml
     - no_query_icinga_user_info.yml
+    - no_query_icinga_user_group_info.yml
     - no_query_icinga_zone_info.yml
     - no_query_icinga_endpoint_info.yml
     - no_query_icinga_notification_template_info.yml
@@ -133,6 +135,7 @@
     - wrong_pass_icinga_timeperiod_info.yml
     - wrong_pass_icinga_user_template_info.yml
     - wrong_pass_icinga_user_info.yml
+    - wrong_pass_icinga_user_group_info.yml
     - wrong_pass_icinga_zone_info.yml
     - wrong_pass_icinga_endpoint_info.yml
     - wrong_pass_icinga_notification_template_info.yml
@@ -150,6 +153,7 @@
     - wrong_query_icinga_command_info.yml
     - wrong_query_icinga_timeperiod_info.yml
     - wrong_query_icinga_user_template_info.yml
+    - wrong_query_icinga_user_group_info.yml
     - wrong_query_icinga_user_info.yml
     - wrong_query_icinga_zone_info.yml
     - wrong_query_icinga_endpoint_info.yml
