@@ -12,3 +12,5 @@
     email: "foouser@example.com"
     imports:
       - foousertemplate
+    groups:
+      - onCall

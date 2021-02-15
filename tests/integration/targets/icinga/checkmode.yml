@@ -15,6 +15,7 @@
         - absent_icinga_notification.yml
         - absent_icinga_notification_template.yml
         - absent_icinga_user.yml
+        - absent_icinga_user_group.yml
         - absent_icinga_user_template.yml
         - absent_icinga_timeperiod.yml
         - absent_icinga_command.yml
@@ -29,6 +30,7 @@
         - icinga_command.yml
         - icinga_timeperiod.yml
         - icinga_user_template.yml
+        - icinga_user_group.yml
         - icinga_user.yml
         - icinga_notification_template.yml
         - icinga_notification.yml
@@ -49,6 +51,7 @@
         - absent_icinga_notification.yml
         - absent_icinga_notification_template.yml
         - absent_icinga_user.yml
+        - absent_icinga_user_group.yml
         - absent_icinga_user_template.yml
         - absent_icinga_timeperiod.yml
         - absent_icinga_command.yml
