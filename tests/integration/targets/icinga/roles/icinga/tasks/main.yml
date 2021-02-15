@@ -5,6 +5,7 @@
     - icinga_command.yml
     - icinga_timeperiod.yml
     - icinga_user_template.yml
+    - icinga_user_group.yml
     - icinga_user.yml
     - icinga_zone.yml
     - icinga_endpoint.yml
@@ -36,8 +37,9 @@
     - icinga_command_template.yml
     - icinga_command.yml
     - icinga_timeperiod.yml
-    - icinga_user_template.yml
     - icinga_user.yml
+    - icinga_user_group.yml
+    - icinga_user_template.yml
     - icinga_zone.yml
     - icinga_endpoint.yml
     - icinga_notification_template.yml
@@ -92,6 +94,7 @@
     - wrong_host_icinga_command.yml
     - wrong_host_icinga_timeperiod.yml
     - wrong_host_icinga_user_template.yml
+    - wrong_host_icinga_user_group.yml
     - wrong_host_icinga_user.yml
     - wrong_host_icinga_zone.yml
     - wrong_host_icinga_endpoint.yml
@@ -110,6 +113,7 @@
     - wrong_pass_icinga_command.yml
     - wrong_pass_icinga_timeperiod.yml
     - wrong_pass_icinga_user_template.yml
+    - wrong_pass_icinga_user_group.yml
     - wrong_pass_icinga_user.yml
     - wrong_pass_icinga_zone.yml
     - wrong_pass_icinga_endpoint.yml
@@ -172,8 +176,9 @@
     - absent_icinga_notification_template.yml
     - absent_icinga_endpoint.yml
     - absent_icinga_zone.yml
-    - absent_icinga_user.yml
     - absent_icinga_user_template.yml
+    - absent_icinga_user_group.yml
+    - absent_icinga_user.yml
     - absent_icinga_timeperiod.yml
     - absent_icinga_command.yml
     - absent_icinga_command_template.yml

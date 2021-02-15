@@ -1,19 +1,10 @@
 ---
-- name: Create user
-  t_systems_mms.icinga_director.icinga_user:
-    state: present
-    url: http://nonexistant
+- name: Query a user grouü in icinga
+  t_systems_mms.icinga_director.icinga_user_group_info:
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    object_name: "rb"
-    display_name: "Rufbereitschaft"
-    pager: 'SIP/emergency'
-    period: '24/7'
-    email: "foouser@example.com"
-    imports:
-      - foousertemplate
-    groups:
-      - onCall
+    url_password: iamwrong
+    query: "rb"
   ignore_errors: true
   register: result
 - assert:
