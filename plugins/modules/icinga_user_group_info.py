@@ -53,7 +53,7 @@ options:
 """
 
 EXAMPLES = """
-- name: Query a user grouü in icinga
+- name: Query a user group in icinga
   t_systems_mms.icinga_director.icinga_user_group_info:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
