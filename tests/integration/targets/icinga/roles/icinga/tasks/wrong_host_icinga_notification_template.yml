@@ -19,7 +19,7 @@
     notification_command: "mail-host-notification"
     users:
       - "rb"
-    users_groups:
+    user_groups:
       - "onCall"
   ignore_errors: true
   register: result
