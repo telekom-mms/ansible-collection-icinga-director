@@ -116,7 +116,7 @@ options:
     version_added: "1.15.0"
   user_groups:
     description:
-      - User Group that should be notified by this notification.
+      - User Groups that should be notified by this notification.
     type: "list"
     elements: str
     version_added: '1.16.0'
