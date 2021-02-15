@@ -94,7 +94,7 @@ options:
     type: "list"
     elements: str
     version_added: "1.15.0"
-  users_groups:
+  user_groups:
     description:
       - User Group that should be notified by this notification.
     type: "list"
@@ -122,7 +122,7 @@ EXAMPLES = """
     notification_command: "mail-host-notification"
     users:
       - "rb"
-    users_groups:
+    user_groups:
       - "OnCall"
 """
 
@@ -177,7 +177,7 @@ def main():
         "period": module.params["time_period"],
         "command": module.params["notification_command"],
         "users": module.params["users"],
-        "users_groups": module.params["users_groups"],
+        "user_groups": module.params["users_groups"],
     }
 
     icinga_object = Icinga2APIObject(

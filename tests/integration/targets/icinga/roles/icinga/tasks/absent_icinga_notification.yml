@@ -17,7 +17,7 @@
       - Recovery
     users:
       - rb
-    users_groups:
+    user_groups:
       - onCall
     disabled: false
     vars:
