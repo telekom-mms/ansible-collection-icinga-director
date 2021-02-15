@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.15.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.1) (2021-02-15)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.15.0...1.15.1)
+
+**Implemented enhancements:**
+
+- add Usergroups modules [\#114](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/114) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- icinga\_notification | time period [\#109](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/109)
+
 ## [1.15.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.0) (2021-02-12)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.14.0...1.15.0)
@@ -16,7 +28,6 @@
 
 **Closed issues:**
 
-- icinga\_notification | time period [\#109](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/109)
 - Support Event Commands [\#100](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/100)
 
 **Merged pull requests:**
