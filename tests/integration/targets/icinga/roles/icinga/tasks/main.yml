@@ -37,9 +37,9 @@
     - icinga_command_template.yml
     - icinga_command.yml
     - icinga_timeperiod.yml
-    - icinga_user.yml
-    - icinga_user_group.yml
     - icinga_user_template.yml
+    - icinga_user_group.yml
+    - icinga_user.yml
     - icinga_zone.yml
     - icinga_endpoint.yml
     - icinga_notification_template.yml
