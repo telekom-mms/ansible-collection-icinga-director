@@ -183,7 +183,7 @@ def main():
         notification_interval=dict(required=False),
         states=dict(type="list", elements="str", required=False),
         users=dict(type="list", elements="str", required=False),
-        users_groups=dict(type="list", elements="str", required=False),
+        user_groups=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
         vars=dict(type="dict", default={}, required=False),
         time_period=dict(required=False, aliases=["period"]),
