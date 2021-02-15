@@ -27,7 +27,7 @@ module: icinga_notification_template
 short_description: Manage notification templates in Icinga2
 description:
    - Add or remove a notification template to Icinga2 through the director API.
-author: Sebastian Gumprich (@rndmh3ro)
+author: Sebastian Gumprich (@rndmh3ro) / Sebastian Gruber (sgruber94)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
@@ -99,6 +99,7 @@ options:
       - User Group that should be notified by this notification.
     type: "list"
     elements: str
+    version_added: '1.16.0'
 """
 
 EXAMPLES = """

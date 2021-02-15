@@ -27,7 +27,7 @@ module: icinga_notification
 short_description: Manage notifications in Icinga2
 description:
    - Add or remove a notification to Icinga2 through the director API.
-author: Sebastian Gumprich (@rndmh3ro)
+author: Sebastian Gumprich (@rndmh3ro) / Sebastian Gruber (sgruber94)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
@@ -114,11 +114,12 @@ options:
       - When the last notification should be sent.
     type: "int"
     version_added: "1.15.0"
-  users_groups:
+  user_groups:
     description:
       - User Group that should be notified by this notification.
     type: "list"
     elements: str
+    version_added: '1.16.0'
 """
 
 EXAMPLES = """
@@ -142,7 +143,7 @@ EXAMPLES = """
       - Recovery
     users:
       - rb
-    users_groups:
+    user_groups:
       - OnCall
     disabled: false
     vars:
