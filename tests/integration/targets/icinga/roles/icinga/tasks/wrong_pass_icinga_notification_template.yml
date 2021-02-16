@@ -19,6 +19,8 @@
     notification_command: "mail-host-notification"
     users:
       - "rb"
+    user_groups:
+      - "OnCall"
   ignore_errors: true
   register: result
 - assert:

@@ -27,7 +27,7 @@ module: icinga_notification_template
 short_description: Manage notification templates in Icinga2
 description:
    - Add or remove a notification template to Icinga2 through the director API.
-author: Sebastian Gumprich (@rndmh3ro)
+author: Sebastian Gumprich (@rndmh3ro) / Sebastian Gruber (sgruber94)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
@@ -94,6 +94,12 @@ options:
     type: "list"
     elements: str
     version_added: "1.15.0"
+  user_groups:
+    description:
+      - User Groups that should be notified by this notification.
+    type: "list"
+    elements: str
+    version_added: '1.16.0'
 """
 
 EXAMPLES = """
@@ -117,6 +123,8 @@ EXAMPLES = """
     notification_command: "mail-host-notification"
     users:
       - "rb"
+    user_groups:
+      - "OnCall"
 """
 
 RETURN = r""" # """
@@ -149,6 +157,7 @@ def main():
         time_period=dict(required=False, aliases=["period"]),
         notification_command=dict(required=False, aliases=["command"]),
         users=dict(type="list", elements="str", required=False),
+        user_groups=dict(type="list", elements="str", required=False),
     )
 
     # Define the main module
@@ -169,6 +178,7 @@ def main():
         "period": module.params["time_period"],
         "command": module.params["notification_command"],
         "users": module.params["users"],
+        "user_groups": module.params["user_groups"],
     }
 
     icinga_object = Icinga2APIObject(

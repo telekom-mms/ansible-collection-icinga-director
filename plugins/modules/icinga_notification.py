@@ -27,7 +27,7 @@ module: icinga_notification
 short_description: Manage notifications in Icinga2
 description:
    - Add or remove a notification to Icinga2 through the director API.
-author: Sebastian Gumprich (@rndmh3ro)
+author: Sebastian Gumprich (@rndmh3ro) / Sebastian Gruber (sgruber94)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
@@ -114,6 +114,12 @@ options:
       - When the last notification should be sent.
     type: "int"
     version_added: "1.15.0"
+  user_groups:
+    description:
+      - User Groups that should be notified by this notification.
+    type: "list"
+    elements: str
+    version_added: '1.16.0'
 """
 
 EXAMPLES = """
@@ -137,6 +143,8 @@ EXAMPLES = """
       - Recovery
     users:
       - rb
+    user_groups:
+      - OnCall
     disabled: false
     vars:
       foo: bar
@@ -175,6 +183,7 @@ def main():
         notification_interval=dict(required=False),
         states=dict(type="list", elements="str", required=False),
         users=dict(type="list", elements="str", required=False),
+        user_groups=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
         vars=dict(type="dict", default={}, required=False),
         time_period=dict(required=False, aliases=["period"]),
@@ -204,6 +213,7 @@ def main():
         "notification_interval": module.params["notification_interval"],
         "states": module.params["states"],
         "users": module.params["users"],
+        "user_groups": module.params["user_groups"],
         "types": module.params["types"],
         "vars": module.params["vars"],
         "period": module.params["time_period"],
