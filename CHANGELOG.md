@@ -1,8 +1,8 @@
 # Changelog
 
-## [1.15.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.1) (2021-02-16)
+## [Unreleased](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/HEAD)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.15.0...1.15.1)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.15.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -11,6 +11,7 @@
 
 **Closed issues:**
 
+- Add support to specify user Groups in icinga Notifications [\#111](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/111)
 - icinga\_notification | time period [\#109](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/109)
 
 ## [1.15.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.0) (2021-02-12)
@@ -212,7 +213,6 @@
 
 **Implemented enhancements:**
 
-- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 - add new service module [\#32](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.5.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.5.0) (2020-10-02)
@@ -271,6 +271,10 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.1...1.3.2)
 
+**Implemented enhancements:**
+
+- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Fixed bugs:**
 
 - added code in icinga\_command.yml to make it work like the other tasks in our role [\#35](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/35) ([xFuture603](https://github.com/xFuture603))
@@ -299,10 +303,6 @@
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.2.1...1.2.2)
 
-**Implemented enhancements:**
-
-- Use ansible-test to run integration tests [\#27](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/27) ([rndmh3ro](https://github.com/rndmh3ro))
-
 **Fixed bugs:**
 
 - zone: defaults to master but i do not want to configure zone at all. [\#25](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/25)
@@ -318,7 +318,6 @@
 **Implemented enhancements:**
 
 - Integration testing [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.2.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.0) (2020-06-24)
 
@@ -326,6 +325,8 @@
 
 **Implemented enhancements:**
 
+- Use ansible-test to run integration tests [\#27](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/27) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
 - add gitattributes because of windows line endings [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
 - add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
