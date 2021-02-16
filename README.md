@@ -5,7 +5,7 @@
 
 This collection contains Ansible [modules](plugins/modules/) and a [role](roles/ansible_icinga/) to change objects in Icinga 2 using the director API.
 
-Required Ansible version: 2.9
+Required Ansible version: 2.9.10
 
 Currently supported modules:
 
