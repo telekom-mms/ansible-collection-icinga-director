@@ -18,7 +18,7 @@
     users:
       - rb
     user_groups:
-      - onCall
+      - OnCall
     disabled: false
     vars:
       foo: bar

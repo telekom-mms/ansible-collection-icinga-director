@@ -20,4 +20,4 @@
     users:
       - "rb"
     user_groups:
-      - "onCall"
+      - "OnCall"

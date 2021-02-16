@@ -20,7 +20,7 @@
     users:
       - "rb"
     user_groups:
-      - "onCall"
+      - "OnCall"
   ignore_errors: true
   register: result
 - assert:
