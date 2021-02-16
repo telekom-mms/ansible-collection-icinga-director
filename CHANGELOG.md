@@ -1,12 +1,13 @@
 # Changelog
 
-## [1.15.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.1) (2021-02-15)
+## [1.15.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.1) (2021-02-16)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.15.0...1.15.1)
 
 **Implemented enhancements:**
 
 - add Usergroups modules [\#114](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/114) ([rndmh3ro](https://github.com/rndmh3ro))
+- update notification modules - add option user\_groups [\#112](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/112) ([sgruber94](https://github.com/sgruber94))
 
 **Closed issues:**
 
@@ -211,6 +212,7 @@
 
 **Implemented enhancements:**
 
+- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 - add new service module [\#32](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.5.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.5.0) (2020-10-02)
@@ -268,10 +270,6 @@
 ## [1.3.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.2) (2020-07-15)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.1...1.3.2)
-
-**Implemented enhancements:**
-
-- make local testing without ansible-test easier [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
