@@ -115,7 +115,10 @@ To trigger this generation, you need to run the script `hacking/update_examples_
 # run icinga in a container and forward port 80
 > docker run -d -p 80:80 schurzi/icinga2
 
-# run the ansible playbooks against the container
+# run ansible-test
+> ansible-test integration
+
+# alternatively run the test playbooks against the container
 > ansible-playbook tests/integration/targets/icinga/normalmode.yml
 > ansible-playbook tests/integration/targets/icinga/checkmode.yml
 ```
