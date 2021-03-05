@@ -31,8 +31,9 @@ Additionally all supported modules have an appropriate `*_info`-module to gather
 
 ## Installation
 
-These modules are distributed as [collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html).
-To install them, run:
+If you use Ansible >=3.0.0, this collection is included in Ansible.
+
+If you use an older version, you can install it with Ansible Galaxy:
 
 ```
 ansible-galaxy collection install t_systems_mms.icinga_director
