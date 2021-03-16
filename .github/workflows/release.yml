@@ -49,11 +49,15 @@ jobs:
       # changelog gets updated but action works on old commit id
       - uses: actions/checkout@v2.3.4
         with:
-          ref: master
+          fetch-depth: 0
 
       - name: Generate changelog for the release
-        run: |
-          sed '/## \[${{ steps.previoustag.outputs.tag }}\]/Q' CHANGELOG.md > CHANGELOGRELEASE.md
+        uses: charmixer/auto-changelog-action@v1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          since_tag: ${{ steps.previoustag.outputs.tag }}
+          future_release: ${{ steps.version.outputs.next-version }}
+          output: CHANGELOGRELEASE.md
 
       - name: Read CHANGELOG.md
         id: package
