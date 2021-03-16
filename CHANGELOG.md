@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.16.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.16.1) (2021-03-16)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.16.0...1.16.1)
+
+**Merged pull requests:**
+
+- Improve Release Action [\#116](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/116) ([schurzi](https://github.com/schurzi))
+
 ## [1.16.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.16.0) (2021-03-05)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.15.0...1.16.0)
@@ -188,7 +196,6 @@
 **Fixed bugs:**
 
 - Icinga Object "Service" rerun - failed to recreate if object\_name contains spaces [\#52](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/52)
-- allow using whitespaces in object names [\#55](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/55) ([schurzi](https://github.com/schurzi))
 
 **Merged pull requests:**
 
@@ -202,6 +209,10 @@
 
 - update examples and tests so they can actually be deployed [\#54](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/54) ([rndmh3ro](https://github.com/rndmh3ro))
 - add check\_command arg to service\_apply module [\#53](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/53) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- allow using whitespaces in object names [\#55](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/55) ([schurzi](https://github.com/schurzi))
 
 **Closed issues:**
 
@@ -259,10 +270,6 @@
 
 - No IPv6-Address Variable for Hosts [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/36)
 
-**Merged pull requests:**
-
-- add badge to readme [\#40](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/40) ([rndmh3ro](https://github.com/rndmh3ro))
-
 ## [1.4.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.0) (2020-08-04)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.3.2...1.4.0)
@@ -270,6 +277,10 @@
 **Implemented enhancements:**
 
 - add support for address6 on host object [\#37](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/37) ([schurzi](https://github.com/schurzi))
+
+**Merged pull requests:**
+
+- add badge to readme [\#40](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/40) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.3.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.2) (2020-07-15)
 
@@ -314,7 +325,6 @@
 **Fixed bugs:**
 
 - zone: defaults to master but i do not want to configure zone at all. [\#25](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/25)
-- do not require import and check\_command in host\_template [\#23](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/23) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Merged pull requests:**
 
@@ -326,6 +336,7 @@
 
 **Implemented enhancements:**
 
+- Integration testing [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add proper linting [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/22) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.2.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.2.0) (2020-06-24)
@@ -334,10 +345,13 @@
 
 **Implemented enhancements:**
 
-- Integration testing [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
 - add gitattributes because of windows line endings [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add icinga\_host\_template [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/20) ([michaelamattes](https://github.com/michaelamattes))
 - add troubleshooting section [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/19) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- do not require import and check\_command in host\_template [\#23](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/23) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
