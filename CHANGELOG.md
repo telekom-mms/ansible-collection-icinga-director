@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.16.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.16.1) (2021-03-16)
+## [1.16.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.16.1) (2021-04-19)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.16.0...1.16.1)
 
 **Merged pull requests:**
 
+- add ansible-2.11 to CI [\#117](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/117) ([rndmh3ro](https://github.com/rndmh3ro))
 - Improve Release Action [\#116](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/116) ([schurzi](https://github.com/schurzi))
 
 ## [1.16.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.16.0) (2021-03-05)
@@ -196,6 +197,7 @@
 **Fixed bugs:**
 
 - Icinga Object "Service" rerun - failed to recreate if object\_name contains spaces [\#52](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/52)
+- allow using whitespaces in object names [\#55](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/55) ([schurzi](https://github.com/schurzi))
 
 **Merged pull requests:**
 
@@ -209,10 +211,7 @@
 
 - update examples and tests so they can actually be deployed [\#54](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/54) ([rndmh3ro](https://github.com/rndmh3ro))
 - add check\_command arg to service\_apply module [\#53](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/53) ([rndmh3ro](https://github.com/rndmh3ro))
-
-**Fixed bugs:**
-
-- allow using whitespaces in object names [\#55](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/55) ([schurzi](https://github.com/schurzi))
+- Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
@@ -264,11 +263,14 @@
 
 - make local testing without ansible-test work [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/41) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
-- Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
 - No IPv6-Address Variable for Hosts [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/36)
+
+**Merged pull requests:**
+
+- add badge to readme [\#40](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/40) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.4.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.0) (2020-08-04)
 
@@ -277,10 +279,6 @@
 **Implemented enhancements:**
 
 - add support for address6 on host object [\#37](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/37) ([schurzi](https://github.com/schurzi))
-
-**Merged pull requests:**
-
-- add badge to readme [\#40](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/40) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.3.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.3.2) (2020-07-15)
 
