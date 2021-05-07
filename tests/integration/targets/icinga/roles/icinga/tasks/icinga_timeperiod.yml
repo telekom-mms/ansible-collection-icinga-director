@@ -6,6 +6,8 @@
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: '24/7'
+    imports:
+      - "timeperiod_template"
     ranges:
       monday: "00:00-23:59"
       tuesday: "00:00-23:59"

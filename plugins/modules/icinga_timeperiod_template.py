@@ -23,15 +23,15 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: icinga_timeperiod
-short_description: Manage timeperiods in Icinga2
+module: icinga_timeperiod_template
+short_description: Manage timeperiod templates in Icinga2
 description:
-   - Add or remove a timeperiod to Icinga2 through the director API.
+   - Add or remove a timeperiod template to Icinga2 through the director API.
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
-version_added: '1.0.0'
+version_added: '1.17.0'
 notes:
   - This module supports check mode.
 options:
@@ -49,30 +49,63 @@ options:
     type: str
   display_name:
     description:
-      - Alternative name for this timeperiod.
+      - Alternative name for this timeperiod template.
     type: str
+  disabled:
+    description:
+      - Disabled objects will not be deployed.
+    type: bool
+    default: False
+    choices: [True, False]
   imports:
     description:
       - Importable templates, add as many as you want.
       - Please note that order matters when importing properties from multiple templates - last one wins.
     type: list
     elements: str
+  include_period:
+    description:
+      - Include other time periods into this.
+    type: list
+    elements: str
+  exclude_period:
+    description:
+      - Exclude other time periods from this.
+    type: list
+    elements: str
+  prefer_includes:
+    description:
+      - Whether to prefer timeperiods includes or excludes. Default to true.
+    type: bool
+    default: true
+    choices: [True, False]
   ranges:
     description:
       - A dict of days and timeperiods.
     type: dict
+  zone:
+    description:
+      - Set the zone.
+    type: str
+  update_method:
+    description:
+      - Define the update method.
+    type: str
+    default: "LegacyTimePeriod"
 """
 
 EXAMPLES = """
-- name: Create timeperiod
-  t_systems_mms.icinga_director.icinga_timeperiod:
+- name: Create timeperiod template
+  t_systems_mms.icinga_director.icinga_timeperiod_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: '24/7'
-    imports:
-      - "timeperiod_template"
+    object_name: "timeperiod_template"
+    display_name: "timeperiod template"
+    imports: []
+    disabled: false
+    prefer_includes: false
     ranges:
       monday: "00:00-23:59"
       tuesday: "00:00-23:59"
@@ -81,6 +114,8 @@ EXAMPLES = """
       friday: "00:00-23:59"
       saturday: "00:00-23:59"
       sunday: "00:00-23:59"
+    update_method: "LegacyTimePeriod"
+
 """
 
 RETURN = r""" # """
@@ -104,8 +139,18 @@ def main():
         url=dict(required=True),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
+        disabled=dict(type="bool", default=False, choices=[True, False]),
+        zone=dict(required=False, default=None),
         imports=dict(type="list", elements="str", default=[], required=False),
         ranges=dict(type="dict", required=False),
+        prefer_includes=dict(type="bool", default=True, choices=[True, False]),
+        exclude_period=dict(
+            type="list", elements="str", default=[], required=False
+        ),
+        include_period=dict(
+            type="list", elements="str", default=[], required=False
+        ),
+        update_method=dict(required=False, default="LegacyTimePeriod"),
     )
 
     # Define the main module
@@ -115,10 +160,16 @@ def main():
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "object",
+        "object_type": "template",
         "display_name": module.params["display_name"],
+        "disabled": module.params["disabled"],
+        "zone": module.params["zone"],
         "imports": module.params["imports"],
         "ranges": module.params["ranges"],
+        "prefer_includes": module.params["prefer_includes"],
+        "excludes": module.params["exclude_period"],
+        "includes": module.params["include_period"],
+        "update_method": module.params["update_method"],
     }
 
     icinga_object = Icinga2APIObject(
