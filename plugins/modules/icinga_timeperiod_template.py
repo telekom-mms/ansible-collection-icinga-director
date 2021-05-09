@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2020 T-Systems Multimedia Solutions GmbH
+# Copyright (c) 2021 T-Systems Multimedia Solutions GmbH
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 #
 # This module is free software: you can redistribute it and/or modify
