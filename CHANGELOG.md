@@ -1,8 +1,12 @@
 # Changelog
 
-## [1.16.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.16.1) (2021-04-19)
+## [1.17.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.17.0) (2021-05-09)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.16.0...1.16.1)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.16.0...1.17.0)
+
+**Implemented enhancements:**
+
+- add timeperiod\_template and corresponding info module [\#118](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/118) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Merged pull requests:**
 
@@ -211,7 +215,6 @@
 
 - update examples and tests so they can actually be deployed [\#54](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/54) ([rndmh3ro](https://github.com/rndmh3ro))
 - add check\_command arg to service\_apply module [\#53](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/53) ([rndmh3ro](https://github.com/rndmh3ro))
-- Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
@@ -263,6 +266,7 @@
 
 - make local testing without ansible-test work [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/41) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add more Integrationtests [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
+- Testing update [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
