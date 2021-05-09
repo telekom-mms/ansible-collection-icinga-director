@@ -10,6 +10,7 @@
         - icinga_endpoint.yml
         - icinga_command_template.yml
         - icinga_command.yml
+        - icinga_timeperiod_template.yml
         - icinga_timeperiod.yml
         - icinga_user_template.yml
         - icinga_user_group.yml
@@ -36,6 +37,7 @@
         - absent_icinga_user_template.yml
         - absent_icinga_user_group.yml
         - absent_icinga_timeperiod.yml
+        - absent_icinga_timeperiod_template.yml
         - absent_icinga_command.yml
         - absent_icinga_command_template.yml
         - absent_icinga_endpoint.yml
@@ -46,6 +48,7 @@
         - icinga_endpoint.yml
         - icinga_command_template.yml
         - icinga_command.yml
+        - icinga_timeperiod_template.yml
         - icinga_timeperiod.yml
         - icinga_user_group.yml
         - icinga_user_template.yml

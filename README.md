@@ -22,6 +22,7 @@ Currently supported modules:
 * `icinga_service_template`
 * `icinga_servicegroup`
 * `icinga_timeperiod`
+* `icinga_timeperiod_template`
 * `icinga_user_group`
 * `icinga_user_template`
 * `icinga_user`
