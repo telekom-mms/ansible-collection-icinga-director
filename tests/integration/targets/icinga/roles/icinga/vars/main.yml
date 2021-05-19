@@ -1,0 +1,4 @@
+---
+icinga_url: "http://127.0.0.1/icingaweb2"
+icinga_user: "icingaadmin"
+icinga_pass: "icinga"

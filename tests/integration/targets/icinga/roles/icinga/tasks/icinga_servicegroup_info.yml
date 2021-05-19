@@ -1,0 +1,12 @@
+---
+- name: Query a servicegroup in icinga
+  t_systems_mms.icinga_director.icinga_servicegroup_info:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    query: "fooservicegroup"
+  register: result
+- assert:
+    that:
+      # yamllint disable-line rule:line-length
+      - '(result.objects | length) == 1 or (result.objects | length) == 2 or (result.objects | length) == 3'

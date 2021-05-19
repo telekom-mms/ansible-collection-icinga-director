@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2019 Ansible Project
+# Copyright (c) 2020 T-Systems Multimedia Solutions GmbH
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 #
 # This module is free software: you can redistribute it and/or modify
@@ -21,65 +21,20 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: icinga_notification
 short_description: Manage notifications in Icinga2
 description:
-   - "Add or remove a notification to Icinga2 through the director API."
-author: "Sebastian Gumprich"
+   - Add or remove a notification to Icinga2 through the director API.
+author: Sebastian Gumprich (@rndmh3ro) / Sebastian Gruber (sgruber94)
+extends_documentation_fragment:
+  - ansible.builtin.url
+  - t_systems_mms.icinga_director.common_options
+version_added: '1.0.0'
+notes:
+  - This module supports check mode.
 options:
-  url:
-    description:
-      - HTTP or HTTPS URL in the form (http|https://[user[:pass]]@host.domain[:port]/path
-    required: true
-    type: str
-  use_proxy:
-    description:
-      - If C(no), it will not use a proxy, even if one is defined in
-        an environment variable on the target hosts.
-    type: bool
-    default: 'yes'
-  validate_certs:
-    description:
-      - If C(no), SSL certificates will not be validated. This should only be used
-        on personally controlled sites using self-signed certificates.
-    type: bool
-    default: 'yes'
-  url_username:
-    description:
-      - The username for use in HTTP basic authentication.
-      - This parameter can be used without C(url_password) for sites that allow empty passwords.
-    type: str
-  url_password:
-    description:
-      - The password for use in HTTP basic authentication.
-      - If the C(url_username) parameter is not specified, the C(url_password) parameter will not be used.
-    type: str
-  force_basic_auth:
-    description:
-      - httplib2, the library used by the uri module only sends authentication information when a webservice
-        responds to an initial request with a 401 status. Since some basic auth services do not properly
-        send a 401, logins will fail. This option forces the sending of the Basic authentication header
-        upon initial request.
-    type: bool
-    default: 'no'
-  client_cert:
-    description:
-      - PEM formatted certificate chain file to be used for SSL client
-        authentication. This file can also include the key as well, and if
-        the key is included, C(client_key) is not required.
-    type: path
-  client_key:
-    description:
-      - PEM formatted file that contains your private key to be used for SSL
-        client authentication. If C(client_cert) contains both the certificate
-        and key, this option is not required.
-    type: path
   state:
     description:
       - Apply feature state.
@@ -88,67 +43,123 @@ options:
     type: str
   object_name:
     description:
-      - Name of the notification
+      - Name of the notification.
+    aliases: ['name']
     required: true
     type: str
   notification_interval:
     description:
       - The notification interval (in seconds). This interval is used for active notifications.
       - Defaults to 30 minutes. If set to 0, re-notifications are disabled.
-    required: false
     type: str
   types:
     description:
-      - The state transition types you want to get notifications for
-    required: false
+      - The state transition types you want to get notifications for.
     type: "list"
+    elements: str
   users:
     description:
-      - Users that should be notified by this notifications
-    required: false
+      - Users that should be notified by this notification.
     type: "list"
+    elements: str
+  states:
+    description:
+      - The host or service states you want to get notifications for.
+    type: "list"
+    elements: str
+    version_added: "1.9.0"
   apply_to:
     description:
-      - Whether this notification should affect hosts or services
-    required: false
+      - Whether this notification should affect hosts or services.
+    required: true
     type: str
     choices: ["host", "service"]
   assign_filter:
     description:
-      - The filter where the service apply rule will take effect
-    required: false
+      - The filter where the notification will take effect.
     type: "str"
   imports:
     description:
-      - Importable templates, add as many as you want.
-        Please note that order matters when importing properties from multiple templates - last one wins
-    required: false
+      - Importable templates, add as many as you want. Required when state is C(present).
+      - Please note that order matters when importing properties from multiple templates - last one wins.
     type: "list"
-'''
+    elements: str
+  disabled:
+    description:
+      - Disabled objects will not be deployed.
+    type: bool
+    default: False
+    choices: [True, False]
+    version_added: "1.9.0"
+  vars:
+    description:
+      - Custom properties of the notification.
+    type: "dict"
+    version_added: "1.9.0"
+  time_period:
+    description:
+      - The name of a time period which determines when this notification should be triggered.
+    type: "str"
+    aliases: ['period']
+    version_added: "1.15.0"
+  times_begin:
+    description:
+      - First notification delay.
+      - Delay unless the first notification should be sent.
+    type: "int"
+    version_added: "1.15.0"
+  times_end:
+    description:
+      - Last notification.
+      - When the last notification should be sent.
+    type: "int"
+    version_added: "1.15.0"
+  user_groups:
+    description:
+      - User Groups that should be notified by this notification.
+    type: "list"
+    elements: str
+    version_added: '1.16.0'
+"""
 
-EXAMPLES = '''
-  - name: create notification
-    icinga_notification:
-      state: present
-      url: "https://example.com"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      apply_to: host
-      assign_filter: '"ABLE_E-Mail"=host.vars.enabled_notifications'
-      imports:
-        - host
-      notification_interval: '0'
-      object_name: able_E-Mail_host
-      types:
-        - Problem
-        - Recovery
-      users:
-        - ABLE_E-Mail
-'''
+EXAMPLES = """
+- name: Create notification
+  t_systems_mms.icinga_director.icinga_notification:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    apply_to: host
+    assign_filter: 'host.name="foohost"'
+    imports:
+      - foonotificationtemplate
+    notification_interval: '0'
+    object_name: E-Mail_host
+    states:
+      - Up
+      - Down
+    types:
+      - Problem
+      - Recovery
+    users:
+      - rb
+    user_groups:
+      - OnCall
+    disabled: false
+    vars:
+      foo: bar
+    time_period: "24/7"
+    times_begin: 20
+    times_end: 120
+"""
+
+RETURN = r""" # """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import Icinga2APIObject
+from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+    Icinga2APIObject,
+)
 
 
 # ===========================================
@@ -157,47 +168,70 @@ from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icin
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    # remove unnecessary argument 'force'
-    del argument_spec['force']
-    del argument_spec['http_agent']
+
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        object_name=dict(required=True),
-        imports=dict(type="list", required=True),
+        url=dict(required=True),
+        object_name=dict(required=True, aliases=["name"]),
+        imports=dict(type="list", elements="str", required=False),
         apply_to=dict(required=True, choices=["service", "host"]),
         assign_filter=dict(required=False),
+        disabled=dict(
+            type="bool", required=False, default=False, choices=[True, False]
+        ),
         notification_interval=dict(required=False),
-        types=dict(type="list", required=False),
-        users=dict(type="list", required=False)
+        states=dict(type="list", elements="str", required=False),
+        users=dict(type="list", elements="str", required=False),
+        user_groups=dict(type="list", elements="str", required=False),
+        types=dict(type="list", elements="str", required=False),
+        vars=dict(type="dict", default={}, required=False),
+        time_period=dict(required=False, aliases=["period"]),
+        times_begin=dict(type="int", required=False),
+        times_end=dict(type="int", required=False),
     )
+
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present
+    required_if = [("state", "present", ["imports"])]
 
     # Define the main module
     module = AnsibleModule(
         argument_spec=argument_spec,
-        supports_check_mode=True
+        supports_check_mode=True,
+        required_if=required_if,
     )
 
     data = {
-        'object_name': module.params["object_name"],
-        'object_type': "apply",
-        'imports': module.params["imports"],
-        'apply_to': module.params["apply_to"],
-        'assign_filter': module.params["assign_filter"],
-        'notification_interval': module.params["notification_interval"],
-        'types': module.params["types"],
-        'users': module.params["users"],
+        "object_name": module.params["object_name"],
+        "object_type": "apply",
+        "imports": module.params["imports"],
+        "apply_to": module.params["apply_to"],
+        "disabled": module.params["disabled"],
+        "assign_filter": module.params["assign_filter"],
+        "notification_interval": module.params["notification_interval"],
+        "states": module.params["states"],
+        "users": module.params["users"],
+        "user_groups": module.params["user_groups"],
+        "types": module.params["types"],
+        "vars": module.params["vars"],
+        "period": module.params["time_period"],
+        "times_begin": module.params["times_begin"],
+        "times_end": module.params["times_end"],
     }
 
-    try:
-        icinga_object = Icinga2APIObject(module=module, path="/notification", data=data)
-    except Exception as e:
-        module.fail_json(msg="unable to connect to Icinga. Exception message: %s" % e)
+    icinga_object = Icinga2APIObject(
+        module=module, path="/notification", data=data
+    )
 
     changed, diff = icinga_object.update(module.params["state"])
-    module.exit_json(changed=changed, object_name=module.params["object_name"], data=icinga_object.data, diff=diff)
+    module.exit_json(
+        changed=changed,
+        diff=diff,
+    )
 
 
 # import module snippets
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,2 +1,4 @@
 *.tar.gz
 test/results
+tests/output
+.tox

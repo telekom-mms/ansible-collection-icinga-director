@@ -1,0 +1,208 @@
+---
+- include_tasks: "{{ item }}"
+  loop:
+    - icinga_command_template.yml
+    - icinga_command.yml
+    - icinga_timeperiod_template.yml
+    - icinga_timeperiod.yml
+    - icinga_user_template.yml
+    - icinga_user_group.yml
+    - icinga_user.yml
+    - icinga_zone.yml
+    - icinga_endpoint.yml
+    - icinga_notification_template.yml
+    - icinga_notification.yml
+    - icinga_hostgroup.yml
+    - icinga_servicegroup.yml
+    - icinga_service_template.yml
+    - icinga_service_apply.yml
+    - icinga_hostgroup.yml
+    - icinga_host_template.yml
+    - icinga_host.yml
+    - icinga_service.yml
+
+- name: deploy changes in icinga
+  tags: uri
+  uri:
+    url: "{{ icinga_url }}/director/config/deploy"
+    headers:
+      Accept: application/json
+    method: POST
+    user: "{{ icinga_user }}"
+    password: "{{ icinga_pass }}"
+    return_content: true
+
+- include_tasks: "{{ item }}"
+  loop:
+    ### run them again for idempotency codecoverage checks
+    - icinga_command_template.yml
+    - icinga_command.yml
+    - icinga_timeperiod_template.yml
+    - icinga_timeperiod.yml
+    - icinga_user_template.yml
+    - icinga_user_group.yml
+    - icinga_user.yml
+    - icinga_zone.yml
+    - icinga_endpoint.yml
+    - icinga_notification_template.yml
+    - icinga_notification.yml
+    - icinga_hostgroup.yml
+    - icinga_servicegroup.yml
+    - icinga_service_template.yml
+    - icinga_service_apply.yml
+    - icinga_hostgroup.yml
+    - icinga_host_template.yml
+    - icinga_host.yml
+    - icinga_service.yml
+
+    # Test info modules
+    - icinga_command_template_info.yml
+    - icinga_command_info.yml
+    - icinga_timeperiod_template_info.yml
+    - icinga_timeperiod_info.yml
+    - icinga_user_template_info.yml
+    - icinga_user_info.yml
+    - icinga_user_group_info.yml
+    - icinga_zone_info.yml
+    - icinga_endpoint_info.yml
+    - icinga_notification_template_info.yml
+    - icinga_notification_info.yml
+    - icinga_hostgroup_info.yml
+    - icinga_servicegroup_info.yml
+    - icinga_service_template_info.yml
+    - icinga_service_apply_info.yml
+    - icinga_hostgroup_info.yml
+    - icinga_host_template_info.yml
+    - icinga_host_info.yml
+    - icinga_service_info.yml
+    - no_query_icinga_command_template_info.yml
+    - no_query_icinga_command_info.yml
+    - no_query_icinga_timeperiod_template_info.yml
+    - no_query_icinga_timeperiod_info.yml
+    - no_query_icinga_user_template_info.yml
+    - no_query_icinga_user_info.yml
+    - no_query_icinga_user_group_info.yml
+    - no_query_icinga_zone_info.yml
+    - no_query_icinga_endpoint_info.yml
+    - no_query_icinga_notification_template_info.yml
+    - no_query_icinga_notification_info.yml
+    - no_query_icinga_hostgroup_info.yml
+    - no_query_icinga_servicegroup_info.yml
+    - no_query_icinga_service_template_info.yml
+    - no_query_icinga_service_apply_info.yml
+    - no_query_icinga_hostgroup_info.yml
+    - no_query_icinga_host_template_info.yml
+    - no_query_icinga_host_info.yml
+    - no_query_icinga_service_info.yml
+
+    ### failing tests
+    - wrong_host_icinga_command_template.yml
+    - wrong_host_icinga_command.yml
+    - wrong_host_icinga_timeperiod_template.yml
+    - wrong_host_icinga_timeperiod.yml
+    - wrong_host_icinga_user_template.yml
+    - wrong_host_icinga_user_group.yml
+    - wrong_host_icinga_user.yml
+    - wrong_host_icinga_zone.yml
+    - wrong_host_icinga_endpoint.yml
+    - wrong_host_icinga_notification_template.yml
+    - wrong_host_icinga_notification.yml
+    - wrong_host_icinga_hostgroup.yml
+    - wrong_host_icinga_servicegroup.yml
+    - wrong_host_icinga_service_template.yml
+    - wrong_host_icinga_service_apply.yml
+    - wrong_host_icinga_hostgroup.yml
+    - wrong_host_icinga_host_template.yml
+    - wrong_host_icinga_host.yml
+    - wrong_host_icinga_service.yml
+
+    - wrong_pass_icinga_command_template.yml
+    - wrong_pass_icinga_command.yml
+    - wrong_pass_icinga_timeperiod_template.yml
+    - wrong_pass_icinga_timeperiod.yml
+    - wrong_pass_icinga_user_template.yml
+    - wrong_pass_icinga_user_group.yml
+    - wrong_pass_icinga_user.yml
+    - wrong_pass_icinga_zone.yml
+    - wrong_pass_icinga_endpoint.yml
+    - wrong_pass_icinga_notification_template.yml
+    - wrong_pass_icinga_notification.yml
+    - wrong_pass_icinga_hostgroup.yml
+    - wrong_pass_icinga_servicegroup.yml
+    - wrong_pass_icinga_service_template.yml
+    - wrong_pass_icinga_service_apply.yml
+    - wrong_pass_icinga_hostgroup.yml
+    - wrong_pass_icinga_host_template.yml
+    - wrong_pass_icinga_host.yml
+    - wrong_pass_icinga_service.yml
+
+    - wrong_pass_icinga_command_template_info.yml
+    - wrong_pass_icinga_command_info.yml
+    - wrong_pass_icinga_timeperiod_template_info.yml
+    - wrong_pass_icinga_timeperiod_info.yml
+    - wrong_pass_icinga_user_template_info.yml
+    - wrong_pass_icinga_user_info.yml
+    - wrong_pass_icinga_user_group_info.yml
+    - wrong_pass_icinga_zone_info.yml
+    - wrong_pass_icinga_endpoint_info.yml
+    - wrong_pass_icinga_notification_template_info.yml
+    - wrong_pass_icinga_notification_info.yml
+    - wrong_pass_icinga_hostgroup_info.yml
+    - wrong_pass_icinga_servicegroup_info.yml
+    - wrong_pass_icinga_service_template_info.yml
+    - wrong_pass_icinga_service_apply_info.yml
+    - wrong_pass_icinga_hostgroup_info.yml
+    - wrong_pass_icinga_host_template_info.yml
+    - wrong_pass_icinga_host_info.yml
+    - wrong_pass_icinga_service_info.yml
+
+    - wrong_query_icinga_command_template_info.yml
+    - wrong_query_icinga_command_info.yml
+    - wrong_query_icinga_timeperiod_template_info.yml
+    - wrong_query_icinga_timeperiod_info.yml
+    - wrong_query_icinga_user_template_info.yml
+    - wrong_query_icinga_user_group_info.yml
+    - wrong_query_icinga_user_info.yml
+    - wrong_query_icinga_zone_info.yml
+    - wrong_query_icinga_endpoint_info.yml
+    - wrong_query_icinga_notification_template_info.yml
+    - wrong_query_icinga_notification_info.yml
+    - wrong_query_icinga_hostgroup_info.yml
+    - wrong_query_icinga_servicegroup_info.yml
+    - wrong_query_icinga_service_template_info.yml
+    - wrong_query_icinga_service_apply_info.yml
+    - wrong_query_icinga_hostgroup_info.yml
+    - wrong_query_icinga_host_template_info.yml
+    - wrong_query_icinga_host_info.yml
+    - wrong_query_icinga_service_info.yml
+
+    - absent_icinga_service.yml
+    - absent_icinga_host.yml
+    - absent_icinga_host_template.yml
+    - absent_icinga_hostgroup.yml
+    - absent_icinga_service_apply.yml
+    - absent_icinga_service_template.yml
+    - absent_icinga_servicegroup.yml
+    - absent_icinga_hostgroup.yml
+    - absent_icinga_notification.yml
+    - absent_icinga_notification_template.yml
+    - absent_icinga_endpoint.yml
+    - absent_icinga_zone.yml
+    - absent_icinga_user.yml
+    - absent_icinga_user_group.yml
+    - absent_icinga_user_template.yml
+    - absent_icinga_timeperiod.yml
+    - absent_icinga_timeperiod_template.yml
+    - absent_icinga_command.yml
+    - absent_icinga_command_template.yml
+
+- name: deploy changes in icinga
+  tags: uri
+  uri:
+    url: "{{ icinga_url }}/director/config/deploy"
+    headers:
+      Accept: application/json
+    method: POST
+    user: "{{ icinga_user }}"
+    password: "{{ icinga_pass }}"
+    return_content: true

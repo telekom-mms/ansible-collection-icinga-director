@@ -1,0 +1,31 @@
+---
+- name: Create a host in icinga
+  t_systems_mms.icinga_director.icinga_host:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: iamwrong
+    disabled: false
+    object_name: "foohost"
+    address: "127.0.0.1"
+    address6: "::1"
+    display_name: "foohost"
+    groups:
+      - "foohostgroup"
+    imports:
+      - "foohosttemplate"
+    vars:
+      dnscheck: "no"
+    check_command: hostalive
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
+    has_agent: true
+    master_should_connect: true
+    accept_config: true
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
