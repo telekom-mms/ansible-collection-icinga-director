@@ -48,6 +48,19 @@ collections:
 - t_systems_mms.icinga_director
 ```
 
+## Documentation
+
+To see the documentation for the module `icinga_host` run the following command on the cli:
+
+```
+ansible-doc t_systems_mms.icinga_director.icinga_host
+```
+
+You can also find the complete documentation for the modules on the Ansible documentation:
+
+[https://docs.ansible.com/ansible/latest/collections/t_systems_mms/icinga_director/index.html#plugins-in-t-systems-mms-icinga-director]()
+
+
 ## Examples using the modules
 
 See the `examples` directory for a complete list of examples.
