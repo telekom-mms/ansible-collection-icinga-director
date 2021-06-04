@@ -1,15 +1,20 @@
 # Changelog
 
+## [1.17.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.17.1) (2021-06-04)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.17.0...1.17.1)
+
+**Merged pull requests:**
+
+- add info about documentation [\#120](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.17.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.17.0) (2021-05-09)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.16.0...1.17.0)
 
-**Implemented enhancements:**
-
-- add timeperiod\_template and corresponding info module [\#118](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/118) ([rndmh3ro](https://github.com/rndmh3ro))
-
 **Merged pull requests:**
 
+- add timeperiod\_template and corresponding info module [\#118](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/118) ([rndmh3ro](https://github.com/rndmh3ro))
 - add ansible-2.11 to CI [\#117](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/117) ([rndmh3ro](https://github.com/rndmh3ro))
 - Improve Release Action [\#116](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/116) ([schurzi](https://github.com/schurzi))
 
@@ -20,7 +25,6 @@
 **Implemented enhancements:**
 
 - add Usergroups modules [\#114](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/114) ([rndmh3ro](https://github.com/rndmh3ro))
-- update notification modules - add option user\_groups [\#112](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/112) ([sgruber94](https://github.com/sgruber94))
 
 **Closed issues:**
 
@@ -30,6 +34,7 @@
 **Merged pull requests:**
 
 - Update installation instructions in README.md [\#115](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/115) ([rndmh3ro](https://github.com/rndmh3ro))
+- update notification modules - add option user\_groups [\#112](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/112) ([sgruber94](https://github.com/sgruber94))
 
 ## [1.15.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.15.0) (2021-02-12)
 
@@ -216,6 +221,10 @@
 - update examples and tests so they can actually be deployed [\#54](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/54) ([rndmh3ro](https://github.com/rndmh3ro))
 - add check\_command arg to service\_apply module [\#53](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/53) ([rndmh3ro](https://github.com/rndmh3ro))
 
+**Fixed bugs:**
+
+- when deleting objects, only the object\_name is required  [\#45](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/45) ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Closed issues:**
 
 - Add object "Service" for a Host [\#42](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/42)
@@ -248,7 +257,6 @@
 **Fixed bugs:**
 
 - Hosts in state absent don't require import parameter [\#44](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44)
-- when deleting objects, only the object\_name is required  [\#45](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/45) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.4.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.2) (2020-09-25)
 
