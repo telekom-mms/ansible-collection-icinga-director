@@ -50,7 +50,10 @@ collections:
 
 ## Documentation
 
-To see the documentation for the module `icinga_host` run the following command on the cli:
+Our modules include documentation.
+To display it you can use the `ansible-doc` command.
+
+For example, to see the documentation for the module `icinga_host` run the following command on the cli:
 
 ```
 ansible-doc t_systems_mms.icinga_director.icinga_host
