@@ -61,7 +61,7 @@ ansible-doc t_systems_mms.icinga_director.icinga_host
 
 You can also find the complete documentation for the modules on the Ansible documentation:
 
-[https://docs.ansible.com/ansible/latest/collections/t_systems_mms/icinga_director/index.html#plugins-in-t-systems-mms-icinga-director]()
+<https://docs.ansible.com/ansible/latest/collections/t_systems_mms/icinga_director/index.html#plugins-in-t-systems-mms-icinga-director>
 
 
 ## Examples using the modules
