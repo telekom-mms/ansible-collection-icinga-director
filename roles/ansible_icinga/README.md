@@ -181,6 +181,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | apply_to                   | no       |
 | assign_filter              | no       |
 | imports                    | no       |
+| period                     | no       |
 
 ## Example Playbook
 
