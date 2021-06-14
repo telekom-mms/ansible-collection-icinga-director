@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.17.1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.17.1) (2021-06-04)
+## [1.18.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.18.0) (2021-06-14)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.17.0...1.17.1)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.17.0...1.18.0)
 
 **Merged pull requests:**
 
+- add period to notification task [\#121](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/121) ([michaelamattes](https://github.com/michaelamattes))
 - add info about documentation [\#120](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.17.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.17.0) (2021-05-09)
@@ -221,17 +222,9 @@
 - update examples and tests so they can actually be deployed [\#54](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/54) ([rndmh3ro](https://github.com/rndmh3ro))
 - add check\_command arg to service\_apply module [\#53](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/53) ([rndmh3ro](https://github.com/rndmh3ro))
 
-**Fixed bugs:**
-
-- when deleting objects, only the object\_name is required  [\#45](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/45) ([rndmh3ro](https://github.com/rndmh3ro))
-
 **Closed issues:**
 
 - Add object "Service" for a Host [\#42](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/42)
-
-**Merged pull requests:**
-
-- add example and test for command without args [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/46) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.6.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.6.0) (2020-10-22)
 
@@ -250,6 +243,10 @@
 - Add Support for Zones and Endpoints [\#48](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/48) ([arbu](https://github.com/arbu))
 - Create codeql-analysis.yml [\#47](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/47) ([rndmh3ro](https://github.com/rndmh3ro))
 
+**Merged pull requests:**
+
+- add example and test for command without args [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/46) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.4.3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.3) (2020-10-01)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/compare/1.4.2...1.4.3)
@@ -257,6 +254,7 @@
 **Fixed bugs:**
 
 - Hosts in state absent don't require import parameter [\#44](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44)
+- when deleting objects, only the object\_name is required  [\#45](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/45) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.4.2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.4.2) (2020-09-25)
 
