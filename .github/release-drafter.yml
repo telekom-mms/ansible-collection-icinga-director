@@ -18,6 +18,7 @@ categories:
       - 'deprecated'  # fef2c0
 exclude-labels:
   - 'skip-changelog'
+  - 'duplicate'
 version-resolver:
   major:
     labels:
