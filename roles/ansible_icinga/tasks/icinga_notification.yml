@@ -17,7 +17,7 @@
     types: "{{ notification.0.types | default(omit) }}"
     users: "{{ notification.0.users | default(omit) }}"
     user_groups: "{{ notification.0.user_groups | default(omit) }}"
-    apply_to: "{{ notification.0.apply_to | default(omit) }}"
+    apply_to: "{{ notification.0.apply_to }}"
     assign_filter: "{{ notification.0.assign_filter | default(omit) }}"
     imports: "{{ notification.0.imports | default(omit) }}"
     period: "{{ notification.0.period | default(omit) }}"

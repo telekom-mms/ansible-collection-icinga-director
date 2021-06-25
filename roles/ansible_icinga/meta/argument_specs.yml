@@ -13,6 +13,7 @@ argument_specs:
             HTTP, HTTPS, or FTP URL in the form
             (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
         type: str
+        required: true
       icinga_url_password:
         description:
           - >-

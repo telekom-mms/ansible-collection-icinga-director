@@ -25,7 +25,7 @@
     enable_passive_checks: "{{ service.0.enable_passive_checks | default(omit) }}"
     enable_perfdata: "{{ service.0.enable_perfdata | default(omit) }}"
     groups: "{{ service.0.groups | default(omit) }}"
-    host: "{{ service.0.host | default(omit) }}"
+    host: "{{ service.0.host }}"
     imports: "{{ service.0.imports | default(omit) }}"
     max_check_attempts: "{{ service.0.max_check_attempts | default(omit) }}"
     notes: "{{ service.0.notes | default(omit) }}"

@@ -178,7 +178,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | notification_interval      | no       |
 | types                      | no       |
 | users                      | no       |
-| apply_to                   | no       |
+| apply_to                   | yes      |
 | assign_filter              | no       |
 | imports                    | no       |
 | period                     | no       |
