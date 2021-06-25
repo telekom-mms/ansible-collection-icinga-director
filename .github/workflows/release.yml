@@ -45,7 +45,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SINCE_VERSION: "${{ steps.previoustag.outputs.tag }}"
-          GITHUB_REPOSITORY: "T-Systems-MMS/ansible-collection-icinga-director"
+          GITHUB_REPOSITORY: "${{ GITHUB_REPOSITORY }}"
 
       - name: Update Changelog.rst
         run: antsibull-changelog generate -v
