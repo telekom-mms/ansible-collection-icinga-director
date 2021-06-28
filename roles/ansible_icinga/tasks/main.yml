@@ -69,6 +69,11 @@
   when: icinga_servicegroups is defined
   tags: servicegroup
 
+- name: icinga notification template configuration
+  include_tasks: icinga_notification_template.yml
+  when: icinga_notification_templates is defined
+  tags: notification_template
+
 - name: icinga notification configuration
   include_tasks: icinga_notification.yml
   when: icinga_notifications is defined
