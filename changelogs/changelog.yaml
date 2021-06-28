@@ -1,0 +1,8 @@
+ancestor:
+releases:
+  1.18.1:
+    changes:
+      trivial:
+      - use antsichaut and release-drafter for changelog and release generation (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/122)
+      - add changelogs config so antsibull-changelog can work (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/124)
+    release_date: '2021-06-28'
