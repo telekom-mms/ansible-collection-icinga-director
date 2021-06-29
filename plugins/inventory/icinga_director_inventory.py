@@ -66,13 +66,18 @@ class InventoryModule(BaseInventoryPlugin):
 
     def set_hosts(self):
         host_list = self.call_url(
-            self.url, self.url_username, self.url_password, url_path="/director/hosts"
+            self.url,
+            self.url_username,
+            self.url_password,
+            url_path="/director/hosts",
         )
 
         for host in host_list["objects"]:
             self.inventory.add_host(host["object_name"])
             for item in host:
-                self.inventory.set_variable(host["object_name"], item, host[item])
+                self.inventory.set_variable(
+                    host["object_name"], item, host[item]
+                )
 
     def add_hosts_to_groups(self):
         hostgroups = self.set_hostgroups()
