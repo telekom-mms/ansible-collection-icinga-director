@@ -21,7 +21,7 @@ extends_documentation_fragment:
 
 
 from ansible.plugins.inventory import BaseInventoryPlugin
-from ansible.errors import AnsibleError, AnsibleParserError
+from ansible.errors import AnsibleParserError
 
 from ansible.module_utils.urls import open_url
 import json
