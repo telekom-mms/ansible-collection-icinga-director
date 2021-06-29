@@ -48,7 +48,6 @@ class InventoryModule(BaseInventoryPlugin):
             headers=headers,
         )
         content = ""
-        error = ""
         if rsp:
             content = json.loads(rsp.read().decode("utf-8"))
             return content
