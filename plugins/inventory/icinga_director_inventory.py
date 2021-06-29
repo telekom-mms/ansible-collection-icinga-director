@@ -12,15 +12,9 @@ options:
         description: Name of the plugin
         required: true
         choices: ['t_systems_mms.icinga_director.icinga_director_inventory']
-#    url:
-#        description: Icinga URL to connect to
-#        required: true
-#    url_username:
-#        description: Username to connect to the Icinga instance
-#        required: false
-#    url_password:
-#        description: Password to connect to the Icinga instance
-#        required: false
+    url:
+        description: Icinga URL to connect to
+        required: true
 extends_documentation_fragment:
   - ansible.builtin.url
 """
@@ -28,9 +22,6 @@ extends_documentation_fragment:
 
 from ansible.plugins.inventory import BaseInventoryPlugin
 from ansible.errors import AnsibleError, AnsibleParserError
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
-    Icinga2APIObject,
-)
 
 from ansible.module_utils.urls import open_url
 import json
@@ -49,7 +40,7 @@ class InventoryModule(BaseInventoryPlugin):
             "X-HTTP-Method-Override": "GET",
         }
         url = url + url_path
-        rsp, info = open_url(
+        rsp = open_url(
             url,
             url_username=self.url_username,
             url_password=self.url_password,
@@ -61,14 +52,6 @@ class InventoryModule(BaseInventoryPlugin):
         if rsp:
             content = json.loads(rsp.read().decode("utf-8"))
             return content
-        if info["status"] >= 400:
-            try:
-                content = json.loads(info["body"].decode("utf-8"))
-                error = content["error"]
-            except (ValueError, KeyError):
-                error = info["msg"]
-        if info["status"] < 0:
-            error = info["msg"]
 
     def verify_file(self, path):
         """Verify the configuration file."""
@@ -131,14 +114,13 @@ class InventoryModule(BaseInventoryPlugin):
         # Read the inventory YAML file
         self._read_config_data(path)
 
-        try:
         # Store the options from the YAML file
+        try:
             self.plugin = self.get_option("plugin")
             self.url = self.get_option("url")
             self.url_username = self.get_option("url_username")
             self.url_password = self.get_option("url_password")
             self.force_basic_auth = self.get_option("force_basic_auth")
-            self.foo = self.get_option("foo")
         except Exception as e:
             raise AnsibleParserError("All correct options required: " + str(e))
 
