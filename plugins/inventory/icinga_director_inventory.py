@@ -40,7 +40,7 @@ extends_documentation_fragment:
 
 EXAMPLES = r"""
 plugin: t_systems_mms.icinga_director.icinga_director_inventory
-url: "https://example.com
+url: 'https://example.com'
 url_username: foo
 url_password: bar
 force_basic_auth: False
