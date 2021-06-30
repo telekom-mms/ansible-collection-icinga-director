@@ -114,8 +114,7 @@ class InventoryModule(BaseInventoryPlugin):
                 self.url_password,
                 url_path="/monitoring/list/hosts"
                 + "?hostgroup_name="
-                + hostgroup
-                + "&format=json",
+                + hostgroup,
             )
             for member in members:
                 self.inventory.add_host(member["host_name"], group=hostgroup)
