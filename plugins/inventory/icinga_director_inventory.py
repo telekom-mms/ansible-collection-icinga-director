@@ -144,14 +144,11 @@ class InventoryModule(BaseInventoryPlugin):
         self._read_config_data(path)
 
         # Store the options from the YAML file
-        try:
-            self.plugin = self.get_option("plugin")
-            self.url = self.get_option("url")
-            self.url_username = self.get_option("url_username")
-            self.url_password = self.get_option("url_password")
-            self.force_basic_auth = self.get_option("force_basic_auth")
-        except Exception as e:
-            raise AnsibleParserError("All correct options required: " + str(e))
+        self.plugin = self.get_option("plugin")
+        self.url = self.get_option("url")
+        self.url_username = self.get_option("url_username")
+        self.url_password = self.get_option("url_password")
+        self.force_basic_auth = self.get_option("force_basic_auth")
 
         self.set_hosts()
         self.add_hosts_to_groups()
