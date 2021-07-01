@@ -12,6 +12,7 @@ releases:
       - add notification_template to role (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/125)
       trivial:
       - add changelogs config so antsibull-changelog can work (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/124)
-      - use antsichaut and release-drafter for changelog and release generation (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/122)
       - ignore changelogs directory created by a 3rd party tool (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/126)
+      - use antsichaut and release-drafter for changelog and release generation (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/122)
+      - add Inventory plugin (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/127)
     release_date: '2021-06-28'
