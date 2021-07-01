@@ -3,32 +3,36 @@
 [![ci-ansible-test](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/workflows/ansible-test/badge.svg)](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/actions?query=workflow%3Aansible-test)
 [![codecov](https://codecov.io/gh/T-Systems-MMS/ansible-collection-icinga-director/branch/master/graph/badge.svg)](https://codecov.io/gh/T-Systems-MMS/ansible-collection-icinga-director)
 
-This collection contains Ansible [modules](plugins/modules/) and a [role](roles/ansible_icinga/) to change objects in Icinga 2 using the director API.
+This Ansible collection contains:
+
+1. Ansible [modules](plugins/modules/) to change objects in Icinga 2 using the director API. 
+Additionally all supported modules have an appropriate `*_info`-module to gather facts about the existing objects in the director.
+
+    * `icinga_command_template`
+    * `icinga_command`
+    * `icinga_endpoint`
+    * `icinga_host_template`
+    * `icinga_host`
+    * `icinga_hostgroup`
+    * `icinga_notification`
+    * `icinga_notification_template`
+    * `icinga_service`
+    * `icinga_service_apply`
+    * `icinga_service_template`
+    * `icinga_servicegroup`
+    * `icinga_timeperiod`
+    * `icinga_timeperiod_template`
+    * `icinga_user_group`
+    * `icinga_user_template`
+    * `icinga_user`
+    * `icinga_zone`
+
+
+2. A [role](roles/ansible_icinga/) to change objects in Icinga 2 using the the provided modules.
+
+3. An [inventory plugin](plugins/inventory) to use hosts and groups defined in Icinga as a dynamic inventory.
 
 Required Ansible version: 2.9.10
-
-Currently supported modules:
-
-* `icinga_command_template`
-* `icinga_command`
-* `icinga_endpoint`
-* `icinga_host_template`
-* `icinga_host`
-* `icinga_hostgroup`
-* `icinga_notification`
-* `icinga_notification_template`
-* `icinga_service`
-* `icinga_service_apply`
-* `icinga_service_template`
-* `icinga_servicegroup`
-* `icinga_timeperiod`
-* `icinga_timeperiod_template`
-* `icinga_user_group`
-* `icinga_user_template`
-* `icinga_user`
-* `icinga_zone`
-
-Additionally all supported modules have an appropriate `*_info`-module to gather facts about the existing objects in the director.
 
 ## Installation
 
@@ -59,9 +63,13 @@ For example, to see the documentation for the module `icinga_host` run the follo
 ansible-doc t_systems_mms.icinga_director.icinga_host
 ```
 
-You can also find the complete documentation for the modules on the Ansible documentation:
+To see the documentation for the inventory plugin, run:
 
-<https://docs.ansible.com/ansible/latest/collections/t_systems_mms/icinga_director/index.html#plugins-in-t-systems-mms-icinga-director>
+```
+ansible-doc -t inventory t_systems_mms.icinga_director.icinga_director_inventory
+```
+
+You can also find the complete documentation for the modules on the [Ansible documentation](<https://docs.ansible.com/ansible/latest/collections/t_systems_mms/icinga_director/index.html#plugins-in-t-systems-mms-icinga-director>).
 
 
 ## Examples using the modules
@@ -103,6 +111,26 @@ See the `examples` directory for a complete list of examples.
 ## Examples using the role
 
 Please see the [README](roles/ansible_icinga/README.md) of the role.
+
+## Examples using the inventory plugin
+
+Create a file that ends with `icinga_director_inventory.yaml`, for example `inventory.icinga_director_inventory.yaml`.
+
+The content should look like this:
+
+```
+plugin: t_systems_mms.icinga_director.icinga_director_inventory
+url: "https://example.com"
+url_username: foo
+url_password: bar
+force_basic_auth: False
+```
+
+Then you can use the dynamic inventory like this:
+
+```
+ansible-playbook -i inventory.icinga_director_inventory.yaml path/to/your/playbook.yml
+```
 
 ## Troubleshooting
 
