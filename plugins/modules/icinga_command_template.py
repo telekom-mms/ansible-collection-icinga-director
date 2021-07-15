@@ -91,7 +91,7 @@ options:
     description:
       - Arguments of the command template.
       - Each argument can take either a string, a json or a dict
-      - When using a dict as argument value, the following properties are supported:
+      - When using a dict as argument value, the following properties are supported.
         C(skip_key), C(repeat_key), C(required), C(order), C(description)),
         C(set_if), C(value).
       - The C(value) property can be either a string, a json or a dict. When used as a dict, you can define
