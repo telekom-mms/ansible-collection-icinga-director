@@ -90,6 +90,12 @@ options:
   arguments:
     description:
       - Arguments of the command template.
+      - Each argument can take either a string, a json or a dict
+      - When using a dict as argument value, the following properties are supported.
+        C(skip_key), C(repeat_key), C(required), C(order), C(description)),
+        C(set_if), C(value).
+      - The C(value) property can be either a string, a json or a dict. When used as a dict, you can define
+        its C(type) as C(Function) and set its C(body) property as an Icinga DSL piece of config.
     type: "dict"
 """
 
@@ -135,6 +141,11 @@ EXAMPLES = """
         set_if: $centreon_verbose$
       '--warning':
         value: $centreon_warning$
+      '--dummy-arg':
+        description: "dummy arg using Icinga DSL code"
+        value:
+          type: "Function"
+          body: 'return macro("$dummy_var$")'
     command: "/opt/centreon-plugins/centreon_plugins.pl"
     command_type: "PluginCheck"
     object_name: centreon-plugins-template
