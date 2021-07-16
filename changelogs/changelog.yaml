@@ -20,4 +20,5 @@ releases:
     changes:
       minor_changes:
       - add "vars" variable to icinga_notification in the role (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/129)
+      - Add some more documentation on command template (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/128)
     release_date: '2021-07-16'
