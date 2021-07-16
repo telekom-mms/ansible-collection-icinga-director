@@ -6,7 +6,11 @@ plugins:
   cliconf: {}
   connection: {}
   httpapi: {}
-  inventory: {}
+  inventory:
+    icinga_director_inventory:
+      description: Returns Ansible inventory from Icinga
+      name: icinga_director_inventory
+      version_added: null
   lookup: {}
   module:
     icinga_command:
@@ -193,4 +197,4 @@ plugins:
   shell: {}
   strategy: {}
   vars: {}
-version: 1.19.0
+version: 1.20.0
