@@ -40,6 +40,11 @@
         set_if: $centreon_verbose$
       '--warning':
         value: $centreon_warning$
+      '--dummy-arg':
+        description: "dummy arg using Icinga DSL code"
+        value:
+          type: "Function"
+          body: 'return macro("$dummy_var$")'
     command_type: "PluginCheck"
     disabled: false
     object_name: centreon-plugins
