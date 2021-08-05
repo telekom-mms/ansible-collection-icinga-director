@@ -19,6 +19,11 @@ releases:
   1.20.0:
     changes:
       minor_changes:
-      - add "vars" variable to icinga_notification in the role (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/129)
       - Add some more documentation on command template (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/128)
+      - add "vars" variable to icinga_notification in the role (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/129)
     release_date: '2021-07-16'
+  1.20.1:
+    changes:
+      trivial:
+      - Docs and tests update (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/131)
+    release_date: '2021-08-05'
