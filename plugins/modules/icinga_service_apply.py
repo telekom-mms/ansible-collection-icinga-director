@@ -96,6 +96,14 @@ options:
       - Whether to process performance data provided by this object.
     required: false
     type: "bool"
+  event_command:
+    description:
+      - Event command for service which gets called on every check execution if one of these conditions matches
+      - The service is in a soft state
+      - The service state changes into a hard state
+      - The service state recovers from a soft or hard state to OK/Up
+    required: false
+    type: str
   max_check_attempts:
     description:
       - Defines after how many check attempts a new hard state is reached.
@@ -169,6 +177,7 @@ EXAMPLES = """
     enable_notifications: true
     enable_passive_checks: false
     enable_perfdata: false
+    event_command: myeventcommand
     max_check_attempts: "5"
     retry_interval: "3m"
     imports:
@@ -200,6 +209,7 @@ EXAMPLES = """
     enable_notifications: true
     enable_passive_checks: false
     enable_perfdata: false
+    event_command: myeventcommand
     max_check_attempts: "5"
     retry_interval: "3m"
     command_endpoint: "fooendpoint"
@@ -266,6 +276,7 @@ def main():
         enable_notifications=dict(type="bool", required=False),
         enable_passive_checks=dict(type="bool", required=False),
         enable_perfdata=dict(type="bool", required=False),
+        event_command=dict(type="str", required=False),
         max_check_attempts=dict(required=False),
         retry_interval=dict(required=False),
         apply_for=dict(required=False),
@@ -297,6 +308,7 @@ def main():
         "enable_notifications": module.params["enable_notifications"],
         "enable_passive_checks": module.params["enable_passive_checks"],
         "enable_perfdata": module.params["enable_perfdata"],
+        "event_command": module.params["event_command"],
         "max_check_attempts": module.params["max_check_attempts"],
         "retry_interval": module.params["retry_interval"],
         "command_endpoint": module.params["command_endpoint"],
