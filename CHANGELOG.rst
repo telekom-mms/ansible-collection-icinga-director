@@ -5,6 +5,14 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.21.0
+=======
+
+Minor Changes
+-------------
+
+- Add event_command parameter to icinga_service_apply module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/132)
+
 v1.20.1
 =======
 
