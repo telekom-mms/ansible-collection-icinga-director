@@ -30,6 +30,7 @@
     enable_notifications: "{{ service_apply.0.enable_notifications | default(omit) }}"
     enable_passive_checks: "{{ service_apply.0.enable_passive_checks | default(omit) }}"
     enable_perfdata: "{{ service_apply.0.enable_perfdata | default(omit) }}"
+    event_command: "{{ service_apply.0.event_command | default(omit) }}"
     max_check_attempts: "{{ service_apply.0.max_check_attempts | default(omit) }}"
     retry_interval: "{{ service_apply.0.retry_interval | default(omit) }}"
   loop: "{{ icinga_service_applies|subelements('service_apply_object') }}"
