@@ -12,6 +12,7 @@ Minor Changes
 -------------
 
 - Add event_command parameter to icinga_service_apply module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/132)
+- Add event_command parameter to service apply playbook to enable usage (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/133)
 
 v1.20.1
 =======
