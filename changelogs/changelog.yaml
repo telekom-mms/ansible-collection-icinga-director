@@ -35,3 +35,9 @@ releases:
       trivial:
       - Docs and tests update (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/131)
     release_date: '2021-08-16'
+  1.21.1:
+    changes:
+      bugfixes:
+      - Changed place in the creation order of service object in ansible_icinga role
+        (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/135)
+    release_date: '2021-08-30'
