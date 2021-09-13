@@ -17,6 +17,10 @@
     port: "{{ endpoint.0.port | default(omit) }}"
     log_duration: "{{ endpoint.0.log_duration | default(omit) }}"
     zone: "{{ endpoint.0.zone | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_endpoints|subelements('endpoint_object') }}"
   loop_control:
     loop_var: endpoint

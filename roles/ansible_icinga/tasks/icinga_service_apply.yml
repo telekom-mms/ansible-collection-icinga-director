@@ -33,6 +33,10 @@
     event_command: "{{ service_apply.0.event_command | default(omit) }}"
     max_check_attempts: "{{ service_apply.0.max_check_attempts | default(omit) }}"
     retry_interval: "{{ service_apply.0.retry_interval | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_service_applies|subelements('service_apply_object') }}"
   loop_control:
     loop_var: service_apply

@@ -19,6 +19,10 @@
     period: "{{ user.0.period | default(omit) }}"
     disabled: "{{ user.0.disabled | default(omit) }}"
     email: "{{ user.0.email | default(icinga_user_email) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_users|subelements('user_object') }}"
   loop_control:
     loop_var: user

@@ -23,7 +23,10 @@
     user_groups: "{{ notification_template.0.user_groups | default(omit) }}"
     notification_command: "{{ notification_template.0.notification_command | default(omit) }}"
     imports: "{{ notification_template.0.imports | default(omit) }}"
-
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_notification_templates|subelements('notification_template_object') }}"
   loop_control:
     loop_var: notification_template

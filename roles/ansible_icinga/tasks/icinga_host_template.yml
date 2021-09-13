@@ -29,6 +29,10 @@
     master_should_connect: "{{ host_template.0.master_should_connect | default(omit) }}"
     accept_config: "{{ host_template.0.accept_config | default(omit) }}"
     event_command: "{{ host_template.0.event_command | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_host_templates|subelements('host_template_object') }}"
   loop_control:
     loop_var: host_template
