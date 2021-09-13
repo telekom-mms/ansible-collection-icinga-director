@@ -34,6 +34,10 @@
     vars: "{{ service_template.0.vars | default(omit) }}"
     volatile: "{{ service_template.0.volatile | default(omit) }}"
     event_command: "{{ service_template.0.event_command | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_service_templates|subelements('service_template_object') }}"
   loop_control:
     loop_var: service_template

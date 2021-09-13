@@ -15,6 +15,10 @@
     object_name: "{{ servicegroup.1 }}"
     display_name: "{{ servicegroup.0.display_name | default(omit) }}"
     assign_filter: "{{ servicegroup.0.assign_filter | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_servicegroups|subelements('servicegroup_object') }}"
   loop_control:
     loop_var: servicegroup

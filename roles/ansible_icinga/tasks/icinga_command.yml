@@ -21,6 +21,10 @@
     zone: "{{ command.0.zone | default(omit) }}"
     vars: "{{ command.0.vars | default(omit) }}"
     arguments: "{{ command.0.arguments | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_commands|subelements('command_object') }}"
   loop_control:
     loop_var: command

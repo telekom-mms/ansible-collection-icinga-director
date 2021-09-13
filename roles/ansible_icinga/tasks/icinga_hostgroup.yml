@@ -15,6 +15,10 @@
     object_name: "{{ hostgroup.1 }}"
     display_name: "{{ hostgroup.0.display_name | default(omit) }}"
     assign_filter: "{{ hostgroup.0.assign_filter | default('host.name=\"' + hostgroup.1 + '-*\"') }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_hostgroups|subelements('hostgroup_object') }}"
   loop_control:
     loop_var: hostgroup
