@@ -36,7 +36,7 @@
   retries: 3
   delay: 3
   register: result
-  until: result.rc == 0
+  until: result is succeeded
   loop: "{{ icinga_service_applies|subelements('service_apply_object') }}"
   loop_control:
     loop_var: service_apply

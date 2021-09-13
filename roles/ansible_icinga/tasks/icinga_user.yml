@@ -22,7 +22,7 @@
   retries: 3
   delay: 3
   register: result
-  until: result.rc == 0
+  until: result is succeeded
   loop: "{{ icinga_users|subelements('user_object') }}"
   loop_control:
     loop_var: user
