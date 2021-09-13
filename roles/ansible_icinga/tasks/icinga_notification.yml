@@ -23,9 +23,9 @@
     period: "{{ notification.0.period | default(omit) }}"
     vars: "{{ notification.0.vars | default(omit) }}"
   retries: 3
-  delay: 3
-  register: result
-  until: result.rc == 0
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_notifications|subelements('notification_object') }}"
   loop_control:
     loop_var: notification

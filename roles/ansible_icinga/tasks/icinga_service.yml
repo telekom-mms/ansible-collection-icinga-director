@@ -35,9 +35,9 @@
     vars: "{{ service.0.vars | default(omit) }}"
     volatile: "{{ service.0.volatile | default(omit) }}"
   retries: 3
-  delay: 3
-  register: result
-  until: result.rc == 0
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_services|subelements('service_object') }}"
   loop_control:
     loop_var: service

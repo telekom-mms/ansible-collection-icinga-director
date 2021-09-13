@@ -17,9 +17,9 @@
     period: "{{ user_template.0.period | default(omit) }}"
     enable_notifications: "{{ user_template.0.enable_notifications | default(omit) }}"
   retries: 3
-  delay: 3
-  register: result
-  until: result.rc == 0
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_user_templates|subelements('user_template_object') }}"
   loop_control:
     loop_var: user_template

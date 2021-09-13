@@ -16,9 +16,9 @@
     is_global: "{{ zone.0.is_global | default(omit) }}"
     parent: "{{ zone.0.parent | default(omit) }}"
   retries: 3
-  delay: 3
-  register: result
-  until: result.rc == 0
+  delay: 3
+  register: result
+  until: result.rc == 0
   loop: "{{ icinga_zones|subelements('zone_object') }}"
   loop_control:
     loop_var: zone
