@@ -41,3 +41,8 @@ releases:
       - Changed place in the creation order of service object in ansible_icinga role
         (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/135)
     release_date: '2021-08-30'
+  1.21.2:
+    changes:
+      trivial:
+      - added 3 retries for every playbook (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/138)
+    release_date: '2021-09-13'
