@@ -45,4 +45,5 @@ releases:
     changes:
       trivial:
       - added 3 retries for every playbook (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/138)
+      - 'Draft: updated retry pull request (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/139)'
     release_date: '2021-09-13'
