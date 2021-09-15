@@ -88,6 +88,10 @@ options:
     description:
       - Your regular check interval.
     type: str
+  retry_interval:
+    description:
+      - Retry interval, will be applied after a state change unless the next hard state is reached.
+    type: str
   disabled:
     description:
       - Disabled objects will not be deployed.
@@ -99,6 +103,10 @@ options:
       - Choose a host-template.
     type: list
     elements: str
+  max_check_attempts:
+    description:
+      - Defines after how many check attempts a new hard state is reached.
+    type: str
   zone:
     description:
       - Set the zone.
@@ -151,6 +159,7 @@ EXAMPLES = """
     disabled: false
     check_command: dummy
     check_interval: 90s
+    retry_interval: 30s
     groups:
       - "foohostgroup"
     imports:
@@ -159,6 +168,7 @@ EXAMPLES = """
     notes_url: "'http://url1' 'http://url2'"
     has_agent: true
     master_should_connect: true
+    max_check_attempts: 3
     accept_config: true
 """
 
@@ -186,6 +196,7 @@ def main():
         groups=dict(type="list", elements="str", default=[], required=False),
         check_command=dict(required=False),
         check_interval=dict(required=False),
+        retry_interval=dict(required=False),
         imports=dict(type="list", elements="str", required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         address=dict(required=False),
@@ -196,6 +207,7 @@ def main():
         notes_url=dict(type="str", required=False),
         has_agent=dict(type="bool", choices=[True, False]),
         master_should_connect=dict(type="bool", choices=[True, False]),
+        max_check_attempts=dict(required=False),
         accept_config=dict(type="bool", choices=[True, False]),
         event_command=dict(type="str", required=False),
     )
@@ -212,6 +224,7 @@ def main():
         "groups": module.params["groups"],
         "check_command": module.params["check_command"],
         "check_interval": module.params["check_interval"],
+        "retry_interval": module.params["retry_interval"],
         "imports": module.params["imports"],
         "disabled": module.params["disabled"],
         "address": module.params["address"],
@@ -222,6 +235,7 @@ def main():
         "notes_url": module.params["notes_url"],
         "has_agent": module.params["has_agent"],
         "master_should_connect": module.params["master_should_connect"],
+        "max_check_attempts": module.params["max_check_attempts"],
         "accept_config": module.params["accept_config"],
         "event_command": module.params["event_command"],
     }
