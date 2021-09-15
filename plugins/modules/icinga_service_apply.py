@@ -177,7 +177,7 @@ EXAMPLES = """
     enable_notifications: true
     enable_passive_checks: false
     enable_perfdata: false
-    event_command: myeventcommand
+    event_command: restart_httpd
     max_check_attempts: "5"
     retry_interval: "3m"
     imports:
@@ -209,7 +209,7 @@ EXAMPLES = """
     enable_notifications: true
     enable_passive_checks: false
     enable_perfdata: false
-    event_command: myeventcommand
+    event_command: restart_httpd
     max_check_attempts: "5"
     retry_interval: "3m"
     command_endpoint: "fooendpoint"

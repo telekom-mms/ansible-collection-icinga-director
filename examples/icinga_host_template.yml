@@ -10,6 +10,7 @@
     disabled: false
     check_command: dummy
     check_interval: 90s
+    retry_interval: 30s
     groups:
       - "foohostgroup"
     imports:
@@ -18,4 +19,5 @@
     notes_url: "'http://url1' 'http://url2'"
     has_agent: true
     master_should_connect: true
+    max_check_attempts: 3
     accept_config: true
