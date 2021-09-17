@@ -52,6 +52,11 @@ releases:
       minor_changes:
       - Add support for retry_interval and max_check_attempts to host template (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/140)
       trivial:
-      - added 3 retries for every playbook (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/138)
       - 'Draft: updated retry pull request (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/139)'
+      - added 3 retries for every playbook (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/138)
     release_date: '2021-09-15'
+  1.22.1:
+    changes:
+      trivial:
+      - added missing parameter to notification task (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/141)
+    release_date: '2021-09-17'
