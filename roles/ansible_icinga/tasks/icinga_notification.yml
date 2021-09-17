@@ -14,6 +14,7 @@
     state: "{{ notification.0.state | default(omit) }}"
     object_name: "{{ notification.1 }}"
     notification_interval: "{{ notification.0.notification_interval | default(omit) }}"
+    states: "{{ notification.0.states | default(omit) }}"
     types: "{{ notification.0.types | default(omit) }}"
     users: "{{ notification.0.users | default(omit) }}"
     user_groups: "{{ notification.0.user_groups | default(omit) }}"
