@@ -22,6 +22,7 @@
     has_agent: true
     master_should_connect: true
     accept_config: true
+    command_endpoint: fooendpoint
   ignore_errors: true
   register: result
 - assert:
