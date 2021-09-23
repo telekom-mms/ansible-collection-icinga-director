@@ -1,4 +1,4 @@
-ancestor:
+ancestor: null
 releases:
   1.18.1:
     changes:
@@ -61,3 +61,5 @@ releases:
       - added missing parameter to notification task (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/141)
       - ansible-test needs python >= 3.8 at the controller (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/142)
     release_date: '2021-09-17'
+  1.23.0:
+    release_date: '2021-09-23'
