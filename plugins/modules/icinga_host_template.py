@@ -145,6 +145,10 @@ options:
     type: bool
     choices: [True, False]
     version_added: '1.9.0'
+  command_endpoint:
+    description:
+      - The endpoint where commands are executed on.
+    type: str
 """
 
 EXAMPLES = """
@@ -170,6 +174,7 @@ EXAMPLES = """
     master_should_connect: true
     max_check_attempts: 3
     accept_config: true
+    command_endpoint: fooendpoint
 """
 
 RETURN = r""" # """
@@ -210,6 +215,7 @@ def main():
         max_check_attempts=dict(required=False),
         accept_config=dict(type="bool", choices=[True, False]),
         event_command=dict(type="str", required=False),
+        command_endpoint=dict(type="str", required=False),
     )
 
     # Define the main module
@@ -238,6 +244,7 @@ def main():
         "max_check_attempts": module.params["max_check_attempts"],
         "accept_config": module.params["accept_config"],
         "event_command": module.params["event_command"],
+        "command_endpoint": module.params["command_endpoint"],
     }
 
     icinga_object = Icinga2APIObject(module=module, path="/host", data=data)

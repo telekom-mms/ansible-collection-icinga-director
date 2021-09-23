@@ -128,6 +128,10 @@ options:
     type: bool
     choices: [True, False]
     version_added: '1.9.0'
+  command_endpoint:
+    description:
+      - The endpoint where commands are executed on.
+    type: str
 """
 
 EXAMPLES = """
@@ -154,6 +158,7 @@ EXAMPLES = """
     has_agent: true
     master_should_connect: true
     accept_config: true
+    command_endpoint: fooendpoint
 """
 
 RETURN = r""" # """
@@ -190,6 +195,7 @@ def main():
         has_agent=dict(type="bool", choices=[True, False]),
         master_should_connect=dict(type="bool", choices=[True, False]),
         accept_config=dict(type="bool", choices=[True, False]),
+        command_endpoint=dict(type="str", required=False),
     )
 
     # When deleting objects, only the name is necessary, so we cannot use
@@ -221,6 +227,7 @@ def main():
         "has_agent": module.params["has_agent"],
         "master_should_connect": module.params["master_should_connect"],
         "accept_config": module.params["accept_config"],
+        "command_endpoint": module.params["command_endpoint"],
     }
 
     icinga_object = Icinga2APIObject(module=module, path="/host", data=data)

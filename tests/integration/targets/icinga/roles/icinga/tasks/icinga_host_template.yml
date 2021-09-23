@@ -21,3 +21,4 @@
     master_should_connect: true
     max_check_attempts: 3
     accept_config: true
+    command_endpoint: fooendpoint
