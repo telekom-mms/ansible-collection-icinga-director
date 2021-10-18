@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  tasks:
+    - name: icinga_downtime
+      t_systems_mms.icinga_director.icinga_downtime:
+        url: "https://nrw.domon.mms-support.de"
+        #use_proxy: "{{ icinga_use_proxy | default(omit) }}"
+        #validate_certs: "{{ icinga_validate_certs | default(omit) }}"
+        url_username: "fnu-mon-sf7001-7"
+        url_password: ""
+        force_basic_auth: True
+        state: present
+        object_name: "icinga director downtime"
+        author: dauh
+        comment: test
+        fixed: True
+        apply_to: host
+        assign_filter: "'host.name'=egbr-live-pipelines"
+        ranges:
+          "tuesday": "00:00-24:00"
