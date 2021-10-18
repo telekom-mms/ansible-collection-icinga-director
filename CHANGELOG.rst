@@ -5,6 +5,9 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.23.1
+=======
+
 v1.23.0
 =======
 
