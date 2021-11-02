@@ -23,15 +23,15 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: icinga_host
-short_description: Manage hosts in Icinga2
+module: icinga_downtime
+short_description: Manage downtimes in Icinga2
 description:
-   - Add or remove a host to Icinga2 through the director API.
-author: Sebastian Gumprich (@rndmh3ro)
+   - Add or remove a downtime to Icinga2 through the director API.
+author: Daniel Uhlmann (@xFuture603)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
-version_added: '1.0.0'
+version_added: '1.24.0'
 notes:
   - This module supports check mode.
 options:
@@ -50,115 +50,32 @@ options:
     aliases: ['name']
     required: true
     type: str
-  display_name:
-    description:
-      - Alternative name for this host.
-        Might be a host alias or and kind of string helping your users to identify this host.
-    type: str
-  address:
-    description:
-      - Host address. Usually an IPv4 address, but may be any kind of address your check plugin is able to deal with.
-    type: str
-  address6:
-    description:
-      - Host IPv6 address. Usually an IPv6 address, but may be any kind of address your check plugin is able to deal with.
-    type: str
-    version_added: '1.4.0'
-  groups:
-    description:
-      - Hostgroups that should be directly assigned to this node. Hostgroups can be useful for various reasons.
-      - You might assign service checks based on assigned hostgroup. They are also often used as an instrument to
-        enforce restricted views in Icinga Web 2.
-      - Hostgroups can be directly assigned to single hosts or to host templates.
-      - You might also want to consider assigning hostgroups using apply rules.
-    type: list
-    elements: str
-    default: []
   disabled:
     description:
       - Disabled objects will not be deployed.
     default: False
     type: bool
     choices: [True, False]
-  imports:
-    description:
-      - Choose a Host Template. Required when state is C(present).
-    type: list
-    elements: str
-  zone:
-    description:
-      - Set the zone.
-    type: str
-  vars:
-    description:
-      - Custom properties of the host.
-    type: "dict"
-  check_command:
-    description:
-      - The name of the check command.
-      - Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
-    type: str
-  notes:
-    description:
-      - Additional notes for this object.
-    type: str
-    version_added: '1.8.0'
-  notes_url:
-    description:
-      - An URL pointing to additional notes for this object.
-      - Separate multiple urls like this "'http://url1' 'http://url2'".
-      - The maximum length is 255 characters.
-    type: str
-    version_added: '1.8.0'
-  has_agent:
-    description:
-      - Whether this host has the Icinga 2 Agent installed.
-    type: bool
-    choices: [True, False]
-    version_added: '1.9.0'
-  master_should_connect:
-    description:
-      - Whether the parent (master) node should actively try to connect to this agent.
-    type: bool
-    choices: [True, False]
-    version_added: '1.9.0'
-  accept_config:
-    description:
-      - Whether the agent is configured to accept config.
-    type: bool
-    choices: [True, False]
-    version_added: '1.9.0'
-  command_endpoint:
-    description:
-      - The endpoint where commands are executed on.
-    type: str
 """
 
 EXAMPLES = """
-- name: Create a host in icinga
-  t_systems_mms.icinga_director.icinga_host:
-    state: present
-    url: "{{ icinga_url }}"
-    url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    disabled: false
-    object_name: "foohost"
-    address: "127.0.0.1"
-    address6: "::1"
-    display_name: "foohost"
-    groups:
-      - "foohostgroup"
-    imports:
-      - "foohosttemplate"
-    vars:
-      dnscheck: "no"
-    check_command: hostalive
-    notes: "example note"
-    notes_url: "'http://url1' 'http://url2'"
-    has_agent: true
-    master_should_connect: true
-    accept_config: true
-    command_endpoint: fooendpoint
+  - name: create icinga_downtime
+    t_systems_mms.icinga_director.icinga_downtime:
+      url: "{{ icinga_url }}"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+      disabled: False
+      object_name: "foodowntime"
+      state: present
+      author: testuser
+      comment: test
+      fixed: True
+      with_services: True
+      apply_to: host
+      assign_filter: 'host.name="foohost"'
+      duration: 500
+      ranges:
+        "tuesday": "00:00-24:00"
 """
 
 RETURN = r""" # """
@@ -179,7 +96,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True),
+        url=dict(required=True), #not need in documentation
         object_name=dict(required=True, aliases=["name"]),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         apply_to=dict(required=True, choices=["host", "service"]),
@@ -189,7 +106,7 @@ def main():
         duration=dict(required=False),
         fixed=dict(required=True, type="bool"),
         ranges=dict(type="dict", required=False, default={}),
-        with_services=dict(default="y", choices=["y", "n"])
+        with_services=dict(type="bool", default=True, choices=[True, False])
 
     )
 
@@ -205,6 +122,12 @@ def main():
     #   required_if=required_if,
     )
 
+    # Icinga expects 'y' or 'n' instead of booleans
+    if module.params["with_services"]:
+      _withservices = "y"
+    else:
+      _withservices = "n"
+
     data = {
         "object_name": module.params["object_name"],
         "object_type": "apply",
@@ -216,7 +139,7 @@ def main():
         "duration": module.params["duration"],
         "fixed": module.params["fixed"],
         "ranges": module.params["ranges"],
-        "with_services": module.params["with_services"],
+        "with_services": _withservices,
     }
 
     icinga_object = Icinga2APIObject(module=module, path="/scheduled-downtime", data=data)
