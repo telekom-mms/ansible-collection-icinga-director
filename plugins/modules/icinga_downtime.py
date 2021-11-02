@@ -43,10 +43,7 @@ options:
     type: str
   object_name:
     description:
-      - Icinga object name for this host.
-      - This is usually a fully qualified host name but it could basically be any kind of string.
-      - To make things easier for your users we strongly suggest to use meaningful names for templates.
-      - For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
+      - Icinga object name for this downtime.
     aliases: ['name']
     required: true
     type: str
@@ -56,6 +53,42 @@ options:
     default: False
     type: bool
     choices: [True, False]
+  author:
+    description:
+      - Name of the downtime author.
+    required: true
+    type: str
+  comment:
+    description:
+      - A descriptive comment for the downtime.
+    required: true
+    type: str
+  fixed:
+    description:
+      - Whether this downtime is fixed or flexible.
+        If unsure please check the related documentation https://icinga.com/docs/icinga2/latest/doc/08-advanced-topics/#downtimes
+    required: true
+    type: bool
+    choices: [True, False]
+  with_services:
+    description:
+      - Whether you only downtime the hosts or add some services with it.
+    type: bool
+    choices: [True, False]
+  ranges:
+    description:
+      - The period which should be downtimed
+    type: str
+  apply_to:
+    description:
+      - Whether this dependency should affect hosts or services
+    type: str
+    required: true
+    choices: ["Hosts", "Services"]
+  assign_filter:
+    description:
+      - The filter where the downtime will take effect.
+    type: str
 """
 
 EXAMPLES = """
@@ -64,13 +97,13 @@ EXAMPLES = """
       url: "{{ icinga_url }}"
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
-      disabled: False
+      disabled: false
       object_name: "foodowntime"
       state: present
       author: testuser
       comment: test
-      fixed: True
-      with_services: True
+      fixed: true
+      with_services: true
       apply_to: host
       assign_filter: 'host.name="foohost"'
       duration: 500
@@ -96,7 +129,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True), #not need in documentation
+        url=dict(required=True),  # not need in documentation
         object_name=dict(required=True, aliases=["name"]),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         apply_to=dict(required=True, choices=["host", "service"]),
@@ -106,8 +139,7 @@ def main():
         duration=dict(required=False),
         fixed=dict(required=True, type="bool"),
         ranges=dict(type="dict", required=False, default={}),
-        with_services=dict(type="bool", default=True, choices=[True, False])
-
+        with_services=dict(type="bool", default=True, choices=[True, False]),
     )
 
     # When deleting objects, only the name is necessary, so we cannot use
@@ -119,14 +151,14 @@ def main():
     module = AnsibleModule(
         argument_spec=argument_spec,
         supports_check_mode=True,
-    #   required_if=required_if,
+        #   required_if=required_if,
     )
 
     # Icinga expects 'y' or 'n' instead of booleans
     if module.params["with_services"]:
-      _withservices = "y"
+        _withservices = "y"
     else:
-      _withservices = "n"
+        _withservices = "n"
 
     data = {
         "object_name": module.params["object_name"],
@@ -142,7 +174,9 @@ def main():
         "with_services": _withservices,
     }
 
-    icinga_object = Icinga2APIObject(module=module, path="/scheduled-downtime", data=data)
+    icinga_object = Icinga2APIObject(
+        module=module, path="/scheduled-downtime", data=data
+    )
 
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(
