@@ -25,6 +25,7 @@ name: t_systems_mms.icinga_director.icinga_director_inventory
 plugin_type: inventory
 short_description: Returns Ansible inventory from Icinga
 description: Returns Ansible inventory from Icinga
+author: Sebastian Gumprich (@rndmh3ro)
 options:
     plugin:
         description: Name of the plugin

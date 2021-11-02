@@ -55,7 +55,10 @@ collections:
 ## Documentation
 
 Our modules include documentation.
-To display it you can use the `ansible-doc` command.
+
+You can find the complete documentation for the modules in the [docs-folder](docs) or in the [Ansible documentation](<https://docs.ansible.com/ansible/latest/collections/t_systems_mms/icinga_director/index.html#plugins-in-t-systems-mms-icinga-director>).
+
+To display it on the command-line you can use the `ansible-doc` command.
 
 For example, to see the documentation for the module `icinga_host` run the following command on the cli:
 
@@ -68,9 +71,6 @@ To see the documentation for the inventory plugin, run:
 ```
 ansible-doc -t inventory t_systems_mms.icinga_director.icinga_director_inventory
 ```
-
-You can also find the complete documentation for the modules on the [Ansible documentation](<https://docs.ansible.com/ansible/latest/collections/t_systems_mms/icinga_director/index.html#plugins-in-t-systems-mms-icinga-director>).
-
 
 ## Examples using the modules
 
