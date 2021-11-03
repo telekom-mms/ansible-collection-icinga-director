@@ -85,7 +85,7 @@ options:
       - Whether this dependency should affect hosts or services
     type: str
     required: true
-    choices: ["hosts", "services"]
+    choices: ["host", "service"]
   assign_filter:
     description:
       - The filter where the downtime will take effect.
