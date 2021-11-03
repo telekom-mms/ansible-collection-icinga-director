@@ -75,19 +75,27 @@ options:
       - Whether you only downtime the hosts or add some services with it.
     type: bool
     choices: [True, False]
+    default: True
   ranges:
     description:
       - The period which should be downtimed
-    type: str
+    type: dict
   apply_to:
     description:
       - Whether this dependency should affect hosts or services
     type: str
     required: true
-    choices: ["Hosts", "Services"]
+    choices: ["hosts", "services"]
   assign_filter:
     description:
       - The filter where the downtime will take effect.
+    type: str
+  duration:
+    description:
+      - How long the downtime lasts.
+        Only has an effect for flexible (non-fixed) downtimes.
+        Time in seconds, supported suffixes include ms (milliseconds), s (seconds), m (minutes), h (hours) and d (days).
+        To express "90 minutes" you might want to write 1h 30m
     type: str
 """
 
@@ -137,7 +145,7 @@ def main():
         author=dict(required=True),
         comment=dict(required=True),
         duration=dict(required=False),
-        fixed=dict(required=True, type="bool"),
+        fixed=dict(required=True, type="bool", choices=[True, False]),
         ranges=dict(type="dict", required=False, default={}),
         with_services=dict(type="bool", default=True, choices=[True, False]),
     )
@@ -154,11 +162,17 @@ def main():
         #   required_if=required_if,
     )
 
-    # Icinga expects 'y' or 'n' instead of booleans
+    # Icinga expects 'y' or 'n' instead of booleans for option "with_services"
     if module.params["with_services"]:
         _withservices = "y"
     else:
         _withservices = "n"
+
+    # Icinga expects 'yes' or 'no' instead of booleans for option "fixed"
+    if module.params["fixed"]:
+        _fixed = "y"
+    else:
+        _fixed = "n"
 
     data = {
         "object_name": module.params["object_name"],
@@ -169,7 +183,7 @@ def main():
         "author": module.params["author"],
         "comment": module.params["comment"],
         "duration": module.params["duration"],
-        "fixed": module.params["fixed"],
+        "fixed": _fixed,
         "ranges": module.params["ranges"],
         "with_services": _withservices,
     }
