@@ -118,13 +118,13 @@ EXAMPLES = """
       ranges:
         "tuesday": "00:00-24:00"
 
-  - name: create icinga_downtime
+  - name: create icinga_downtime2
     t_systems_mms.icinga_director.icinga_downtime:
       url: "{{ icinga_url }}"
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
       disabled: false
-      object_name: "foodowntime"
+      object_name: "foodowntime2"
       state: present
       author: testuser
       comment: test
