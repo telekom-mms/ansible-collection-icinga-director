@@ -117,6 +117,24 @@ EXAMPLES = """
       duration: 500
       ranges:
         "tuesday": "00:00-24:00"
+
+  - name: create icinga_downtime
+    t_systems_mms.icinga_director.icinga_downtime:
+      url: "{{ icinga_url }}"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+      disabled: false
+      object_name: "foodowntime"
+      state: present
+      author: testuser
+      comment: test
+      fixed: false
+      with_services: false
+      apply_to: host
+      assign_filter: 'host.name="foohost"'
+      duration: 500
+      ranges:
+        "tuesday": "00:00-24:00"
 """
 
 RETURN = r""" # """
