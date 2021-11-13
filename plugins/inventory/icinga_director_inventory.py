@@ -36,6 +36,7 @@ options:
         required: true
 extends_documentation_fragment:
   - ansible.builtin.url
+  - constructed
 """
 
 EXAMPLES = r"""
@@ -44,16 +45,31 @@ url: 'https://example.com'
 url_username: foo
 url_password: bar
 force_basic_auth: False
+strict: False
+
+# use the object_name you defined as hostname
+compose:
+  hostname: object_name
+
+# create a group based on the operating system defined in a custom variable
+keyed_groups:
+  - prefix: os
+    key: vars.HostOS
+
+# create groups created from jinja templates
+# here we create a group called "rb" if the host variable "check_period" is "24/7"
+groups:
+  rb: check_period == "24/7"
 """
 
 
-from ansible.plugins.inventory import BaseInventoryPlugin
+from ansible.plugins.inventory import BaseInventoryPlugin, Constructable
 
 from ansible.module_utils.urls import open_url
 import json
 
 
-class InventoryModule(BaseInventoryPlugin):
+class InventoryModule(BaseInventoryPlugin, Constructable):
     NAME = "t_systems_mms.icinga_director.icinga_director_inventory"
 
     def call_url(self, url, url_username, url_password, url_path):
@@ -88,21 +104,6 @@ class InventoryModule(BaseInventoryPlugin):
             if any((path.endswith(ending) for ending in endings)):
                 return True
         return False
-
-    def set_hosts(self):
-        host_list = self.call_url(
-            self.url,
-            self.url_username,
-            self.url_password,
-            url_path="/director/hosts" + "?resolved",
-        )
-
-        for host in host_list["objects"]:
-            self.inventory.add_host(host["object_name"])
-            for item in host:
-                self.inventory.set_variable(
-                    host["object_name"], item, host[item]
-                )
 
     def add_hosts_to_groups(self):
         hostgroups = self.set_hostgroups()
@@ -149,6 +150,46 @@ class InventoryModule(BaseInventoryPlugin):
         self.url_username = self.get_option("url_username")
         self.url_password = self.get_option("url_password")
         self.force_basic_auth = self.get_option("force_basic_auth")
+        strict = self.get_option("strict")
+        compose = self.get_option("compose")
 
-        self.set_hosts()
+        host_list = self.call_url(
+            self.url,
+            self.url_username,
+            self.url_password,
+            url_path="/director/hosts" + "?resolved",
+        )
+
+        for host in host_list["objects"]:
+            self.inventory.add_host(host["object_name"], group="all")
+            for item in host:
+                self.inventory.set_variable(
+                    host["object_name"], item, host[item]
+                )
+
+            host_vars = self.inventory.get_host(host["object_name"]).get_vars()
+
+            # Add variables created by the user's Jinja2 expressions to the host
+            self._set_composite_vars(
+                self.get_option("compose"),
+                host_vars,
+                host["object_name"],
+                strict=strict,
+            )
+
+            # The following two methods combine the provided variables dictionary with the latest host variables
+            # Using these methods after _set_composite_vars() allows groups to be created with the composed variables
+            self._add_host_to_composed_groups(
+                self.get_option("groups"),
+                host_vars,
+                host["object_name"],
+                strict=strict,
+            )
+            self._add_host_to_keyed_groups(
+                self.get_option("keyed_groups"),
+                host_vars,
+                host["object_name"],
+                strict=strict,
+            )
+
         self.add_hosts_to_groups()
