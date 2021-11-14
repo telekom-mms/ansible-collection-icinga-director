@@ -180,6 +180,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
@@ -198,21 +199,23 @@ def main():
         command_endpoint=dict(type="str", required=False),
     )
 
-    # When deleting objects, only the name is necessary, so we cannot use
-    # required=True in the argument_spec. Instead we define here what is
-    # necessary when state is present
-    required_if = [("state", "present", ["imports"])]
 
     # Define the main module
     module = AnsibleModule(
         argument_spec=argument_spec,
         supports_check_mode=True,
-        required_if=required_if,
     )
+
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present and we do not append to an existing object
+    if module.params["append"]:
+        module.required_if = ""
+    else:
+        module.required_if = [("state", "present", ["imports"])]
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "object",
         "display_name": module.params["display_name"],
         "groups": module.params["groups"],
         "imports": module.params["imports"],
@@ -229,6 +232,15 @@ def main():
         "accept_config": module.params["accept_config"],
         "command_endpoint": module.params["command_endpoint"],
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "object"
 
     icinga_object = Icinga2APIObject(module=module, path="/host", data=data)
 
