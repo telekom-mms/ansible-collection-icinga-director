@@ -97,6 +97,13 @@ options:
       - The C(value) property can be either a string, a json or a dict. When used as a dict, you can define
         its C(type) as C(Function) and set its C(body) property as an Icinga DSL piece of config.
     type: "dict"
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -152,7 +159,6 @@ EXAMPLES = """
     object_name: centreon-plugins
     imports:
       - centreon-plugins-template
-    timeout: "1m"
     vars:
       centreon_maxrepetitions: 20
       centreon_subsetleef: 20
@@ -164,14 +170,15 @@ EXAMPLES = """
       snmpv3_priv_key: privkey
       snmpv3_user: user
 
-- name: Create command
+- name: Update command
   t_systems_mms.icinga_director.icinga_command:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    command: "/opt/centreon-plugins/centreon_plugins_2.pl"
-    object_name: centreon-plugins_2
+    object_name: centreon-plugins
+    timeout: "1m"
+    append: true
 
 - name: Create event command
   t_systems_mms.icinga_director.icinga_command:
@@ -181,6 +188,7 @@ EXAMPLES = """
     url_password: "{{ icinga_pass }}"
     command: "/opt/scripts/restart_httpd"
     object_name: "restart_httpd"
+    command_type: "PluginEvent"
     arguments:
       '-s':
         value: $service.state$
@@ -210,6 +218,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         imports=dict(type="list", elements="str", required=False, default=[]),
         disabled=dict(
@@ -217,26 +226,29 @@ def main():
         ),
         vars=dict(type="dict", default={}),
         command=dict(required=False),
-        command_type=dict(
+        methods_execute=dict(
             default="PluginCheck",
             choices=["PluginCheck", "PluginNotification", "PluginEvent"],
+            aliases=["command_type"],
         ),
         timeout=dict(required=False, default=None),
         zone=dict(required=False, default=None),
         arguments=dict(type="dict", default=None),
     )
 
-    # When deleting objects, only the name is necessary, so we cannot use
-    # required=True in the argument_spec. Instead we define here what is
-    # necessary when state is present
-    required_if = [("state", "present", ["object_name"])]
-
     # Define the main module
     module = AnsibleModule(
         argument_spec=argument_spec,
         supports_check_mode=True,
-        required_if=required_if,
     )
+
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present and we do not append to an existing object
+    if module.params["append"]:
+        module.required_if = ""
+    else:
+        module.required_if = [("state", "present", ["object_name"])]
 
     # typ von arguments ist eigentlich dict, also ohne Angabe = {}
     # die director API schickt hier aber ein leeres Array zurueck wenn nichts definiert
@@ -246,16 +258,24 @@ def main():
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "object",
         "imports": module.params["imports"],
         "disabled": module.params["disabled"],
         "vars": module.params["vars"],
         "command": module.params["command"],
-        "methods_execute": module.params["command_type"],
+        "methods_execute": module.params["methods_execute"],
         "timeout": module.params["timeout"],
         "zone": module.params["zone"],
         "arguments": module.params["arguments"],
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "object"
 
     icinga_object = Icinga2APIObject(module=module, path="/command", data=data)
 

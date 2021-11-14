@@ -97,44 +97,61 @@ options:
         Time in seconds, supported suffixes include ms (milliseconds), s (seconds), m (minutes), h (hours) and d (days).
         To express "90 minutes" you might want to write 1h 30m
     type: str
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
-  - name: create icinga_scheduled_downtime
-    t_systems_mms.icinga_director.icinga_scheduled_downtime:
-      url: "{{ icinga_url }}"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      disabled: false
-      object_name: "foodowntime"
-      state: present
-      author: testuser
-      comment: test
-      fixed: true
-      with_services: true
-      apply_to: host
-      assign_filter: 'host.name="foohost"'
-      duration: 500
-      ranges:
-        "tuesday": "00:00-24:00"
+- name: create icinga_scheduled_downtime
+  t_systems_mms.icinga_director.icinga_scheduled_downtime:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    disabled: false
+    object_name: "foodowntime"
+    state: present
+    author: testuser
+    comment: test
+    fixed: true
+    with_services: true
+    apply_to: host
+    assign_filter: 'host.name="foohost"'
+    duration: 500
+    ranges:
+      "tuesday": "00:00-24:00"
 
-  - name: create icinga_scheduled_downtime2
-    t_systems_mms.icinga_director.icinga_scheduled_downtime:
-      url: "{{ icinga_url }}"
-      url_username: "{{ icinga_user }}"
-      url_password: "{{ icinga_pass }}"
-      disabled: false
-      object_name: "foodowntime2"
-      state: present
-      author: testuser
-      comment: test
-      fixed: false
-      with_services: false
-      apply_to: host
-      assign_filter: 'host.name="foohost"'
-      duration: 500
-      ranges:
-        "tuesday": "00:00-24:00"
+- name: create icinga_scheduled_downtime2
+  t_systems_mms.icinga_director.icinga_scheduled_downtime:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    disabled: false
+    object_name: "foodowntime2"
+    state: present
+    author: testuser
+    comment: test
+    fixed: false
+    with_services: false
+    apply_to: host
+    assign_filter: 'host.name="foohost"'
+    duration: 500
+    ranges:
+      "tuesday": "00:00-24:00"
+
+- name: update icinga_scheduled_downtime2
+  t_systems_mms.icinga_director.icinga_scheduled_downtime:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "foodowntime2"
+    state: present
+    duration: 1000
+    append: true
 """
 
 RETURN = r""" # """
@@ -155,30 +172,35 @@ def main():
     # add our own arguments
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True),  # not need in documentation
+        url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         disabled=dict(type="bool", default=False, choices=[True, False]),
-        apply_to=dict(required=True, choices=["host", "service"]),
+        apply_to=dict(choices=["host", "service"]),
         assign_filter=dict(required=False),
-        author=dict(required=True),
-        comment=dict(required=True),
+        author=dict(),
+        comment=dict(),
         duration=dict(required=False),
-        fixed=dict(required=True, type="bool", choices=[True, False]),
+        fixed=dict(type="bool", choices=[True, False]),
         ranges=dict(type="dict", required=False, default={}),
         with_services=dict(type="bool", default=True, choices=[True, False]),
     )
-
-    # When deleting objects, only the name is necessary, so we cannot use
-    # required=True in the argument_spec. Instead we define here what is
-    # necessary when state is present
-    # required_if = [("state", "present", ["imports"])]
 
     # Define the main module
     module = AnsibleModule(
         argument_spec=argument_spec,
         supports_check_mode=True,
-        #   required_if=required_if,
     )
+
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present and we do not append to an existing object
+    if module.params["append"]:
+        module.required_if = ""
+    else:
+        module.required_if = [
+            ("state", "present", ["apply_to", "author", "comment", "fixed"])
+        ]
 
     # Icinga expects 'y' or 'n' instead of booleans for option "with_services"
     if module.params["with_services"]:
@@ -194,7 +216,6 @@ def main():
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "apply",
         "disabled": module.params["disabled"],
         "apply_to": module.params["apply_to"],
         "assign_filter": module.params["assign_filter"],
@@ -205,6 +226,15 @@ def main():
         "ranges": module.params["ranges"],
         "with_services": _withservices,
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "apply"
 
     icinga_object = Icinga2APIObject(
         module=module, path="/scheduled-downtime", data=data

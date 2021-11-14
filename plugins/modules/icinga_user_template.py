@@ -61,6 +61,13 @@ options:
     description:
       - Whether to send notifications for this user.
     type: bool
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -71,8 +78,18 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foousertemplate"
-    enable_notifications: true
+    enable_notifications: false
     period: '24/7'
+
+- name: Update user template
+  t_systems_mms.icinga_director.icinga_user_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "foousertemplate"
+    enable_notifications: true
+    append: true
 """
 
 RETURN = r""" # """
@@ -94,6 +111,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         imports=dict(type="list", elements="str", default=[], required=False),
         period=dict(required=False),
@@ -107,11 +125,19 @@ def main():
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "template",
         "imports": module.params["imports"],
         "period": module.params["period"],
         "enable_notifications": module.params["enable_notifications"],
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(module=module, path="/user", data=data)
 

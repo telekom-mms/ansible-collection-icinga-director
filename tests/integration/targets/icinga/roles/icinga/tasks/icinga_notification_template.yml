@@ -5,7 +5,6 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    notification_interval: '0'
     object_name: foonotificationtemplate
     states:
       - Up
@@ -21,3 +20,12 @@
       - "rb"
     user_groups:
       - "OnCall"
+- name: Update notification template
+  t_systems_mms.icinga_director.icinga_notification_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: foonotificationtemplate
+    notification_interval: '0'
+    append: true

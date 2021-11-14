@@ -100,6 +100,13 @@ options:
     type: "list"
     elements: str
     version_added: '1.16.0'
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -109,7 +116,6 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    notification_interval: '0'
     object_name: foonotificationtemplate
     states:
       - Up
@@ -125,6 +131,16 @@ EXAMPLES = """
       - "rb"
     user_groups:
       - "OnCall"
+
+- name: Update notification template
+  t_systems_mms.icinga_director.icinga_notification_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: foonotificationtemplate
+    notification_interval: '0'
+    append: true
 """
 
 RETURN = r""" # """
@@ -147,6 +163,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         notification_interval=dict(required=False),
         states=dict(type="list", elements="str", required=False),
@@ -154,8 +171,8 @@ def main():
         times_end=dict(type="int", required=False),
         types=dict(type="list", elements="str", required=False),
         zone=dict(required=False, default=None),
-        time_period=dict(required=False, aliases=["period"]),
-        notification_command=dict(required=False, aliases=["command"]),
+        period=dict(required=False, aliases=["time_period"]),
+        command=dict(required=False, aliases=["notification_command"]),
         users=dict(type="list", elements="str", required=False),
         user_groups=dict(type="list", elements="str", required=False),
     )
@@ -168,18 +185,26 @@ def main():
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "template",
         "notification_interval": module.params["notification_interval"],
         "states": module.params["states"],
         "times_begin": module.params["times_begin"],
         "times_end": module.params["times_end"],
         "types": module.params["types"],
         "zone": module.params["zone"],
-        "period": module.params["time_period"],
-        "command": module.params["notification_command"],
+        "period": module.params["period"],
+        "command": module.params["command"],
         "users": module.params["users"],
         "user_groups": module.params["user_groups"],
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(
         module=module, path="/notification", data=data

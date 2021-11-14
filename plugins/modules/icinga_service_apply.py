@@ -156,6 +156,13 @@ options:
       - Separate multiple urls like this "'http://url1' 'http://url2'".
       - Maximum length is 255 characters.
     type: str
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -208,7 +215,6 @@ EXAMPLES = """
     enable_event_handler: true
     enable_notifications: true
     enable_passive_checks: false
-    enable_perfdata: false
     event_command: restart_httpd
     max_check_attempts: "5"
     retry_interval: "3m"
@@ -217,6 +223,16 @@ EXAMPLES = """
       - fooservicetemplate
     groups:
       - fooservicegroup
+
+- name: Update service apply rule with command_endpoint
+  t_systems_mms.icinga_director.icinga_service_apply:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "SERVICE_dummy"
+    enable_perfdata: true
+    append: true
 """
 
 RETURN = r""" # """
@@ -265,6 +281,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         check_command=dict(required=False),
@@ -297,7 +314,6 @@ def main():
     data = {
         "object_name": module.params["object_name"],
         "display_name": module.params["display_name"],
-        "object_type": "apply",
         "apply_for": module.params["apply_for"],
         "check_command": module.params["check_command"],
         "check_interval": module.params["check_interval"],
@@ -319,6 +335,15 @@ def main():
         "notes": module.params["notes"],
         "notes_url": module.params["notes_url"],
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "apply"
 
     icinga_object = ServiceApplyRule(module=module, data=data)
 

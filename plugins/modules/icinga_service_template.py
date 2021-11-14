@@ -145,6 +145,13 @@ options:
     type: bool
     default: False
     choices: [True, False]
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -160,8 +167,17 @@ EXAMPLES = """
       procs_argument: consul
       procs_critical: '1:'
       procs_warning: '1:'
+
+- name: Update servicetemplate
+  t_systems_mms.icinga_director.icinga_service_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: fooservicetemplate
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
+    append: true
 
 - name: Create servicetemplate with event command
   t_systems_mms.icinga_director.icinga_service_template:
@@ -195,6 +211,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         check_command=dict(required=False),
@@ -226,7 +243,6 @@ def main():
     data = {
         "object_name": module.params["object_name"],
         "disabled": module.params["disabled"],
-        "object_type": "template",
         "check_command": module.params["check_command"],
         "check_interval": module.params["check_interval"],
         "check_period": module.params["check_period"],
@@ -247,6 +263,15 @@ def main():
         "vars": module.params["vars"],
         "volatile": module.params["volatile"],
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(module=module, path="/service", data=data)
 
