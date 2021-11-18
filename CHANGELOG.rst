@@ -8,6 +8,11 @@ T_Systems_Mms.Icinga_Director Release Notes
 v1.23.1
 =======
 
+Minor Changes
+-------------
+
+- add resolve option to inventory-plugin (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/147)
+
 v1.23.0
 =======
 

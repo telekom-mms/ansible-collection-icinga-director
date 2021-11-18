@@ -94,7 +94,7 @@ class InventoryModule(BaseInventoryPlugin):
             self.url,
             self.url_username,
             self.url_password,
-            url_path="/director/hosts",
+            url_path="/director/hosts" + "?resolved",
         )
 
         for host in host_list["objects"]:
