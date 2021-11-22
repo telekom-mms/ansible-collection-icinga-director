@@ -93,6 +93,11 @@ plugins:
       name: icinga_notification_template_info
       namespace: ''
       version_added: 1.13.0
+    icinga_scheduled_downtime:
+      description: Manage downtimes in Icinga2
+      name: icinga_scheduled_downtime
+      namespace: ''
+      version_added: 1.24.0
     icinga_service:
       description: Manage services in Icinga2
       name: icinga_service
@@ -197,4 +202,4 @@ plugins:
   shell: {}
   strategy: {}
   vars: {}
-version: 1.23.1
+version: 1.25.0
