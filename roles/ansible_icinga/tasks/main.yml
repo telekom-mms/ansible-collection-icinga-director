@@ -78,3 +78,8 @@
   include_tasks: icinga_notification.yml
   when: icinga_notifications is defined
   tags: notification
+
+- name: icinga downtime configuration
+  include_tasks: icinga_scheduled_downtime.yml
+  when: icinga_scheduled_downtimes is defined
+  tags: downtime

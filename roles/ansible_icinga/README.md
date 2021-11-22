@@ -196,6 +196,18 @@ t_systems_mms.icinga_director >= 1.2.2
 | assign_filter                    | no       |
 | imports                          | no       |
 | period                           | no       |
+| **icinga_scheduled_downtime**              |
+| icinga_scheduled_downtimes                 | no       | []                                 |
+| state                            | yes      | present
+| disabled                         | no       | False
+| assign_filter                    | no       |
+| apply_to                         | yes      |
+| author                           | yes      |
+| comment                          | yes      |
+| duration                         | no       |
+| fixed                            | yes      |
+| ranges                           | no       |
+| with_services                    | no       | True
 
 ## Example Playbook
 
@@ -245,4 +257,7 @@ t_systems_mms.icinga_director >= 1.2.2
     icinga_hosts:
       - host_object:
         - "service_abbreviation-environement-web01"
+    icinga_scheduled_downtimes:
+      - scheduled_downtime_object:
+        - "service_abbreviation-environement-downtime01"
 ```
