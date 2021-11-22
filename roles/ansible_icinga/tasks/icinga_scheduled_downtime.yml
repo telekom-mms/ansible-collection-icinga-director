@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
   tasks:
-    - name: icinga_downtime
-      t_systems_mms.icinga_director.icinga_downtime:
+    - name: icinga_scheduled_downtime
+      t_systems_mms.icinga_director.icinga_scheduled_downtime:
         url: "{{ icinga_url }}"
         use_proxy: "{{ icinga_use_proxy | default(omit) }}"
         validate_certs: "{{ icinga_validate_certs | default(omit) }}"
@@ -20,3 +20,11 @@
         apply_to: "{{ downtime.0.apply_to }}"
         assign_filter: "{{ downtime.0.assign_filter | default(omit) }}"
         ranges: "{{ downtime.0.ranges| default(omit) }}"
+      retries: 3
+      delay: 3
+      register: result
+      until: result is succeeded
+      loop: "{{ icinga_scheduled_downtimes|subelements('scheduled_downtime_object') }}"
+      loop_control:
+        loop_var: notification
+      tags: notification

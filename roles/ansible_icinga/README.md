@@ -196,8 +196,8 @@ t_systems_mms.icinga_director >= 1.2.2
 | assign_filter                    | no       |
 | imports                          | no       |
 | period                           | no       |
-| **icinga_downtime**              |
-| icinga_downtimes                 | no       | []                                 |
+| **icinga_scheduled_downtime**              |
+| icinga_scheduled_downtimes                 | no       | []                                 |
 | state                            | yes      | present
 | disabled                         | no       | False
 | assign_filter                    | no       |
@@ -257,7 +257,7 @@ t_systems_mms.icinga_director >= 1.2.2
     icinga_hosts:
       - host_object:
         - "service_abbreviation-environement-web01"
-    icinga_downtimes:
-      - downtime_object:
+    icinga_scheduled_downtimes:
+      - scheduled_downtime_object:
         - "service_abbreviation-environement-downtime01"
 ```

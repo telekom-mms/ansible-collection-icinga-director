@@ -1,9 +1,9 @@
 ---
-- name: create icinga_downtime
-  t_systems_mms.icinga_director.icinga_downtime:
-    url: http://nonexistant
+- name: create icinga_scheduled_downtime
+  t_systems_mms.icinga_director.icinga_scheduled_downtime:
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     disabled: false
     object_name: "foodowntime"
     state: present
@@ -23,11 +23,11 @@
       - result.failed
       # yamllint disable-line rule:line-length
       - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
-- name: create icinga_downtime2
-  t_systems_mms.icinga_director.icinga_downtime:
-    url: http://nonexistant
+- name: create icinga_scheduled_downtime2
+  t_systems_mms.icinga_director.icinga_scheduled_downtime:
+    url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
+    url_password: iamwrong
     disabled: false
     object_name: "foodowntime2"
     state: present

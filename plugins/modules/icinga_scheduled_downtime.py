@@ -23,7 +23,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: icinga_downtime
+module: icinga_scheduled_downtime
 short_description: Manage downtimes in Icinga2
 description:
    - Add or remove a downtime to Icinga2 through the director API.
@@ -100,8 +100,8 @@ options:
 """
 
 EXAMPLES = """
-  - name: create icinga_downtime
-    t_systems_mms.icinga_director.icinga_downtime:
+  - name: create icinga_scheduled_downtime
+    t_systems_mms.icinga_director.icinga_scheduled_downtime:
       url: "{{ icinga_url }}"
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
@@ -118,8 +118,8 @@ EXAMPLES = """
       ranges:
         "tuesday": "00:00-24:00"
 
-  - name: create icinga_downtime2
-    t_systems_mms.icinga_director.icinga_downtime:
+  - name: create icinga_scheduled_downtime2
+    t_systems_mms.icinga_director.icinga_scheduled_downtime:
       url: "{{ icinga_url }}"
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
