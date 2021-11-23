@@ -24,5 +24,5 @@
   until: result is succeeded
   loop: "{{ icinga_scheduled_downtimes|subelements('scheduled_downtime_object') }}"
   loop_control:
-    loop_var: notification
-  tags: notification
+    loop_var: downtime
+  tags: downtime
