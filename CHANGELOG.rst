@@ -13,6 +13,11 @@ Minor Changes
 
 - Add Icinga scheduled downtime module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/146)
 
+Bugfixes
+--------
+
+- added a fix for the new scheduled_downtime module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/150)
+
 v1.23.1
 =======
 
