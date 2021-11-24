@@ -17,6 +17,7 @@
     with_services: "{{ downtime.0.with_services | default(omit) }}"
     apply_to: "{{ downtime.0.apply_to }}"
     assign_filter: "{{ downtime.0.assign_filter | default(omit) }}"
+    duration: "{{ downtime.0.duration | default(omit) }}"
     ranges: "{{ downtime.0.ranges| default(omit) }}"
   retries: 3
   delay: 3
