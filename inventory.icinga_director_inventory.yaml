@@ -1,0 +1,19 @@
+plugin: t_systems_mms.icinga_director.icinga_director_inventory
+strict: False
+url: "https://nrw.domon.mms-support.de/"
+url_username: segu
+url_password: VoidThingSecure04!
+force_basic_auth: True
+
+compose:
+  hostname: object_name
+
+keyed_groups:
+  - prefix: os
+    key: vars.HostOS
+
+groups:
+  rb: check_period == "24/7"
+
+cache: True
+cache_plugin: jsonfile

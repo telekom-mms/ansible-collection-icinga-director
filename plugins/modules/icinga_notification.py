@@ -120,6 +120,13 @@ options:
     type: "list"
     elements: str
     version_added: '1.16.0'
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -146,11 +153,20 @@ EXAMPLES = """
     user_groups:
       - OnCall
     disabled: false
-    vars:
-      foo: bar
     time_period: "24/7"
     times_begin: 20
     times_end: 120
+
+- name: Update notification
+  t_systems_mms.icinga_director.icinga_notification:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: E-Mail_host
+    vars:
+      foo: bar
+    append: true
 """
 
 RETURN = r""" # """
@@ -173,9 +189,10 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         imports=dict(type="list", elements="str", required=False),
-        apply_to=dict(required=True, choices=["service", "host"]),
+        apply_to=dict(choices=["service", "host"]),
         assign_filter=dict(required=False),
         disabled=dict(
             type="bool", required=False, default=False, choices=[True, False]
@@ -186,26 +203,27 @@ def main():
         user_groups=dict(type="list", elements="str", required=False),
         types=dict(type="list", elements="str", required=False),
         vars=dict(type="dict", default={}, required=False),
-        time_period=dict(required=False, aliases=["period"]),
+        period=dict(required=False, aliases=["time_period"]),
         times_begin=dict(type="int", required=False),
         times_end=dict(type="int", required=False),
     )
-
-    # When deleting objects, only the name is necessary, so we cannot use
-    # required=True in the argument_spec. Instead we define here what is
-    # necessary when state is present
-    required_if = [("state", "present", ["imports"])]
 
     # Define the main module
     module = AnsibleModule(
         argument_spec=argument_spec,
         supports_check_mode=True,
-        required_if=required_if,
     )
+
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present and we do not append to an existing object
+    if module.params["append"]:
+        module.required_if = ""
+    else:
+        module.required_if = [("state", "present", ["apply_to", "imports"])]
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "apply",
         "imports": module.params["imports"],
         "apply_to": module.params["apply_to"],
         "disabled": module.params["disabled"],
@@ -216,10 +234,19 @@ def main():
         "user_groups": module.params["user_groups"],
         "types": module.params["types"],
         "vars": module.params["vars"],
-        "period": module.params["time_period"],
+        "period": module.params["period"],
         "times_begin": module.params["times_begin"],
         "times_end": module.params["times_end"],
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "apply"
 
     icinga_object = Icinga2APIObject(
         module=module, path="/notification", data=data

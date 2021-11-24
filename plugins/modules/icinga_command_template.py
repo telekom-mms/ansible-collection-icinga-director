@@ -97,6 +97,13 @@ options:
       - The C(value) property can be either a string, a json or a dict. When used as a dict, you can define
         its C(type) as C(Function) and set its C(body) property as an Icinga DSL piece of config.
     type: "dict"
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -149,7 +156,6 @@ EXAMPLES = """
     command: "/opt/centreon-plugins/centreon_plugins.pl"
     command_type: "PluginCheck"
     object_name: centreon-plugins-template
-    timeout: "2m"
     disabled: false
     vars:
       centreon_maxrepetitions: 20
@@ -162,14 +168,15 @@ EXAMPLES = """
       snmpv3_priv_key: privkey
       snmpv3_user: user
 
-- name: Create command template
+- name: Update command template
   t_systems_mms.icinga_director.icinga_command_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    command: "/opt/centreon-plugins/centreon_plugins_2.pl"
-    object_name: centreon-plugins-template-2
+    object_name: centreon-plugins-template
+    timeout: "2m"
+    append: true
 """
 
 RETURN = r""" # """
@@ -191,6 +198,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         imports=dict(type="list", elements="str", required=False, default=[]),
         disabled=dict(
@@ -198,9 +206,10 @@ def main():
         ),
         vars=dict(type="dict", default={}),
         command=dict(required=False),
-        command_type=dict(
+        methods_execute=dict(
             default="PluginCheck",
             choices=["PluginCheck", "PluginNotification", "PluginEvent"],
+            aliases=["command_type"],
         ),
         timeout=dict(required=False, default=None),
         zone=dict(required=False, default=None),
@@ -220,16 +229,24 @@ def main():
 
     data = {
         "object_name": module.params["object_name"],
-        "object_type": "template",
         "imports": module.params["imports"],
         "disabled": module.params["disabled"],
         "vars": module.params["vars"],
         "command": module.params["command"],
-        "methods_execute": module.params["command_type"],
+        "methods_execute": module.params["methods_execute"],
         "timeout": module.params["timeout"],
         "zone": module.params["zone"],
         "arguments": module.params["arguments"],
     }
+
+    if module.params["append"]:
+        new_dict = {}
+        for k in data:
+            if module.params[k]:
+                new_dict[k] = module.params[k]
+        data = new_dict
+
+    data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(module=module, path="/command", data=data)
 
