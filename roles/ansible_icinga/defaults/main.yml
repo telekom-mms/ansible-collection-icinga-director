@@ -46,7 +46,7 @@ icinga_service_templates: []
 icinga_service_applies: []
 
 # servicegroup
-icinga_sservicegroups: []
+icinga_servicegroups: []
 
 # icinga_notification
 icinga_notifications: []
