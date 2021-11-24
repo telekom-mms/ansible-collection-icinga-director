@@ -73,8 +73,13 @@ releases:
     release_date: '2021-10-18'
   1.25.0:
     changes:
-      minor_changes:
-      - Add Icinga scheduled downtime module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/146)
       bugfixes:
       - added a fix for the new scheduled_downtime module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/150)
+      minor_changes:
+      - Add Icinga scheduled downtime module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/146)
     release_date: '2021-11-22'
+  1.25.1:
+    changes:
+      trivial:
+      - added duration into our scheduled_downtime task (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/151)
+    release_date: '2021-11-24'

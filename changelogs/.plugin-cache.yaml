@@ -97,7 +97,7 @@ plugins:
       description: Manage downtimes in Icinga2
       name: icinga_scheduled_downtime
       namespace: ''
-      version_added: 1.24.0
+      version_added: 1.25.0
     icinga_service:
       description: Manage services in Icinga2
       name: icinga_service
@@ -202,4 +202,4 @@ plugins:
   shell: {}
   strategy: {}
   vars: {}
-version: 1.25.0
+version: 1.25.1
