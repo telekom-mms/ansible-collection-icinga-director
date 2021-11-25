@@ -71,7 +71,6 @@ options:
   apply_to:
     description:
       - Whether this notification should affect hosts or services.
-    required: true
     type: str
     choices: ["host", "service"]
   assign_filter:

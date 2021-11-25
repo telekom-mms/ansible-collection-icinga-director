@@ -63,16 +63,18 @@ options:
       - Please note that order matters when importing properties from multiple templates - last one wins.
     type: list
     elements: str
-  include_period:
+  includes:
     description:
       - Include other time periods into this.
     type: list
     elements: str
-  exclude_period:
+    aliases: ["include_period"]
+  excludes:
     description:
       - Exclude other time periods from this.
     type: list
     elements: str
+    aliases: ["exclude_period"]
   prefer_includes:
     description:
       - Whether to prefer timeperiods includes or excludes. Default to true.
@@ -165,14 +167,14 @@ def main():
             elements="str",
             default=[],
             required=False,
-            aliases=["exlude_list"],
+            aliases=["exclude_period"],
         ),
         includes=dict(
             type="list",
             elements="str",
             default=[],
             required=False,
-            aliases=["include_list"],
+            aliases=["include_period"],
         ),
         update_method=dict(required=False, default="LegacyTimePeriod"),
     )

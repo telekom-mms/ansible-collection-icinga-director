@@ -48,7 +48,7 @@ options:
       - Spaces will lead to separation of command path and standalone arguments.
       - Please note that this means that we do not support spaces in plugin names and paths right now.
     type: str
-  command_type:
+  methods_execute:
     description:
       - Plugin Check commands are what you need when running checks against your infrastructure.
       - Notification commands will be used when it comes to notify your users.
@@ -56,6 +56,7 @@ options:
       - Some people use them for auto-healing mechanisms, like restarting services or rebooting systems at specific thresholds.
     choices: ["PluginCheck", "PluginNotification", "PluginEvent"]
     default: "PluginCheck"
+    aliases: ['command_type']
     type: str
   disabled:
     description:

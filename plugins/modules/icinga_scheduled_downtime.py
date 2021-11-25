@@ -56,18 +56,15 @@ options:
   author:
     description:
       - Name of the downtime author.
-    required: true
     type: str
   comment:
     description:
       - A descriptive comment for the downtime.
-    required: true
     type: str
   fixed:
     description:
       - Whether this downtime is fixed or flexible.
         If unsure please check the related documentation https://icinga.com/docs/icinga2/latest/doc/08-advanced-topics/#downtimes
-    required: true
     type: bool
     choices: [True, False]
   with_services:
@@ -84,7 +81,6 @@ options:
     description:
       - Whether this dependency should affect hosts or services
     type: str
-    required: true
     choices: ["host", "service"]
   assign_filter:
     description:
