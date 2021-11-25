@@ -95,7 +95,7 @@ options:
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
-      - Note: Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
     type: bool
     choices: [True, False]
     version_added: '1.25.0'
