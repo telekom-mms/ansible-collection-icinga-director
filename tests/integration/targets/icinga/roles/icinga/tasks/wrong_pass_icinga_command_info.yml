@@ -4,7 +4,7 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    query: "centreon-plugins_2"
+    query: "centreon-plugins"
   ignore_errors: true
   register: result
 - assert:
