@@ -82,11 +82,11 @@ options:
     type: "str"
     aliases: ['time_period']
     version_added: "1.15.0"
-  notification_command:
+  command:
     description:
       - Check command definition
     type: "str"
-    aliases: ['command']
+    aliases: ['notification_command']
     version_added: "1.15.0"
   users:
     description:
