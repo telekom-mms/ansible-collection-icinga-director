@@ -83,6 +83,7 @@ options:
   imports:
     description:
       - Choose a Host Template. Required when state is C(present).
+      - Required if I(state) is C(present).
     type: list
     elements: str
   zone:

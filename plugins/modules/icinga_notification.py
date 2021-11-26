@@ -71,6 +71,7 @@ options:
   apply_to:
     description:
       - Whether this notification should affect hosts or services.
+      - Required if I(state) is C(present).
     type: str
     choices: ["host", "service"]
   assign_filter:
@@ -81,6 +82,7 @@ options:
     description:
       - Importable templates, add as many as you want. Required when state is C(present).
       - Please note that order matters when importing properties from multiple templates - last one wins.
+      - Required if I(state) is C(present).
     type: "list"
     elements: str
   disabled:
@@ -95,11 +97,11 @@ options:
       - Custom properties of the notification.
     type: "dict"
     version_added: "1.9.0"
-  time_period:
+  period:
     description:
       - The name of a time period which determines when this notification should be triggered.
     type: "str"
-    aliases: ['period']
+    aliases: ['time_period']
     version_added: "1.15.0"
   times_begin:
     description:

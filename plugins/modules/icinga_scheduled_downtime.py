@@ -56,15 +56,18 @@ options:
   author:
     description:
       - Name of the downtime author.
+      - Required if I(state) is C(present).
     type: str
   comment:
     description:
       - A descriptive comment for the downtime.
+      - Required if I(state) is C(present).
     type: str
   fixed:
     description:
       - Whether this downtime is fixed or flexible.
         If unsure please check the related documentation https://icinga.com/docs/icinga2/latest/doc/08-advanced-topics/#downtimes
+      - Required if I(state) is C(present).
     type: bool
     choices: [True, False]
   with_services:
@@ -80,6 +83,7 @@ options:
   apply_to:
     description:
       - Whether this dependency should affect hosts or services
+      - Required if I(state) is C(present).
     type: str
     choices: ["host", "service"]
   assign_filter:

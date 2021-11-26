@@ -76,11 +76,11 @@ options:
     description:
       - Set the zone.
     type: str
-  time_period:
+  period:
     description:
       - The name of a time period which determines when this notification should be triggered.
     type: "str"
-    aliases: ['period']
+    aliases: ['time_period']
     version_added: "1.15.0"
   notification_command:
     description:

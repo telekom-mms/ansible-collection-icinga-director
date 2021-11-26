@@ -243,14 +243,6 @@ def main():
         supports_check_mode=True,
     )
 
-    # When deleting objects, only the name is necessary, so we cannot use
-    # required=True in the argument_spec. Instead we define here what is
-    # necessary when state is present and we do not append to an existing object
-    if module.params["append"]:
-        module.required_if = ""
-    else:
-        module.required_if = [("state", "present", ["object_name"])]
-
     # typ von arguments ist eigentlich dict, also ohne Angabe = {}
     # die director API schickt hier aber ein leeres Array zurueck wenn nichts definiert
     # daher ueberschreiben, damit der diff besser funktioniert
