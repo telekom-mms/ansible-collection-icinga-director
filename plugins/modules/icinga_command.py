@@ -102,6 +102,7 @@ options:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
     choices: [True, False]
     version_added: '1.25.0'
@@ -249,24 +250,27 @@ def main():
     if not module.params["arguments"]:
         module.params["arguments"] = []
 
-    data = {
-        "object_name": module.params["object_name"],
-        "imports": module.params["imports"],
-        "disabled": module.params["disabled"],
-        "vars": module.params["vars"],
-        "command": module.params["command"],
-        "methods_execute": module.params["methods_execute"],
-        "timeout": module.params["timeout"],
-        "zone": module.params["zone"],
-        "arguments": module.params["arguments"],
-    }
+    data_keys = [
+        "object_name",
+        "imports",
+        "disabled",
+        "vars",
+        "command",
+        "methods_execute",
+        "timeout",
+        "zone",
+        "arguments",
+    ]
+
+    data = {}
 
     if module.params["append"]:
-        new_dict = {}
-        for k in data:
+        for k in data_keys:
             if module.params[k]:
-                new_dict[k] = module.params[k]
-        data = new_dict
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
 
     data["object_type"] = "object"
 

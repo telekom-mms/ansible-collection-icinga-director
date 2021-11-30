@@ -101,6 +101,7 @@ options:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
     choices: [True, False]
     version_added: '1.25.0'
@@ -214,27 +215,30 @@ def main():
     else:
         _fixed = "n"
 
-    data = {
-        "object_name": module.params["object_name"],
-        "disabled": module.params["disabled"],
-        "apply_to": module.params["apply_to"],
-        "assign_filter": module.params["assign_filter"],
-        "author": module.params["author"],
-        "comment": module.params["comment"],
-        "duration": module.params["duration"],
-        "fixed": _fixed,
-        "ranges": module.params["ranges"],
-        "with_services": _withservices,
-    }
+    data_keys = [
+        "object_name",
+        "disabled",
+        "apply_to",
+        "assign_filter",
+        "author",
+        "comment",
+        "duration",
+        "ranges",
+    ]
+
+    data = {}
 
     if module.params["append"]:
-        new_dict = {}
-        for k in data:
+        for k in data_keys:
             if module.params[k]:
-                new_dict[k] = module.params[k]
-        data = new_dict
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
 
     data["object_type"] = "apply"
+    data["fixed"] = _fixed
+    data["with_services"] = _withservices
 
     icinga_object = Icinga2APIObject(
         module=module, path="/scheduled-downtime", data=data

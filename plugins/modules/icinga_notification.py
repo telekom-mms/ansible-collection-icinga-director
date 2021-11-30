@@ -125,6 +125,7 @@ options:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
     choices: [True, False]
     version_added: '1.25.0'
@@ -223,29 +224,32 @@ def main():
     else:
         module.required_if = [("state", "present", ["apply_to", "imports"])]
 
-    data = {
-        "object_name": module.params["object_name"],
-        "imports": module.params["imports"],
-        "apply_to": module.params["apply_to"],
-        "disabled": module.params["disabled"],
-        "assign_filter": module.params["assign_filter"],
-        "notification_interval": module.params["notification_interval"],
-        "states": module.params["states"],
-        "users": module.params["users"],
-        "user_groups": module.params["user_groups"],
-        "types": module.params["types"],
-        "vars": module.params["vars"],
-        "period": module.params["period"],
-        "times_begin": module.params["times_begin"],
-        "times_end": module.params["times_end"],
-    }
+    data_keys = [
+        "object_name",
+        "imports",
+        "apply_to",
+        "disabled",
+        "assign_filter",
+        "notification_interval",
+        "states",
+        "users",
+        "user_groups",
+        "types",
+        "vars",
+        "period",
+        "times_begin",
+        "times_end",
+    ]
+
+    data = {}
 
     if module.params["append"]:
-        new_dict = {}
-        for k in data:
+        for k in data_keys:
             if module.params[k]:
-                new_dict[k] = module.params[k]
-        data = new_dict
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
 
     data["object_type"] = "apply"
 

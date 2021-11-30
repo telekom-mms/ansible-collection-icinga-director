@@ -104,6 +104,7 @@ options:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
     choices: [True, False]
     version_added: '1.25.0'
@@ -183,26 +184,29 @@ def main():
         supports_check_mode=True,
     )
 
-    data = {
-        "object_name": module.params["object_name"],
-        "notification_interval": module.params["notification_interval"],
-        "states": module.params["states"],
-        "times_begin": module.params["times_begin"],
-        "times_end": module.params["times_end"],
-        "types": module.params["types"],
-        "zone": module.params["zone"],
-        "period": module.params["period"],
-        "command": module.params["command"],
-        "users": module.params["users"],
-        "user_groups": module.params["user_groups"],
-    }
+    data_keys = [
+        "object_name",
+        "notification_interval",
+        "states",
+        "times_begin",
+        "times_end",
+        "types",
+        "zone",
+        "period",
+        "command",
+        "users",
+        "user_groups",
+    ]
+
+    data = {}
 
     if module.params["append"]:
-        new_dict = {}
-        for k in data:
+        for k in data_keys:
             if module.params[k]:
-                new_dict[k] = module.params[k]
-        data = new_dict
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
 
     data["object_type"] = "template"
 

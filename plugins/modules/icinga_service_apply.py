@@ -160,6 +160,7 @@ options:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
     choices: [True, False]
     version_added: '1.25.0'
@@ -311,37 +312,40 @@ def main():
         argument_spec=argument_spec, supports_check_mode=True
     )
 
-    data = {
-        "object_name": module.params["object_name"],
-        "display_name": module.params["display_name"],
-        "apply_for": module.params["apply_for"],
-        "check_command": module.params["check_command"],
-        "check_interval": module.params["check_interval"],
-        "check_period": module.params["check_period"],
-        "check_timeout": module.params["check_timeout"],
-        "enable_active_checks": module.params["enable_active_checks"],
-        "enable_event_handler": module.params["enable_event_handler"],
-        "enable_notifications": module.params["enable_notifications"],
-        "enable_passive_checks": module.params["enable_passive_checks"],
-        "enable_perfdata": module.params["enable_perfdata"],
-        "event_command": module.params["event_command"],
-        "max_check_attempts": module.params["max_check_attempts"],
-        "retry_interval": module.params["retry_interval"],
-        "command_endpoint": module.params["command_endpoint"],
-        "assign_filter": module.params["assign_filter"],
-        "imports": module.params["imports"],
-        "groups": module.params["groups"],
-        "vars": module.params["vars"],
-        "notes": module.params["notes"],
-        "notes_url": module.params["notes_url"],
-    }
+    data_keys = [
+        "object_name",
+        "display_name",
+        "apply_for",
+        "check_command",
+        "check_interval",
+        "check_period",
+        "check_timeout",
+        "enable_active_checks",
+        "enable_event_handler",
+        "enable_notifications",
+        "enable_passive_checks",
+        "enable_perfdata",
+        "event_command",
+        "max_check_attempts",
+        "retry_interval",
+        "command_endpoint",
+        "assign_filter",
+        "imports",
+        "groups",
+        "vars",
+        "notes",
+        "notes_url",
+    ]
+
+    data = {}
 
     if module.params["append"]:
-        new_dict = {}
-        for k in data:
+        for k in data_keys:
             if module.params[k]:
-                new_dict[k] = module.params[k]
-        data = new_dict
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
 
     data["object_type"] = "apply"
 

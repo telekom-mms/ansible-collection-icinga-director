@@ -149,6 +149,7 @@ options:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
     choices: [True, False]
     version_added: '1.25.0'
@@ -240,37 +241,39 @@ def main():
         argument_spec=argument_spec, supports_check_mode=True
     )
 
-    data = {
-        "object_name": module.params["object_name"],
-        "disabled": module.params["disabled"],
-        "check_command": module.params["check_command"],
-        "check_interval": module.params["check_interval"],
-        "check_period": module.params["check_period"],
-        "check_timeout": module.params["check_timeout"],
-        "enable_active_checks": module.params["enable_active_checks"],
-        "enable_event_handler": module.params["enable_event_handler"],
-        "enable_notifications": module.params["enable_notifications"],
-        "enable_passive_checks": module.params["enable_passive_checks"],
-        "enable_perfdata": module.params["enable_perfdata"],
-        "event_command": module.params["event_command"],
-        "groups": module.params["groups"],
-        "imports": module.params["imports"],
-        "max_check_attempts": module.params["max_check_attempts"],
-        "notes": module.params["notes"],
-        "notes_url": module.params["notes_url"],
-        "retry_interval": module.params["retry_interval"],
-        "use_agent": module.params["use_agent"],
-        "vars": module.params["vars"],
-        "volatile": module.params["volatile"],
-    }
+    data_keys = [
+        "object_name",
+        "disabled",
+        "check_command",
+        "check_interval",
+        "check_period",
+        "check_timeout",
+        "enable_active_checks",
+        "enable_event_handler",
+        "enable_notifications",
+        "enable_passive_checks",
+        "enable_perfdata",
+        "event_command",
+        "groups",
+        "imports",
+        "max_check_attempts",
+        "notes",
+        "notes_url",
+        "retry_interval",
+        "use_agent",
+        "vars",
+        "volatile",
+    ]
+
+    data = {}
 
     if module.params["append"]:
-        new_dict = {}
-        for k in data:
+        for k in data_keys:
             if module.params[k]:
-                new_dict[k] = module.params[k]
-        data = new_dict
-
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
     data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(module=module, path="/service", data=data)
