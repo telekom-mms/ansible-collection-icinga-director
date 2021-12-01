@@ -69,7 +69,7 @@ class Icinga2APIObject(object):
 
         # if nothing is modified when trying to change objects, fetch_url
         # returns only the 304 status but no body.
-	# if that happens we set the content to an empty json object.
+        # if that happens we set the content to an empty json object.
         # else we serialize the response as a json object.
         elif info["status"] == 304:
             content = {}
