@@ -54,16 +54,28 @@ class Icinga2APIObject(object):
         )
         content = ""
         error = ""
-        if rsp:
-            content = json.loads(rsp.read().decode("utf-8"))
+
+        # handle 400 errors
         if info["status"] >= 400:
             try:
                 content = json.loads(info["body"].decode("utf-8"))
                 error = content["error"]
             except (ValueError, KeyError):
                 error = info["msg"]
-        if info["status"] < 0:
+
+        # handle other errors
+        elif info["status"] < 0:
             error = info["msg"]
+
+        # if nothing is modified when trying to change objects, fetch_url
+        # returns only the 304 status but no body.
+        # if that happens we set the content to an empty json object.
+        # else we serialize the response as a json object.
+        elif info["status"] == 304:
+            content = {}
+        else:
+            content = json.loads(rsp.read().decode("utf-8"))
+
         return {"code": info["status"], "data": content, "error": error}
 
     def exists(self, find_by="name"):
