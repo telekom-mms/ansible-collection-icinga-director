@@ -82,4 +82,5 @@ releases:
     changes:
       trivial:
       - added duration into our scheduled_downtime task (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/151)
+      - fix call url function (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/154)
     release_date: '2021-11-24'
