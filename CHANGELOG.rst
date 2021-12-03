@@ -5,6 +5,14 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.26.0
+=======
+
+Minor Changes
+-------------
+
+- add option to append arguments to all modules (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/153)
+
 v1.25.1
 =======
 
