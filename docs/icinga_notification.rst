@@ -48,8 +48,10 @@ Parameters
     The host or service states you want to get notifications for.
 
 
-  apply_to (True, str, None)
+  apply_to (optional, str, None)
     Whether this notification should affect hosts or services.
+
+    Required if *state* is ``present``.
 
 
   assign_filter (optional, str, None)
@@ -61,6 +63,8 @@ Parameters
 
     Please note that order matters when importing properties from multiple templates - last one wins.
 
+    Required if *state* is ``present``.
+
 
   disabled (optional, bool, False)
     Disabled objects will not be deployed.
@@ -70,7 +74,7 @@ Parameters
     Custom properties of the notification.
 
 
-  time_period (optional, str, None)
+  period (optional, str, None)
     The name of a time period which determines when this notification should be triggered.
 
 
@@ -88,6 +92,14 @@ Parameters
 
   user_groups (optional, list, None)
     User Groups that should be notified by this notification.
+
+
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -193,11 +205,20 @@ Examples
         user_groups:
           - OnCall
         disabled: false
-        vars:
-          foo: bar
         time_period: "24/7"
         times_begin: 20
         times_end: 120
+
+    - name: Update notification
+      t_systems_mms.icinga_director.icinga_notification:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: E-Mail_host
+        vars:
+          foo: bar
+        append: true
 
 
 

@@ -128,6 +128,14 @@ Parameters
     Disabled objects will not be deployed.
 
 
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
+
+
   url (True, str, None)
     HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
 
@@ -220,8 +228,17 @@ Examples
           procs_argument: consul
           procs_critical: '1:'
           procs_warning: '1:'
+
+    - name: Update servicetemplate
+      t_systems_mms.icinga_director.icinga_service_template:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: fooservicetemplate
         notes: "example note"
         notes_url: "'http://url1' 'http://url2'"
+        append: true
 
     - name: Create servicetemplate with event command
       t_systems_mms.icinga_director.icinga_service_template:

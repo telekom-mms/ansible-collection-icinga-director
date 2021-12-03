@@ -34,16 +34,22 @@ Parameters
     Disabled objects will not be deployed.
 
 
-  author (True, str, None)
+  author (optional, str, None)
     Name of the downtime author.
 
+    Required if *state* is ``present``.
 
-  comment (True, str, None)
+
+  comment (optional, str, None)
     A descriptive comment for the downtime.
 
+    Required if *state* is ``present``.
 
-  fixed (True, bool, None)
+
+  fixed (optional, bool, False)
     Whether this downtime is fixed or flexible. If unsure please check the related documentation https://icinga.com/docs/icinga2/latest/doc/08-advanced-topics/#downtimes
+
+    Required if *state* is ``present``.
 
 
   with_services (optional, bool, True)
@@ -54,8 +60,10 @@ Parameters
     The period which should be downtimed
 
 
-  apply_to (True, str, None)
+  apply_to (optional, str, None)
     Whether this dependency should affect hosts or services
+
+    Required if *state* is ``present``.
 
 
   assign_filter (optional, str, None)
@@ -64,6 +72,14 @@ Parameters
 
   duration (optional, str, None)
     How long the downtime lasts. Only has an effect for flexible (non-fixed) downtimes. Time in seconds, supported suffixes include ms (milliseconds), s (seconds), m (minutes), h (hours) and d (days). To express "90 minutes" you might want to write 1h 30m
+
+
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -146,41 +162,53 @@ Examples
 .. code-block:: yaml+jinja
 
     
-      - name: create icinga_scheduled_downtime
-        t_systems_mms.icinga_director.icinga_scheduled_downtime:
-          url: "{{ icinga_url }}"
-          url_username: "{{ icinga_user }}"
-          url_password: "{{ icinga_pass }}"
-          disabled: false
-          object_name: "foodowntime"
-          state: present
-          author: testuser
-          comment: test
-          fixed: true
-          with_services: true
-          apply_to: host
-          assign_filter: 'host.name="foohost"'
-          duration: 500
-          ranges:
-            "tuesday": "00:00-24:00"
+    - name: create icinga_scheduled_downtime
+      t_systems_mms.icinga_director.icinga_scheduled_downtime:
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        disabled: false
+        object_name: "foodowntime"
+        state: present
+        author: testuser
+        comment: test
+        fixed: true
+        with_services: true
+        apply_to: host
+        assign_filter: 'host.name="foohost"'
+        duration: 500
+        ranges:
+          "tuesday": "00:00-24:00"
 
-      - name: create icinga_scheduled_downtime2
-        t_systems_mms.icinga_director.icinga_scheduled_downtime:
-          url: "{{ icinga_url }}"
-          url_username: "{{ icinga_user }}"
-          url_password: "{{ icinga_pass }}"
-          disabled: false
-          object_name: "foodowntime2"
-          state: present
-          author: testuser
-          comment: test
-          fixed: false
-          with_services: false
-          apply_to: host
-          assign_filter: 'host.name="foohost"'
-          duration: 500
-          ranges:
-            "tuesday": "00:00-24:00"
+    - name: create icinga_scheduled_downtime2
+      t_systems_mms.icinga_director.icinga_scheduled_downtime:
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        disabled: false
+        object_name: "foodowntime2"
+        state: present
+        author: testuser
+        comment: test
+        fixed: false
+        with_services: false
+        apply_to: host
+        assign_filter: 'host.name="foohost"'
+        duration: 500
+        ranges:
+          "tuesday": "00:00-24:00"
+
+    - name: update icinga_scheduled_downtime2
+      t_systems_mms.icinga_director.icinga_scheduled_downtime:
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "foodowntime2"
+        state: present
+        duration: 1000
+        append: true
+        apply_to: host
+        with_services: false
 
 
 

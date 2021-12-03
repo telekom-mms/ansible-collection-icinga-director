@@ -65,6 +65,8 @@ Parameters
   imports (optional, list, None)
     Choose a Host Template. Required when state is ``present``.
 
+    Required if *state* is ``present``.
+
 
   zone (optional, str, None)
     Set the zone.
@@ -106,6 +108,14 @@ Parameters
 
   command_endpoint (optional, str, None)
     The endpoint where commands are executed on.
+
+
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -206,12 +216,21 @@ Examples
         vars:
           dnscheck: "no"
         check_command: hostalive
-        notes: "example note"
-        notes_url: "'http://url1' 'http://url2'"
         has_agent: true
         master_should_connect: true
         accept_config: true
         command_endpoint: fooendpoint
+
+    - name: update a host in icinga
+      t_systems_mms.icinga_director.icinga_host:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "foohost"
+        notes: "example note"
+        notes_url: "'http://url1' 'http://url2'"
+        append: true
 
 
 

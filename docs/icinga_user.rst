@@ -64,6 +64,14 @@ Parameters
     Groups can be useful for various reasons. You might prefer to send notifications to groups instead of single users.
 
 
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
+
+
   url (True, str, None)
     HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
 
@@ -151,7 +159,6 @@ Examples
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
         object_name: "rb"
-        display_name: "Rufbereitschaft"
         pager: 'SIP/emergency'
         period: '24/7'
         email: "foouser@example.com"
@@ -159,6 +166,16 @@ Examples
           - foousertemplate
         groups:
           - onCall
+
+    - name: Update user
+      t_systems_mms.icinga_director.icinga_user:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "rb"
+        display_name: "Rufbereitschaft"
+        append: true
 
 
 

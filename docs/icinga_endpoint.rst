@@ -52,6 +52,14 @@ Parameters
     The name of the zone this endpoint is part of.
 
 
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
+
+
   url (True, str, None)
     HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
 
@@ -141,6 +149,18 @@ Examples
         object_name: "fooendpoint"
         host: "127.0.0.1"
         zone: "foozone"
+
+    - name: Update an endpoint in icinga
+      t_systems_mms.icinga_director.icinga_endpoint:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "fooendpoint"
+        host: "127.0.0.1"
+        zone: "foozone"
+        port: 5665
+        append: true
 
 
 

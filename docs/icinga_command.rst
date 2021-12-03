@@ -36,7 +36,7 @@ Parameters
     Please note that this means that we do not support spaces in plugin names and paths right now.
 
 
-  command_type (optional, str, PluginCheck)
+  methods_execute (optional, str, PluginCheck)
     Plugin Check commands are what you need when running checks against your infrastructure.
 
     Notification commands will be used when it comes to notify your users.
@@ -80,6 +80,14 @@ Parameters
     When using a dict as argument value, the following properties are supported. ``skip_key``, ``repeat_key``, ``required``, ``order``, ``description``), ``set_if``, ``value``.
 
     The ``value`` property can be either a string, a json or a dict. When used as a dict, you can define its ``type`` as ``Function`` and set its ``body`` property as an Icinga DSL piece of config.
+
+
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -214,7 +222,6 @@ Examples
         object_name: centreon-plugins
         imports:
           - centreon-plugins-template
-        timeout: "1m"
         vars:
           centreon_maxrepetitions: 20
           centreon_subsetleef: 20
@@ -226,14 +233,15 @@ Examples
           snmpv3_priv_key: privkey
           snmpv3_user: user
 
-    - name: Create command
+    - name: Update command
       t_systems_mms.icinga_director.icinga_command:
         state: present
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
-        command: "/opt/centreon-plugins/centreon_plugins_2.pl"
-        object_name: centreon-plugins_2
+        object_name: centreon-plugins
+        timeout: "1m"
+        append: true
 
     - name: Create event command
       t_systems_mms.icinga_director.icinga_command:
@@ -243,6 +251,7 @@ Examples
         url_password: "{{ icinga_pass }}"
         command: "/opt/scripts/restart_httpd"
         object_name: "restart_httpd"
+        command_type: "PluginEvent"
         arguments:
           '-s':
             value: $service.state$

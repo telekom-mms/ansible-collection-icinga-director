@@ -44,11 +44,11 @@ Parameters
     Please note that order matters when importing properties from multiple templates - last one wins.
 
 
-  include_period (optional, list, None)
+  includes (optional, list, None)
     Include other time periods into this.
 
 
-  exclude_period (optional, list, None)
+  excludes (optional, list, None)
     Exclude other time periods from this.
 
 
@@ -66,6 +66,14 @@ Parameters
 
   update_method (optional, str, LegacyTimePeriod)
     Define the update method.
+
+
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -155,7 +163,6 @@ Examples
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
         object_name: "timeperiod_template"
-        display_name: "timeperiod template"
         imports: []
         disabled: false
         prefer_includes: false
@@ -169,6 +176,15 @@ Examples
           sunday: "00:00-23:59"
         update_method: "LegacyTimePeriod"
 
+    - name: Update timeperiod template
+      t_systems_mms.icinga_director.icinga_timeperiod_template:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "timeperiod_template"
+        display_name: "timeperiod template"
+        append: true
 
 
 

@@ -136,6 +136,14 @@ Parameters
     Maximum length is 255 characters.
 
 
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
+
+
   url (True, str, None)
     HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
 
@@ -265,7 +273,6 @@ Examples
         enable_event_handler: true
         enable_notifications: true
         enable_passive_checks: false
-        enable_perfdata: false
         event_command: restart_httpd
         max_check_attempts: "5"
         retry_interval: "3m"
@@ -274,6 +281,16 @@ Examples
           - fooservicetemplate
         groups:
           - fooservicegroup
+
+    - name: Update service apply rule with command_endpoint
+      t_systems_mms.icinga_director.icinga_service_apply:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "SERVICE_dummy"
+        enable_perfdata: true
+        append: true
 
 
 

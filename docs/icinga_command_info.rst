@@ -125,7 +125,7 @@ Examples
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
-        query: "centreon-plugins_2"
+        query: "centreon-plugins"
 
 
 

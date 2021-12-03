@@ -60,11 +60,11 @@ Parameters
     Set the zone.
 
 
-  time_period (optional, str, None)
+  period (optional, str, None)
     The name of a time period which determines when this notification should be triggered.
 
 
-  notification_command (optional, str, None)
+  command (optional, str, None)
     Check command definition
 
 
@@ -74,6 +74,14 @@ Parameters
 
   user_groups (optional, list, None)
     User Groups that should be notified by this notification.
+
+
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -162,7 +170,6 @@ Examples
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
-        notification_interval: '0'
         object_name: foonotificationtemplate
         states:
           - Up
@@ -178,6 +185,16 @@ Examples
           - "rb"
         user_groups:
           - "OnCall"
+
+    - name: Update notification template
+      t_systems_mms.icinga_director.icinga_notification_template:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: foonotificationtemplate
+        notification_interval: '0'
+        append: true
 
 
 

@@ -42,6 +42,14 @@ Parameters
     Please feel free to combine as many nested operators as you want.
 
 
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
+
+
   url (True, str, None)
     HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
 
@@ -130,7 +138,16 @@ Examples
         url_password: "{{ icinga_pass }}"
         object_name: foohostgroup
         display_name: foohostgroup
+
+    - name: Update hostgroup
+      t_systems_mms.icinga_director.icinga_hostgroup:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: foohostgroup
         assign_filter: 'host.name="foohost"'
+        append: true
 
 
 
