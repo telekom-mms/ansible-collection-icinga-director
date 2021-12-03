@@ -226,10 +226,14 @@ def main():
     # When deleting objects, only the name is necessary, so we cannot use
     # required=True in the argument_spec. Instead we define here what is
     # necessary when state is present and we do not append to an existing object
-    if module.params["append"]:
-        module.required_if = ""
-    else:
-        module.required_if = [("state", "present", ["imports"])]
+    # We cannot use "required_if" here, because we rely on module.params.
+    # These are defined at the same time we'd define the required_if arguments.
+    if (
+        module.params["state"] == "present"
+        and not module.params["append"]
+        and not (module.params["imports"])
+    ):
+        module.fail_json(msg="missing required arguments: imports.")
 
     data_keys = [
         "object_name",

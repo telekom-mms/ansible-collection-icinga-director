@@ -70,6 +70,7 @@ options:
       - Required if I(state) is C(present).
     type: bool
     choices: [True, False]
+    default: False
   with_services:
     description:
       - Whether you only downtime the hosts or add some services with it.
@@ -153,6 +154,8 @@ EXAMPLES = """
     state: present
     duration: 1000
     append: true
+    apply_to: host
+    with_services: false
 """
 
 RETURN = r""" # """
@@ -182,7 +185,7 @@ def main():
         author=dict(),
         comment=dict(),
         duration=dict(required=False),
-        fixed=dict(type="bool", choices=[True, False]),
+        fixed=dict(type="bool", choices=[True, False], default=False),
         ranges=dict(type="dict", required=False, default={}),
         with_services=dict(type="bool", default=True, choices=[True, False]),
     )
@@ -192,16 +195,6 @@ def main():
         argument_spec=argument_spec,
         supports_check_mode=True,
     )
-
-    # When deleting objects, only the name is necessary, so we cannot use
-    # required=True in the argument_spec. Instead we define here what is
-    # necessary when state is present and we do not append to an existing object
-    if module.params["append"]:
-        module.required_if = ""
-    else:
-        module.required_if = [
-            ("state", "present", ["apply_to", "author", "comment", "fixed"])
-        ]
 
     # Icinga expects 'y' or 'n' instead of booleans for option "with_services"
     if module.params["with_services"]:
@@ -214,6 +207,25 @@ def main():
         _fixed = "y"
     else:
         _fixed = "n"
+
+    # When deleting objects, only the name is necessary, so we cannot use
+    # required=True in the argument_spec. Instead we define here what is
+    # necessary when state is present and we do not append to an existing object
+    # We cannot use "required_if" here, because we rely on module.params.
+    # These are defined at the same time we'd define the required_if arguments.
+    if (
+        module.params["state"] == "present"
+        and not module.params["append"]
+        and not (
+            module.params["apply_to"]
+            and module.params["author"]
+            and module.params["comment"]
+            and _fixed in ("y", "n")
+        )
+    ):
+        module.fail_json(
+            msg="missing required arguments: apply_to, author, comment, fixed."
+        )
 
     data_keys = [
         "object_name",

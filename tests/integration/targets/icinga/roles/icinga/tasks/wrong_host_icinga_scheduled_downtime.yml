@@ -56,6 +56,8 @@
     state: present
     duration: 1000
     append: true
+    apply_to: host
+    with_services: false
   ignore_errors: true
   register: result
 - assert:
