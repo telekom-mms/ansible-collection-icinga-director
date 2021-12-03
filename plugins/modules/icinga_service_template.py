@@ -274,6 +274,7 @@ def main():
     else:
         for k in data_keys:
             data[k] = module.params[k]
+
     data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(module=module, path="/service", data=data)
