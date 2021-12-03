@@ -149,6 +149,14 @@ options:
     description:
       - The endpoint where commands are executed on.
     type: str
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -168,13 +176,22 @@ EXAMPLES = """
       - "foohostgroup"
     imports:
       - ''
-    notes: "example note"
-    notes_url: "'http://url1' 'http://url2'"
     has_agent: true
     master_should_connect: true
     max_check_attempts: 3
     accept_config: true
     command_endpoint: fooendpoint
+
+- name: Update host template
+  t_systems_mms.icinga_director.icinga_host_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: foohosttemplate
+    notes: "example note"
+    notes_url: "'http://url1' 'http://url2'"
+    append: true
 """
 
 RETURN = r""" # """
@@ -196,6 +213,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
@@ -223,29 +241,40 @@ def main():
         argument_spec=argument_spec, supports_check_mode=True
     )
 
-    data = {
-        "object_name": module.params["object_name"],
-        "object_type": "template",
-        "display_name": module.params["display_name"],
-        "groups": module.params["groups"],
-        "check_command": module.params["check_command"],
-        "check_interval": module.params["check_interval"],
-        "retry_interval": module.params["retry_interval"],
-        "imports": module.params["imports"],
-        "disabled": module.params["disabled"],
-        "address": module.params["address"],
-        "address6": module.params["address6"],
-        "zone": module.params["zone"],
-        "vars": module.params["vars"],
-        "notes": module.params["notes"],
-        "notes_url": module.params["notes_url"],
-        "has_agent": module.params["has_agent"],
-        "master_should_connect": module.params["master_should_connect"],
-        "max_check_attempts": module.params["max_check_attempts"],
-        "accept_config": module.params["accept_config"],
-        "event_command": module.params["event_command"],
-        "command_endpoint": module.params["command_endpoint"],
-    }
+    data_keys = [
+        "object_name",
+        "display_name",
+        "groups",
+        "check_command",
+        "check_interval",
+        "retry_interval",
+        "imports",
+        "disabled",
+        "address",
+        "address6",
+        "zone",
+        "vars",
+        "notes",
+        "notes_url",
+        "has_agent",
+        "master_should_connect",
+        "max_check_attempts",
+        "accept_config",
+        "event_command",
+        "command_endpoint",
+    ]
+
+    data = {}
+
+    if module.params["append"]:
+        for k in data_keys:
+            if module.params[k]:
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
+
+    data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(module=module, path="/host", data=data)
 

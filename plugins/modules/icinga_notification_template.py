@@ -76,17 +76,17 @@ options:
     description:
       - Set the zone.
     type: str
-  time_period:
+  period:
     description:
       - The name of a time period which determines when this notification should be triggered.
     type: "str"
-    aliases: ['period']
+    aliases: ['time_period']
     version_added: "1.15.0"
-  notification_command:
+  command:
     description:
       - Check command definition
     type: "str"
-    aliases: ['command']
+    aliases: ['notification_command']
     version_added: "1.15.0"
   users:
     description:
@@ -100,6 +100,14 @@ options:
     type: "list"
     elements: str
     version_added: '1.16.0'
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -109,7 +117,6 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    notification_interval: '0'
     object_name: foonotificationtemplate
     states:
       - Up
@@ -125,6 +132,16 @@ EXAMPLES = """
       - "rb"
     user_groups:
       - "OnCall"
+
+- name: Update notification template
+  t_systems_mms.icinga_director.icinga_notification_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: foonotificationtemplate
+    notification_interval: '0'
+    append: true
 """
 
 RETURN = r""" # """
@@ -147,6 +164,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         notification_interval=dict(required=False),
         states=dict(type="list", elements="str", required=False),
@@ -154,8 +172,8 @@ def main():
         times_end=dict(type="int", required=False),
         types=dict(type="list", elements="str", required=False),
         zone=dict(required=False, default=None),
-        time_period=dict(required=False, aliases=["period"]),
-        notification_command=dict(required=False, aliases=["command"]),
+        period=dict(required=False, aliases=["time_period"]),
+        command=dict(required=False, aliases=["notification_command"]),
         users=dict(type="list", elements="str", required=False),
         user_groups=dict(type="list", elements="str", required=False),
     )
@@ -166,20 +184,31 @@ def main():
         supports_check_mode=True,
     )
 
-    data = {
-        "object_name": module.params["object_name"],
-        "object_type": "template",
-        "notification_interval": module.params["notification_interval"],
-        "states": module.params["states"],
-        "times_begin": module.params["times_begin"],
-        "times_end": module.params["times_end"],
-        "types": module.params["types"],
-        "zone": module.params["zone"],
-        "period": module.params["time_period"],
-        "command": module.params["notification_command"],
-        "users": module.params["users"],
-        "user_groups": module.params["user_groups"],
-    }
+    data_keys = [
+        "object_name",
+        "notification_interval",
+        "states",
+        "times_begin",
+        "times_end",
+        "types",
+        "zone",
+        "period",
+        "command",
+        "users",
+        "user_groups",
+    ]
+
+    data = {}
+
+    if module.params["append"]:
+        for k in data_keys:
+            if module.params[k]:
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
+
+    data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(
         module=module, path="/notification", data=data

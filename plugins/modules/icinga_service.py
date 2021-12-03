@@ -143,6 +143,14 @@ options:
     type: bool
     default: False
     choices: [True, False]
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -161,8 +169,19 @@ EXAMPLES = """
       procs_argument: consul
       procs_critical: '1:'
       procs_warning: '1:'
+
+- name: Update service
+  tags: service
+  t_systems_mms.icinga_director.icinga_service:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "foo service"
+    host: foohost
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
+    append: true
 """
 
 RETURN = r""" # """
@@ -266,6 +285,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         disabled=dict(type="bool", default=False, choices=[True, False]),
         check_command=dict(required=False),
@@ -294,30 +314,41 @@ def main():
         argument_spec=argument_spec, supports_check_mode=True
     )
 
-    data = {
-        "object_name": module.params["object_name"],
-        "disabled": module.params["disabled"],
-        "object_type": "object",
-        "check_command": module.params["check_command"],
-        "check_interval": module.params["check_interval"],
-        "check_period": module.params["check_period"],
-        "check_timeout": module.params["check_timeout"],
-        "enable_active_checks": module.params["enable_active_checks"],
-        "enable_event_handler": module.params["enable_event_handler"],
-        "enable_notifications": module.params["enable_notifications"],
-        "enable_passive_checks": module.params["enable_passive_checks"],
-        "enable_perfdata": module.params["enable_perfdata"],
-        "groups": module.params["groups"],
-        "host": module.params["host"],
-        "imports": module.params["imports"],
-        "max_check_attempts": module.params["max_check_attempts"],
-        "notes": module.params["notes"],
-        "notes_url": module.params["notes_url"],
-        "retry_interval": module.params["retry_interval"],
-        "use_agent": module.params["use_agent"],
-        "vars": module.params["vars"],
-        "volatile": module.params["volatile"],
-    }
+    data_keys = [
+        "object_name",
+        "disabled",
+        "check_command",
+        "check_interval",
+        "check_period",
+        "check_timeout",
+        "enable_active_checks",
+        "enable_event_handler",
+        "enable_notifications",
+        "enable_passive_checks",
+        "enable_perfdata",
+        "groups",
+        "host",
+        "imports",
+        "max_check_attempts",
+        "notes",
+        "notes_url",
+        "retry_interval",
+        "use_agent",
+        "vars",
+        "volatile",
+    ]
+
+    data = {}
+
+    if module.params["append"]:
+        for k in data_keys:
+            if module.params[k]:
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
+
+    data["object_type"] = "object"
 
     icinga_object = IcingaServiceObject(
         module=module, path="/service", data=data

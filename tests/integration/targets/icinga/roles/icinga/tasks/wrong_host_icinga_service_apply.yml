@@ -54,7 +54,6 @@
     enable_event_handler: true
     enable_notifications: true
     enable_passive_checks: false
-    enable_perfdata: false
     event_command: restart_httpd
     max_check_attempts: "5"
     retry_interval: "3m"
@@ -63,6 +62,22 @@
       - fooservicetemplate
     groups:
       - fooservicegroup
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Update service apply rule with command_endpoint
+  t_systems_mms.icinga_director.icinga_service_apply:
+    state: present
+    url: http://nonexistant
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "SERVICE_dummy"
+    enable_perfdata: true
+    append: true
   ignore_errors: true
   register: result
 - assert:

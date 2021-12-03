@@ -58,6 +58,14 @@ options:
     type: bool
     default: False
     choices: [True, False]
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -68,8 +76,17 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "onCall"
-    display_name: "on call group"
     disabled: false
+
+- name: Update user group
+  t_systems_mms.icinga_director.icinga_user_group:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "onCall"
+    display_name: "on call group"
+    append: true
 """
 
 RETURN = r""" # """
@@ -91,6 +108,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
@@ -101,12 +119,23 @@ def main():
         argument_spec=argument_spec, supports_check_mode=True
     )
 
-    data = {
-        "object_name": module.params["object_name"],
-        "object_type": "object",
-        "display_name": module.params["display_name"],
-        "disabled": module.params["disabled"],
-    }
+    data_keys = [
+        "object_name",
+        "display_name",
+        "disabled",
+    ]
+
+    data = {}
+
+    if module.params["append"]:
+        for k in data_keys:
+            if module.params[k]:
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
+
+    data["object_type"] = "object"
 
     icinga_object = Icinga2APIObject(
         module=module, path="/usergroup", data=data

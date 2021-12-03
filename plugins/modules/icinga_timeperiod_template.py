@@ -63,16 +63,18 @@ options:
       - Please note that order matters when importing properties from multiple templates - last one wins.
     type: list
     elements: str
-  include_period:
+  includes:
     description:
       - Include other time periods into this.
     type: list
     elements: str
-  exclude_period:
+    aliases: ["include_period"]
+  excludes:
     description:
       - Exclude other time periods from this.
     type: list
     elements: str
+    aliases: ["exclude_period"]
   prefer_includes:
     description:
       - Whether to prefer timeperiods includes or excludes. Default to true.
@@ -92,6 +94,14 @@ options:
       - Define the update method.
     type: str
     default: "LegacyTimePeriod"
+  append:
+    description:
+      - Do not overwrite the whole object but instead append the defined properties.
+      - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+      - Note - Variables that are set by default will also be applied, even if not set.
+    type: bool
+    choices: [True, False]
+    version_added: '1.25.0'
 """
 
 EXAMPLES = """
@@ -102,7 +112,6 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "timeperiod_template"
-    display_name: "timeperiod template"
     imports: []
     disabled: false
     prefer_includes: false
@@ -116,6 +125,15 @@ EXAMPLES = """
       sunday: "00:00-23:59"
     update_method: "LegacyTimePeriod"
 
+- name: Update timeperiod template
+  t_systems_mms.icinga_director.icinga_timeperiod_template:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "timeperiod_template"
+    display_name: "timeperiod template"
+    append: true
 """
 
 RETURN = r""" # """
@@ -137,6 +155,7 @@ def main():
     argument_spec.update(
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
@@ -144,11 +163,19 @@ def main():
         imports=dict(type="list", elements="str", default=[], required=False),
         ranges=dict(type="dict", required=False),
         prefer_includes=dict(type="bool", default=True, choices=[True, False]),
-        exclude_period=dict(
-            type="list", elements="str", default=[], required=False
+        excludes=dict(
+            type="list",
+            elements="str",
+            default=[],
+            required=False,
+            aliases=["exclude_period"],
         ),
-        include_period=dict(
-            type="list", elements="str", default=[], required=False
+        includes=dict(
+            type="list",
+            elements="str",
+            default=[],
+            required=False,
+            aliases=["include_period"],
         ),
         update_method=dict(required=False, default="LegacyTimePeriod"),
     )
@@ -158,19 +185,30 @@ def main():
         argument_spec=argument_spec, supports_check_mode=True
     )
 
-    data = {
-        "object_name": module.params["object_name"],
-        "object_type": "template",
-        "display_name": module.params["display_name"],
-        "disabled": module.params["disabled"],
-        "zone": module.params["zone"],
-        "imports": module.params["imports"],
-        "ranges": module.params["ranges"],
-        "prefer_includes": module.params["prefer_includes"],
-        "excludes": module.params["exclude_period"],
-        "includes": module.params["include_period"],
-        "update_method": module.params["update_method"],
-    }
+    data_keys = [
+        "object_name",
+        "display_name",
+        "disabled",
+        "zone",
+        "imports",
+        "ranges",
+        "prefer_includes",
+        "excludes",
+        "includes",
+        "update_method",
+    ]
+
+    data = {}
+
+    if module.params["append"]:
+        for k in data_keys:
+            if module.params[k]:
+                data[k] = module.params[k]
+    else:
+        for k in data_keys:
+            data[k] = module.params[k]
+
+    data["object_type"] = "template"
 
     icinga_object = Icinga2APIObject(
         module=module, path="/timeperiod", data=data
