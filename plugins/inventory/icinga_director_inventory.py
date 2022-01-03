@@ -56,7 +56,7 @@ keyed_groups:
   - prefix: os
     key: vars.HostOS
 
-# create groups created from jinja templates
+# create groups based on jinja templates
 # here we create a group called "rb" if the host variable "check_period" is "24/7"
 groups:
   rb: check_period == "24/7"
