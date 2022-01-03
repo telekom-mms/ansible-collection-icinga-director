@@ -1,0 +1,103 @@
+---
+- hosts: 127.0.0.1
+  vars:
+    icinga_url: "http://127.0.0.1/icingaweb2"
+    icinga_user: "icingaadmin"
+    icinga_pass: "icinga"
+  connection: local
+  gather_facts: false
+  tasks:
+    - block:
+        # Create new host, refresh inventory
+        - name: Create host template
+          t_systems_mms.icinga_director.icinga_host_template:
+            state: present
+            url: "{{ icinga_url }}"
+            url_username: "{{ icinga_user }}"
+            url_password: "{{ icinga_pass }}"
+            object_name: foohosttemplate
+            check_command: dummy
+            command_endpoint: fooendpoint
+
+        - name: Create hostgroup
+          t_systems_mms.icinga_director.icinga_hostgroup:
+            state: present
+            url: "{{ icinga_url }}"
+            url_username: "{{ icinga_user }}"
+            url_password: "{{ icinga_pass }}"
+            object_name: inventory_test_hostgroup
+
+        - name: Create a host in icinga
+          t_systems_mms.icinga_director.icinga_host:
+            state: present
+            url: "{{ icinga_url }}"
+            url_username: "{{ icinga_user }}"
+            url_password: "{{ icinga_pass }}"
+            object_name: "inventory_test_host"
+            imports:
+              - "foohosttemplate"
+            address: "127.0.0.1"
+            display_name: "inventory_test_host"
+            check_command: hostalive
+            groups:
+              - "inventory_test_hostgroup"
+
+        - name: deploy changes in icinga
+          tags: uri
+          uri:
+            url: "{{ icinga_url }}/director/config/deploy"
+            headers:
+              Accept: application/json
+            method: POST
+            user: "{{ icinga_user }}"
+            password: "{{ icinga_pass }}"
+            return_content: true
+
+        - meta: refresh_inventory
+
+        - debug:
+            var: hostvars
+
+        - name: assert the keyed groups and groups from constructed config were added to inventory and composite var added to hostvars
+          assert:
+            that:
+              # There are 4 groups: all, ungrouped, inventory_test_hostgroup, object_type_object
+              - "groups | length == 4"
+              - "groups['object_type_object'] | length == 1"
+              - vars.hostvars['inventory_test_host']['test_compose_var_sum'] == 'hostaliveinventory_test_host'
+
+      always:
+        - name: delete the host in icinga
+          t_systems_mms.icinga_director.icinga_host:
+            state: absent
+            url: "{{ icinga_url }}"
+            url_username: "{{ icinga_user }}"
+            url_password: "{{ icinga_pass }}"
+            object_name: "inventory_test_host"
+
+        - name: delete the hostgroup in icinga
+          t_systems_mms.icinga_director.icinga_hostgroup:
+            state: absent
+            url: "{{ icinga_url }}"
+            url_username: "{{ icinga_user }}"
+            url_password: "{{ icinga_pass }}"
+            object_name: "inventory_test_hostgroup"
+
+        - name: delete the hostgroup in icinga
+          t_systems_mms.icinga_director.icinga_hostgroup:
+            state: absent
+            url: "{{ icinga_url }}"
+            url_username: "{{ icinga_user }}"
+            url_password: "{{ icinga_pass }}"
+            object_name: "foohostgroup"
+
+        - name: deploy changes in icinga
+          tags: uri
+          uri:
+            url: "{{ icinga_url }}/director/config/deploy"
+            headers:
+              Accept: application/json
+            method: POST
+            user: "{{ icinga_user }}"
+            password: "{{ icinga_pass }}"
+            return_content: true

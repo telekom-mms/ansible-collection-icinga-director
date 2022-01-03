@@ -171,7 +171,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
 
             # Add variables created by the user's Jinja2 expressions to the host
             self._set_composite_vars(
-                self.get_option("compose"),
+                compose,
                 host_vars,
                 host["object_name"],
                 strict=strict,
