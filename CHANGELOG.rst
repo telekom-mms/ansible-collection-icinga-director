@@ -5,6 +5,14 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.27.0
+=======
+
+Minor Changes
+-------------
+
+- Add possibility to use Compose and keyed groups in inventory-module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/155)
+
 v1.26.0
 =======
 

@@ -92,3 +92,8 @@ releases:
       - added duration into our scheduled_downtime task (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/151)
       - fix call url function (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/154)
     release_date: '2021-12-03'
+  1.27.0:
+    changes:
+      minor_changes:
+      - Add possibility to use Compose and keyed groups in inventory-module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/155)
+    release_date: '2022-01-03'
