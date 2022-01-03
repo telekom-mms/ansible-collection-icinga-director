@@ -88,6 +88,71 @@ Parameters
     NTLM authentication is ``not`` supported even if the GSSAPI mech for NTLM has been installed.
 
 
+  strict (optional, bool, False)
+    If ``yes`` make invalid entries a fatal error, otherwise skip and continue.
+
+    Since it is possible to use facts in the expressions they might not always be available and we ignore those errors by default.
+
+
+  compose (optional, dict, {})
+    Create vars from jinja2 expressions.
+
+
+  groups (optional, dict, {})
+    Add hosts to group based on Jinja2 conditionals.
+
+
+  keyed_groups (optional, list, [])
+    Add hosts to group based on the values of a variable.
+
+
+    parent_group (optional, str, None)
+      parent group for keyed group
+
+
+    prefix (optional, str, )
+      A keyed group name will start with this prefix
+
+
+    separator (optional, str, _)
+      separator used to build the keyed group name
+
+
+    key (optional, str, None)
+      The key from input dictionary used to generate groups
+
+
+    default_value (optional, str, None)
+      The default value when the host variable's value is an empty string.
+
+      This option is mutually exclusive with ``trailing_separator``.
+
+
+    trailing_separator (optional, bool, True)
+      Set this option to *False* to omit the ``separator`` after the host variable when the value is an empty string.
+
+      This option is mutually exclusive with ``default_value``.
+
+
+
+  use_extra_vars (optional, bool, False)
+    Merge extra vars into the available variables for composition (highest precedence).
+
+
+  leading_separator (optional, boolean, True)
+    Use in conjunction with keyed_groups.
+
+    By default, a keyed group that does not have a prefix or a separator provided will have a name that starts with an underscore.
+
+    This is because the default prefix is "" and the default separator is "_".
+
+    Set this option to False to omit the leading underscore (or other separator) if no prefix is given.
+
+    If the group name is derived from a mapping the separator is still used to concatenate the items.
+
+    To not use a separator in the group name at all, set the separator for the keyed group to an empty string instead.
+
+
 
 
 
@@ -106,6 +171,21 @@ Examples
     url_username: foo
     url_password: bar
     force_basic_auth: False
+    strict: False
+
+    # use the object_name you defined as hostname
+    compose:
+      hostname: object_name
+
+    # create a group based on the operating system defined in a custom variable
+    keyed_groups:
+      - prefix: os
+        key: vars.HostOS
+
+    # create groups based on jinja templates
+    # here we create a group called "rb" if the host variable "check_period" is "24/7"
+    groups:
+      rb: check_period == "24/7"
 
 
 
