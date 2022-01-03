@@ -1,0 +1,51 @@
+---
+- hosts: 127.0.0.1
+  vars:
+    icinga_url: "http://127.0.0.1/icingaweb2"
+    icinga_user: "icingaadmin"
+    icinga_pass: "icinga"
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: delete the host in icinga
+      t_systems_mms.icinga_director.icinga_host:
+        state: absent
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "inventory_test_host"
+
+    - name: delete the host in icinga
+      t_systems_mms.icinga_director.icinga_host:
+        state: absent
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "foohost"
+
+    - name: delete the hostgroup in icinga
+      t_systems_mms.icinga_director.icinga_hostgroup:
+        state: absent
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "inventory_test_hostgroup"
+
+    - name: delete the hostgroup in icinga
+      t_systems_mms.icinga_director.icinga_hostgroup:
+        state: absent
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "foohostgroup"
+
+    - name: deploy changes in icinga
+      tags: uri
+      uri:
+        url: "{{ icinga_url }}/director/config/deploy"
+        headers:
+          Accept: application/json
+        method: POST
+        user: "{{ icinga_user }}"
+        password: "{{ icinga_pass }}"
+        return_content: true

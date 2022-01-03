@@ -7,89 +7,52 @@
   connection: local
   gather_facts: false
   tasks:
-    - block:
-        # Create new host template and host, refresh inventory
-        - name: Create host template
-          t_systems_mms.icinga_director.icinga_host_template:
-            state: present
-            url: "{{ icinga_url }}"
-            url_username: "{{ icinga_user }}"
-            url_password: "{{ icinga_pass }}"
-            object_name: foohosttemplate
-            check_command: dummy
-            imports:
-              - ''
-            command_endpoint: fooendpoint
+    # Create new host template and host, refresh inventory
+    - name: Create host template
+      t_systems_mms.icinga_director.icinga_host_template:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: foohosttemplate
+        check_command: dummy
+        imports:
+          - ''
+        command_endpoint: fooendpoint
 
-        - name: Create a host in icinga
-          t_systems_mms.icinga_director.icinga_host:
-            state: present
-            url: "{{ icinga_url }}"
-            url_username: "{{ icinga_user }}"
-            url_password: "{{ icinga_pass }}"
-            disabled: false
-            object_name: "inventory_test_host"
-            imports:
-              - "foohosttemplate"
-            address: "127.0.0.1"
-            address6: "::1"
-            display_name: "inventory_test_host"
-            check_command: hostalive
+    - name: Create a host in icinga
+      t_systems_mms.icinga_director.icinga_host:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        disabled: false
+        object_name: "inventory_test_host"
+        imports:
+          - "foohosttemplate"
+        address: "127.0.0.1"
+        address6: "::1"
+        display_name: "inventory_test_host"
+        check_command: hostalive
 
-        - name: deploy changes in icinga
-          tags: uri
-          uri:
-            url: "{{ icinga_url }}/director/config/deploy"
-            headers:
-              Accept: application/json
-            method: POST
-            user: "{{ icinga_user }}"
-            password: "{{ icinga_pass }}"
-            return_content: true
+    - name: deploy changes in icinga
+      tags: uri
+      uri:
+        url: "{{ icinga_url }}/director/config/deploy"
+        headers:
+          Accept: application/json
+        method: POST
+        user: "{{ icinga_user }}"
+        password: "{{ icinga_pass }}"
+        return_content: true
 
-        - meta: refresh_inventory
+    - meta: refresh_inventory
 
-        - name: register the current hostname
-          set_fact:
-            expected_hostname: "inventory_test_host"
+    - name: register the current hostname
+      set_fact:
+        expected_hostname: "inventory_test_host"
 
-        - name: "Ensure we've got a hostvars entry for the new host"
-          assert:
-            that:
-              - expected_hostname in hostvars
-
-      always:
-        - name: delete the host in icinga
-          t_systems_mms.icinga_director.icinga_host:
-            state: absent
-            url: "{{ icinga_url }}"
-            url_username: "{{ icinga_user }}"
-            url_password: "{{ icinga_pass }}"
-            object_name: "inventory_test_host"
-
-        - name: delete the hostgroup in icinga
-          t_systems_mms.icinga_director.icinga_hostgroup:
-            state: absent
-            url: "{{ icinga_url }}"
-            url_username: "{{ icinga_user }}"
-            url_password: "{{ icinga_pass }}"
-            object_name: "inventory_test_hostgroup"
-
-        - name: delete the hostgroup in icinga
-          t_systems_mms.icinga_director.icinga_hostgroup:
-            state: absent
-            url: "{{ icinga_url }}"
-            url_username: "{{ icinga_user }}"
-            url_password: "{{ icinga_pass }}"
-            object_name: "foohostgroup"
-
-        - name: deploy changes in icinga
-          tags: uri
-          uri:
-            url: "{{ icinga_url }}/director/config/deploy"
-            headers:
-              Accept: application/json
-            method: POST
-            user: "{{ icinga_user }}"
-            password: "{{ icinga_pass }}"
-            return_content: true
+    - name: "Ensure we've got a hostvars entry for the new host"
+      assert:
+        that:
+          - expected_hostname in hostvars
