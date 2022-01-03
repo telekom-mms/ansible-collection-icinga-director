@@ -48,11 +48,7 @@
 
     - meta: refresh_inventory
 
-    - name: register the current hostname
-      set_fact:
-        expected_hostname: "inventory_test_host"
-
     - name: "Ensure we've got a hostvars entry for the new host"
       assert:
         that:
-          - expected_hostname in hostvars
+          - "'inventory_test_host' in hostvars"
