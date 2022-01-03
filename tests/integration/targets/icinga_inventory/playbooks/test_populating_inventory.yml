@@ -1,0 +1,54 @@
+---
+- hosts: 127.0.0.1
+  vars:
+    icinga_url: "http://127.0.0.1/icingaweb2"
+    icinga_user: "icingaadmin"
+    icinga_pass: "icinga"
+  connection: local
+  gather_facts: false
+  tasks:
+    # Create new host template and host, refresh inventory
+    - name: Create host template
+      t_systems_mms.icinga_director.icinga_host_template:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: foohosttemplate
+        check_command: dummy
+        imports:
+          - ''
+        command_endpoint: fooendpoint
+
+    - name: Create a host in icinga
+      t_systems_mms.icinga_director.icinga_host:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        disabled: false
+        object_name: "inventory_test_host"
+        imports:
+          - "foohosttemplate"
+        address: "127.0.0.1"
+        address6: "::1"
+        display_name: "inventory_test_host"
+        check_command: hostalive
+
+    - name: deploy changes in icinga
+      tags: uri
+      uri:
+        url: "{{ icinga_url }}/director/config/deploy"
+        headers:
+          Accept: application/json
+        method: POST
+        user: "{{ icinga_user }}"
+        password: "{{ icinga_pass }}"
+        return_content: true
+
+    - meta: refresh_inventory
+
+    - name: "Ensure we've got a hostvars entry for the new host"
+      assert:
+        that:
+          - "'inventory_test_host' in hostvars"
