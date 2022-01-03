@@ -54,9 +54,6 @@
 
     - meta: refresh_inventory
 
-    - debug:
-        var: hostvars
-
     - name: assert the keyed groups and groups from constructed config were added to inventory and composite var added to hostvars
       assert:
         that:
