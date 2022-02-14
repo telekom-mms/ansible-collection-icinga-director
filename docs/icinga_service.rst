@@ -46,6 +46,10 @@ Parameters
     Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
 
 
+  display_name (optional, str, None)
+    Alternative name for this service.
+
+
   enable_active_checks (optional, bool, None)
     Whether to actively check this object.
 
