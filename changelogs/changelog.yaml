@@ -1,4 +1,4 @@
-ancestor: null
+ancestor:
 releases:
   0.1.0:
     release_date: '2022-02-15'
@@ -99,3 +99,8 @@ releases:
       minor_changes:
       - Add possibility to use Compose and keyed groups in inventory-module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/155)
     release_date: '2022-01-03'
+  1.27.1:
+    changes:
+      trivial:
+      - fixed missing property 'display_name' in module 'icinga_service' (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/157)
+    release_date: '2022-02-15'
