@@ -63,6 +63,10 @@ options:
     description:
       - Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
     type: str
+  display_name:
+    description:
+      - Alternative name for this service.
+    type: str
   enable_active_checks:
     description:
       - Whether to actively check this object.
@@ -162,6 +166,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service"
+    display_name: "foo service"
     check_command: hostalive
     use_agent: false
     host: foohost
@@ -178,6 +183,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service"
+    display_name: "foo service"
     host: foohost
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
@@ -292,6 +298,7 @@ def main():
         check_interval=dict(required=False),
         check_period=dict(required=False),
         check_timeout=dict(required=False),
+        display_name=dict(required=False),
         enable_active_checks=dict(type="bool", required=False),
         enable_event_handler=dict(type="bool", required=False),
         enable_notifications=dict(type="bool", required=False),
@@ -321,6 +328,7 @@ def main():
         "check_interval",
         "check_period",
         "check_timeout",
+        "display_name",
         "enable_active_checks",
         "enable_event_handler",
         "enable_notifications",

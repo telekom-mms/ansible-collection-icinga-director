@@ -46,6 +46,10 @@ Parameters
     Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
 
 
+  display_name (optional, str, None)
+    Alternative name for this service.
+
+
   enable_active_checks (optional, bool, None)
     Whether to actively check this object.
 
@@ -218,6 +222,7 @@ Examples
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
         object_name: "foo service"
+        display_name: "foo service"
         check_command: hostalive
         use_agent: false
         host: foohost
@@ -234,6 +239,7 @@ Examples
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
         object_name: "foo service"
+        display_name: "foo service"
         host: foohost
         notes: "example note"
         notes_url: "'http://url1' 'http://url2'"
