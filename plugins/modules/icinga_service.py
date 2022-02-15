@@ -166,6 +166,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service"
+    display_name: "foo service"
     check_command: hostalive
     use_agent: false
     host: foohost
@@ -182,6 +183,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service"
+    display_name: "foo service"
     host: foohost
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
