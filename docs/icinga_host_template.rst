@@ -22,24 +22,8 @@ Add or remove a host template to Icinga2 through the director API.
 Parameters
 ----------
 
-  state (optional, str, present)
-    Apply feature state.
-
-
-  object_name (True, str, None)
-    Icinga object name for this host template.
-
-    This is usually a fully qualified host name but it could basically be any kind of string.
-
-    To make things easier for your users we strongly suggest to use meaningful names for templates.
-
-    For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
-
-
-  display_name (optional, str, None)
-    Alternative name for this host.
-
-    Might be a host alias or and kind of string helping your users to identify this host.
+  accept_config (optional, bool, None)
+    Whether the agent is configured to accept config.
 
 
   address (optional, str, None)
@@ -47,23 +31,68 @@ Parameters
 
 
   address6 (optional, str, None)
-    Host IPv6 address. Usually an IPv64 address, but may be any kind of address your check plugin is able to deal with.
+    Host IPv6 address. Usually an IPv6 address, but may be any kind of address your check plugin is able to deal with.
 
 
-  groups (optional, list, [])
-    Hostgroups that should be directly assigned to this node. Hostgroups can be useful for various reasons.
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
 
-    You might assign service checks based on assigned hostgroup. They are also often used as an instrument to enforce restricted views in Icinga Web 2.
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
 
-    Hostgroups can be directly assigned to single hosts or to host templates.
-
-    You might also want to consider assigning hostgroups using apply rules.
+    Note - Variables that are set by default will also be applied, even if not set.
 
 
   check_command (optional, str, None)
     The name of the check command.
 
     Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
+
+
+  check_interval (optional, str, None)
+    Your regular check interval
+
+
+  check_period (optional, str, None)
+    The name of a time period which determines when this object should be monitored. Not limited by default.
+
+
+  check_timeout (optional, str, None)
+    Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
+
+
+  command_endpoint (optional, str, None)
+    The endpoint where commands are executed on.
+
+
+  disabled (optional, bool, False)
+    Disabled objects will not be deployed.
+
+
+  display_name (optional, str, None)
+    Alternative name for this host. Might be a host alias or and kind of string helping your users to identify this host.
+
+
+  enable_active_checks (optional, bool, None)
+    Whether to actively check this object.
+
+  enable_event_handler (optional, bool, None)
+    Whether to enable event handlers this object.
+
+
+  enable_flapping (optional, bool, None)
+    Whether flap detection is enabled on this object.
+
+
+  enable_notifications (optional, bool, None)
+    Whether to send notifications for this object.
+
+
+  enable_passive_checks (optional, bool, None)
+    Whether to accept passive check results for this object.
+
+
+  enable_perfdata (optional, bool, None)
+    Whether to process performance data provided by this object.
 
 
   event_command (optional, str, None)
@@ -76,32 +105,50 @@ Parameters
     The host state recovers from a soft or hard state to OK/Up
 
 
-  check_interval (optional, str, None)
-    Your regular check interval.
+  flapping_threshold_high (optional, str, None)
+    Flapping upper bound in percent for a service to be considered flapping
 
 
-  retry_interval (optional, str, None)
-    Retry interval, will be applied after a state change unless the next hard state is reached.
+  flapping_threshold_low (optional, str, None)
+    Flapping lower bound in percent for a service to be considered not flapping
 
 
-  disabled (optional, bool, False)
-    Disabled objects will not be deployed.
+  groups (optional, list, [])
+    Hostgroups that should be directly assigned to this node. Hostgroups can be useful for various reasons.
+
+    You might assign service checks based on assigned hostgroup. They are also often used as an instrument to enforce restricted views in Icinga Web 2.
+
+    Hostgroups can be directly assigned to single hosts or to host templates.
+
+    You might also want to consider assigning hostgroups using apply rules.
+
+
+  has_agent (optional, bool, None)
+    Whether this host has the Icinga 2 Agent installed.
+
+
+  icon_image (optional, str, None)
+    An URL pointing to an icon for this object.
+
+    Try "tux.png" for icons relative to public/img/icons or "cloud" (no extension) for items from the Icinga icon font
+
+
+  icon_image_alt (optional, str, None)
+    Alternative text to be shown in case above icon is missing
 
 
   imports (optional, list, None)
-    Choose a host-template.
+    Choose a Host Template. Required when state is ``present``.
+
+    Required if *state* is ``present``.
+
+
+  master_should_connect (optional, bool, None)
+    Whether the parent (master) node should actively try to connect to this agent.
 
 
   max_check_attempts (optional, str, None)
     Defines after how many check attempts a new hard state is reached.
-
-
-  zone (optional, str, None)
-    Set the zone.
-
-
-  vars (optional, dict, None)
-    Custom properties of the host.
 
 
   notes (optional, str, None)
@@ -113,31 +160,37 @@ Parameters
 
     Separate multiple urls like this "'http://url1' 'http://url2'".
 
-    Maximum length is 255 characters.
+    The maximum length is 255 characters.
 
 
-  has_agent (optional, bool, None)
-    Whether this host has the Icinga 2 Agent installed.
+  object_name (True, str, None)
+    Icinga object name for this host template.
+
+    This is usually a fully qualified host name but it could basically be any kind of string.
+
+    To make things easier for your users we strongly suggest to use meaningful names for templates.
+
+    For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
 
 
-  master_should_connect (optional, bool, None)
-    Whether the parent (master) node should actively try to connect to this agent.
+  retry_interval (optional, str, None)
+    Retry interval, will be applied after a state change unless the next hard state is reached.
 
 
-  accept_config (optional, bool, None)
-    Whether the agent is configured to accept config.
+  state (optional, str, present)
+    Apply feature state.
 
 
-  command_endpoint (optional, str, None)
-    The endpoint where commands are executed on.
+  vars (optional, dict, None)
+    Custom properties of the host.
 
 
-  append (optional, bool, None)
-    Do not overwrite the whole object but instead append the defined properties.
+  volatile (optional, bool, None)
+    Whether this check is volatile.
 
-    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
 
-    Note - Variables that are set by default will also be applied, even if not set.
+  zone (optional, str, None)
+    Set the zone.
 
 
   url (True, str, None)
