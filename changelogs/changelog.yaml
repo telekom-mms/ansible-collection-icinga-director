@@ -102,3 +102,8 @@ releases:
       trivial:
       - fixed missing property 'display_name' in module 'icinga_service' (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/157)
     release_date: '2022-02-15'
+  1.27.2:
+    changes:
+      trivial:
+      - Fix sanity tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/159)
+    release_date: '2022-03-19'
