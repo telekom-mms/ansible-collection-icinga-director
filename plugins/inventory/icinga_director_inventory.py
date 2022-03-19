@@ -21,7 +21,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 DOCUMENTATION = r"""
-name: t_systems_mms.icinga_director.icinga_director_inventory
+name: icinga_director_inventory
 short_description: Returns Ansible inventory from Icinga
 description: Returns Ansible inventory from Icinga
 author:
