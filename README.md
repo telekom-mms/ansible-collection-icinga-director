@@ -132,6 +132,10 @@ Then you can use the dynamic inventory like this:
 ansible-playbook -i inventory.icinga_director_inventory.yaml path/to/your/playbook.yml
 ```
 
+## Contributing
+
+See [Contributing](CONTRIBUTING.md).
+
 ## Troubleshooting
 
 If the following error is thrown, check if you're behind a proxy and use `force_basic_auth: true` in the task.
@@ -140,34 +144,6 @@ If the following error is thrown, check if you're behind a proxy and use `force_
 fatal: [localhost]: FAILED! => {"changed": false, "msg": "bad return code while creating: -1. Error message: Request failed: <urlopen error Tunnel connection failed: 302 Found>"}
 ```
 
-## Local Development and testing
-
-### Linting with tox
-
-```
-> tox -elinters
-```
-
-### Updating the tests and examples
-
-If you add new features or arguments to the existing modules, please add them to the examples in the module itself.
-The integration tests and examples in our documentation are then generated from the module-examples.
-
-To trigger this generation, you need to run the script `hacking/update_examples_and_tests.sh` from the root of the repository. For this you need to have yq in version 3 installed (see https://mikefarah.gitbook.io/yq/v/v3.x/).
-
-### Integration tests with docker
-
-```
-# run icinga in a container and forward port 80
-> docker run -d -p 80:80 schurzi/icinga2
-
-# run ansible-test
-> ansible-test integration
-
-# alternatively run the test playbooks against the container
-> ansible-playbook tests/integration/targets/icinga/normalmode.yml
-> ansible-playbook tests/integration/targets/icinga/checkmode.yml
-```
 
 ## Extras
 
