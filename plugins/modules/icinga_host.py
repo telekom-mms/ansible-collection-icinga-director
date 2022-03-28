@@ -35,26 +35,14 @@ version_added: '1.0.0'
 notes:
   - This module supports check mode.
 options:
-  state:
+  accept_config:
+    choices:
+      - true
+      - false
     description:
-      - Apply feature state.
-    choices: [ "present", "absent" ]
-    default: present
-    type: str
-  object_name:
-    description:
-      - Icinga object name for this host.
-      - This is usually a fully qualified host name but it could basically be any kind of string.
-      - To make things easier for your users we strongly suggest to use meaningful names for templates.
-      - For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
-    aliases: ['name']
-    required: true
-    type: str
-  display_name:
-    description:
-      - Alternative name for this host.
-        Might be a host alias or and kind of string helping your users to identify this host.
-    type: str
+      - Whether the agent is configured to accept config.
+    type: bool
+    version_added: 1.9.0
   address:
     description:
       - Host address. Usually an IPv4 address, but may be any kind of address your check plugin is able to deal with.
@@ -63,84 +51,200 @@ options:
     description:
       - Host IPv6 address. Usually an IPv6 address, but may be any kind of address your check plugin is able to deal with.
     type: str
-    version_added: '1.4.0'
-  groups:
-    description:
-      - Hostgroups that should be directly assigned to this node. Hostgroups can be useful for various reasons.
-      - You might assign service checks based on assigned hostgroup. They are also often used as an instrument to
-        enforce restricted views in Icinga Web 2.
-      - Hostgroups can be directly assigned to single hosts or to host templates.
-      - You might also want to consider assigning hostgroups using apply rules.
-    type: list
-    elements: str
-    default: []
-  disabled:
-    description:
-      - Disabled objects will not be deployed.
-    default: False
-    type: bool
-    choices: [True, False]
-  imports:
-    description:
-      - Choose a Host Template. Required when state is C(present).
-      - Required if I(state) is C(present).
-    type: list
-    elements: str
-  zone:
-    description:
-      - Set the zone.
-    type: str
-  vars:
-    description:
-      - Custom properties of the host.
-    type: "dict"
-  check_command:
-    description:
-      - The name of the check command.
-      - Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
-    type: str
-  notes:
-    description:
-      - Additional notes for this object.
-    type: str
-    version_added: '1.8.0'
-  notes_url:
-    description:
-      - An URL pointing to additional notes for this object.
-      - Separate multiple urls like this "'http://url1' 'http://url2'".
-      - The maximum length is 255 characters.
-    type: str
-    version_added: '1.8.0'
-  has_agent:
-    description:
-      - Whether this host has the Icinga 2 Agent installed.
-    type: bool
-    choices: [True, False]
-    version_added: '1.9.0'
-  master_should_connect:
-    description:
-      - Whether the parent (master) node should actively try to connect to this agent.
-    type: bool
-    choices: [True, False]
-    version_added: '1.9.0'
-  accept_config:
-    description:
-      - Whether the agent is configured to accept config.
-    type: bool
-    choices: [True, False]
-    version_added: '1.9.0'
-  command_endpoint:
-    description:
-      - The endpoint where commands are executed on.
-    type: str
+    version_added: 1.4.0
   append:
+    choices:
+      - true
+      - false
     description:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
       - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
-    choices: [True, False]
-    version_added: '1.25.0'
+    version_added: 1.25.0
+  check_command:
+    description:
+      - The name of the check command.
+      - Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
+    type: str
+  check_interval:
+    description:
+      - Your regular check interval.
+    type: str
+  check_period:
+    description:
+      - The name of a time period which determines when this object should be monitored. Not limited by default.
+    type: str
+  check_timeout:
+    description:
+      - Check command timeout in seconds. Overrides the CheckCommand's timeout attribute
+    type: str
+  command_endpoint:
+    description:
+      - The endpoint where commands are executed on.
+    type: str
+  disabled:
+    choices:
+      - true
+      - false
+    default: false
+    description:
+      - Disabled objects will not be deployed.
+    type: bool
+  display_name:
+    description:
+      - Alternative name for this host. Might be a host alias or and kind of string helping your users to identify this host.
+    type: str
+  enable_active_checks:
+    choices:
+      - true
+      - false
+    description:
+      - Whether to actively check this object.
+    type: bool
+  enable_event_handler:
+    choices:
+      - true
+      - false
+    description:
+      - Whether to enable event handlers this object.
+    type: bool
+  enable_flapping:
+    choices:
+      - true
+      - false
+    description:
+      - Whether flap detection is enabled on this object.
+    type: bool
+  enable_notifications:
+    choices:
+      - true
+      - false
+    description:
+      - Whether to send notifications for this object.
+    type: bool
+  enable_passive_checks:
+    choices:
+      - true
+      - false
+    description:
+      - Whether to accept passive check results for this object.
+    type: bool
+  enable_perfdata:
+    choices:
+      - true
+      - false
+    description:
+      - Whether to process performance data provided by this object.
+    type: bool
+  event_command:
+    description:
+      - Event command for host which gets called on every check execution if one of these conditions matches
+      - The host is in a soft state
+      - The host state changes into a hard state
+      - The host state recovers from a soft or hard state to OK/Up
+    type: str
+  flapping_threshold_high:
+    description:
+      - Flapping upper bound in percent for a service to be considered flapping
+    type: str
+  flapping_threshold_low:
+    description:
+      - Flapping lower bound in percent for a service to be considered not flapping
+    type: str
+  groups:
+    default: []
+    description:
+      - Hostgroups that should be directly assigned to this node. Hostgroups can be useful for various reasons.
+      - You might assign service checks based on assigned hostgroup. They are also often used as an instrument to enforce restricted views in Icinga Web 2.
+      - Hostgroups can be directly assigned to single hosts or to host templates.
+      - You might also want to consider assigning hostgroups using apply rules.
+    elements: str
+    type: list
+  has_agent:
+    choices:
+      - true
+      - false
+    description:
+      - Whether this host has the Icinga 2 Agent installed.
+    type: bool
+    version_added: 1.9.0
+  icon_image:
+    description:
+      - An URL pointing to an icon for this object.
+      - Try "tux.png" for icons relative to public/img/icons or "cloud" (no extension) for items from the Icinga icon font
+    type: str
+  icon_image_alt:
+    description:
+      - Alternative text to be shown in case above icon is missing
+    type: str
+  imports:
+    description:
+      - Choose a Host Template. Required when state is C(present).
+      - Required if I(state) is C(present).
+    elements: str
+    type: list
+  master_should_connect:
+    choices:
+      - true
+      - false
+    description:
+      - Whether the parent (master) node should actively try to connect to this agent.
+    type: bool
+    version_added: 1.9.0
+  max_check_attempts:
+    description:
+      - Defines after how many check attempts a new hard state is reached.
+    type: str
+  notes:
+    description:
+      - Additional notes for this object.
+    type: str
+    version_added: 1.8.0
+  notes_url:
+    description:
+      - An URL pointing to additional notes for this object.
+      - Separate multiple urls like this "'http://url1' 'http://url2'".
+      - Maximum length is 255 characters.
+    type: str
+    version_added: 1.8.0
+  object_name:
+    aliases:
+      - name
+    description:
+      - Icinga object name for this host.
+      - This is usually a fully qualified host name but it could basically be any kind of string.
+      - To make things easier for your users we strongly suggest to use meaningful names for templates.
+      - For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
+    required: true
+    type: str
+  retry_interval:
+    description:
+      - Retry interval, will be applied after a state change unless the next hard state is reached.
+    type: str
+  state:
+    choices:
+      - present
+      - absent
+    default: present
+    description:
+      - Apply feature state.
+    type: str
+  vars:
+    description:
+      - Custom properties of the host.
+    type: dict
+  volatile:
+    choices:
+      - true
+      - false
+    description:
+      - Whether this check is volatile.
+    type: bool
+  zone:
+    description:
+      - Set the zone.
+    type: str
 """
 
 EXAMPLES = """
@@ -150,22 +254,37 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    disabled: false
-    object_name: "foohost"
+    accept_config: true
     address: "127.0.0.1"
     address6: "::1"
+    check_command: hostalive
+    check_interval: 90s
+    check_timeout: 60
+    command_endpoint: fooendpoint
+    disabled: false
     display_name: "foohost"
+    enable_active_checks: true
+    enable_event_handler: false
+    enable_flapping: false
+    enable_notifications: true
+    enable_passive_checks: false
+    enable_perfdata: false
+    flapping_threshold_high: "30.0"
+    flapping_threshold_low: "25.0"
+    has_agent: true
+    icon_image_alt: "alt text"
+    icon_image: "http://url1"
+    master_should_connect: true
+    max_check_attempts: 3
+    object_name: "foohost"
+    retry_interval: "1m"
+    volatile: false
     groups:
       - "foohostgroup"
     imports:
       - "foohosttemplate"
     vars:
       dnscheck: "no"
-    check_command: hostalive
-    has_agent: true
-    master_should_connect: true
-    accept_config: true
-    command_endpoint: fooendpoint
 
 - name: update a host in icinga
   t_systems_mms.icinga_director.icinga_host:
@@ -196,25 +315,54 @@ def main():
     argument_spec = url_argument_spec()
     # add our own arguments
     argument_spec.update(
-        state=dict(default="present", choices=["absent", "present"]),
-        url=dict(required=True),
-        append=dict(type="bool", choices=[True, False]),
-        object_name=dict(required=True, aliases=["name"]),
-        display_name=dict(required=False),
-        groups=dict(type="list", elements="str", default=[], required=False),
-        imports=dict(type="list", elements="str", required=False),
-        disabled=dict(type="bool", default=False, choices=[True, False]),
+        accept_config=dict(type="bool", choices=[True, False]),
         address=dict(required=False),
         address6=dict(required=False),
-        zone=dict(required=False, default=None),
-        vars=dict(type="dict", default=None),
+        append=dict(type="bool", choices=[True, False]),
         check_command=dict(required=False),
-        notes=dict(type="str", required=False),
-        notes_url=dict(type="str", required=False),
-        has_agent=dict(type="bool", choices=[True, False]),
-        master_should_connect=dict(type="bool", choices=[True, False]),
-        accept_config=dict(type="bool", choices=[True, False]),
+        check_interval=dict(required=False),
+        check_period=dict(type="str", required=False),
+        check_timeout=dict(type="str", required=False),
         command_endpoint=dict(type="str", required=False),
+        disabled=dict(type="bool", default=False, choices=[True, False]),
+        display_name=dict(required=False),
+        enable_active_checks=dict(
+            type="bool", choices=[True, False], required=False
+        ),
+        enable_event_handler=dict(
+            type="bool", choices=[True, False], required=False
+        ),
+        enable_flapping=dict(
+            type="bool", choices=[True, False], required=False
+        ),
+        enable_notifications=dict(
+            type="bool", choices=[True, False], required=False
+        ),
+        enable_passive_checks=dict(
+            type="bool", choices=[True, False], required=False
+        ),
+        enable_perfdata=dict(
+            type="bool", choices=[True, False], required=False
+        ),
+        event_command=dict(type="str", required=False),
+        flapping_threshold_high=dict(type="str", required=False),
+        flapping_threshold_low=dict(type="str", required=False),
+        groups=dict(type="list", elements="str", default=[], required=False),
+        has_agent=dict(type="bool", choices=[True, False]),
+        icon_image_alt=dict(type="str", required=False),
+        icon_image=dict(type="str", required=False),
+        imports=dict(type="list", elements="str", required=False),
+        master_should_connect=dict(type="bool", choices=[True, False]),
+        max_check_attempts=dict(required=False),
+        notes_url=dict(type="str", required=False),
+        notes=dict(type="str", required=False),
+        object_name=dict(required=True, aliases=["name"]),
+        retry_interval=dict(required=False),
+        state=dict(default="present", choices=["absent", "present"]),
+        url=dict(required=True),
+        vars=dict(type="dict", default=None),
+        volatile=dict(type="bool", choices=[True, False], required=False),
+        zone=dict(required=False, default=None),
     )
 
     # Define the main module
@@ -236,22 +384,39 @@ def main():
         module.fail_json(msg="missing required arguments: imports.")
 
     data_keys = [
-        "object_name",
-        "display_name",
-        "groups",
-        "imports",
-        "disabled",
+        "accept_config",
         "address",
         "address6",
-        "zone",
-        "vars",
         "check_command",
-        "notes",
-        "notes_url",
-        "has_agent",
-        "master_should_connect",
-        "accept_config",
+        "check_interval",
+        "check_period",
+        "check_timeout",
         "command_endpoint",
+        "disabled",
+        "display_name",
+        "enable_active_checks",
+        "enable_event_handler",
+        "enable_flapping",
+        "enable_notifications",
+        "enable_passive_checks",
+        "enable_perfdata",
+        "event_command",
+        "flapping_threshold_high",
+        "flapping_threshold_low",
+        "groups",
+        "has_agent",
+        "icon_image_alt",
+        "icon_image",
+        "imports",
+        "master_should_connect",
+        "max_check_attempts",
+        "notes_url",
+        "notes",
+        "object_name",
+        "retry_interval",
+        "vars",
+        "volatile",
+        "zone",
     ]
 
     data = {}

@@ -22,22 +22,8 @@ Add or remove a host to Icinga2 through the director API.
 Parameters
 ----------
 
-  state (optional, str, present)
-    Apply feature state.
-
-
-  object_name (True, str, None)
-    Icinga object name for this host.
-
-    This is usually a fully qualified host name but it could basically be any kind of string.
-
-    To make things easier for your users we strongly suggest to use meaningful names for templates.
-
-    For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
-
-
-  display_name (optional, str, None)
-    Alternative name for this host. Might be a host alias or and kind of string helping your users to identify this host.
+  accept_config (optional, bool, None)
+    Whether the agent is configured to accept config.
 
 
   address (optional, str, None)
@@ -46,6 +32,85 @@ Parameters
 
   address6 (optional, str, None)
     Host IPv6 address. Usually an IPv6 address, but may be any kind of address your check plugin is able to deal with.
+
+
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
+
+
+  check_command (optional, str, None)
+    The name of the check command.
+
+    Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
+
+
+  check_interval (optional, str, None)
+    Your regular check interval
+
+
+  check_period (optional, str, None)
+    The name of a time period which determines when this object should be monitored. Not limited by default.
+
+
+  check_timeout (optional, str, None)
+    Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
+
+
+  command_endpoint (optional, str, None)
+    The endpoint where commands are executed on.
+
+
+  disabled (optional, bool, False)
+    Disabled objects will not be deployed.
+
+
+  display_name (optional, str, None)
+    Alternative name for this host. Might be a host alias or and kind of string helping your users to identify this host.
+
+
+  enable_active_checks (optional, bool, None)
+    Whether to actively check this object.
+
+  enable_event_handler (optional, bool, None)
+    Whether to enable event handlers this object.
+
+
+  enable_flapping (optional, bool, None)
+    Whether flap detection is enabled on this object.
+
+
+  enable_notifications (optional, bool, None)
+    Whether to send notifications for this object.
+
+
+  enable_passive_checks (optional, bool, None)
+    Whether to accept passive check results for this object.
+
+
+  enable_perfdata (optional, bool, None)
+    Whether to process performance data provided by this object.
+
+
+  event_command (optional, str, None)
+    Event command for host which gets called on every check execution if one of these conditions matches
+
+    The host is in a soft state
+
+    The host state changes into a hard state
+
+    The host state recovers from a soft or hard state to OK/Up
+
+
+  flapping_threshold_high (optional, str, None)
+    Flapping upper bound in percent for a service to be considered flapping
+
+
+  flapping_threshold_low (optional, str, None)
+    Flapping lower bound in percent for a service to be considered not flapping
 
 
   groups (optional, list, [])
@@ -58,8 +123,18 @@ Parameters
     You might also want to consider assigning hostgroups using apply rules.
 
 
-  disabled (optional, bool, False)
-    Disabled objects will not be deployed.
+  has_agent (optional, bool, None)
+    Whether this host has the Icinga 2 Agent installed.
+
+
+  icon_image (optional, str, None)
+    An URL pointing to an icon for this object.
+
+    Try "tux.png" for icons relative to public/img/icons or "cloud" (no extension) for items from the Icinga icon font
+
+
+  icon_image_alt (optional, str, None)
+    Alternative text to be shown in case above icon is missing
 
 
   imports (optional, list, None)
@@ -68,18 +143,12 @@ Parameters
     Required if *state* is ``present``.
 
 
-  zone (optional, str, None)
-    Set the zone.
+  master_should_connect (optional, bool, None)
+    Whether the parent (master) node should actively try to connect to this agent.
 
 
-  vars (optional, dict, None)
-    Custom properties of the host.
-
-
-  check_command (optional, str, None)
-    The name of the check command.
-
-    Though this is not required to be defined in the director, you still have to supply a check_command in a host or host-template.
+  max_check_attempts (optional, str, None)
+    Defines after how many check attempts a new hard state is reached.
 
 
   notes (optional, str, None)
@@ -94,28 +163,34 @@ Parameters
     The maximum length is 255 characters.
 
 
-  has_agent (optional, bool, None)
-    Whether this host has the Icinga 2 Agent installed.
+  object_name (True, str, None)
+    Icinga object name for this host.
+
+    This is usually a fully qualified host name but it could basically be any kind of string.
+
+    To make things easier for your users we strongly suggest to use meaningful names for templates.
+
+    For example "generic-host" is ugly, "Standard Linux Server" is easier to understand.
 
 
-  master_should_connect (optional, bool, None)
-    Whether the parent (master) node should actively try to connect to this agent.
+  retry_interval (optional, str, None)
+    Retry interval, will be applied after a state change unless the next hard state is reached.
 
 
-  accept_config (optional, bool, None)
-    Whether the agent is configured to accept config.
+  state (optional, str, present)
+    Apply feature state.
 
 
-  command_endpoint (optional, str, None)
-    The endpoint where commands are executed on.
+  vars (optional, dict, None)
+    Custom properties of the host.
 
 
-  append (optional, bool, None)
-    Do not overwrite the whole object but instead append the defined properties.
+  volatile (optional, bool, None)
+    Whether this check is volatile.
 
-    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
 
-    Note - Variables that are set by default will also be applied, even if not set.
+  zone (optional, str, None)
+    Set the zone.
 
 
   url (True, str, None)
@@ -204,22 +279,37 @@ Examples
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
-        disabled: false
-        object_name: "foohost"
+        accept_config: true
         address: "127.0.0.1"
         address6: "::1"
+        check_command: hostalive
+        check_interval: 90s
+        check_timeout: 60
+        command_endpoint: fooendpoint
+        disabled: false
         display_name: "foohost"
+        enable_active_checks: true
+        enable_event_handler: false
+        enable_flapping: false
+        enable_notifications: true
+        enable_passive_checks: false
+        enable_perfdata: false
+        flapping_threshold_high: "30.0"
+        flapping_threshold_low: "25.0"
+        has_agent: true
+        icon_image_alt: "alt text"
+        icon_image: "http://url1"
+        master_should_connect: true
+        max_check_attempts: 3
+        object_name: "foohost"
+        retry_interval: "1m"
+        volatile: false
         groups:
           - "foohostgroup"
         imports:
           - "foohosttemplate"
         vars:
           dnscheck: "no"
-        check_command: hostalive
-        has_agent: true
-        master_should_connect: true
-        accept_config: true
-        command_endpoint: fooendpoint
 
     - name: update a host in icinga
       t_systems_mms.icinga_director.icinga_host:
