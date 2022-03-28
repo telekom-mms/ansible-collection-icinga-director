@@ -5,6 +5,19 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.28.0
+=======
+
+Minor Changes
+-------------
+
+- Added missing fields to 'icinga_host' and 'icinga_host_template' (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/158)
+
+Bugfixes
+--------
+
+- role: add check_command to icinga_service_apply (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/161)
+
 v1.27.2
 =======
 

@@ -1,4 +1,4 @@
-ancestor: null
+ancestor:
 releases:
   1.18.1:
     changes:
@@ -107,3 +107,12 @@ releases:
       trivial:
       - Fix sanity tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/159)
     release_date: '2022-03-19'
+  1.28.0:
+    changes:
+      bugfixes:
+      - 'role: add check_command to icinga_service_apply (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/161)'
+      minor_changes:
+      - Added missing fields to 'icinga_host' and 'icinga_host_template' (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/158)
+      trivial:
+      - Fix sanity tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/159)
+    release_date: '2022-03-28'
