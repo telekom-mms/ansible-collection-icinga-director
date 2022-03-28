@@ -25,6 +25,7 @@
     check_interval: "{{ service_apply.0.check_interval | default(omit) }}"
     check_period: "{{ service_apply.0.check_period | default(omit) }}"
     check_timeout: "{{ service_apply.0.check_timeout | default(omit) }}"
+    check_command: "{{ service_apply.0.check_command | default(omit) }}"
     enable_active_checks: "{{ service_apply.0.enable_active_checks | default(omit) }}"
     enable_event_handler: "{{ service_apply.0.enable_event_handler | default(omit) }}"
     enable_notifications: "{{ service_apply.0.enable_notifications | default(omit) }}"
