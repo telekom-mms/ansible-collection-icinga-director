@@ -49,7 +49,7 @@ Parameters
 
 
   check_interval (optional, str, None)
-    Your regular check interval
+    Your regular check interval.
 
 
   check_period (optional, str, None)
@@ -57,7 +57,7 @@ Parameters
 
 
   check_timeout (optional, str, None)
-    Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
+    Check command timeout in seconds. Overrides the CheckCommand's timeout attribute
 
 
   command_endpoint (optional, str, None)
@@ -74,6 +74,7 @@ Parameters
 
   enable_active_checks (optional, bool, None)
     Whether to actively check this object.
+
 
   enable_event_handler (optional, bool, None)
     Whether to enable event handlers this object.
@@ -138,9 +139,7 @@ Parameters
 
 
   imports (optional, list, None)
-    Choose a Host Template. Required when state is ``present``.
-
-    Required if *state* is ``present``.
+    Choose a host-template.
 
 
   master_should_connect (optional, bool, None)
@@ -160,7 +159,7 @@ Parameters
 
     Separate multiple urls like this "'http://url1' 'http://url2'".
 
-    The maximum length is 255 characters.
+    Maximum length is 255 characters.
 
 
   object_name (True, str, None)
@@ -279,21 +278,35 @@ Examples
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
-        object_name: foohosttemplate
-        display_name: foohosttemplate
-        disabled: false
-        check_command: dummy
+        accept_config: true
+        check_command: hostalive
         check_interval: 90s
-        retry_interval: 30s
+        check_timeout: 60
+        command_endpoint: fooendpoint
+        disabled: false
+        display_name: foohosttemplate
+        enable_active_checks: true
+        enable_event_handler: false
+        enable_flapping: false
+        enable_notifications: true
+        enable_passive_checks: false
+        enable_perfdata: false
+        flapping_threshold_high: "30.0"
+        flapping_threshold_low: "25.0"
+        has_agent: true
+        icon_image_alt: "alt text"
+        icon_image: "http://url1"
+        master_should_connect: true
+        max_check_attempts: 3
+        object_name: foohosttemplate
+        retry_interval: "1m"
+        volatile: false
         groups:
           - "foohostgroup"
         imports:
           - ''
-        has_agent: true
-        master_should_connect: true
-        max_check_attempts: 3
-        accept_config: true
-        command_endpoint: fooendpoint
+        vars:
+          dnscheck: "no"
 
     - name: Update host template
       t_systems_mms.icinga_director.icinga_host_template:

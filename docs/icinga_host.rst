@@ -49,7 +49,7 @@ Parameters
 
 
   check_interval (optional, str, None)
-    Your regular check interval
+    Your regular check interval.
 
 
   check_period (optional, str, None)
@@ -57,7 +57,7 @@ Parameters
 
 
   check_timeout (optional, str, None)
-    Check command timeout in seconds. Overrides the CheckCommand's timeout attribute.
+    Check command timeout in seconds. Overrides the CheckCommand's timeout attribute
 
 
   command_endpoint (optional, str, None)
@@ -74,6 +74,7 @@ Parameters
 
   enable_active_checks (optional, bool, None)
     Whether to actively check this object.
+
 
   enable_event_handler (optional, bool, None)
     Whether to enable event handlers this object.
@@ -160,7 +161,7 @@ Parameters
 
     Separate multiple urls like this "'http://url1' 'http://url2'".
 
-    The maximum length is 255 characters.
+    Maximum length is 255 characters.
 
 
   object_name (True, str, None)
