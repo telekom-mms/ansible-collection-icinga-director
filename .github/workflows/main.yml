@@ -23,6 +23,8 @@ jobs:
           - stable-2.9
           - stable-2.10
           - stable-2.11
+          - stable-2.12
+          - stable-2.13
           - devel
     runs-on: ubuntu-latest
     steps:
