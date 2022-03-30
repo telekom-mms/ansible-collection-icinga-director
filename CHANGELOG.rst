@@ -5,6 +5,14 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.28.1
+=======
+
+Minor Changes
+-------------
+
+- Test more ansible versions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/162)
+
 v1.28.0
 =======
 

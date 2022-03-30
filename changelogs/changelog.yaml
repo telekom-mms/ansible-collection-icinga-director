@@ -116,3 +116,8 @@ releases:
       trivial:
       - Fix sanity tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/159)
     release_date: '2022-03-28'
+  1.28.1:
+    changes:
+      minor_changes:
+      - Test more ansible versions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/162)
+    release_date: '2022-03-30'
