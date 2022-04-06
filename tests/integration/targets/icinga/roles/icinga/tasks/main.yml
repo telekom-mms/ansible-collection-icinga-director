@@ -19,6 +19,7 @@
     - icinga_hostgroup.yml
     - icinga_host_template.yml
     - icinga_host.yml
+    - icinga_serviceset.yml
     - icinga_service.yml
     - icinga_scheduled_downtime.yml
 
@@ -54,6 +55,7 @@
     - icinga_hostgroup.yml
     - icinga_host_template.yml
     - icinga_host.yml
+    - icinga_serviceset.yml
     - icinga_service.yml
     - icinga_scheduled_downtime.yml
 
@@ -116,6 +118,7 @@
     - wrong_host_icinga_hostgroup.yml
     - wrong_host_icinga_host_template.yml
     - wrong_host_icinga_host.yml
+    - wrong_host_icinga_serviceset.yml
     - wrong_host_icinga_service.yml
     - wrong_host_icinga_scheduled_downtime.yml
 
@@ -137,6 +140,7 @@
     - wrong_pass_icinga_hostgroup.yml
     - wrong_pass_icinga_host_template.yml
     - wrong_pass_icinga_host.yml
+    - wrong_pass_icinga_serviceset.yml
     - wrong_pass_icinga_service.yml
     - wrong_pass_icinga_scheduled_downtime.yml
 
@@ -200,6 +204,7 @@
     - absent_icinga_timeperiod_template.yml
     - absent_icinga_command.yml
     - absent_icinga_command_template.yml
+    - absent_icinga_serviceset.yml
 
 - name: deploy changes in icinga
   tags: uri

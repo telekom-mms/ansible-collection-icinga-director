@@ -155,6 +155,11 @@ options:
     type: bool
     choices: [True, False]
     version_added: '1.25.0'
+  service_set:
+    description:
+      - Choose the service set name this single service should be assigned to.
+    type: str
+    version_added: ''
 """
 
 EXAMPLES = """
@@ -188,6 +193,15 @@ EXAMPLES = """
     notes: "example note"
     notes_url: "'http://url1' 'http://url2'"
     append: true
+
+- name: Create serviceset service
+  t_systems_mms.icinga_director.icinga_service:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: "foo service serviceset"
+    service_set: "foo_serviceset"
 """
 
 RETURN = r""" # """
@@ -213,17 +227,31 @@ class IcingaServiceObject(Icinga2APIObject):
         self.path = path
         self.data = data
         self.object_id = None
+        # set url parameters when service is assigned to a host
+        if "host" in self.data:
+            if self.data["host"]:
+                param_service_type = "host="
+                param_service_type_filter = to_text(urlquote(self.data["host"]))
+        # set url parameters when service is assigned to a serviceset
+        if "service_set" in self.data:
+            if self.data["service_set"]:
+                param_service_type = "set="
+                param_service_type_filter = to_text(
+                    urlquote(self.data["service_set"])
+                )
 
-    def exists(self, find_by="name"):
-        ret = super(IcingaServiceObject, self).call_url(
-            path="/service"
+        self.url = (
+            "/service"
             + "?"
             + "name="
             + to_text(urlquote(self.data["object_name"]))
             + "&"
-            + "host="
-            + to_text(urlquote(self.data["host"]))
+            + param_service_type
+            + param_service_type_filter
         )
+
+    def exists(self, find_by="name"):
+        ret = super(IcingaServiceObject, self).call_url(path=self.url)
         self.object_id = to_text(urlquote(self.data["object_name"]))
         if ret["code"] == 200:
             return True
@@ -231,26 +259,14 @@ class IcingaServiceObject(Icinga2APIObject):
 
     def delete(self, find_by="name"):
         ret = super(IcingaServiceObject, self).call_url(
-            path="/service"
-            + "?"
-            + "name="
-            + to_text(urlquote(self.data["object_name"]))
-            + "&"
-            + "host="
-            + to_text(urlquote(self.data["host"])),
+            path=self.url,
             method="DELETE",
         )
         return ret
 
     def modify(self, find_by="name"):
         ret = super(IcingaServiceObject, self).call_url(
-            path="/service"
-            + "?"
-            + "name="
-            + to_text(urlquote(self.data["object_name"]))
-            + "&"
-            + "host="
-            + to_text(urlquote(self.data["host"])),
+            path=self.url,
             data=self.module.jsonify(self.data),
             method="POST",
         )
@@ -258,13 +274,7 @@ class IcingaServiceObject(Icinga2APIObject):
 
     def diff(self, find_by="name"):
         ret = super(IcingaServiceObject, self).call_url(
-            path="/service"
-            + "?"
-            + "name="
-            + to_text(urlquote(self.data["object_name"]))
-            + "&"
-            + "host="
-            + to_text(urlquote(self.data["host"])),
+            path=self.url,
             method="GET",
         )
 
@@ -304,13 +314,14 @@ def main():
         enable_notifications=dict(type="bool", required=False),
         enable_passive_checks=dict(type="bool", required=False),
         enable_perfdata=dict(type="bool", required=False),
-        host=dict(required=True),
+        host=dict(type="str", required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
         notes=dict(type="str", required=False),
         notes_url=dict(type="str", required=False),
         retry_interval=dict(required=False),
+        service_set=dict(type="str", required=False),
         use_agent=dict(type="bool", required=False),
         vars=dict(type="dict", default={}, required=False),
         volatile=dict(type="bool", required=False),
@@ -341,6 +352,7 @@ def main():
         "notes",
         "notes_url",
         "retry_interval",
+        "service_set",
         "use_agent",
         "vars",
         "volatile",
