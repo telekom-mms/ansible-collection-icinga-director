@@ -99,7 +99,8 @@ options:
   host:
     description:
       - Choose the host this single service should be assigned to.
-    required: true
+      - This field will be required when `service_set` is not defined.
+    required: false
     type: "str"
   imports:
     description:
@@ -158,8 +159,9 @@ options:
   service_set:
     description:
       - Choose the service set name this single service should be assigned to.
+      - This field will be required when `host` is not defined.
     type: str
-    version_added: ''
+    version_added: '1.29.0'
 """
 
 EXAMPLES = """

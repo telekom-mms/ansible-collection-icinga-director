@@ -31,7 +31,7 @@ author: Heiko Neblung (@HeikoNeblung)
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
-version_added: ''
+version_added: '1.29.0'
 notes:
   - This module supports check mode.
 options:
