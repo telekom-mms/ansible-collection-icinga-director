@@ -2,7 +2,7 @@
 
 
 icinga_serviceset -- Manage servicesets in Icinga2
-============================================
+==================================================
 
 .. contents::
    :local:
