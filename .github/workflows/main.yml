@@ -38,7 +38,7 @@ jobs:
           path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           # it is just required to run that once as "ansible-test sanity" in the docker image
           # will run on all python versions it supports.
@@ -71,7 +71,7 @@ jobs:
           path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
       - name: Set up Python ${{ matrix.python }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python }}
 
@@ -146,7 +146,7 @@ jobs:
           path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
       - name: Set up Python ${{ matrix.python }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python }}
 
