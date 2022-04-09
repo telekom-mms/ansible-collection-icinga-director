@@ -120,4 +120,6 @@ releases:
     changes:
       minor_changes:
       - Test more ansible versions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/162)
+      trivial:
+      - Configure Renovate (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/164)
     release_date: '2022-03-30'
