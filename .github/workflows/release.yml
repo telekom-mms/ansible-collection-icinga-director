@@ -40,7 +40,7 @@ jobs:
         run: ansible-doc-extractor docs/ plugins/inventory/* plugins/modules/*
 
       - name: commit documentation
-        uses: github-actions-x/commit@v2.6
+        uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
@@ -93,7 +93,7 @@ jobs:
         run: antsibull-changelog generate -v
 
       - name: push changelog
-        uses: github-actions-x/commit@v2.6
+        uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
