@@ -372,6 +372,19 @@ def main():
 
     data["object_type"] = "object"
 
+    # Only one of "service_set" or "host" needs to be present at the
+    # same time so we cannot use required=True in the argument_spec.
+    # Instead we define here that only one of the two parameters is defined at the same time.
+    if (
+        module.params["state"] == "present"
+        and not module.params["append"]
+        and module.params["host"]
+        and module.params["service_set"]
+    ):
+        module.fail_json(
+            msg="Only one of the properties host or service_set can be defined within the same object."
+        )
+
     icinga_object = IcingaServiceObject(
         module=module, path="/service", data=data
     )
