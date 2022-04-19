@@ -122,4 +122,8 @@ releases:
       - Test more ansible versions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/162)
       trivial:
       - Configure Renovate (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/164)
+      - 'chore(deps): update codecov/codecov-action action to v3 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/170)'
+      - 'chore(deps): update actions/setup-python action to v3 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/169)'
+      - 'chore(deps): update actions/checkout action (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/168)'
+      - 'chore(deps): update github-actions-x/commit action to v2.9 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/166)'
     release_date: '2022-03-30'
