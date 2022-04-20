@@ -22,8 +22,12 @@ Add or remove a serviceset to Icinga2 through the director API.
 Parameters
 ----------
 
-  state (optional, str, present)
-    Apply feature state.
+  append (optional, bool, None)
+    Do not overwrite the whole object but instead append the defined properties.
+
+    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+
+    Note - Variables that are set by default will also be applied, even if not set.
 
 
   assign_filter (optional, str, None)
@@ -32,20 +36,16 @@ Parameters
     Please feel free to combine as many nested operators as you want.
 
 
-  object_name (True, str, None)
-    Name of the service.
-
-
   description (optional, str, None)
     A meaningful description explaining your users what to expect when assigning this set of services.
 
 
-  append (optional, bool, None)
-    Do not overwrite the whole object but instead append the defined properties.
+  object_name (True, str, None)
+    Icinga object name for this serviceset.
 
-    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
 
-    Note - Variables that are set by default will also be applied, even if not set.
+  state (optional, str, present)
+    Apply feature state.
 
 
   url (True, str, None)
@@ -113,7 +113,6 @@ Parameters
 
 
 
-
 Notes
 -----
 
@@ -128,9 +127,9 @@ Examples
 
 .. code-block:: yaml+jinja
 
-
+    
     - name: Create serviceset
-    t_systems_mms.icinga_director.icinga_serviceset:
+      t_systems_mms.icinga_director.icinga_serviceset:
         state: present
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
@@ -140,7 +139,7 @@ Examples
         description: "foo description"
 
     - name: Update serviceset
-    t_systems_mms.icinga_director.icinga_serviceset:
+      t_systems_mms.icinga_director.icinga_serviceset:
         state: present
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
@@ -148,6 +147,7 @@ Examples
         object_name: "foo_serviceset"
         assign_filter: 'host.name="foohost2"'
         append: true
+
 
 
 

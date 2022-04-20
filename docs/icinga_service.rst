@@ -80,15 +80,11 @@ Parameters
     Service groups can be directly assigned to single services or to service templates.
 
 
-  host (optional, str, None)
+  host (False, str, None)
     Choose the host this single service should be assigned to.
 
-    If ``service_set`` is not provided this property is required.
+    This field will be required when `service_set` is not defined.
 
-  service_set (optional, str, None)
-    Choose the serviceset this single service should be assigned to.
-
-    If ``host`` is not provided this property is required.
 
   imports (optional, list, [])
     Importable templates, add as many as you want.
@@ -138,6 +134,12 @@ Parameters
     Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
 
     Note - Variables that are set by default will also be applied, even if not set.
+
+
+  service_set (optional, str, None)
+    Choose the service set name this single service should be assigned to.
+
+    This field will be required when `host` is not defined.
 
 
   url (True, str, None)
@@ -219,7 +221,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-
+    
     - name: Create service
       tags: service
       t_systems_mms.icinga_director.icinga_service:
@@ -259,6 +261,7 @@ Examples
         url_password: "{{ icinga_pass }}"
         object_name: "foo service serviceset"
         service_set: "foo_serviceset"
+
 
 
 
