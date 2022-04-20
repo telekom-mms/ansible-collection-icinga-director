@@ -385,6 +385,16 @@ def main():
             msg="Only one of the properties host or service_set can be defined within the same object."
         )
 
+    if (
+        module.params["state"] == "present"
+        and not module.params["append"]
+        and not module.params["host"]
+        and not module.params["service_set"]
+    ):
+        module.fail_json(
+            msg="One of the properties host or service_set is required."
+        )
+
     icinga_object = IcingaServiceObject(
         module=module, path="/service", data=data
     )
