@@ -39,6 +39,9 @@ icinga_command_disabled: false
 # icinga_service
 icinga_services: []
 
+# icinga_serviceset
+icinga_servicesets: []
+
 # icinga_service_template
 icinga_service_templates: []
 

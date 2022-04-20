@@ -20,6 +20,7 @@ Additionally all supported modules have an appropriate `*_info`-module to gather
     * `icinga_service_apply`
     * `icinga_service_template`
     * `icinga_servicegroup`
+    * `icinga_serviceset`
     * `icinga_timeperiod`
     * `icinga_timeperiod_template`
     * `icinga_user_group`

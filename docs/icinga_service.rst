@@ -80,9 +80,15 @@ Parameters
     Service groups can be directly assigned to single services or to service templates.
 
 
-  host (True, str, None)
+  host (optional, str, None)
     Choose the host this single service should be assigned to.
 
+    If ``service_set`` is not provided this property is required.
+
+  service_set (optional, str, None)
+    Choose the serviceset this single service should be assigned to.
+
+    If ``host`` is not provided this property is required.
 
   imports (optional, list, [])
     Importable templates, add as many as you want.
@@ -213,7 +219,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    
+
     - name: Create service
       tags: service
       t_systems_mms.icinga_director.icinga_service:
@@ -245,6 +251,14 @@ Examples
         notes_url: "'http://url1' 'http://url2'"
         append: true
 
+    - name: Create serviceset service
+      t_systems_mms.icinga_director.icinga_service:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: "foo service serviceset"
+        service_set: "foo_serviceset"
 
 
 

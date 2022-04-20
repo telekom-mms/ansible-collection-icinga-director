@@ -69,6 +69,11 @@
   when: icinga_services is defined
   tags: service
 
+- name: icinga serviceset configuration
+  include_tasks: icinga_serviceset.yml
+  when: icinga_servicesets is defined
+  tags: serviceset
+
 - name: icinga notification template configuration
   include_tasks: icinga_notification_template.yml
   when: icinga_notification_templates is defined
