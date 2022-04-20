@@ -5,6 +5,20 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.29.0
+=======
+
+Minor Changes
+-------------
+
+- Add icinga_serviceset module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/163)
+- Test more ansible versions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/162)
+
+New Modules
+-----------
+
+- t_systems_mms.icinga_director.icinga_serviceset - Manage servicesets in Icinga2
+
 v1.28.1
 =======
 

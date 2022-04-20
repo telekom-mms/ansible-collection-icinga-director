@@ -138,6 +138,11 @@ plugins:
       name: icinga_servicegroup_info
       namespace: ''
       version_added: 1.13.0
+    icinga_serviceset:
+      description: Manage servicesets in Icinga2
+      name: icinga_serviceset
+      namespace: ''
+      version_added: 1.29.0
     icinga_timeperiod:
       description: Manage timeperiods in Icinga2
       name: icinga_timeperiod
@@ -202,4 +207,4 @@ plugins:
   shell: {}
   strategy: {}
   vars: {}
-version: 1.28.1
+version: 1.29.0
