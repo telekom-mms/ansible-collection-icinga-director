@@ -147,4 +147,5 @@ releases:
     changes:
       trivial:
       - 'chore(deps): update actions/checkout action to v3.0.2 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/171)'
+      - 'chore(deps): update github/codeql-action action to v2 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/172)'
     release_date: '2022-04-21'
