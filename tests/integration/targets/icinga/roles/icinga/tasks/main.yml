@@ -34,9 +34,9 @@
     password: "{{ icinga_pass }}"
     return_content: true
   retries: 3
-  delay: 3
+  delay: 10
   register: result
-  until: result.rc == 0
+  until: result is not failed
 
 - include_tasks: "{{ item }}"
   loop:
@@ -221,6 +221,6 @@
     password: "{{ icinga_pass }}"
     return_content: true
   retries: 3
-  delay: 3
+  delay: 10
   register: result
-  until: result.rc == 0
+  until: result is not failed
