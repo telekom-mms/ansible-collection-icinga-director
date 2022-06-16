@@ -1,6 +1,6 @@
 namespace: t_systems_mms
 name: icinga_director
-version: 1.29.0
+version: 1.30.0
 readme: README.md
 authors:
   - Sebastian Gumprich <sebastian.gumprich@t-systems.com>
