@@ -154,7 +154,11 @@ jobs:
         run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
 
       - name: Run integration tests
-        run: ansible-test integration -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
+        run: ansible-test integration --exclude defaults_test -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
+
+      - name: Run integration tests for defaults module on ansible 2.12 and above
+        run: ansible-test integration defaults_test -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
+        if: ${{ matrix.ansible >= '2.12' }}
 
       # ansible-test support producing code coverage date
       - name: Generate coverage report
