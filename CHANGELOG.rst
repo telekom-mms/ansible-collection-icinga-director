@@ -5,6 +5,14 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.30.0
+=======
+
+Minor Changes
+-------------
+
+- Add action_group to enable module default groups (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/175)
+
 v1.29.1
 =======
 

@@ -147,7 +147,17 @@ releases:
     changes:
       trivial:
       - 'chore(deps): update actions/checkout action to v3.0.2 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/171)'
+      - 'chore(deps): update actions/setup-python action to v4 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/173)'
+      - 'chore(deps): update github/codeql-action action to v2 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/172)'
+      - fix release workflow (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/174)
+    release_date: '2022-04-21'
+  1.30.0:
+    changes:
+      minor_changes:
+      - Add action_group to enable module default groups (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/175)
+      trivial:
+      - 'chore(deps): update actions/checkout action to v3.0.2 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/171)'
       - 'chore(deps): update github/codeql-action action to v2 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/172)'
       - 'chore(deps): update actions/setup-python action to v4 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/173)'
       - fix release workflow (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/174)
-    release_date: '2022-04-21'
+    release_date: '2022-06-16'
