@@ -158,7 +158,7 @@ jobs:
 
       - name: Run integration tests for defaults module on ansible 2.12 and above
         run: ansible-test integration defaults_test -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
-        if: ${{ matrix.ansible >= '2.12' }}
+        if: (matrix.ansible != 'stable-2.9') && (matrix.ansible != 'stable-2.10') && (matrix.ansible != 'stable-2.11')
 
       # ansible-test support producing code coverage date
       - name: Generate coverage report
