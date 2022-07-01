@@ -79,8 +79,6 @@ Parameters
   force (optional, bool, False)
     If ``yes`` do not get a cached copy.
 
-    Alias ``thirsty`` has been deprecated and will be removed in 2.13.
-
 
   http_agent (optional, str, ansible-httpget)
     Header to identify as, generally appears in web server logs.
