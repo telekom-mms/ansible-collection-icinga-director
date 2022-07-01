@@ -49,3 +49,7 @@
         user: "{{ icinga_user }}"
         password: "{{ icinga_pass }}"
         return_content: true
+      retries: 3
+      delay: 10
+      register: result
+      until: result is not failed
