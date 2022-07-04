@@ -34,7 +34,8 @@ To trigger this generation, you need to run the script `hacking/update_examples_
 
 ```
 # run icinga in a container and forward port 80
-> docker run -d -p 80:80 schurzi/icinga2
+> docker run -d -p 80:80 ghcr.io/t-systems-mms/icinga2:master
+
 
 # run ansible-test
 > ansible-test integration
