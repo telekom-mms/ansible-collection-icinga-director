@@ -89,20 +89,20 @@ class Icinga2APIObject(object):
             boolean that tells wether the object exists
         """
 
-        try:
-            ret = self.call_url(
-                path=self.path
-                + "?"
-                + find_by
-                + "="
-                + to_text(urlquote(self.data["object_name"]))
-            )
-            self.object_id = to_text(urlquote(self.data["object_name"]))
-            if ret["code"] == 200:
-                return True
+        ret = self.call_url(
+            path=self.path
+            + "?"
+            + find_by
+            + "="
+            + to_text(urlquote(self.data["object_name"]))
+        )
+        self.object_id = to_text(urlquote(self.data["object_name"]))
+        if ret["code"] == 200:
+            return True
+        elif ret["code"] == 404:
             return False
-        except Exception as e:
-            self.module.fail_json(msg="exception when querying: " + str(e))
+        else:
+            self.module.fail_json(msg="exception when checking for existing object: " + ret['error'])
 
     def query(self, query="", resolved=False):
         """
@@ -147,9 +147,12 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
-            path=self.path, data=self.module.jsonify(self.data), method="POST"
-        )
+        try:
+            ret = self.call_url(
+                path=self.path, data=self.module.jsonify(self.data), method="POST"
+            )
+        except Exception as e:
+            self.module.fail_json(msg="exception when creating: " + str(e))
         return ret
 
     def delete(self, find_by="name"):
@@ -163,10 +166,13 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
-            path=self.path + "?" + find_by + "=" + self.object_id,
-            method="DELETE",
-        )
+        try:
+            ret = self.call_url(
+                path=self.path + "?" + find_by + "=" + self.object_id,
+                method="DELETE",
+            )
+        except Exception as e:
+            self.module.fail_json(msg="exception when deleting: " + str(e))
         return ret
 
     def modify(self, find_by="name"):
@@ -180,11 +186,14 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
-            path=self.path + "?" + find_by + "=" + self.object_id,
-            data=self.module.jsonify(self.data),
-            method="POST",
-        )
+        try:
+            ret = self.call_url(
+                path=self.path + "?" + find_by + "=" + self.object_id,
+                data=self.module.jsonify(self.data),
+                method="POST",
+            )
+        except Exception as e:
+            self.module.fail_json(msg="exception when deleting: " + str(e))
         return ret
 
     def scrub_diff_value(self, value):
@@ -219,10 +228,13 @@ class Icinga2APIObject(object):
             the generated diff
         """
 
-        ret = self.call_url(
-            path=self.path + "?" + find_by + "=" + self.object_id + "&withNull",
-            method="GET",
-        )
+        try:
+            ret = self.call_url(
+                path=self.path + "?" + find_by + "=" + self.object_id + "&withNull",
+                method="GET",
+            )
+        except Exception as e:
+            self.module.fail_json(msg="exception when deleting: " + str(e))
 
         data_from_director = json.loads(self.module.jsonify(ret["data"]))
         data_from_task = json.loads(self.module.jsonify(self.data))
