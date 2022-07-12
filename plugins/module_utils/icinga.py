@@ -252,9 +252,7 @@ class Icinga2APIObject(object):
         try:
             exists = self.exists()
         except Exception as e:
-            self.module.fail_json(
-                msg="exception when deleting: " + str(e)
-            )
+            self.module.fail_json(msg="exception when deleting: " + str(e))
         if exists:
             diff_result.update({"before": "state: present\n"})
             if state == "absent":
@@ -285,7 +283,9 @@ class Icinga2APIObject(object):
                 try:
                     diff_result = self.diff()
                 except Exception as e:
-                    self.module.fail_json(msg="exception when diffing: " + str(e))
+                    self.module.fail_json(
+                        msg="exception when diffing: " + str(e)
+                    )
 
                 if self.module.check_mode:
                     if diff_result:
