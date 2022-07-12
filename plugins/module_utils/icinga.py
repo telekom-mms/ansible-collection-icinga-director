@@ -67,9 +67,6 @@ class Icinga2APIObject(object):
         elif info["status"] < 0:
             error = info["msg"]
 
-        if error:
-            self.module.fail_json(msg="exception when talking to the API: " + str(error))
-
         # if nothing is modified when trying to change objects, fetch_url
         # returns only the 304 status but no body.
         # if that happens we set the content to an empty json object.
@@ -92,21 +89,24 @@ class Icinga2APIObject(object):
             boolean that tells wether the object exists
         """
 
-        ret = self.call_url(
-            path=self.path
-            + "?"
-            + find_by
-            + "="
-            + to_text(urlquote(self.data["object_name"]))
-        )
-        self.object_id = to_text(urlquote(self.data["object_name"]))
-        if ret["code"] == 200:
-            return True
-        return False
+        try:
+            ret = self.call_url(
+                path=self.path
+                + "?"
+                + find_by
+                + "="
+                + to_text(urlquote(self.data["object_name"]))
+            )
+            self.object_id = to_text(urlquote(self.data["object_name"]))
+            if ret["code"] == 200:
+                return True
+            return False
+        except Exception as e:
+            self.module.fail_json(msg="exception when querying: " + str(e))
 
     def query(self, query="", resolved=False):
         """
-        Find all matching obejcts in the director and return the result of the api-call.
+        Find all matching objects in the director and return the result of the api-call.
 
         Parameters:
             query: type str, default "", searchstring to limit the results. By default Director will search in
@@ -119,12 +119,20 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
-            path=self.path
-            + "?q="
-            + to_text(urlquote(query))
-            + ("&resolved" if resolved else "")
-        )
+        try:
+            ret = self.call_url(
+                path=self.path
+                + "?q="
+                + to_text(urlquote(query))
+                + ("&resolved" if resolved else "")
+            )
+            if ret["code"] != 200:
+                self.module.fail_json(
+                    msg="bad return code while querying: %d. Error message: %s"
+                    % (ret["code"], ret["error"])
+                )
+        except Exception as e:
+            self.module.fail_json(msg="exception when querying: " + str(e))
 
         return ret
 
