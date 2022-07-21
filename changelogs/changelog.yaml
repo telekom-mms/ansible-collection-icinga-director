@@ -165,4 +165,5 @@ releases:
     changes:
       trivial:
       - update python-version for ansible-lint in tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/177)
+      - update list of ansible and python versions to be tested (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/178)
     release_date: '2022-07-01'
