@@ -20,8 +20,6 @@ jobs:
     strategy:
       matrix:
         ansible:
-          - stable-2.9
-          - stable-2.10
           - stable-2.11
           - stable-2.12
           - stable-2.13
@@ -60,9 +58,11 @@ jobs:
     strategy:
       matrix:
         python:
-          - 2.7
-          - 3.7
-          - 3.8
+          - "2.7"
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -89,24 +89,19 @@ jobs:
       fail-fast: false
       matrix:
         ansible:
-          - stable-2.9
-          - stable-2.10
           - stable-2.11
           - stable-2.12
           - stable-2.13
           - devel
         python:
-          - 2.7
-          - 3.5
-          - 3.6
-          - 3.7
-          - 3.8
-          - 3.9
+          - "2.7"
+          - "3.5"
+          - "3.6"
+          - "3.7"
+          - "3.8"
+          - "3.9"
         exclude:
-          # Because ansible-test doesn't support python3.9 for Ansible 2.9
-          - ansible: stable-2.9
-            python: 3.9
-          # Because ansible-test doesn't support < python3.8 for Ansible 2.12
+          # Because ansible-test doesn't support < python3.9 for Ansible 2.12
           - ansible: devel
             python: 2.7
           - ansible: devel
@@ -115,6 +110,8 @@ jobs:
             python: 3.6
           - ansible: devel
             python: 3.7
+          - ansible: devel
+            python: 3.8
           - ansible: stable-2.12
             python: 2.7
           - ansible: stable-2.12
@@ -158,7 +155,7 @@ jobs:
 
       - name: Run integration tests for defaults module on ansible 2.12 and above
         run: ansible-test integration defaults_test -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
-        if: (matrix.ansible != 'stable-2.9') && (matrix.ansible != 'stable-2.10') && (matrix.ansible != 'stable-2.11')
+        if: matrix.ansible != 'stable-2.11'
 
       # ansible-test support producing code coverage date
       - name: Generate coverage report
