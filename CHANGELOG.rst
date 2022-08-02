@@ -8,6 +8,11 @@ T_Systems_Mms.Icinga_Director Release Notes
 v1.30.1
 =======
 
+Bugfixes
+--------
+
+- Add exception handling to diff and exist functions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/176)
+
 v1.30.0
 =======
 
