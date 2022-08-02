@@ -99,11 +99,12 @@ class Icinga2APIObject(object):
         self.object_id = to_text(urlquote(self.data["object_name"]))
         if ret["code"] == 200:
             return True
-        return False
+        else:
+            return False
 
     def query(self, query="", resolved=False):
         """
-        Find all matching obejcts in the director and return the result of the api-call.
+        Find all matching objects in the director and return the result of the api-call.
 
         Parameters:
             query: type str, default "", searchstring to limit the results. By default Director will search in
@@ -247,7 +248,12 @@ class Icinga2APIObject(object):
 
         changed = False
         diff_result = {"before": "", "after": ""}
-        if self.exists():
+
+        try:
+            exists = self.exists()
+        except Exception as e:
+            self.module.fail_json(msg="exception when deleting: " + str(e))
+        if exists:
             diff_result.update({"before": "state: present\n"})
             if state == "absent":
                 if self.module.check_mode:
@@ -274,7 +280,13 @@ class Icinga2APIObject(object):
                         )
 
             else:
-                diff_result = self.diff()
+                try:
+                    diff_result = self.diff()
+                except Exception as e:
+                    self.module.fail_json(
+                        msg="exception when diffing: " + str(e)
+                    )
+
                 if self.module.check_mode:
                     if diff_result:
                         changed = True
