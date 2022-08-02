@@ -1,4 +1,4 @@
-ancestor:
+ancestor: null
 releases:
   1.18.1:
     changes:
@@ -163,9 +163,11 @@ releases:
     release_date: '2022-06-16'
   1.30.1:
     changes:
+      bugfixes:
+      - Add exception handling to diff and exist functions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/176)
       trivial:
       - update list of ansible and python versions to be tested (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/178)
       - update python-version for ansible-lint in tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/177)
-      bugfixes:
-      - Add exception handling to diff and exist functions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/176)
     release_date: '2022-07-01'
+  1.30.2:
+    release_date: '2022-08-02'
