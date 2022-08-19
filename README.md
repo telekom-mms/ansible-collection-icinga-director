@@ -165,10 +165,14 @@ See [Contributing](CONTRIBUTING.md).
 
 ## Troubleshooting
 
-If the following error is thrown, check if you're behind a proxy and use `force_basic_auth: true` in the task.
+If one of the following errors is thrown, your Icinga Director is probably sitting behind a basic authentication prompt. Use `force_basic_auth: true` in your tasks to fix the problem.
 
 ```
 fatal: [localhost]: FAILED! => {"changed": false, "msg": "bad return code while creating: -1. Error message: Request failed: <urlopen error Tunnel connection failed: 302 Found>"}
+```
+
+```
+failed: [localhost] => {"ansible_loop_var": "item", "changed": false, "item": "localhost", "msg": "AbstractDigestAuthHandler does not support the following scheme: 'Negotiate'", "status": -1, "url": "https://icinga-director.example.com/director/host?name=foohost"}
 ```
 
 
