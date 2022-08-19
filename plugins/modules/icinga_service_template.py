@@ -111,6 +111,15 @@ options:
     type: "list"
     elements: "str"
     default: []
+  icon_image:
+    description:
+      - An URL pointing to an icon for this object.
+      - Try "tux.png" for icons relative to public/img/icons or "cloud" (no extension) for items from the Icinga icon font
+    type: str
+  icon_image_alt:
+    description:
+      - Alternative text to be shown in case above icon is missing
+    type: str
   imports:
     description:
       - Importable templates, add as many as you want.
@@ -177,6 +186,8 @@ EXAMPLES = """
     enable_flapping: true
     flapping_threshold_high: "30.0"
     flapping_threshold_low: "25.0"
+    icon_image_alt: "alt text"
+    icon_image: "http://url1"
     object_name: fooservicetemplate
     use_agent: false
     vars:
@@ -244,6 +255,8 @@ def main():
         flapping_threshold_high=dict(type="str", required=False),
         flapping_threshold_low=dict(type="str", required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
+        icon_image_alt=dict(type="str", required=False),
+        icon_image=dict(type="str", required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
         notes=dict(type="str", required=False),
@@ -276,6 +289,8 @@ def main():
         "flapping_threshold_high",
         "flapping_threshold_low",
         "groups",
+        "icon_image_alt",
+        "icon_image",
         "imports",
         "max_check_attempts",
         "notes",
