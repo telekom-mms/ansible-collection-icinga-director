@@ -5,6 +5,8 @@
     url: http://nonexistant
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
+    icon_image_alt: "alt text"
+    icon_image: "http://url1"
     object_name: fooservicetemplate
     use_agent: false
     vars:

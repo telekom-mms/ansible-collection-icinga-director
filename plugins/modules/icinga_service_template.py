@@ -99,6 +99,15 @@ options:
     type: "list"
     elements: "str"
     default: []
+  icon_image:
+    description:
+      - An URL pointing to an icon for this object.
+      - Try "tux.png" for icons relative to public/img/icons or "cloud" (no extension) for items from the Icinga icon font
+    type: str
+  icon_image_alt:
+    description:
+      - Alternative text to be shown in case above icon is missing
+    type: str
   imports:
     description:
       - Importable templates, add as many as you want.
@@ -162,6 +171,8 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
+    icon_image_alt: "alt text"
+    icon_image: "http://url1"
     object_name: fooservicetemplate
     use_agent: false
     vars:
@@ -226,6 +237,8 @@ def main():
         enable_perfdata=dict(type="bool", required=False),
         event_command=dict(type="str", required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
+        icon_image_alt=dict(type="str", required=False),
+        icon_image=dict(type="str", required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
         notes=dict(type="str", required=False),
@@ -255,6 +268,8 @@ def main():
         "enable_perfdata",
         "event_command",
         "groups",
+        "icon_image_alt",
+        "icon_image",
         "imports",
         "max_check_attempts",
         "notes",
