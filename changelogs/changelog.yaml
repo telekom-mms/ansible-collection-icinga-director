@@ -1,4 +1,4 @@
-ancestor:
+ancestor: null
 releases:
   1.18.1:
     changes:
@@ -176,4 +176,6 @@ releases:
       minor_changes:
       - Add flapping support to service template module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/180)
       - Add icon support to service template (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/179)
+    release_date: '2022-08-22'
+  1.31.1:
     release_date: '2022-08-22'
