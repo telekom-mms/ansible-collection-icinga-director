@@ -54,6 +54,10 @@ Parameters
     Whether to enable event handlers this object.
 
 
+  enable_flapping (optional, bool, None)
+    Whether flap detection is enabled on this object.
+
+
   enable_notifications (optional, bool, None)
     Whether to send notifications for this object.
 
@@ -74,6 +78,14 @@ Parameters
     The service state changes into a hard state
 
     The service state recovers from a soft or hard state to OK/Up
+
+
+  flapping_threshold_high (optional, str, None)
+    Flapping upper bound in percent for a service to be considered flapping
+
+
+  flapping_threshold_low (optional, str, None)
+    Flapping lower bound in percent for a service to be considered not flapping
 
 
   groups (optional, list, [])
@@ -220,6 +232,9 @@ Examples
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
+        enable_flapping: true
+        flapping_threshold_high: "30.0"
+        flapping_threshold_low: "25.0"
         object_name: fooservicetemplate
         use_agent: false
         vars:
