@@ -98,6 +98,16 @@ Parameters
     Service groups can be directly assigned to single services or to service templates.
 
 
+  icon_image (optional, str, None)
+    An URL pointing to an icon for this object.
+
+    Try "tux.png" for icons relative to public/img/icons or "cloud" (no extension) for items from the Icinga icon font
+
+
+  icon_image_alt (optional, str, None)
+    Alternative text to be shown in case above icon is missing
+
+
   imports (optional, list, [])
     Importable templates, add as many as you want.
 
@@ -235,6 +245,8 @@ Examples
         enable_flapping: true
         flapping_threshold_high: "30.0"
         flapping_threshold_low: "25.0"
+        icon_image_alt: "alt text"
+        icon_image: "http://url1"
         object_name: fooservicetemplate
         use_agent: false
         vars:
