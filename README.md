@@ -16,7 +16,6 @@ Additionally all supported modules have an appropriate `*_info`-module to gather
     * `icinga_hostgroup`
     * `icinga_notification`
     * `icinga_notification_template`
-    * 
     * `icinga_service`
     * `icinga_service_apply`
     * `icinga_service_template`
