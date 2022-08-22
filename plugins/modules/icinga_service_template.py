@@ -71,6 +71,10 @@ options:
     description:
       - Whether to enable event handlers this object.
     type: "bool"
+  enable_flapping:
+    description:
+      - Whether flap detection is enabled on this object.
+    type: bool
   enable_notifications:
     description:
       - Whether to send notifications for this object.
@@ -90,6 +94,14 @@ options:
       - The service state changes into a hard state
       - The service state recovers from a soft or hard state to OK/Up
     type: "str"
+  flapping_threshold_high:
+    description:
+      - Flapping upper bound in percent for a service to be considered flapping
+    type: str
+  flapping_threshold_low:
+    description:
+      - Flapping lower bound in percent for a service to be considered not flapping
+    type: str
   groups:
     description:
       - Service groups that should be directly assigned to this service.
@@ -162,6 +174,9 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
+    enable_flapping: true
+    flapping_threshold_high: "30.0"
+    flapping_threshold_low: "25.0"
     object_name: fooservicetemplate
     use_agent: false
     vars:
@@ -221,10 +236,13 @@ def main():
         check_timeout=dict(required=False),
         enable_active_checks=dict(type="bool", required=False),
         enable_event_handler=dict(type="bool", required=False),
+        enable_flapping=dict(type="bool", required=False),
         enable_notifications=dict(type="bool", required=False),
         enable_passive_checks=dict(type="bool", required=False),
         enable_perfdata=dict(type="bool", required=False),
         event_command=dict(type="str", required=False),
+        flapping_threshold_high=dict(type="str", required=False),
+        flapping_threshold_low=dict(type="str", required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
@@ -250,10 +268,13 @@ def main():
         "check_timeout",
         "enable_active_checks",
         "enable_event_handler",
+        "enable_flapping",
         "enable_notifications",
         "enable_passive_checks",
         "enable_perfdata",
         "event_command",
+        "flapping_threshold_high",
+        "flapping_threshold_low",
         "groups",
         "imports",
         "max_check_attempts",

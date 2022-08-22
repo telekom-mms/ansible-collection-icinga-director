@@ -5,6 +5,9 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
+    enable_flapping: false
+    flapping_threshold_high: "30.0"
+    flapping_threshold_low: "25.0"
     object_name: fooservicetemplate
     use_agent: false
     vars:
