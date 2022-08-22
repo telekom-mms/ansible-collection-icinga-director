@@ -12,6 +12,7 @@ Minor Changes
 -------------
 
 - Add flapping support to service template module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/180)
+- Add icon support to service template (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/179)
 
 v1.30.2
 =======
