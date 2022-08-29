@@ -9,7 +9,7 @@ For example, if you are working in the `~/dev` directory:
 ```
 cd ~/dev
 git clone https://github.com/T-Systems-MMS/ansible-collection-icinga-director collections/ansible_collections/t_systems_mms/icinga_director
-export COLLECTIONS_PATH=$(pwd)/collections:$COLLECTIONS_PATH
+export ANSIBLE_COLLECTIONS_PATH=$(pwd)/collections:$ANSIBLE_COLLECTIONS_PATH
 ```
 
 You can find more information in the [developer guide for collections](https://docs.ansible.com/ansible/devel/dev_guide/developing_collections.html#contributing-to-collections), and in the [Ansible Community Guide](https://docs.ansible.com/ansible/latest/community/index.html).
@@ -34,7 +34,8 @@ To trigger this generation, you need to run the script `hacking/update_examples_
 
 ```
 # run icinga in a container and forward port 80
-> docker run -d -p 80:80 ghcr.io/t-systems-mms/icinga2:master
+# username: icingaadmin password: icinga
+> docker run --name icinga -d -p 80:80 ghcr.io/t-systems-mms/icinga2:master
 
 
 # run ansible-test
