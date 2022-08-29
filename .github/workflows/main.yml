@@ -133,7 +133,7 @@ jobs:
         working-directory: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
     services:
       icinga:
-        image: ghcr.io/t-systems-mms/icinga2:master
+        image: ghcr.io/t-systems-mms/icinga2:director-1.8.1
         ports:
           - 80:80
     steps:
