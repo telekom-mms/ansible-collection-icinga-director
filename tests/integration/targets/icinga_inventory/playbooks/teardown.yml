@@ -1,9 +1,5 @@
 ---
-- hosts: 127.0.0.1
-  vars:
-    icinga_url: "http://127.0.0.1/icingaweb2"
-    icinga_user: "icingaadmin"
-    icinga_pass: "icinga"
+- hosts: localhost
   connection: local
   gather_facts: false
   tasks:

@@ -1,7 +1,7 @@
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   vars:
-    icinga_url: "http://127.0.0.1/icingaweb2"
+    icinga_url: "http://icinga/icingaweb2"
     icinga_user: "icingaadmin"
     icinga_pass: "icinga"
   connection: local
