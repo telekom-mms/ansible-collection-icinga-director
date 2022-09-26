@@ -2,8 +2,8 @@
 
 set -eux
 
-ansible-playbook normalmode.yml -v --diff
-ansible-playbook checkmode.yml -v --diff
-ansible-playbook checkmode.yml --check --diff -v
-ansible-playbook checkmode_2.yml -v --diff
-ansible-playbook checkmode_2.yml --check --diff -v
+ansible-playbook normalmode.yml -e "@../../integration_config.yml" "$@"
+ansible-playbook checkmode.yml -e "@../../integration_config.yml" "$@"
+ansible-playbook checkmode.yml -e "@../../integration_config.yml" --check "$@"
+ansible-playbook checkmode_2.yml -e "@../../integration_config.yml" "$@"
+ansible-playbook checkmode_2.yml -e "@../../integration_config.yml" --check "$@"
