@@ -1,4 +1,4 @@
-ancestor: null
+ancestor:
 releases:
   1.18.1:
     changes:
@@ -178,4 +178,7 @@ releases:
       - Add icon support to service template (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/179)
     release_date: '2022-08-22'
   1.31.1:
+    changes:
+      trivial:
+      - add ansible 2.14 to test-matrix, use new gh-action for tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/181)
     release_date: '2022-08-22'
