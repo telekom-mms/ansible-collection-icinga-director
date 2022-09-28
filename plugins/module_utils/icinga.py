@@ -99,8 +99,7 @@ class Icinga2APIObject(object):
         self.object_id = to_text(urlquote(self.data["object_name"]))
         if ret["code"] == 200:
             return True
-        else:
-            return False
+        return False
 
     def query(self, query="", resolved=False):
         """
@@ -219,7 +218,6 @@ class Icinga2APIObject(object):
 
         ret = self.call_url(
             path=self.path + "?" + find_by + "=" + self.object_id + "&withNull",
-            method="GET",
         )
 
         data_from_director = json.loads(self.module.jsonify(ret["data"]))
