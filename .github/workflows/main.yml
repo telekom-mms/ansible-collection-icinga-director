@@ -4,7 +4,9 @@ name: ansible-test
 on:
   # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
   push:
-    branches: [master]
+    branches:
+      - 'master'
+      - 'renovate/**'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [master]
