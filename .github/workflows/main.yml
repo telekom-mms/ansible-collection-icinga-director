@@ -104,7 +104,7 @@ jobs:
           Perform integration testing against
           Ansible version ${{ matrix.ansible }}
           under Python ${{ matrix.python }}
-        uses: ansible-community/ansible-test-gh-action@v1.10.0
+        uses: ansible-community/ansible-test-gh-action@v1.11.0
         with:
           ansible-core-version: ${{ matrix.ansible }}
           # OPTIONAL command to run before invoking `ansible-test integration`
