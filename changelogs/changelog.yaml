@@ -182,7 +182,8 @@ releases:
       trivial:
       - Update actions/checkout action to v3.1.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/184)
       - Update ansible-community/ansible-test-gh-action action to v1.10.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/182)
+      - Update ansible-community/ansible-test-gh-action action to v1.11.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/185)
       - add ansible 2.14 to test-matrix, use new gh-action for tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/181)
       - fix problems found by refurb (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/183)
-      - Update ansible-community/ansible-test-gh-action action to v1.11.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/185)
+      - Update ansible-community/ansible-test-gh-action action to v1.11.1 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/186)
     release_date: '2022-08-22'
