@@ -54,7 +54,7 @@ Parameters
     Name of the command.
 
 
-  imports (optional, list, None)
+  imports (optional, list, [])
     Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins.
 
 
@@ -68,7 +68,7 @@ Parameters
     You should consider not doing so unless you gained deep understanding of how an Icinga Cluster stack works.
 
 
-  vars (optional, dict, None)
+  vars (optional, dict, {})
     Custom properties of the command.
 
 
