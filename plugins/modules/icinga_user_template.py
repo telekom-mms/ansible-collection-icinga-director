@@ -53,6 +53,7 @@ options:
       - Please note that order matters when importing properties from multiple templates - last one wins.
     type: list
     elements: str
+    default: []
   period:
     description:
       - The name of a time period which determines when notifications to this User should be triggered. Not set by default.
