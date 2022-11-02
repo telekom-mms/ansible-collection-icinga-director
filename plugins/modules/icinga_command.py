@@ -75,6 +75,7 @@ options:
       - Importable templates, add as many as you want. Please note that order matters when importing properties from multiple templates - last one wins.
     type: list
     elements: str
+    default: []
   timeout:
     description:
       - Optional command timeout. Allowed values are seconds or durations postfixed with a specific unit (for example 1m or also 3m 30s).
@@ -88,6 +89,7 @@ options:
     description:
       - Custom properties of the command.
     type: "dict"
+    default: {}
   arguments:
     description:
       - Arguments of the command.

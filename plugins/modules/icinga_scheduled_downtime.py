@@ -81,6 +81,7 @@ options:
     description:
       - The period which should be downtimed
     type: dict
+    default: {}
   apply_to:
     description:
       - Whether this dependency should affect hosts or services

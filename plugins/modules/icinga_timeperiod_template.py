@@ -63,18 +63,21 @@ options:
       - Please note that order matters when importing properties from multiple templates - last one wins.
     type: list
     elements: str
+    default: []
   includes:
     description:
       - Include other time periods into this.
     type: list
     elements: str
     aliases: ["include_period"]
+    default: []
   excludes:
     description:
       - Exclude other time periods from this.
     type: list
     elements: str
     aliases: ["exclude_period"]
+    default: []
   prefer_includes:
     description:
       - Whether to prefer timeperiods includes or excludes. Default to true.
