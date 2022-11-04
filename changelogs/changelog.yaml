@@ -1,4 +1,4 @@
-ancestor:
+ancestor: null
 releases:
   1.18.1:
     changes:
@@ -185,6 +185,8 @@ releases:
       - Update ansible-community/ansible-test-gh-action action to v1.11.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/185)
       - Update ansible-community/ansible-test-gh-action action to v1.11.1 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/186)
       - add ansible 2.14 to test-matrix, use new gh-action for tests (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/181)
-      - fix problems found by refurb (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/183)
       - add empty default to argument docs (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/188)
+      - fix problems found by refurb (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/183)
     release_date: '2022-08-22'
+  1.31.2:
+    release_date: '2022-11-04'
