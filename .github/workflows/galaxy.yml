@@ -9,3 +9,6 @@ on:
 jobs:
   deploy:
     uses: T-Systems-MMS/.github/.github/workflows/ansible-galaxy-publish.yml@main
+    with:
+      GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
+
