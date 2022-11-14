@@ -2,7 +2,7 @@
 # command.1 = command array
 # command.0 = icinga_command attribute
 - name: icinga_command
-  icinga_command:
+  t_systems_mms.icinga_director.icinga_command:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"
@@ -13,7 +13,7 @@
     client_key: "{{ icinga_client_key | default(omit) }}"
     state: "{{ command.0.state | default(omit) }}"
     command: "{{ command.0.command | default(omit) }}"
-    command_type: "{{ command.0.command_type | default(icinga_command_type) }}"
+    methods_execute: "{{ command.0.command_type | default(icinga_command_type) }}"
     disabled: "{{ command.0.disabled | default(icinga_command_disabled) }}"
     object_name: "{{ command.1 }}"
     imports: "{{ command.0.imports | default(omit) }}"

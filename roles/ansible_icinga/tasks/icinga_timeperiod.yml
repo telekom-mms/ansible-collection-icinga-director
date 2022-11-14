@@ -2,7 +2,7 @@
 # timeperiod.1 = timeperiod array
 # timeperiod.0 = icinga_timeperiod attribute
 - name: icinga_timeperiod
-  icinga_timeperiod:
+  t_systems_mms.icinga_director.icinga_timeperiod:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"
