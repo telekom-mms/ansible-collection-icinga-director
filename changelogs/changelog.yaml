@@ -1,4 +1,4 @@
-ancestor: null
+ancestor:
 releases:
   1.18.1:
     changes:
@@ -194,3 +194,8 @@ releases:
     release_date: '2022-11-04'
   1.31.4:
     release_date: '2022-11-04'
+  1.31.5:
+    changes:
+      trivial:
+      - add galaxy.yml to yamllinting (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/191)
+    release_date: '2022-11-15'
