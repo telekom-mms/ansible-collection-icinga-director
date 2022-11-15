@@ -2,7 +2,7 @@
 # notification_template.1 = notification_template array
 # notification_template.0 = icinga_notification_template attribute
 - name: icinga_notification_template
-  icinga_notification_template:
+  t_systems_mms.icinga_director.icinga_notification_template:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"
@@ -18,11 +18,10 @@
     types: "{{ notification_template.0.types | default(omit) }}"
     times_begin: "{{ notification_template.0.times_begin | default(omit) }}"
     times_end: "{{ notification_template.0.times_end | default(omit) }}"
-    time_period: "{{ notification_template.0.time_period | default(omit) }}"
+    period: "{{ notification_template.0.time_period | default(omit) }}"
     users: "{{ notification_template.0.users | default(omit) }}"
     user_groups: "{{ notification_template.0.user_groups | default(omit) }}"
-    notification_command: "{{ notification_template.0.notification_command | default(omit) }}"
-    imports: "{{ notification_template.0.imports | default(omit) }}"
+    command: "{{ notification_template.0.notification_command | default(omit) }}"
   retries: 3
   delay: 3
   register: result

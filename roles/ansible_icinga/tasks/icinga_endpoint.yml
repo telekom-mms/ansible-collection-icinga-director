@@ -2,7 +2,7 @@
 # endpoint.1 = endpoint array
 # endpoint.0 = icinga_endpoint attribute
 - name: icinga_endpoint
-  icinga_endpoint:
+  t_systems_mms.icinga_director.icinga_endpoint:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"
