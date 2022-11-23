@@ -2,7 +2,7 @@
 # service_apply.1 = service_apply array
 # service_apply.0 = icinga_service_apply attribute
 - name: icinga_service_apply
-  t_systems_mms.icinga_director.icinga_service_apply:
+  icinga_service_apply:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"

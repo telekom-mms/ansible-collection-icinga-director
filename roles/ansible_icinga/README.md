@@ -98,6 +98,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | notes_url                        | no       |
 | **icinga_command_template**      |
 | icinga_command_templates         | no       | []                          |
+| display_name                     | no       |
 | command                          | no       |
 | methods_execute                  | yes      | PluginCheck                 |
 | timeout                          | no       |
@@ -138,6 +139,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | volatile                         | no       |
 | **icinga_service_template**      |
 | icinga_service_templates         | no       | []                          |
+| display_name                     | no       |
 | disabled                         | no       |
 | check_command                    | no       |
 | check_interval                   | no       |
@@ -184,6 +186,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | users                            | no       |
 | user_groups                      | no       |
 | notification_command             | no       |
+| imports                          | no       |
 | **icinga_notification**          |
 | icinga_notifications             | no       | []                          |
 | notification_interval            | no       |

@@ -2,7 +2,7 @@
 # host_template.1 = host_template array
 # host_template.0 = icinga_host_template attribute
 - name: icinga_host_template
-  t_systems_mms.icinga_director.icinga_host_template:
+  icinga_host_template:
     client_cert: "{{ icinga_client_cert | default(omit) }}"
     client_key: "{{ icinga_client_key | default(omit) }}"
     force_basic_auth: "{{ icinga_force_basic_auth | default(omit) }}"

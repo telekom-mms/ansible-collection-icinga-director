@@ -2,7 +2,7 @@
 # service.1 = service array
 # service.0 = icinga_service attribute
 - name: icinga_service
-  t_systems_mms.icinga_director.icinga_service:
+  icinga_service:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"

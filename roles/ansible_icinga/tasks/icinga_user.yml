@@ -2,7 +2,7 @@
 # user.1 = user array
 # user.0 = icinga_user attribute
 - name: icinga_user
-  t_systems_mms.icinga_director.icinga_user:
+  icinga_user:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"

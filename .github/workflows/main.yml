@@ -19,13 +19,6 @@ env:
   NAMESPACE: t_systems_mms
   COLLECTION_NAME: icinga_director
 
-concurrency:
-  group: >-
-    ${{ github.workflow }}-${{
-      github.event.pull_request.number || github.sha
-    }}
-  cancel-in-progress: true
-
 jobs:
   sanity:
     name: Sanity (Ⓐ${{ matrix.ansible }})
@@ -51,6 +44,34 @@ jobs:
           # test-deps: >-
           #   ansible.netcommon
           #   ansible.utils
+
+
+  linting:
+    name: Tox-Lint (py${{ matrix.python }})
+    strategy:
+      matrix:
+        python:
+          - "3.8"
+          - "3.9"
+          - "3.10"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install dependencies
+        run: python -m pip install flake8 tox
+
+      - name: Run lint test
+        run: tox -elinters -vv
+        working-directory: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
   integration:
     runs-on: ubuntu-latest
@@ -95,15 +116,3 @@ jobs:
           # OPTIONAL If your integration tests require code
           # from other collections, install them like this
           # test-deps: ansible.netcommon
-
-  linting:
-    name: Ansible Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
-      - name: Run Linting
-        uses: ansible/ansible-lint-action@main
-        with:
-          path: "examples/"

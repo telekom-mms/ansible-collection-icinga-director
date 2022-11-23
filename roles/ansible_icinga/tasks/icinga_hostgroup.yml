@@ -2,7 +2,7 @@
 # hostgroup.1 = hostgroup array
 # hostgroup.0 = icinga_hostgroup attribute
 - name: icinga_hostgroup
-  t_systems_mms.icinga_director.icinga_hostgroup:
+  icinga_hostgroup:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"

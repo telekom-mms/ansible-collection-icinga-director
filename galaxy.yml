@@ -1,4 +1,3 @@
----
 namespace: t_systems_mms
 name: icinga_director
 version: 1.31.4
@@ -6,9 +5,9 @@ readme: README.md
 authors:
   - Sebastian Gumprich <sebastian.gumprich@t-systems.com>
   - Lars Krahl <lars.krahl@t-systems.com>
-# yq does not care about line length so we need to ignore it
-# yamllint disable-line rule:line-length
-description: This collection contains Ansible modules to change objects in Icinga 2 using the director API.
+description: >-
+  This collection contains Ansible modules to change objects in Icinga 2 using
+  the director API.
 license:
   - GPL-2.0-or-later
 license_file: ''
@@ -16,12 +15,10 @@ tags:
   - icinga
   - monitoring
 dependencies: {}
-repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
-# yamllint disable-line rule:line-length
-documentation: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
-homepage: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
-# yamllint disable-line rule:line-length
-issues: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues
+repository: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
+documentation: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
+homepage: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
+issues: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues'
 build_ignore:
   - vsc-snippets
   - codecov.yml
