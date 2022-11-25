@@ -122,6 +122,7 @@ options:
       - Service groups can be directly assigned to single services or to service templates.
     type: "list"
     elements: str
+    default: []
   apply_for:
     description:
       - Evaluates the apply for rule for all objects with the custom attribute specified.
@@ -146,6 +147,7 @@ options:
     description:
       - Custom properties of the service apply rule.
     type: "dict"
+    default: {}
   notes:
     description:
       - Additional notes for this object.

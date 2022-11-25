@@ -88,7 +88,7 @@ Parameters
     Retry interval, will be applied after a state change unless the next hard state is reached.
 
 
-  groups (optional, list, None)
+  groups (optional, list, [])
     Service groups that should be directly assigned to this service.
 
     Servicegroups can be useful for various reasons.
@@ -120,7 +120,7 @@ Parameters
     Please note that order matters when importing properties from multiple templates - last one wins.
 
 
-  vars (optional, dict, None)
+  vars (optional, dict, {})
     Custom properties of the service apply rule.
 
 

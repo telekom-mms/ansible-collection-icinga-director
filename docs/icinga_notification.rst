@@ -70,7 +70,7 @@ Parameters
     Disabled objects will not be deployed.
 
 
-  vars (optional, dict, None)
+  vars (optional, dict, {})
     Custom properties of the notification.
 
 

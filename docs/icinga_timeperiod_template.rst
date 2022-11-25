@@ -38,17 +38,17 @@ Parameters
     Disabled objects will not be deployed.
 
 
-  imports (optional, list, None)
+  imports (optional, list, [])
     Importable templates, add as many as you want.
 
     Please note that order matters when importing properties from multiple templates - last one wins.
 
 
-  includes (optional, list, None)
+  includes (optional, list, [])
     Include other time periods into this.
 
 
-  excludes (optional, list, None)
+  excludes (optional, list, [])
     Exclude other time periods from this.
 
 

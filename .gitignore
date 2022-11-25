@@ -1,6 +1,5 @@
 *.tar.gz
 test/results
 tests/output
-.tox
 *.pyc
 __pycache__/

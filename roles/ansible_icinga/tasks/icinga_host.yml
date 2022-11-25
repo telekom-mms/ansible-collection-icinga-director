@@ -2,7 +2,7 @@
 # host.1 = host array
 # host.0 = icinga_host attribute
 - name: icinga_host
-  icinga_host:
+  t_systems_mms.icinga_director.icinga_host:
     client_cert: "{{ icinga_client_cert | default(omit) }}"
     client_key: "{{ icinga_client_key | default(omit) }}"
     force_basic_auth: "{{ icinga_force_basic_auth | default(omit) }}"

@@ -57,6 +57,7 @@ options:
       - Please note that order matters when importing properties from multiple templates - last one wins.
     type: list
     elements: str
+    default: []
   ranges:
     description:
       - A dict of days and timeperiods.

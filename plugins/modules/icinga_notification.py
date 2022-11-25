@@ -97,6 +97,7 @@ options:
       - Custom properties of the notification.
     type: "dict"
     version_added: "1.9.0"
+    default: {}
   period:
     description:
       - The name of a time period which determines when this notification should be triggered.

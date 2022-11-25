@@ -2,7 +2,7 @@
 # command_template.1 = command_template array
 # command_template.0 = icinga_command_template attribute
 - name: icinga_command_template
-  icinga_command_template:
+  t_systems_mms.icinga_director.icinga_command_template:
     url: "{{ icinga_url }}"
     use_proxy: "{{ icinga_use_proxy | default(omit) }}"
     validate_certs: "{{ icinga_validate_certs | default(omit) }}"
@@ -13,9 +13,8 @@
     client_key: "{{ icinga_client_key | default(omit) }}"
     state: "{{ command_template.0.state | default(omit) }}"
     object_name: "{{ command_template.1 }}"
-    display_name: "{{ command_template.0.display_name | default(omit) }}"
     command: "{{ command_template.0.command | default(omit) }}"
-    command_type: "{{ command_template.0.command_type | default(icinga_command_template_command_type) }}"
+    methods_execute: "{{ command_template.0.command_type | default(icinga_command_template_command_type) }}"
     timeout: "{{ command_template.0.timeout | default(omit) }}"
     imports: "{{ command_template.0.imports | default(omit) }}"
     disabled: "{{ command_template.0.disabled | default(omit) }}"

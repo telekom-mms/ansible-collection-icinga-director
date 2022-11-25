@@ -56,7 +56,7 @@ Parameters
     Whether you only downtime the hosts or add some services with it.
 
 
-  ranges (optional, dict, None)
+  ranges (optional, dict, {})
     The period which should be downtimed
 
 
