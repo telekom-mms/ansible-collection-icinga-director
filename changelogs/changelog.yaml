@@ -1,4 +1,4 @@
-ancestor:
+ancestor: null
 releases:
   1.18.1:
     changes:
