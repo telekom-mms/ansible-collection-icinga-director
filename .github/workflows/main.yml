@@ -29,7 +29,7 @@ jobs:
           - stable-2.13
           - stable-2.14
           - devel
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       # Run sanity tests inside a Docker container.
       # The docker container has all the pinned dependencies that are
@@ -54,7 +54,7 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -74,7 +74,7 @@ jobs:
         working-directory: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
   integration:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
     strategy:
       fail-fast: false
