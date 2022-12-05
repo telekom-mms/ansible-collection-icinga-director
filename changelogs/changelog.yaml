@@ -1,4 +1,4 @@
-ancestor: null
+ancestor:
 releases:
   1.18.1:
     changes:
@@ -198,4 +198,5 @@ releases:
     changes:
       trivial:
       - add galaxy.yml to yamllinting (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/191)
+      - Update ansible-community/ansible-test-gh-action action to v1.12.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/192)
     release_date: '2022-11-15'
