@@ -197,6 +197,7 @@ releases:
   1.31.5:
     changes:
       trivial:
-      - add galaxy.yml to yamllinting (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/191)
       - Update ansible-community/ansible-test-gh-action action to v1.12.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/192)
+      - add galaxy.yml to yamllinting (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/191)
+      - Update actions/checkout action to v3.2.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/194)
     release_date: '2022-11-15'
