@@ -11,13 +11,18 @@ on:
     # The branches below must be a subset of the branches above
     branches: [master]
   # Run CI once per day (at 06:00 UTC)
-  # This ensures that even if there haven't been commits that we are still testing against latest version of ansible-test for each ansible-base version
+  # This ensures that even if there haven't been commits that we are still
+  # testing against latest version of ansible-test for each ansible-core
+  # version
   schedule:
     - cron: '0 6 * * *'
 
-env:
-  NAMESPACE: t_systems_mms
-  COLLECTION_NAME: icinga_director
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{
+      github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
 
 jobs:
   sanity:
@@ -46,33 +51,6 @@ jobs:
           #   ansible.utils
 
 
-  linting:
-    name: Tox-Lint (py${{ matrix.python }})
-    strategy:
-      matrix:
-        python:
-          - "3.8"
-          - "3.9"
-          - "3.10"
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-        with:
-          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
-
-      - name: Set up Python ${{ matrix.python }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python }}
-
-      - name: Install dependencies
-        run: python -m pip install flake8 tox
-
-      - name: Run lint test
-        run: tox -elinters -vv
-        working-directory: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
-
   integration:
     runs-on: ubuntu-20.04
     name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
@@ -88,14 +66,6 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
-        exclude:
-          - ansible: stable-2.14
-            python: 3.8
-          - ansible: devel
-            python: 3.8
-    defaults:
-      run:
-        working-directory: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
     services:
       icinga:
         image: ghcr.io/t-systems-mms/icinga2:director-1.8.1
