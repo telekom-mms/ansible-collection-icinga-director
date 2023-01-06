@@ -1,13 +1,12 @@
 namespace: t_systems_mms
 name: icinga_director
-version: 1.31.4
+version: 1.32.0
 readme: README.md
 authors:
   - Sebastian Gumprich <sebastian.gumprich@t-systems.com>
   - Lars Krahl <lars.krahl@t-systems.com>
 description: >-
-  This collection contains Ansible modules to change objects in Icinga 2 using
-  the director API.
+  This collection contains Ansible modules to change objects in Icinga 2 using the director API.
 license:
   - GPL-2.0-or-later
 license_file: ''
