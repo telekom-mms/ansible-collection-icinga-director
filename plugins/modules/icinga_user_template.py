@@ -86,6 +86,7 @@ EXAMPLES = """
     object_name: "foousertemplate"
     enable_notifications: false
     period: '24/7'
+    zone: "foozone"
 
 - name: Update user template
   t_systems_mms.icinga_director.icinga_user_template:

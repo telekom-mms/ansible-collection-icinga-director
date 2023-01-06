@@ -1,6 +1,7 @@
 ---
 - include_tasks: "{{ item }}"
   loop:
+    - icinga_zone.yml
     - icinga_command_template.yml
     - icinga_command.yml
     - icinga_timeperiod_template.yml
@@ -8,7 +9,6 @@
     - icinga_user_template.yml
     - icinga_user_group.yml
     - icinga_user.yml
-    - icinga_zone.yml
     - icinga_endpoint.yml
     - icinga_notification_template.yml
     - icinga_notification.yml
@@ -41,6 +41,7 @@
 - include_tasks: "{{ item }}"
   loop:
     ### run them again for idempotency codecoverage checks
+    - icinga_zone.yml
     - icinga_command_template.yml
     - icinga_command.yml
     - icinga_timeperiod_template.yml
@@ -48,7 +49,6 @@
     - icinga_user_template.yml
     - icinga_user_group.yml
     - icinga_user.yml
-    - icinga_zone.yml
     - icinga_endpoint.yml
     - icinga_notification_template.yml
     - icinga_notification.yml
@@ -200,7 +200,6 @@
     - absent_icinga_notification.yml
     - absent_icinga_notification_template.yml
     - absent_icinga_endpoint.yml
-    - absent_icinga_zone.yml
     - absent_icinga_user.yml
     - absent_icinga_user_group.yml
     - absent_icinga_user_template.yml
@@ -209,6 +208,8 @@
     - absent_icinga_command.yml
     - absent_icinga_command_template.yml
     - absent_icinga_serviceset.yml
+    - absent_icinga_zone.yml
+
 
 - name: deploy changes in icinga
   tags: uri

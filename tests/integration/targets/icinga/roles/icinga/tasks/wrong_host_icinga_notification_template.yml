@@ -20,6 +20,7 @@
       - "rb"
     user_groups:
       - "OnCall"
+    zone: "foozone"
   ignore_errors: true
   register: result
 - assert:
