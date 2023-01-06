@@ -44,6 +44,10 @@ Parameters
     Whether to send notifications for this user.
 
 
+  zone (optional, str, None)
+    Set the zone.
+
+
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
 
@@ -112,8 +116,6 @@ Parameters
     NTLM authentication is ``not`` supported even if the GSSAPI mech for NTLM has been installed.
 
 
-  zone (optional, str, None)
-      Set the zone.
 
 
 
@@ -141,6 +143,7 @@ Examples
         object_name: "foousertemplate"
         enable_notifications: false
         period: '24/7'
+        zone: "foozone"
 
     - name: Update user template
       t_systems_mms.icinga_director.icinga_user_template:
