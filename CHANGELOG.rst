@@ -5,6 +5,14 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.32.0
+=======
+
+Minor Changes
+-------------
+
+- Add zone to user and notification template (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/198)
+
 v1.31.5
 =======
 
