@@ -28,7 +28,13 @@ After making code changes, please run the linters and fix all errors:
 If you add new features or arguments to the existing modules, please add them to the examples in the module itself.
 The integration tests and examples in our documentation are then generated from the module-examples.
 
-To trigger this generation, you need to run the script `hacking/update_examples_and_tests.sh` from the root of the repository. For this you need to have yq in version 3 installed (see https://mikefarah.gitbook.io/yq/v/v3.x/).
+To trigger this generation, you need to run the script `hacking/update_examples_and_tests.sh` from the root of the repository. For this you need to have yq in version v3.2.1 installed (see https://mikefarah.gitbook.io/yq/v/v3.x/).
+
+Download example:
+```
+> sudo wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq ; sudo chmod 755 /usr/bin/yq
+```
+
 
 ### Integration tests with docker
 
