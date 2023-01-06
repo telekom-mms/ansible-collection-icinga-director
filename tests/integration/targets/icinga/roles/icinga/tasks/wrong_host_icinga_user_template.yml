@@ -8,6 +8,7 @@
     object_name: "foousertemplate"
     enable_notifications: false
     period: '24/7'
+    zone: "foozone"
   ignore_errors: true
   register: result
 - assert:

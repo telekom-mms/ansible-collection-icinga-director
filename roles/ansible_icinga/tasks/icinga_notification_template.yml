@@ -23,6 +23,7 @@
     user_groups: "{{ notification_template.0.user_groups | default(omit) }}"
     notification_command: "{{ notification_template.0.notification_command | default(omit) }}"
     imports: "{{ notification_template.0.imports | default(omit) }}"
+    zone: "{{ notification_template.0.zone | default(omit) }}"
   retries: 3
   delay: 3
   register: result

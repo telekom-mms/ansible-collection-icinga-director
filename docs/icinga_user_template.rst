@@ -112,6 +112,8 @@ Parameters
     NTLM authentication is ``not`` supported even if the GSSAPI mech for NTLM has been installed.
 
 
+  zone (optional, str, None)
+      Set the zone.
 
 
 

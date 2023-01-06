@@ -132,6 +132,7 @@ EXAMPLES = """
       - "rb"
     user_groups:
       - "OnCall"
+    zone: "foozone"
 
 - name: Update notification template
   t_systems_mms.icinga_director.icinga_notification_template:
