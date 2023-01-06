@@ -62,6 +62,10 @@ options:
     description:
       - Whether to send notifications for this user.
     type: bool
+  zone:
+    description:
+      - Set the zone.
+    type: str
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -118,6 +122,7 @@ def main():
         imports=dict(type="list", elements="str", default=[], required=False),
         period=dict(required=False),
         enable_notifications=dict(type="bool", required=False),
+        zone=dict(required=False, default=None),
     )
 
     # Define the main module
@@ -130,6 +135,7 @@ def main():
         "imports",
         "period",
         "enable_notifications",
+        "zone",
     ]
 
     data = {}
