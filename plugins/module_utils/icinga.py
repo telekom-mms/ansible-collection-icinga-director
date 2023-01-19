@@ -129,7 +129,7 @@ class Icinga2APIObject(object):
                     % (ret["code"], ret["error"])
                 )
         except Exception as e:
-            self.module.fail_json(msg="exception when querying: " + str(e))
+            self.module.fail_json(msg=f"exception when querying: {str(e)}")
 
         return ret
 
@@ -160,11 +160,7 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
-            path=self.path + "?" + find_by + "=" + self.object_id,
-            method="DELETE",
-        )
-        return ret
+        return self.call_url(path=f"{self.path}?{find_by}={self.object_id}", method="DELETE")
 
     def modify(self, find_by="name"):
         """
@@ -177,12 +173,11 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
-            path=self.path + "?" + find_by + "=" + self.object_id,
+        return self.call_url(
+            path=f"{self.path}?{find_by}={self.object_id}",
             data=self.module.jsonify(self.data),
             method="POST",
         )
-        return ret
 
     def scrub_diff_value(self, value):
         """
@@ -216,9 +211,7 @@ class Icinga2APIObject(object):
             the generated diff
         """
 
-        ret = self.call_url(
-            path=self.path + "?" + find_by + "=" + self.object_id + "&withNull",
-        )
+        ret = self.call_url(path=f"{self.path}?{find_by}={self.object_id}&withNull")
 
         data_from_director = json.loads(self.module.jsonify(ret["data"]))
         data_from_task = json.loads(self.module.jsonify(self.data))
@@ -250,7 +243,7 @@ class Icinga2APIObject(object):
         try:
             exists = self.exists()
         except Exception as e:
-            self.module.fail_json(msg="exception when deleting: " + str(e))
+            self.module.fail_json(msg=f"exception when deleting: {str(e)}")
         if exists:
             diff_result.update({"before": "state: present\n"})
             if state == "absent":
@@ -273,17 +266,13 @@ class Icinga2APIObject(object):
                                 % (ret["code"], ret["error"])
                             )
                     except Exception as e:
-                        self.module.fail_json(
-                            msg="exception when deleting: " + str(e)
-                        )
+                        self.module.fail_json(msg=f"exception when deleting: {str(e)}")
 
             else:
                 try:
                     diff_result = self.diff()
                 except Exception as e:
-                    self.module.fail_json(
-                        msg="exception when diffing: " + str(e)
-                    )
+                    self.module.fail_json(msg=f"exception when diffing: {str(e)}")
 
                 if self.module.check_mode:
                     if diff_result:
@@ -324,7 +313,5 @@ class Icinga2APIObject(object):
                                 % (ret["code"], ret["error"])
                             )
                     except Exception as e:
-                        self.module.fail_json(
-                            msg="exception while creating: " + str(e)
-                        )
+                        self.module.fail_json(msg=f"exception while creating: {str(e)}")
         return changed, diff_result
