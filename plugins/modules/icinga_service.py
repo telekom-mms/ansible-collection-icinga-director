@@ -260,19 +260,17 @@ class IcingaServiceObject(Icinga2APIObject):
         return False
 
     def delete(self, find_by="name"):
-        ret = super(IcingaServiceObject, self).call_url(
+        return super(IcingaServiceObject, self).call_url(
             path=self.url,
             method="DELETE",
         )
-        return ret
 
     def modify(self, find_by="name"):
-        ret = super(IcingaServiceObject, self).call_url(
+        return super(IcingaServiceObject, self).call_url(
             path=self.url,
             data=self.module.jsonify(self.data),
             method="POST",
         )
-        return ret
 
     def diff(self, find_by="name"):
         ret = super(IcingaServiceObject, self).call_url(
