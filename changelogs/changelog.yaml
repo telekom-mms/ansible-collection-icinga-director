@@ -207,8 +207,13 @@ releases:
       minor_changes:
       - Add zone to user and notification template (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/198)
       trivial:
-      - add galaxy.yml to yamllinting (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/191)
-      - Update ansible-community/ansible-test-gh-action action to v1.12.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/192)
       - Update actions/checkout action to v3.2.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/194)
+      - Update ansible-community/ansible-test-gh-action action to v1.12.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/192)
       - Update ansible-test to latest collection template. (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/195)
+      - add galaxy.yml to yamllinting (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/191)
     release_date: '2023-01-06'
+  1.32.1:
+    changes:
+      trivial:
+      - immediatly return values and update dict-updates (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/199)
+    release_date: '2023-01-20'
