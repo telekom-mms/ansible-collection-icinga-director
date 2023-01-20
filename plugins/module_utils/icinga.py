@@ -97,9 +97,7 @@ class Icinga2APIObject(object):
             + to_text(urlquote(self.data["object_name"]))
         )
         self.object_id = to_text(urlquote(self.data["object_name"]))
-        if ret["code"] == 200:
-            return True
-        return False
+        return ret["code"] == 200
 
     def query(self, query="", resolved=False):
         """
@@ -144,10 +142,9 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
+        return self.call_url(
             path=self.path, data=self.module.jsonify(self.data), method="POST"
         )
-        return ret
 
     def delete(self, find_by="name"):
         """
@@ -160,11 +157,10 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
+        return self.call_url(
             path=self.path + "?" + find_by + "=" + self.object_id,
             method="DELETE",
         )
-        return ret
 
     def modify(self, find_by="name"):
         """
@@ -177,12 +173,11 @@ class Icinga2APIObject(object):
             the result of the api-call
         """
 
-        ret = self.call_url(
+        return self.call_url(
             path=self.path + "?" + find_by + "=" + self.object_id,
             data=self.module.jsonify(self.data),
             method="POST",
         )
-        return ret
 
     def scrub_diff_value(self, value):
         """
@@ -252,10 +247,10 @@ class Icinga2APIObject(object):
         except Exception as e:
             self.module.fail_json(msg="exception when deleting: " + str(e))
         if exists:
-            diff_result.update({"before": "state: present\n"})
+            diff_result["before"] = "state: present\n"
             if state == "absent":
                 if self.module.check_mode:
-                    diff_result.update({"after": "state: absent\n"})
+                    diff_result["after"] = "state: absent\n"
                     self.module.exit_json(
                         changed=True,
                         object_name=self.data["object_name"],
@@ -266,7 +261,7 @@ class Icinga2APIObject(object):
                         ret = self.delete()
                         if ret["code"] == 200:
                             changed = True
-                            diff_result.update({"after": "state: absent\n"})
+                            diff_result["after"] = "state: absent\n"
                         else:
                             self.module.fail_json(
                                 msg="bad return code while deleting: %d. Error message: %s"
