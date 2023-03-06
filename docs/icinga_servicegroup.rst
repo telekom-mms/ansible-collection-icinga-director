@@ -63,11 +63,11 @@ Parameters
 
 
   use_proxy (optional, bool, True)
-    If ``no``, it will not use a proxy, even if one is defined in an environment variable on the target hosts.
+    If ``false``, it will not use a proxy, even if one is defined in an environment variable on the target hosts.
 
 
   validate_certs (optional, bool, True)
-    If ``no``, SSL certificates will not be validated.
+    If ``false``, SSL certificates will not be validated.
 
     This should only be used on personally controlled sites using self-signed certificates.
 
