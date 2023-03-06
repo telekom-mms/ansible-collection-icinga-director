@@ -199,7 +199,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | **icinga_scheduled_downtime**              |
 | icinga_scheduled_downtimes                 | no       | []                                 |
 | state                            | yes      | present
-| disabled                         | no       | False
+| disabled                         | no       | false
 | assign_filter                    | no       |
 | apply_to                         | yes      |
 | author                           | yes      |
@@ -207,7 +207,7 @@ t_systems_mms.icinga_director >= 1.2.2
 | duration                         | no       |
 | fixed                            | yes      |
 | ranges                           | no       |
-| with_services                    | no       | True
+| with_services                    | no       | true
 
 ## Example Playbook
 
