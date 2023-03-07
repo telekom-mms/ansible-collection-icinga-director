@@ -52,7 +52,7 @@ options:
       - Disabled objects will not be deployed.
     default: false
     type: bool
-    choices: [True, False]
+    choices: [true, false]
   author:
     description:
       - Name of the downtime author.
@@ -69,13 +69,13 @@ options:
         If unsure please check the related documentation https://icinga.com/docs/icinga2/latest/doc/08-advanced-topics/#downtimes
       - Required if I(state) is C(present).
     type: bool
-    choices: [True, False]
+    choices: [true, false]
     default: false
   with_services:
     description:
       - Whether you only downtime the hosts or add some services with it.
     type: bool
-    choices: [True, False]
+    choices: [true, false]
     default: true
   ranges:
     description:
@@ -105,7 +105,7 @@ options:
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
       - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
-    choices: [True, False]
+    choices: [true, false]
     version_added: '1.25.0'
 """
 

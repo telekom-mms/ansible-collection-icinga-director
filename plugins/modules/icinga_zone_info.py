@@ -49,13 +49,13 @@ options:
       - Resolve all inherited object properties and omit templates in output.
     type: bool
     default: false
-    choices: [True, False]
+    choices: [true, false]
   external:
     description:
       - Also include external objects in output.
     type: bool
     default: false
-    choices: [True, False]
+    choices: [true, false]
 """
 
 EXAMPLES = """

@@ -147,14 +147,14 @@ options:
       - Disabled objects will not be deployed.
     type: bool
     default: false
-    choices: [True, False]
+    choices: [true, false]
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
       - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
-    choices: [True, False]
+    choices: [true, false]
     version_added: '1.25.0'
   service_set:
     description:

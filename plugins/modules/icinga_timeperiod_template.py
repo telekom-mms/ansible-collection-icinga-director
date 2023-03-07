@@ -56,7 +56,7 @@ options:
       - Disabled objects will not be deployed.
     type: bool
     default: false
-    choices: [True, False]
+    choices: [true, false]
   imports:
     description:
       - Importable templates, add as many as you want.
@@ -83,7 +83,7 @@ options:
       - Whether to prefer timeperiods includes or excludes. Default to true.
     type: bool
     default: true
-    choices: [True, False]
+    choices: [true, false]
   ranges:
     description:
       - A dict of days and timeperiods.
@@ -103,7 +103,7 @@ options:
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
       - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
-    choices: [True, False]
+    choices: [true, false]
     version_added: '1.25.0'
 """
 
