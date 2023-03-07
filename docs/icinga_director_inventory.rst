@@ -31,7 +31,7 @@ Parameters
 
 
   force (optional, bool, False)
-    If ``true`` do not get a cached copy.
+    If ``yes`` do not get a cached copy.
 
 
   http_agent (optional, str, ansible-httpget)
@@ -87,7 +87,7 @@ Parameters
 
 
   strict (optional, bool, False)
-    If ``true`` make invalid entries a fatal error, otherwise skip and continue.
+    If ``yes`` make invalid entries a fatal error, otherwise skip and continue.
 
     Since it is possible to use facts in the expressions they might not always be available and we ignore those errors by default.
 

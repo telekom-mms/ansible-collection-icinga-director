@@ -45,7 +45,7 @@ Parameters
 
 
   force (optional, bool, False)
-    If ``true`` do not get a cached copy.
+    If ``yes`` do not get a cached copy.
 
 
   http_agent (optional, str, ansible-httpget)
