@@ -50,7 +50,7 @@ options:
   disabled:
     description:
       - Disabled objects will not be deployed.
-    default: False
+    default: false
     type: bool
     choices: [True, False]
   author:
@@ -70,13 +70,13 @@ options:
       - Required if I(state) is C(present).
     type: bool
     choices: [True, False]
-    default: False
+    default: false
   with_services:
     description:
       - Whether you only downtime the hosts or add some services with it.
     type: bool
     choices: [True, False]
-    default: True
+    default: true
   ranges:
     description:
       - The period which should be downtimed
