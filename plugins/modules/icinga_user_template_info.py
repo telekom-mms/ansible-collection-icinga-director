@@ -49,7 +49,7 @@ options:
       - Resolve all inherited object properties and omit templates in output.
     type: bool
     default: false
-    choices: [True, False]
+    choices: [true, false]
 """
 
 EXAMPLES = """

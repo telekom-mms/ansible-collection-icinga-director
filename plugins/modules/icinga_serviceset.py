@@ -41,7 +41,7 @@ options:
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
       - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
-    choices: [True, False]
+    choices: [true, false]
   assign_filter:
     description:
       - This allows you to configure an assignment filter.
