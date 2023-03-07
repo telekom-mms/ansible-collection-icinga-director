@@ -56,7 +56,7 @@ options:
     description:
       - Disabled objects will not be deployed.
     type: bool
-    default: False
+    default: false
     choices: [True, False]
   append:
     description:

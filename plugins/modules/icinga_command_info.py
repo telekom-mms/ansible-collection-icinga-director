@@ -48,13 +48,13 @@ options:
     description:
       - Resolve all inherited object properties and omit templates in output.
     type: bool
-    default: False
+    default: false
     choices: [True, False]
   external:
     description:
       - Also include external objects in output.
     type: bool
-    default: False
+    default: false
     choices: [True, False]
 """
 

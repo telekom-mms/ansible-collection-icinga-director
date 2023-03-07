@@ -48,7 +48,7 @@ options:
     description:
       - Resolve all inherited object properties and omit templates in output.
     type: bool
-    default: False
+    default: false
     choices: [True, False]
 """
 

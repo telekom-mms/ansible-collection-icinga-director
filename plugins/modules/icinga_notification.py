@@ -89,7 +89,7 @@ options:
     description:
       - Disabled objects will not be deployed.
     type: bool
-    default: False
+    default: false
     choices: [True, False]
     version_added: "1.9.0"
   vars:
