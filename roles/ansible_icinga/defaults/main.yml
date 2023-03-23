@@ -53,3 +53,6 @@ icinga_servicegroups: []
 
 # icinga_notification
 icinga_notifications: []
+
+# icinga deploy
+icinga_deploy_config: false

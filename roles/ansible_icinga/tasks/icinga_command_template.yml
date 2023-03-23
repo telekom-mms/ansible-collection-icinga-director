@@ -30,3 +30,4 @@
   loop_control:
     loop_var: command_template
   tags: command_template
+  notify: config_deploy

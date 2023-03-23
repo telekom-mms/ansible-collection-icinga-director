@@ -25,3 +25,4 @@
   loop_control:
     loop_var: user_template
   tags: user_template
+  notify: config_deploy

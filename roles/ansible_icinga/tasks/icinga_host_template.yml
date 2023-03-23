@@ -52,3 +52,4 @@
   loop_control:
     loop_var: host_template
   tags: host_template
+  notify: config_deploy

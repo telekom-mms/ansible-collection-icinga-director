@@ -53,3 +53,4 @@
   loop_control:
     loop_var: host
   tags: host
+  notify: config_deploy

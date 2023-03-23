@@ -23,20 +23,8 @@
     - icinga_service.yml
     - icinga_scheduled_downtime.yml
 
-- name: deploy changes in icinga
-  tags: uri
-  uri:
-    url: "{{ icinga_url }}/director/config/deploy"
-    headers:
-      Accept: application/json
-    method: POST
-    user: "{{ icinga_user }}"
-    password: "{{ icinga_pass }}"
-    return_content: true
-  retries: 3
-  delay: 10
-  register: result
-  until: result is not failed
+- name: flush handlers
+  meta: flush_handlers
 
 - include_tasks: "{{ item }}"
   loop:
@@ -209,19 +197,3 @@
     - absent_icinga_command_template.yml
     - absent_icinga_serviceset.yml
     - absent_icinga_zone.yml
-
-
-- name: deploy changes in icinga
-  tags: uri
-  uri:
-    url: "{{ icinga_url }}/director/config/deploy"
-    headers:
-      Accept: application/json
-    method: POST
-    user: "{{ icinga_user }}"
-    password: "{{ icinga_pass }}"
-    return_content: true
-  retries: 3
-  delay: 10
-  register: result
-  until: result is not failed

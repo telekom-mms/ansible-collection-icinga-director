@@ -23,3 +23,4 @@
   loop_control:
     loop_var: zone
   tags: zone
+  notify: config_deploy

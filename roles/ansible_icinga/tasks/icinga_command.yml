@@ -29,3 +29,4 @@
   loop_control:
     loop_var: command
   tags: command
+  notify: config_deploy
