@@ -135,7 +135,7 @@ ansible-playbook -i inventory.icinga_director_inventory.yaml path/to/your/playbo
 
 ## Example using module defaults groups
 
-With ansible-core >= 2.12 it is possible to specify defaults paramters for all modules in this collection using [Module defaults groups](https://docs.ansible.com/ansible/latest/user_guide/playbooks_module_defaults.html#module-defaults-groups). Use it like this:
+With ansible-core >= 2.12 it is possible to specify defaults parameters for all modules in this collection using [Module defaults groups](https://docs.ansible.com/ansible/latest/user_guide/playbooks_module_defaults.html#module-defaults-groups). Use it like this:
 
 ```
 - hosts: localhost

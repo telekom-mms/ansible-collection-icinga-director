@@ -2,7 +2,7 @@
 - name: Create a host in icinga
   t_systems_mms.icinga_director.icinga_host:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     accept_config: true
@@ -46,7 +46,7 @@
 - name: update a host in icinga
   t_systems_mms.icinga_director.icinga_host:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foohost"

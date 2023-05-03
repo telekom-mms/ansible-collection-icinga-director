@@ -149,7 +149,7 @@ options:
     type: str
   use_agent:
     description:
-      - Whether the check commmand for this service should be executed on the Icinga agent.
+      - Whether the check command for this service should be executed on the Icinga agent.
     type: "bool"
   vars:
     description:

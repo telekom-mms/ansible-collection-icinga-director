@@ -219,7 +219,7 @@ releases:
     changes:
       trivial:
         - Consider true/false in docs for boolean (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/203)
-        - immediatly return values and update dict-updates (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/199)
+        - immediately return values and update dict-updates (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/199)
     release_date: '2023-01-20'
   1.32.2:
     changes:

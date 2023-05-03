@@ -86,7 +86,7 @@ class Icinga2APIObject(object):
             find_by: type str, default "name", the object key to search for. by default 'name' of the object,
                      however service apply rules have no name and have to be found by their id.
         Returns:
-            boolean that tells wether the object exists
+            boolean that tells whether the object exists
         """
 
         ret = self.call_url(
@@ -235,7 +235,7 @@ class Icinga2APIObject(object):
             state: type str, the state of the object, present or absent
 
         Returns:
-            changed: wether the object was changed
+            changed: whether the object was changed
             diff_result: the diff of the object
         """
 

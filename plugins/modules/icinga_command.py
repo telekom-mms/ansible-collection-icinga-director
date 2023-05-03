@@ -246,9 +246,9 @@ def main():
         supports_check_mode=True,
     )
 
-    # typ von arguments ist eigentlich dict, also ohne Angabe = {}
-    # die director API schickt hier aber ein leeres Array zurueck wenn nichts definiert
-    # daher ueberschreiben, damit der diff besser funktioniert
+    # type of arguments is actually dict, i.e. without specification = {}
+    # the director API returns an empty array if nothing is defined
+    # therefore overwrite so that the diff works better
     if not module.params["arguments"]:
         module.params["arguments"] = []
 
