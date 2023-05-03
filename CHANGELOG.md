@@ -100,7 +100,7 @@
 
 - Add check\_interval parameter to host\_template [\#95](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/95) ([mmslkr](https://github.com/mmslkr))
 - spelling fixes, add notes-section, remove useless sections [\#94](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add execution parms [\#67](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/67) ([AnBenn](https://github.com/AnBenn))
+- Add execution params [\#67](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/67) ([AnBenn](https://github.com/AnBenn))
 
 ## [1.11.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.11.0) (2021-01-12)
 
