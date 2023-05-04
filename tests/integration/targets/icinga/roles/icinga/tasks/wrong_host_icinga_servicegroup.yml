@@ -2,7 +2,7 @@
 - name: Create servicegroup
   t_systems_mms.icinga_director.icinga_servicegroup:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: fooservicegroup
@@ -17,7 +17,7 @@
 - name: Update servicegroup
   t_systems_mms.icinga_director.icinga_servicegroup:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: fooservicegroup

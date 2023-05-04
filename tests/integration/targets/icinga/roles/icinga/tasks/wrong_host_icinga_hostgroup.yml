@@ -2,7 +2,7 @@
 - name: Create hostgroup
   t_systems_mms.icinga_director.icinga_hostgroup:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foohostgroup
@@ -17,7 +17,7 @@
 - name: Update hostgroup
   t_systems_mms.icinga_director.icinga_hostgroup:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foohostgroup

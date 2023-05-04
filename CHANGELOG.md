@@ -100,7 +100,7 @@
 
 - Add check\_interval parameter to host\_template [\#95](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/95) ([mmslkr](https://github.com/mmslkr))
 - spelling fixes, add notes-section, remove useless sections [\#94](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add execution parms [\#67](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/67) ([AnBenn](https://github.com/AnBenn))
+- Add execution params [\#67](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/67) ([AnBenn](https://github.com/AnBenn))
 
 ## [1.11.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.11.0) (2021-01-12)
 
@@ -403,7 +403,7 @@
 
 **Implemented enhancements:**
 
-- fix issue \#9 - define assing\_filter as string [\#10](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/10) ([FLiPp3r90](https://github.com/FLiPp3r90))
+- fix issue \#9 - define assign\_filter as string [\#10](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/10) ([FLiPp3r90](https://github.com/FLiPp3r90))
 
 ## [1.1.0](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/tree/1.1.0) (2020-05-25)
 
@@ -425,7 +425,7 @@
 
 - update urls, lowercase name [\#6](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/6) ([rndmh3ro](https://github.com/rndmh3ro))
 - replace - with \_ [\#5](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/5) ([rndmh3ro](https://github.com/rndmh3ro))
-- alter readme to accomodate for collection [\#4](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/4) ([rndmh3ro](https://github.com/rndmh3ro))
+- alter readme to accommodate for collection [\#4](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/4) ([rndmh3ro](https://github.com/rndmh3ro))
 - Linting fixes [\#3](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/3) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create main.yml [\#2](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/2) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create ansible-lint.yml [\#1](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/1) ([rndmh3ro](https://github.com/rndmh3ro))

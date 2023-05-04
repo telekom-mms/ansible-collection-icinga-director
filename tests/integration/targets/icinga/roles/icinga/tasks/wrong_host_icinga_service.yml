@@ -3,7 +3,7 @@
   tags: service
   t_systems_mms.icinga_director.icinga_service:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service"
@@ -26,7 +26,7 @@
   tags: service
   t_systems_mms.icinga_director.icinga_service:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service"
@@ -45,7 +45,7 @@
 - name: Create serviceset service
   t_systems_mms.icinga_director.icinga_service:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "foo service serviceset"

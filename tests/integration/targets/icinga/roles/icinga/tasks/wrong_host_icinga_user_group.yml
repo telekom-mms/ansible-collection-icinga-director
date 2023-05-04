@@ -2,7 +2,7 @@
 - name: Create user group
   t_systems_mms.icinga_director.icinga_user_group:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "onCall"
@@ -17,7 +17,7 @@
 - name: Update user group
   t_systems_mms.icinga_director.icinga_user_group:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "onCall"

@@ -22,7 +22,7 @@ for module in "$dir_path"/../plugins/modules/*.py; do
             "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml" \
             1> /dev/null
 
-      # this gets the number of lists in the module so we can interate over them and change them
+      # this gets the number of lists in the module so we can iterate over them and change them
       length=$(($(yq r --length "/tmp/${module_name}.yml") - 1))
       for item in $(seq 0 ${length}); do
         # this adds the first list item to the different tests
@@ -77,7 +77,7 @@ for module in "$dir_path"/../plugins/modules/*.py; do
             "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" \
             1> /dev/null
 
-      # this gets the number of lists in the module so we can interate over them and change them
+      # this gets the number of lists in the module so we can iterate over them and change them
       length=$(($(yq r --length "/tmp/${module_name}.yml") - 1))
       for item in $(seq 0 ${length}); do
         # this adds the first list item to the different tests
@@ -110,7 +110,7 @@ for module in "$dir_path"/../plugins/modules/*.py; do
         yq w -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "(name==*).register" "result"
 
         # this replaces the url variable with a nonexisting url, so the login will fail (with a different error msg than when using a wrong pw)
-        yq w -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" "(name==*).\"${fqcn_name}\".url" "http://nonexistant"
+        yq w -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" "(name==*).\"${fqcn_name}\".url" "http://nonexistent"
 
         # this adds ignore_errors and result-registering to the task because it will fail as expected
         yq w -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" "(name==*).ignore_errors" "true"

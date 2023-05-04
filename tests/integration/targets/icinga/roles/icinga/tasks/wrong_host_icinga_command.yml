@@ -2,7 +2,7 @@
 - name: Create command
   t_systems_mms.icinga_director.icinga_command:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     arguments:
@@ -71,7 +71,7 @@
 - name: Update command
   t_systems_mms.icinga_director.icinga_command:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: centreon-plugins
@@ -87,7 +87,7 @@
 - name: Create event command
   t_systems_mms.icinga_director.icinga_command:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     command: "/opt/scripts/restart_httpd"
