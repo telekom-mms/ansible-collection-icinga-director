@@ -230,4 +230,5 @@ releases:
     changes:
       trivial:
         - Update actions/checkout action to v3.5.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/206)
+        - use codespell to improve spelling (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/207)
     release_date: '2023-03-09'
