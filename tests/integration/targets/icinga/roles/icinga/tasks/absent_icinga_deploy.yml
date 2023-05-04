@@ -5,4 +5,3 @@
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     state: absent
-  register: result
