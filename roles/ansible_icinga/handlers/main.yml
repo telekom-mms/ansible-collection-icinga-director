@@ -5,5 +5,4 @@
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
   when: icinga_deploy_config and icinga_deploy_config is defined
-  run_once: true
   listen: config_deploy

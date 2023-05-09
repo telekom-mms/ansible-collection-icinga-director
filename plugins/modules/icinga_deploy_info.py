@@ -23,10 +23,10 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: icinga_deploy
-short_description: Trigger deployment in Icinga2
+module: icinga_deploy_info
+short_description: Query deployment information in Icinga2
 description:
-  - Trigger a deployment to Icinga2 through the director API.
+  -  Get deployment information through the director API.
 author: Falk Händler (@flkhndlr)
 version_added: '1.33.0'
 extends_documentation_fragment:
@@ -43,7 +43,7 @@ EXAMPLES = """
 """
 
 RETURN = r"""
-config:
+objects:
   description:
     - Checksums of the active configuration
     - Contains current activiy checksum, config checksum
@@ -53,7 +53,7 @@ config:
 """
 
 from ansible.module_utils.urls import url_argument_spec
-from  ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
@@ -69,8 +69,6 @@ def main():
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
-        query=dict(type="str", required=False, default=""),
-        resolved=dict(type="bool", default=False, choices=[True, False]),
     )
 
     # Define the main module
@@ -84,9 +82,8 @@ def main():
     object_list = icinga_object.query()
 
     module.exit_json(
-        config=object_list["data"],
+        objects=object_list["data"]["active_configuration"],
     )
-
 
 if __name__ == "__main__":
     main()

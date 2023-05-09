@@ -45,7 +45,7 @@ EXAMPLES = """
 RETURN = r""" # """
 
 from ansible.module_utils.urls import url_argument_spec
-from  ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
@@ -65,7 +65,7 @@ def main():
     # Define the main module
     module = AnsibleModule(
         argument_spec=argument_spec,
-        supports_check_mode=True,
+        supports_check_mode=False,
     )
 
     icinga_object = Icinga2APIObject(module=module, path="/config/deploy", data=[])
