@@ -16,8 +16,6 @@ from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
 class Icinga2APIObject(object):
     """Interact with the icinga2 director API"""
 
-    module = None
-
     def __init__(self, module, path, data):
         self.module = module
         self.params = module.params
@@ -126,10 +124,47 @@ class Icinga2APIObject(object):
                     msg="bad return code while querying: %d. Error message: %s"
                     % (ret["code"], ret["error"])
                 )
+            return ret
         except Exception as e:
             self.module.fail_json(msg="exception when querying: " + str(e))
 
-        return ret
+    def query_deployment(self, configs=None, activities=None):
+        """
+        Find the current deployment or the deployment specified with configs or activities
+        in the director and return the result of the api-call.
+
+        Parameters:
+            configs: type list, default empty, list of checksums for configs to search for.
+                     If left empty, only the active_configuration will be returned.
+            activities: type list, default empty, list of checksums for activities to search for.
+                     If left empty, only the active_configuration will be returned.
+
+        Returns:
+            the result of the api-call
+        """
+
+        if configs is None:
+            configs = []
+
+        if activities is None:
+            activities = []
+
+        try:
+            ret = self.call_url(
+                path=self.path
+                + "?configs="
+                + ",".join(configs)
+                + "&activities="
+                + ",".join(activities)
+            )
+            if ret["code"] != 200:
+                self.module.fail_json(
+                    msg="bad return code while querying: %d. Error message: %s"
+                    % (ret["code"], ret["error"])
+                )
+            return ret
+        except Exception as e:
+            self.module.fail_json(msg="exception when querying: " + str(e))
 
     def create(self):
         """

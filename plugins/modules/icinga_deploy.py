@@ -42,21 +42,32 @@ EXAMPLES = """
     url_password: "{{ icinga_pass }}"
 """
 
-RETURN = r""" # """
+RETURN = r"""
+checksum:
+  description:
+    - Checksum of the configuration that should be rolled out
+  returned: always
+  type: str
+  sample:
+    checksum: 294bdfb53c4da471e37317beed549a953c939424
+"""
 
+
+from time import sleep
 from ansible.module_utils.urls import url_argument_spec
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
-
 # ===========================================
 # Module execution.
 #
+
+
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    
+
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
@@ -68,13 +79,36 @@ def main():
         supports_check_mode=False,
     )
 
-    icinga_object = Icinga2APIObject(module=module, path="/config/deploy", data=[])
-    
-    result = icinga_object.create()
+    # get the current deployment status
+    icinga_deploy_status = Icinga2APIObject(module=module, path="/config/deployment-status", data=[])
+    current_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
 
-    module.exit_json(
-        result=result,
-    )
+    # execute the deployment
+    icinga_deployment = Icinga2APIObject(module=module, path="/config/deploy", data=[])
+    result = icinga_deployment.create()
+    # the deployment is asynchronous and I don't know of a way to check if it is finished.
+    # so we need some sleep here. 2 seconds is a wild guess.
+    sleep(2)
+
+    # get the new deployment status
+    new_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
+
+    # when the old checksum, the checksum to be created and the new checksum are the same, nothing changed
+    if result["data"]["checksum"] == new_deployment == current_deployment:
+        module.exit_json(
+            changed=False,
+            checksum=result["data"]["checksum"],
+        )
+    # when the current and new deployment are the same, but the checksum to be created is different, the deployment failed
+    elif current_deployment == new_deployment:
+        module.fail_json(msg="deployment failed")
+    # in other cases the deployment suceeded and changed something
+    else:
+        module.exit_json(
+            changed=True,
+            checksum=result["data"]["checksum"],
+        )
+
 
 if __name__ == "__main__":
     main()

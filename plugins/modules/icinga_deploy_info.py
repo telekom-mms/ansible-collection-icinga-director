@@ -24,7 +24,7 @@ __metaclass__ = type
 DOCUMENTATION = """
 ---
 module: icinga_deploy_info
-short_description: Query deployment information in Icinga2
+short_description: Trigger deployment in Icinga2
 description:
   -  Get deployment information through the director API.
 author: Falk Händler (@flkhndlr)
@@ -32,6 +32,17 @@ version_added: '1.33.0'
 extends_documentation_fragment:
   - ansible.builtin.url
   - t_systems_mms.icinga_director.common_options
+options:
+  configs:
+    description:
+      - A list of checksums of configs to query information for
+    type: list
+    elements: str
+  activities:
+    description:
+      - A list of checksums of activities to query information for
+    type: list
+    elements: str
 """
 
 EXAMPLES = """
@@ -43,13 +54,36 @@ EXAMPLES = """
 """
 
 RETURN = r"""
-objects:
+active_configuration:
   description:
     - Checksums of the active configuration
     - Contains current activiy checksum, config checksum
     - and a checksum for the stage_name
-  returned: always
-  type: object
+  returned: if active configuration exists
+  type: dict
+  sample:
+    active_configuration:
+      activity: 3557598829f2a2fc4acc7b565fb54bae24754c67
+      config: 299d9d49e03435c6de562c4b22a26e63990d30a9
+      stage_name: 902cb282-e702-43ce-bb3c-962f850a1694
+configs:
+  description:
+    - Checksum of the requested config and its state
+  returned: only if requested
+  type: list
+  sample:
+    configs:
+      b175ca0562434deeb4fb1fc03fd80cd7361b56df: deployed
+      b175ca0562434deeb4fb1fc03fd80cd7361b56de: active
+activities:
+  description:
+    - checksum of the requested activities and its state
+  returned: only if requested
+  type: list
+  sample:
+    activities:
+      a4c955364bc7b77efd0323fc87d95307f827e30c: deployed
+      3557598829f2a2fc4acc7b565fb54bae24754c67: active
 """
 
 from ansible.module_utils.urls import url_argument_spec
@@ -65,10 +99,12 @@ from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icin
 def main():
     # use the predefined argument spec for url
     argument_spec = url_argument_spec()
-    
+
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
+        configs=dict(type="list", required=False, default=None, elements="str"),
+        activities=dict(type="list", required=False, default=None, elements="str"),
     )
 
     # Define the main module
@@ -78,11 +114,24 @@ def main():
     )
 
     icinga_object = Icinga2APIObject(module=module, path="/config/deployment-status", data=[])
-    
-    object_list = icinga_object.query()
+
+    object_list = icinga_object.query_deployment(
+        configs=module.params["configs"], activities=module.params["activities"]
+    )
+
+    config_list = {}
+    activity_list = {}
+
+    if "configs" in object_list["data"].keys():
+        config_list = dict(object_list["data"]["configs"].items())
+
+    if "activities" in object_list["data"].keys():
+        activity_list = dict(object_list["data"]["activities"].items())
 
     module.exit_json(
-        objects=object_list["data"]["active_configuration"],
+        active_configuration=object_list["data"]["active_configuration"],
+        configs=config_list,
+        activities=activity_list
     )
 
 if __name__ == "__main__":
