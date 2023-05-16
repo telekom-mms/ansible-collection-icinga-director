@@ -57,7 +57,7 @@ RETURN = r"""
 active_configuration:
   description:
     - Checksums of the active configuration
-    - Contains current activiy checksum, config checksum
+    - Contains current activity checksum, config checksum
     - and a checksum for the stage_name
   returned: if active configuration exists
   type: dict
@@ -133,6 +133,7 @@ def main():
         configs=config_list,
         activities=activity_list
     )
+
 
 if __name__ == "__main__":
     main()

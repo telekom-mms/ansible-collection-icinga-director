@@ -81,7 +81,7 @@ def main():
 
     # get the current deployment status
     icinga_deploy_status = Icinga2APIObject(module=module, path="/config/deployment-status", data=[])
-    current_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
+    active_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
 
     # execute the deployment
     icinga_deployment = Icinga2APIObject(module=module, path="/config/deploy", data=[])
@@ -91,16 +91,16 @@ def main():
     sleep(2)
 
     # get the new deployment status
-    new_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
+    create_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
 
     # when the old checksum, the checksum to be created and the new checksum are the same, nothing changed
-    if result["data"]["checksum"] == new_deployment == current_deployment:
+    if result["data"]["checksum"] == active_deployment == create_deployment:
         module.exit_json(
             changed=False,
             checksum=result["data"]["checksum"],
         )
     # when the current and new deployment are the same, but the checksum to be created is different, the deployment failed
-    elif current_deployment == new_deployment:
+    elif create_deployment == active_deployment:
         module.fail_json(msg="deployment failed")
     # in other cases the deployment suceeded and changed something
     else:
