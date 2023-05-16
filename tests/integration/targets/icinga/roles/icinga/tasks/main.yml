@@ -2,7 +2,6 @@
 - include_tasks: "{{ item }}"
   loop:
     - icinga_zone.yml
-    - icinga_deploy.yml
     - icinga_command_template.yml
     - icinga_command.yml
     - icinga_timeperiod_template.yml
@@ -31,7 +30,6 @@
   loop:
     ### run them again for idempotency codecoverage checks
     - icinga_zone.yml
-    - icinga_deploy.yml
     - icinga_command_template.yml
     - icinga_command.yml
     - icinga_timeperiod_template.yml
@@ -117,7 +115,6 @@
     - wrong_host_icinga_serviceset.yml
     - wrong_host_icinga_service.yml
     - wrong_host_icinga_scheduled_downtime.yml
-    - wrong_host_icinga_deploy.yml
 
     - wrong_pass_icinga_command_template.yml
     - wrong_pass_icinga_command.yml
@@ -140,7 +137,6 @@
     - wrong_pass_icinga_serviceset.yml
     - wrong_pass_icinga_service.yml
     - wrong_pass_icinga_scheduled_downtime.yml
-    - wrong_pass_icinga_deploy.yml
 
     - wrong_pass_icinga_command_template_info.yml
     - wrong_pass_icinga_command_info.yml
@@ -161,7 +157,6 @@
     - wrong_pass_icinga_host_template_info.yml
     - wrong_pass_icinga_host_info.yml
     - wrong_pass_icinga_service_info.yml
-    - wrong_pass_icinga_deploy_info.yml
 
     - wrong_query_icinga_command_template_info.yml
     - wrong_query_icinga_command_info.yml
@@ -204,4 +199,3 @@
     - absent_icinga_command_template.yml
     - absent_icinga_serviceset.yml
     - absent_icinga_zone.yml
-    - absent_icinga_deploy.yml
