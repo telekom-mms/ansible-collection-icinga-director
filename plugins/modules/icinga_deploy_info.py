@@ -129,6 +129,7 @@ def main():
         activity_list = dict(object_list["data"]["activities"].items())
 
     module.exit_json(
+        objects=object_list,
         active_configuration=object_list["data"]["active_configuration"],
         configs=config_list,
         activities=activity_list
