@@ -2,7 +2,6 @@
 - include_tasks: "{{ item }}"
   loop:
     - icinga_zone.yml
-    - icinga_deploy.yml
     - icinga_command_template.yml
     - icinga_command.yml
     - icinga_timeperiod_template.yml
@@ -31,7 +30,6 @@
   loop:
     ### run them again for idempotency codecoverage checks
     - icinga_zone.yml
-    - icinga_deploy.yml
     - icinga_command_template.yml
     - icinga_command.yml
     - icinga_timeperiod_template.yml

@@ -102,7 +102,7 @@ def main():
     # when the current and new deployment are the same, but the checksum to be created is different, the deployment failed
     elif create_deployment == active_deployment:
         module.fail_json(msg="deployment failed")
-    # in other cases the deployment suceeded and changed something
+    # in other cases the deployment succeeded and changed something
     else:
         module.exit_json(
             changed=True,
