@@ -33,6 +33,16 @@ plugins:
       name: icinga_command_template_info
       namespace: ''
       version_added: 1.13.0
+    icinga_deploy:
+      description: Trigger deployment in Icinga2
+      name: icinga_deploy
+      namespace: ''
+      version_added: 1.33.0
+    icinga_deploy_info:
+      description: Get deployment information through the director API
+      name: icinga_deploy_info
+      namespace: ''
+      version_added: 1.33.0
     icinga_endpoint:
       description: Manage endpoints in Icinga2
       name: icinga_endpoint
@@ -207,4 +217,4 @@ plugins:
   shell: {}
   strategy: {}
   vars: {}
-version: 1.32.3
+version: 1.33.0

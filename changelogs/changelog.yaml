@@ -232,3 +232,18 @@ releases:
         - Update actions/checkout action to v3.5.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/206)
         - use codespell to improve spelling (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/207)
     release_date: '2023-03-09'
+  1.33.0:
+    changes:
+      minor_changes:
+        - Add Icinga Deploy handler and module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/205)
+      trivial:
+        - Update actions/checkout action to v3.5.0 (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/206)
+        - use codespell to improve spelling (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/207)
+    modules:
+      - description: Trigger deployment in Icinga2
+        name: icinga_deploy
+        namespace: ''
+      - description: Get deployment information through the director API
+        name: icinga_deploy_info
+        namespace: ''
+    release_date: '2023-05-22'

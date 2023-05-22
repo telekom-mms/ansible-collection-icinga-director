@@ -5,6 +5,20 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v1.33.0
+=======
+
+Minor Changes
+-------------
+
+- Add Icinga Deploy handler and module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/205)
+
+New Modules
+-----------
+
+- t_systems_mms.icinga_director.icinga_deploy - Trigger deployment in Icinga2
+- t_systems_mms.icinga_director.icinga_deploy_info - Get deployment information through the director API
+
 v1.32.3
 =======
 
