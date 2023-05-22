@@ -27,3 +27,4 @@
   loop_control:
     loop_var: user
   tags: user
+  notify: config_deploy

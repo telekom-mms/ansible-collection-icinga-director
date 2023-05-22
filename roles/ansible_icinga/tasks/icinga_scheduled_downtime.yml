@@ -27,3 +27,4 @@
   loop_control:
     loop_var: downtime
   tags: downtime
+  notify: config_deploy

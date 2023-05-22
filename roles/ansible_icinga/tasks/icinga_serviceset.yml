@@ -23,3 +23,4 @@
   loop_control:
     loop_var: serviceset
   tags: serviceset
+  notify: config_deploy

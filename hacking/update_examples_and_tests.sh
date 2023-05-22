@@ -8,6 +8,10 @@ for module in "$dir_path"/../plugins/modules/*.py; do
     module_name="$(basename "${module}" .py)"
     fqcn_name="t_systems_mms.icinga_director.$(basename "${module}" .py)"
 
+    if [[ $module_name == "icinga_deploy" ]]; then
+      continue
+    fi
+
     # create examples
     # https://stackoverflow.com/a/22221307
     # this greps the examples from the plugins and puts them into a temp-file

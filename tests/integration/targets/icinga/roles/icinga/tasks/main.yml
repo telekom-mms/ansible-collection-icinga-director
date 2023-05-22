@@ -23,20 +23,8 @@
     - icinga_service.yml
     - icinga_scheduled_downtime.yml
 
-- name: deploy changes in icinga
-  tags: uri
-  uri:
-    url: "{{ icinga_url }}/director/config/deploy"
-    headers:
-      Accept: application/json
-    method: POST
-    user: "{{ icinga_user }}"
-    password: "{{ icinga_pass }}"
-    return_content: true
-  retries: 3
-  delay: 10
-  register: result
-  until: result is not failed
+- name: flush handlers
+  meta: flush_handlers
 
 - include_tasks: "{{ item }}"
   loop:
@@ -83,6 +71,7 @@
     - icinga_host_template_info.yml
     - icinga_host_info.yml
     - icinga_service_info.yml
+    - icinga_deploy_info.yml
     - no_query_icinga_command_template_info.yml
     - no_query_icinga_command_info.yml
     - no_query_icinga_timeperiod_template_info.yml
@@ -102,10 +91,12 @@
     - no_query_icinga_host_template_info.yml
     - no_query_icinga_host_info.yml
     - no_query_icinga_service_info.yml
+    - no_query_icinga_deploy_info.yml
 
     ### failing tests
     - wrong_host_icinga_command_template.yml
     - wrong_host_icinga_command.yml
+    - wrong_host_icinga_deploy.yml
     - wrong_host_icinga_timeperiod_template.yml
     - wrong_host_icinga_timeperiod.yml
     - wrong_host_icinga_user_template.yml
@@ -128,6 +119,7 @@
 
     - wrong_pass_icinga_command_template.yml
     - wrong_pass_icinga_command.yml
+    - wrong_pass_icinga_deploy.yml
     - wrong_pass_icinga_timeperiod_template.yml
     - wrong_pass_icinga_timeperiod.yml
     - wrong_pass_icinga_user_template.yml
@@ -209,19 +201,3 @@
     - absent_icinga_command_template.yml
     - absent_icinga_serviceset.yml
     - absent_icinga_zone.yml
-
-
-- name: deploy changes in icinga
-  tags: uri
-  uri:
-    url: "{{ icinga_url }}/director/config/deploy"
-    headers:
-      Accept: application/json
-    method: POST
-    user: "{{ icinga_user }}"
-    password: "{{ icinga_pass }}"
-    return_content: true
-  retries: 3
-  delay: 10
-  register: result
-  until: result is not failed

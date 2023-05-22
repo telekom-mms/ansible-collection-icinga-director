@@ -42,3 +42,4 @@
   loop_control:
     loop_var: service
   tags: service
+  notify: config_deploy

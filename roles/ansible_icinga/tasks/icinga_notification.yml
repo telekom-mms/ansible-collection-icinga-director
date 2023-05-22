@@ -31,3 +31,4 @@
   loop_control:
     loop_var: notification
   tags: notification
+  notify: config_deploy
