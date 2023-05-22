@@ -24,7 +24,7 @@ __metaclass__ = type
 DOCUMENTATION = """
 ---
 module: icinga_deploy_info
-short_description: Trigger deployment in Icinga2
+short_description: Get deployment information through the director API
 description:
   -  Get deployment information through the director API.
 author: Falk Händler (@flkhndlr)
