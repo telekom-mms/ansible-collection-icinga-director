@@ -96,6 +96,7 @@
     ### failing tests
     - wrong_host_icinga_command_template.yml
     - wrong_host_icinga_command.yml
+    - wrong_host_icinga_deploy.yml
     - wrong_host_icinga_timeperiod_template.yml
     - wrong_host_icinga_timeperiod.yml
     - wrong_host_icinga_user_template.yml
@@ -118,6 +119,7 @@
 
     - wrong_pass_icinga_command_template.yml
     - wrong_pass_icinga_command.yml
+    - wrong_pass_icinga_deploy.yml
     - wrong_pass_icinga_timeperiod_template.yml
     - wrong_pass_icinga_timeperiod.yml
     - wrong_pass_icinga_user_template.yml
