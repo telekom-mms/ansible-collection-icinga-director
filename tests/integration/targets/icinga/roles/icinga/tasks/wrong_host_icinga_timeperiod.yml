@@ -2,7 +2,7 @@
 - name: Create timeperiod
   t_systems_mms.icinga_director.icinga_timeperiod:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: '24/7'
@@ -26,7 +26,7 @@
 - name: Update timeperiod
   t_systems_mms.icinga_director.icinga_timeperiod:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: '24/7'

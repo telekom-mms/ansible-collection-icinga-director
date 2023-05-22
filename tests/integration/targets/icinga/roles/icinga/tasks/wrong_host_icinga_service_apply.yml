@@ -2,7 +2,7 @@
 - name: Add service apply rule to icinga
   t_systems_mms.icinga_director.icinga_service_apply:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "SERVICE_dummy"
@@ -40,7 +40,7 @@
 - name: Add service apply rule with command_endpoint
   t_systems_mms.icinga_director.icinga_service_apply:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "SERVICE_dummy"
@@ -72,7 +72,7 @@
 - name: Update service apply rule with command_endpoint
   t_systems_mms.icinga_director.icinga_service_apply:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "SERVICE_dummy"

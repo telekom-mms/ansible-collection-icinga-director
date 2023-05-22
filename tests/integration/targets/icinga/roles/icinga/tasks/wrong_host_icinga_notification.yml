@@ -2,7 +2,7 @@
 - name: Create notification
   t_systems_mms.icinga_director.icinga_notification:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     apply_to: host
@@ -35,7 +35,7 @@
 - name: Update notification
   t_systems_mms.icinga_director.icinga_notification:
     state: present
-    url: http://nonexistant
+    url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: E-Mail_host
