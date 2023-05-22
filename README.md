@@ -28,10 +28,11 @@ Additionally all supported modules have an appropriate `*_info`-module to gather
     * `icinga_user`
     * `icinga_zone`
 
+2. A module to deploy changes in the director and a corresponding info-module.
 
-2. A [role](roles/ansible_icinga/) to change objects in Icinga 2 using the the provided modules.
+3. A [role](roles/ansible_icinga/) to change objects in Icinga 2 using the the provided modules.
 
-3. An [inventory plugin](plugins/inventory) to use hosts and groups defined in Icinga as a dynamic inventory.
+4. An [inventory plugin](plugins/inventory) to use hosts and groups defined in Icinga as a dynamic inventory.
 
 Required Ansible version: 2.9.10
 
