@@ -166,7 +166,7 @@ See [Contributing](CONTRIBUTING.md).
 ## Troubleshooting
 
 If one of the following errors is thrown, your Icinga Director is probably sitting behind a basic authentication prompt. Use `force_basic_auth: true` in your tasks to fix the problem.
-If you are using the ansible roles of this collection you have to use `icinga_force_basic_auth: true` to fix this problem.
+If you are using this collections' ansible role, you have to use `icinga_force_basic_auth: true` to fix this problem.
 
 ```
 fatal: [localhost]: FAILED! => {"changed": false, "msg": "bad return code while creating: -1. Error message: Request failed: <urlopen error Tunnel connection failed: 302 Found>"}
