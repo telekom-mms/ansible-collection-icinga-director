@@ -88,7 +88,6 @@ def main():
     else:
         active_deployment = ""
 
-
     # execute the deployment
     icinga_deployment = Icinga2APIObject(module=module, path="/config/deploy", data=[])
     result = icinga_deployment.create()
