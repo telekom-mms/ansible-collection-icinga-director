@@ -19,3 +19,6 @@
         object_name: defaults_test
       notify:
         - config_deploy
+
+    - name: flush handlers
+      meta: flush_handlers
