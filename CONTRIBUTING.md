@@ -23,7 +23,7 @@ After making code changes, please run the linters and fix all errors:
 > tox -elinters
 ```
 
-### Updating the tests and examples
+### Updating the tests and examples and runtime
 
 If you add new features or arguments to the existing modules, please add them to the examples in the module itself.
 The integration tests and examples in our documentation are then generated from the module-examples.
@@ -35,6 +35,7 @@ Download example:
 > sudo wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq ; sudo chmod 755 /usr/bin/yq
 ```
 
+If you add a new module, be sure to add it to the `action_groups` in the `meta/runtime.yml`-file.
 
 ### Integration tests with docker
 
