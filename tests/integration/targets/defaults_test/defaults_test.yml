@@ -20,5 +20,5 @@
       notify:
         - config_deploy
 
-    - name: flush handlers
+    - name: Flush handlers
       meta: flush_handlers
