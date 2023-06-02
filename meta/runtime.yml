@@ -7,6 +7,8 @@ action_groups:
     - icinga_command_info
     - icinga_command_template
     - icinga_command_template_info
+    - icinga_deploy
+    - icinga_deploy_info
     - icinga_endpoint
     - icinga_endpoint_info
     - icinga_host

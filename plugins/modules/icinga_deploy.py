@@ -81,7 +81,12 @@ def main():
 
     # get the current deployment status
     icinga_deploy_status = Icinga2APIObject(module=module, path="/config/deployment-status", data=[])
-    active_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
+
+    # if there is no existing deployment (e.g. on a new instance), there is no config object
+    if "config" in icinga_deploy_status.query_deployment()["data"]["active_configuration"]:
+        active_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
+    else:
+        active_deployment = ""
 
     # execute the deployment
     icinga_deployment = Icinga2APIObject(module=module, path="/config/deploy", data=[])
