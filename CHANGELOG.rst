@@ -8,6 +8,11 @@ T_Systems_Mms.Icinga_Director Release Notes
 v1.33.1
 =======
 
+Bugfixes
+--------
+
+- add icinga_deploy_* to action_group and test it (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/214)
+
 v1.33.0
 =======
 

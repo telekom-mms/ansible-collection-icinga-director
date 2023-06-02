@@ -249,6 +249,8 @@ releases:
     release_date: '2023-05-22'
   1.33.1:
     changes:
+      bugfixes:
+        - add icinga_deploy_* to action_group and test it (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/214)
       trivial:
         - Update README (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/211)
     release_date: '2023-05-22'
