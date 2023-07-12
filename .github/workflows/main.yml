@@ -68,7 +68,7 @@ jobs:
           - "3.10"
     services:
       icinga:
-        image: ghcr.io/t-systems-mms/icinga2:director-1.8.1
+        image: ghcr.io/telekom-mms/icinga2:director-1.8.1
         ports:
           - 80:80
     steps:

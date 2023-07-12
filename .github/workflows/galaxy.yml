@@ -8,6 +8,6 @@ on:
 
 jobs:
   deploy:
-    uses: T-Systems-MMS/.github/.github/workflows/ansible-galaxy-publish.yml@main
+    uses: telekom-mms/.github/.github/workflows/ansible-galaxy-publish.yml@main
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
