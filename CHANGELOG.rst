@@ -1,6 +1,6 @@
-===========================================
-T_Systems_Mms.Icinga_Director Release Notes
-===========================================
+=========================================
+telekom_mms.icinga_director Release Notes
+=========================================
 
 .. contents:: Topics
 

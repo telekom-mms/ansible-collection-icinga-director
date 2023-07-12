@@ -258,4 +258,5 @@ releases:
     changes:
       trivial:
         - run CI-tests only once peer week (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/215)
+        - move orga (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/216)
     release_date: '2023-06-09'
