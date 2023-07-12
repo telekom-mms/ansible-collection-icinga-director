@@ -43,3 +43,166 @@ action_groups:
     - icinga_user_template_info
     - icinga_zone
     - icinga_zone_info
+
+plugin_routing:
+  modules:
+    icinga_command:
+      redirect: telekom_mms.icinga_director.icinga_command
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_command instead
+    icinga_command_info:
+      redirect: telekom_mms.icinga_director.icinga_command_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_command_info instead
+    icinga_command_template:
+      redirect: telekom_mms.icinga_director.icinga_command_template
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_command_template instead
+    icinga_command_template_info:
+      redirect: telekom_mms.icinga_director.icinga_command_template_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_command_template_info instead
+    icinga_deploy:
+      redirect: telekom_mms.icinga_director.icinga_deploy
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_deploy instead
+    icinga_deploy_info:
+      redirect: telekom_mms.icinga_director.icinga_deploy_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_deploy_info instead
+    icinga_endpoint:
+      redirect: telekom_mms.icinga_director.icinga_endpoint
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_endpoint instead
+    icinga_endpoint_info:
+      redirect: telekom_mms.icinga_director.icinga_endpoint_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_endpoint_info instead
+    icinga_host:
+      redirect: telekom_mms.icinga_director.icinga_host
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_host instead
+    icinga_host_info:
+      redirect: telekom_mms.icinga_director.icinga_host_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_host_info instead
+    icinga_host_template:
+      redirect: telekom_mms.icinga_director.icinga_host_template
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_host_template instead
+    icinga_host_template_info:
+      redirect: telekom_mms.icinga_director.icinga_host_template_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_host_template_info instead
+    icinga_hostgroup:
+      redirect: telekom_mms.icinga_director.icinga_hostgroup
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_hostgroup instead
+    icinga_hostgroup_info:
+      redirect: telekom_mms.icinga_director.icinga_hostgroup_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_hostgroup_info instead
+    icinga_notification:
+      redirect: telekom_mms.icinga_director.icinga_notification
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_notification instead
+    icinga_notification_info:
+      redirect: telekom_mms.icinga_director.icinga_notification_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_notification_info instead
+    icinga_notification_template:
+      redirect: telekom_mms.icinga_director.icinga_notification_template
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_notification_template instead
+    icinga_notification_template_info:
+      redirect: telekom_mms.icinga_director.icinga_notification_template_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_notification_template_info instead
+    icinga_scheduled_downtime:
+      redirect: telekom_mms.icinga_director.icinga_scheduled_downtime
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_scheduled_downtime instead
+    icinga_service:
+      redirect: telekom_mms.icinga_director.icinga_service
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_service instead
+    icinga_service_apply:
+      redirect: telekom_mms.icinga_director.icinga_service_apply
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_service_apply instead
+    icinga_service_apply_info:
+      redirect: telekom_mms.icinga_director.icinga_service_apply_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_service_apply_info instead
+    icinga_service_info:
+      redirect: telekom_mms.icinga_director.icinga_service_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_service_info instead
+    icinga_service_template:
+      redirect: telekom_mms.icinga_director.icinga_service_template
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_service_template instead
+    icinga_service_template_info:
+      redirect: telekom_mms.icinga_director.icinga_service_template_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_service_template_info instead
+    icinga_servicegroup:
+      redirect: telekom_mms.icinga_director.icinga_servicegroup
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_servicegroup instead
+    icinga_servicegroup_info:
+      redirect: telekom_mms.icinga_director.icinga_servicegroup_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_servicegroup_info instead
+    icinga_serviceset:
+      redirect: telekom_mms.icinga_director.icinga_serviceset
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_serviceset instead
+    icinga_timeperiod:
+      redirect: telekom_mms.icinga_director.icinga_timeperiod
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_timeperiod instead
+    icinga_timeperiod_info:
+      redirect: telekom_mms.icinga_director.icinga_timeperiod_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_timeperiod_info instead
+    icinga_timeperiod_template:
+      redirect: telekom_mms.icinga_director.icinga_timeperiod_template
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_timeperiod_template instead
+    icinga_timeperiod_template_info:
+      redirect: telekom_mms.icinga_director.icinga_timeperiod_template_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_timeperiod_template_info instead
+    icinga_user:
+      redirect: telekom_mms.icinga_director.icinga_user
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_user instead
+    icinga_user_group:
+      redirect: telekom_mms.icinga_director.icinga_user_group
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_user_group instead
+    icinga_user_group_info:
+      redirect: telekom_mms.icinga_director.icinga_user_group_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_user_group_info instead
+    icinga_user_info:
+      redirect: telekom_mms.icinga_director.icinga_user_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_user_info instead
+    icinga_user_template:
+      redirect: telekom_mms.icinga_director.icinga_user_template
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_user_template instead
+    icinga_user_template_info:
+      redirect: telekom_mms.icinga_director.icinga_user_template_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_user_template_info instead
+    icinga_zone:
+      redirect: telekom_mms.icinga_director.icinga_zone
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_zone instead
+    icinga_zone_info:
+      redirect: telekom_mms.icinga_director.icinga_zone_info
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_zone_info instead
