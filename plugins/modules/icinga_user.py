@@ -30,7 +30,7 @@ description:
 author: Sebastian Gumprich (@rndmh3ro)
 extends_documentation_fragment:
   - ansible.builtin.url
-  - t_systems_mms.icinga_director.common_options
+  - telekom_mms.icinga_director.common_options
 version_added: '1.0.0'
 notes:
   - This module supports check mode.
@@ -94,7 +94,7 @@ options:
 
 EXAMPLES = """
 - name: Create user
-  t_systems_mms.icinga_director.icinga_user:
+  telekom_mms.icinga_director.icinga_user:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -109,7 +109,7 @@ EXAMPLES = """
       - onCall
 
 - name: Update user
-  t_systems_mms.icinga_director.icinga_user:
+  telekom_mms.icinga_director.icinga_user:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -123,7 +123,7 @@ RETURN = r""" # """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+from ansible_collections.telekom_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
 

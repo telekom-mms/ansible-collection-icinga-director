@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: delete the host in icinga
-      t_systems_mms.icinga_director.icinga_host:
+      telekom_mms.icinga_director.icinga_host:
         state: absent
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
@@ -12,7 +12,7 @@
         object_name: "inventory_test_host"
 
     - name: delete the host in icinga
-      t_systems_mms.icinga_director.icinga_host:
+      telekom_mms.icinga_director.icinga_host:
         state: absent
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
@@ -20,7 +20,7 @@
         object_name: "foohost"
 
     - name: delete the hostgroup in icinga
-      t_systems_mms.icinga_director.icinga_hostgroup:
+      telekom_mms.icinga_director.icinga_hostgroup:
         state: absent
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
@@ -28,7 +28,7 @@
         object_name: "inventory_test_hostgroup"
 
     - name: delete the hostgroup in icinga
-      t_systems_mms.icinga_director.icinga_hostgroup:
+      telekom_mms.icinga_director.icinga_hostgroup:
         state: absent
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"

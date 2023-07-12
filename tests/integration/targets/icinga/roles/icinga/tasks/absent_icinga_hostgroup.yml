@@ -1,6 +1,6 @@
 ---
 - name: Create hostgroup
-  t_systems_mms.icinga_director.icinga_hostgroup:
+  telekom_mms.icinga_director.icinga_hostgroup:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -8,7 +8,7 @@
     object_name: foohostgroup
     display_name: foohostgroup
 - name: Update hostgroup
-  t_systems_mms.icinga_director.icinga_hostgroup:
+  telekom_mms.icinga_director.icinga_hostgroup:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

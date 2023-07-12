@@ -30,7 +30,7 @@ description:
 author: Michaela Mattes (@michaelamattes)
 extends_documentation_fragment:
   - ansible.builtin.url
-  - t_systems_mms.icinga_director.common_options
+  - telekom_mms.icinga_director.common_options
 version_added: '1.2.0'
 notes:
   - This module supports check mode.
@@ -247,7 +247,7 @@ options:
 
 EXAMPLES = """
 - name: Create host template
-  t_systems_mms.icinga_director.icinga_host_template:
+  telekom_mms.icinga_director.icinga_host_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -283,7 +283,7 @@ EXAMPLES = """
       dnscheck: "no"
 
 - name: Update host template
-  t_systems_mms.icinga_director.icinga_host_template:
+  telekom_mms.icinga_director.icinga_host_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -298,7 +298,7 @@ RETURN = r""" # """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+from ansible_collections.telekom_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
 

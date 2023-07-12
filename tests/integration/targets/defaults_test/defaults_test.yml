@@ -2,17 +2,17 @@
 - name: Provide module defaults
   hosts: localhost
   module_defaults:
-    group/t_systems_mms.icinga_director.icinga:
+    group/telekom_mms.icinga_director.icinga:
       url: "{{ icinga_url }}"
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
   handlers:
     - name: Deploy the icinga config
-      t_systems_mms.icinga_director.icinga_deploy:
+      telekom_mms.icinga_director.icinga_deploy:
       listen: config_deploy
   tasks:
     - name: Create command
-      t_systems_mms.icinga_director.icinga_command:
+      telekom_mms.icinga_director.icinga_command:
         state: present
         command: "true"
         command_type: "PluginCheck"

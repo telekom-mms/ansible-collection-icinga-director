@@ -8,7 +8,7 @@ For example, if you are working in the `~/dev` directory:
 
 ```
 cd ~/dev
-git clone https://github.com/T-Systems-MMS/ansible-collection-icinga-director collections/ansible_collections/t_systems_mms/icinga_director
+git clone https://github.com/telekom_mms/ansible-collection-icinga-director collections/ansible_collections/telekom_mms/icinga_director
 export ANSIBLE_COLLECTIONS_PATH=$(pwd)/collections:$ANSIBLE_COLLECTIONS_PATH
 ```
 
@@ -42,7 +42,7 @@ If you add a new module, be sure to add it to the `action_groups` in the `meta/r
 ```
 # run icinga in a container and forward port 80
 # username: icingaadmin password: icinga
-> docker run --name icinga -d -p 80:80 ghcr.io/t-systems-mms/icinga2:master
+> docker run --name icinga -d -p 80:80 ghcr.io/telekom-mms/icinga2:master
 
 
 # run ansible-test

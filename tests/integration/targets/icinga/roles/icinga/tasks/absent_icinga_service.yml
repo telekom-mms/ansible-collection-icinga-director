@@ -1,7 +1,7 @@
 ---
 - name: Create service
   tags: service
-  t_systems_mms.icinga_director.icinga_service:
+  telekom_mms.icinga_director.icinga_service:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -17,7 +17,7 @@
       procs_warning: '1:'
 - name: Update service
   tags: service
-  t_systems_mms.icinga_director.icinga_service:
+  telekom_mms.icinga_director.icinga_service:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -29,7 +29,7 @@
     notes_url: "'http://url1' 'http://url2'"
     append: true
 - name: Create serviceset service
-  t_systems_mms.icinga_director.icinga_service:
+  telekom_mms.icinga_director.icinga_service:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

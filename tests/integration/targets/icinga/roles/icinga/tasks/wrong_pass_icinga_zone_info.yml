@@ -1,6 +1,6 @@
 ---
 - name: Query a zone in icinga
-  t_systems_mms.icinga_director.icinga_zone_info:
+  telekom_mms.icinga_director.icinga_zone_info:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong

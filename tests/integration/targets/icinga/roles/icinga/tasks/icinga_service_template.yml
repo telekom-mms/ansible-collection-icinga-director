@@ -1,6 +1,6 @@
 ---
 - name: Create servicetemplate
-  t_systems_mms.icinga_director.icinga_service_template:
+  telekom_mms.icinga_director.icinga_service_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -17,7 +17,7 @@
       procs_critical: '1:'
       procs_warning: '1:'
 - name: Update servicetemplate
-  t_systems_mms.icinga_director.icinga_service_template:
+  telekom_mms.icinga_director.icinga_service_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -27,7 +27,7 @@
     notes_url: "'http://url1' 'http://url2'"
     append: true
 - name: Create servicetemplate with event command
-  t_systems_mms.icinga_director.icinga_service_template:
+  telekom_mms.icinga_director.icinga_service_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

@@ -1,6 +1,6 @@
 ---
 - name: Create servicegroup
-  t_systems_mms.icinga_director.icinga_servicegroup:
+  telekom_mms.icinga_director.icinga_servicegroup:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -8,7 +8,7 @@
     object_name: fooservicegroup
     assign_filter: 'host.name="foo"'
 - name: Update servicegroup
-  t_systems_mms.icinga_director.icinga_servicegroup:
+  telekom_mms.icinga_director.icinga_servicegroup:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

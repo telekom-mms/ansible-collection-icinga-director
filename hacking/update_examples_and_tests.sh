@@ -6,7 +6,7 @@ dir_path=$(dirname "$full_path")
 for module in "$dir_path"/../plugins/modules/*.py; do
 
     module_name="$(basename "${module}" .py)"
-    fqcn_name="t_systems_mms.icinga_director.$(basename "${module}" .py)"
+    fqcn_name="telekom_mms.icinga_director.$(basename "${module}" .py)"
 
     if [[ $module_name == "icinga_deploy" ]]; then
       continue
@@ -102,7 +102,7 @@ for module in "$dir_path"/../plugins/modules/*.py; do
         yq w -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" "(name==*).\"${fqcn_name}\".state" "absent"
 
         # this deletes imports and command from the tests, because they aren't necessary to delete an object
-        # regression test for https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues/44
+        # regression test for https://github.com/telekom-mms/ansible-collection-icinga-director/issues/44
         yq d -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" "(name==*).\"${fqcn_name}\".imports"
         yq d -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" "(name==*).\"${fqcn_name}\".command"
 

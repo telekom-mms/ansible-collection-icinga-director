@@ -1,6 +1,6 @@
 ---
 - name: Create command
-  t_systems_mms.icinga_director.icinga_command:
+  telekom_mms.icinga_director.icinga_command:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -62,7 +62,7 @@
       snmpv3_priv_key: privkey
       snmpv3_user: user
 - name: Update command
-  t_systems_mms.icinga_director.icinga_command:
+  telekom_mms.icinga_director.icinga_command:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -71,7 +71,7 @@
     timeout: "1m"
     append: true
 - name: Create event command
-  t_systems_mms.icinga_director.icinga_command:
+  telekom_mms.icinga_director.icinga_command:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

@@ -8,7 +8,7 @@ on:
       - master
 
 env:
-  NAMESPACE: t_systems_mms
+  NAMESPACE: telekom_mms
   COLLECTION_NAME: icinga_director
   ANSIBLE_COLLECTIONS_PATHS: ./
 
@@ -49,8 +49,8 @@ jobs:
           commit-message: 'update documentation'
           force-add: 'true'
           files: docs/
-          name: T-Systems MMS
-          email: frage@t-systems-mms.com
+          name: Telekom MMS GmbH
+          email: mms@telekom.de
 
   generate_changelog:
     runs-on: ubuntu-latest
@@ -104,8 +104,8 @@ jobs:
           commit-message: 'update changelog'
           force-add: 'true'
           files: CHANGELOG.rst changelogs/
-          name: T-Systems MMS
-          email: frage@t-systems-mms.com
+          name: Telekom MMS GmbH
+          email: mms@telekom.de
           rebase: true
 
       # do a second checkout to prevent race situation

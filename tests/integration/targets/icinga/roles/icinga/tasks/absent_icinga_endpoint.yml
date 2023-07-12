@@ -1,6 +1,6 @@
 ---
 - name: Create an endpoint in icinga
-  t_systems_mms.icinga_director.icinga_endpoint:
+  telekom_mms.icinga_director.icinga_endpoint:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -9,7 +9,7 @@
     host: "127.0.0.1"
     zone: "foozone"
 - name: Update an endpoint in icinga
-  t_systems_mms.icinga_director.icinga_endpoint:
+  telekom_mms.icinga_director.icinga_endpoint:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

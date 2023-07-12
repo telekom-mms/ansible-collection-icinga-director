@@ -30,7 +30,7 @@ options:
     plugin:
         description: Name of the plugin
         required: true
-        choices: ['t_systems_mms.icinga_director.icinga_director_inventory']
+        choices: ['telekom_mms.icinga_director.icinga_director_inventory']
     url:
         description: Icinga URL to connect to
         required: true
@@ -40,7 +40,7 @@ extends_documentation_fragment:
 """
 
 EXAMPLES = r"""
-plugin: t_systems_mms.icinga_director.icinga_director_inventory
+plugin: telekom_mms.icinga_director.icinga_director_inventory
 url: 'https://example.com'
 url_username: foo
 url_password: bar
@@ -70,7 +70,7 @@ import json
 
 
 class InventoryModule(BaseInventoryPlugin, Constructable):
-    NAME = "t_systems_mms.icinga_director.icinga_director_inventory"
+    NAME = "telekom_mms.icinga_director.icinga_director_inventory"
 
     def call_url(self, url, url_username, url_password, url_path):
         """
