@@ -1,6 +1,6 @@
 ---
 - name: create icinga_scheduled_downtime
-  t_systems_mms.icinga_director.icinga_scheduled_downtime:
+  telekom_mms.icinga_director.icinga_scheduled_downtime:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
@@ -17,7 +17,7 @@
     ranges:
       "tuesday": "00:00-24:00"
 - name: create icinga_scheduled_downtime2
-  t_systems_mms.icinga_director.icinga_scheduled_downtime:
+  telekom_mms.icinga_director.icinga_scheduled_downtime:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
@@ -34,7 +34,7 @@
     ranges:
       "tuesday": "00:00-24:00"
 - name: update icinga_scheduled_downtime2
-  t_systems_mms.icinga_director.icinga_scheduled_downtime:
+  telekom_mms.icinga_director.icinga_scheduled_downtime:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"

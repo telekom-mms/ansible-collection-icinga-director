@@ -1,7 +1,7 @@
 # Icinga Director Collection for Ansible
 
-[![ci-ansible-test](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/workflows/ansible-test/badge.svg)](https://github.com/T-Systems-MMS/ansible-collection-icinga-director/actions?query=workflow%3Aansible-test)
-[![codecov](https://codecov.io/gh/T-Systems-MMS/ansible-collection-icinga-director/branch/master/graph/badge.svg)](https://codecov.io/gh/T-Systems-MMS/ansible-collection-icinga-director)
+[![ci-ansible-test](https://github.com/telekom-mms/ansible-collection-icinga-director/workflows/ansible-test/badge.svg)](https://github.com/telekom-mms/ansible-collection-icinga-director/actions?query=workflow%3Aansible-test)
+[![codecov](https://codecov.io/gh/telekom-mms/ansible-collection-icinga-director/branch/master/graph/badge.svg)](https://codecov.io/gh/telekom-mms/ansible-collection-icinga-director)
 
 This Ansible collection contains:
 
@@ -43,7 +43,7 @@ If you use Ansible >=3.0.0, this collection is included in Ansible.
 If you use an older version, you can install it with Ansible Galaxy:
 
 ```
-ansible-galaxy collection install t_systems_mms.icinga_director
+ansible-galaxy collection install telekom_mms.icinga_director
 ```
 
 Alternatively put the collection into a `requirements.yml`-file:
@@ -51,27 +51,27 @@ Alternatively put the collection into a `requirements.yml`-file:
 ```
 ---
 collections:
-- t_systems_mms.icinga_director
+- telekom_mms.icinga_director
 ```
 
 ## Documentation
 
 Our modules include documentation.
 
-You can find the complete documentation for the modules in the [docs-folder](docs) or in the [Ansible documentation](<https://docs.ansible.com/ansible/latest/collections/t_systems_mms/icinga_director/index.html#plugins-in-t-systems-mms-icinga-director>).
+You can find the complete documentation for the modules in the [docs-folder](docs) or in the [Ansible documentation](<https://docs.ansible.com/ansible/latest/collections/telekom_mms/icinga_director/index.html#plugins-in-telekom-mms-icinga-director>).
 
 To display it on the command-line you can use the `ansible-doc` command.
 
 For example, to see the documentation for the module `icinga_host` run the following command on the cli:
 
 ```
-ansible-doc t_systems_mms.icinga_director.icinga_host
+ansible-doc telekom_mms.icinga_director.icinga_host
 ```
 
 To see the documentation for the inventory plugin, run:
 
 ```
-ansible-doc -t inventory t_systems_mms.icinga_director.icinga_director_inventory
+ansible-doc -t inventory telekom_mms.icinga_director.icinga_director_inventory
 ```
 
 ## Examples using the modules
@@ -81,10 +81,10 @@ See the `examples` directory for a complete list of examples.
 ```
 - hosts: localhost
   collections:
-    - t_systems_mms.icinga_director
+    - telekom_mms.icinga_director
   tasks:
     - name: create a host in icinga
-      t_systems_mms.icinga_director.icinga_host:
+      telekom_mms.icinga_director.icinga_host:
         state: present
         url: "https://example.com"
         url_username: "{{ icinga_user }}"
@@ -102,7 +102,7 @@ See the `examples` directory for a complete list of examples.
 
 ```
 - name: Query a service apply rule in icinga
-  t_systems_mms.icinga_director.icinga_service_apply_info:
+  telekom_mms.icinga_director.icinga_service_apply_info:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
@@ -121,7 +121,7 @@ Create a file that ends with `icinga_director_inventory.yaml`, for example `inve
 The content should look like this:
 
 ```
-plugin: t_systems_mms.icinga_director.icinga_director_inventory
+plugin: telekom_mms.icinga_director.icinga_director_inventory
 url: "https://example.com"
 url_username: foo
 url_password: bar
@@ -142,19 +142,19 @@ With ansible-core >= 2.12 it is possible to specify defaults parameters for all 
 - hosts: localhost
 
   module_defaults:
-    group/t_systems_mms.icinga_director.icinga:
+    group/telekom_mms.icinga_director.icinga:
       url: "https://example.com"
       url_username: foo
       url_password: bar
 
   tasks:
     - name: Create host
-      t_systems_mms.icinga_director.icinga_host:
+      telekom_mms.icinga_director.icinga_host:
         object_name: myhost
         address: 172.0.0.1
 
     - name: Create command
-      t_systems_mms.icinga_director.icinga_command:
+      telekom_mms.icinga_director.icinga_command:
         object_name: my-command
         command: my-command.sh
 ```

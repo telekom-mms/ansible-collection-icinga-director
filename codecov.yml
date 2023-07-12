@@ -1,6 +1,6 @@
 ---
 fixes:
-  - "ansible_collections/t_systems_mms/icinga_director/::"
+  - "ansible_collections/telekom_mms/icinga_director/::"
 
 comment:
   require_changes: true  # if true: only post the comment if coverage changes

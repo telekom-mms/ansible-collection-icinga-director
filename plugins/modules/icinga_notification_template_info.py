@@ -30,7 +30,7 @@ description:
 author: Martin Schurz (@schurzi)
 extends_documentation_fragment:
   - ansible.builtin.url
-  - t_systems_mms.icinga_director.common_options
+  - telekom_mms.icinga_director.common_options
 version_added: '1.13.0'
 notes:
   - This module supports check mode.
@@ -54,7 +54,7 @@ options:
 
 EXAMPLES = """
 - name: Query a notification template in icinga
-  t_systems_mms.icinga_director.icinga_notification_template_info:
+  telekom_mms.icinga_director.icinga_notification_template_info:
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
@@ -73,7 +73,7 @@ objects:
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import url_argument_spec
-from ansible_collections.t_systems_mms.icinga_director.plugins.module_utils.icinga import (
+from ansible_collections.telekom_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
 

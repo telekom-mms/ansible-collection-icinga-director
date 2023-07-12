@@ -1,10 +1,10 @@
-namespace: t_systems_mms
+namespace: telekom_mms
 name: icinga_director
 version: 1.33.1
 readme: README.md
 authors:
-  - Sebastian Gumprich <sebastian.gumprich@t-systems.com>
-  - Lars Krahl <lars.krahl@t-systems.com>
+  - Sebastian Gumprich <sebastian.gumprich@telekom.de>
+  - Lars Krahl <lars.krahl@telekom.de>
 description: >-
   This collection contains Ansible modules to change objects in Icinga 2 using the director API.
 license:
@@ -14,10 +14,10 @@ tags:
   - icinga
   - monitoring
 dependencies: {}
-repository: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
-documentation: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
-homepage: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director'
-issues: 'https://github.com/T-Systems-MMS/ansible-collection-icinga-director/issues'
+repository: 'https://github.com/telekom-mms/ansible-collection-icinga-director'
+documentation: 'https://github.com/telekom-mms/ansible-collection-icinga-director'
+homepage: 'https://github.com/telekom-mms/ansible-collection-icinga-director'
+issues: 'https://github.com/telekom-mms/ansible-collection-icinga-director/issues'
 build_ignore:
   - vsc-snippets
   - codecov.yml

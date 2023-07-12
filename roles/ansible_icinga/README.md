@@ -9,8 +9,8 @@ This role is used to configure an Icinga Instance over its Icinga Director.
 ```bash
 ---
 collections:
-  - name: t_systems_mms.icinga_director
-    src: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
+  - name: telekom_mms.icinga_director
+    src: https://github.com/telekom_mms/ansible-collection-icinga-director
     version: 1.2.2
 ```
 
@@ -23,7 +23,7 @@ ansible-galaxy collection install -r requirements.yml -p collections/
 ## Dependencies
 
 collections:
-t_systems_mms.icinga_director >= 1.2.2
+telekom_mms.icinga_director >= 1.2.2
 
 ## Role Variables
 
@@ -216,7 +216,7 @@ t_systems_mms.icinga_director >= 1.2.2
 - hosts: localhost
   gather_facts: false
   collections:
-  - t_systems_mms.icinga_director
+  - telekom_mms.icinga_director
   roles:
     - ansible_icinga
   vars:

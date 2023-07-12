@@ -1,6 +1,6 @@
 ---
 - name: Create host template
-  t_systems_mms.icinga_director.icinga_host_template:
+  telekom_mms.icinga_director.icinga_host_template:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
@@ -33,7 +33,7 @@
     vars:
       dnscheck: "no"
 - name: Update host template
-  t_systems_mms.icinga_director.icinga_host_template:
+  telekom_mms.icinga_director.icinga_host_template:
     state: absent
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

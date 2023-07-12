@@ -8,7 +8,7 @@ ansible-playbook playbooks/teardown.yml -e "@../../integration_config.yml" "$@"
 # ensure test config is empty
 ansible-playbook playbooks/empty_inventory_config.yml -e "@../../integration_config.yml" "$@"
 
-export ANSIBLE_INVENTORY_ENABLED="t_systems_mms.icinga_director.icinga_director_inventory"
+export ANSIBLE_INVENTORY_ENABLED="telekom_mms.icinga_director.icinga_director_inventory"
 
 # test with default inventory file
 ansible-playbook playbooks/test_invalid_inventory_config.yml -e "@../../integration_config.yml" "$@"

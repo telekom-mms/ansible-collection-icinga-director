@@ -5,4 +5,4 @@
     - include_role:
         name: tests/integration/targets/icinga/roles/icinga
   collections:
-    - t_systems_mms.icinga_director
+    - telekom_mms.icinga_director

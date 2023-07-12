@@ -1,6 +1,6 @@
 ---
 - name: Create servicegroup
-  t_systems_mms.icinga_director.icinga_servicegroup:
+  telekom_mms.icinga_director.icinga_servicegroup:
     state: present
     url: http://nonexistent
     url_username: "{{ icinga_user }}"
@@ -15,7 +15,7 @@
       # yamllint disable-line rule:line-length
       - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
 - name: Update servicegroup
-  t_systems_mms.icinga_director.icinga_servicegroup:
+  telekom_mms.icinga_director.icinga_servicegroup:
     state: present
     url: http://nonexistent
     url_username: "{{ icinga_user }}"

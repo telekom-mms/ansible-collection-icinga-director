@@ -28,6 +28,6 @@ sections:
     - Bugfixes
   - - known_issues
     - Known Issues
-title: T_Systems_Mms.Icinga_Director
+title: telekom_mms.icinga_director
 trivial_section_name: trivial
 use_fqcn: true
