@@ -259,3 +259,14 @@ releases:
       trivial:
         - run CI-tests only once peer week (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/215)
     release_date: '2023-06-09'
+  2.0.0:
+    changes:
+      deprecated_features:
+        - All modules and plugins are moved to the new namespace telekom_mms. Please update your code accordingly.
+    release_date: '2023-07-12'
+  2.0.1:
+    changes:
+      trivial:
+        - All modules and plugins are moved to the new namespace telekom_mms. Please update your code accordingly.
+        - Add deprecations in the modules themselves, too.
+    release_date: '2023-07-20'
