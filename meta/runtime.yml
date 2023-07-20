@@ -45,6 +45,11 @@ action_groups:
     - icinga_zone_info
 
 plugin_routing:
+  inventory:
+    icinga_director_inventory:
+      redirect: telekom_mms.icinga_director.icinga_director_inventory
+      deprecation:
+        warning_text: Use telekom_mms.icinga_director.icinga_director_inventory instead
   modules:
     icinga_command:
       redirect: telekom_mms.icinga_director.icinga_command
