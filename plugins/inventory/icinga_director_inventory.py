@@ -27,13 +27,49 @@ description: Returns Ansible inventory from Icinga
 author:
 - Sebastian Gumprich (@rndmh3ro)
 options:
-    plugin:
-        description: Name of the plugin
-        required: true
-        choices: ['telekom_mms.icinga_director.icinga_director_inventory']
-    url:
-        description: Icinga URL to connect to
-        required: true
+  plugin:
+    description: Name of the plugin
+    required: true
+    choices: ['telekom_mms.icinga_director.icinga_director_inventory']
+  url:
+    description: Icinga URL to connect to
+    required: true
+  url_username:
+    description:
+      - The username for use in HTTP basic authentication.
+      - This parameter can be used without `url_password` for sites that allow empty passwords
+  url_password:
+    description:
+      - The password for use in HTTP basic authentication.
+      - If the `url_username` parameter is not specified, the `url_password` parameter will not be used.
+  force_basic_auth:
+    description:
+      - Credentials specified with `url_username` and `url_password` should be passed in HTTP Header.
+  client_cert:
+    description:
+      - PEM formatted certificate chain file to be used for SSL client authentication.
+      - This file can also include the key as well, and if the key is included, `client_key` is not required.
+  client_key:
+    description:
+      - PEM formatted file that contains your private key to be used for SSL client authentication.
+      - If `client_cert` contains both the certificate and key, this option is not required.
+  http_agent:
+    description:
+      - Header to identify as, generally appears in web server logs.
+  use_proxy:
+    description:
+      - If `no`, it will not use a proxy, even if one is defined in an environment variable on the target hosts.
+  validate_certs:
+    description:
+      - If `no`, SSL certificates will not be validated.
+      - This should only be used on personally controlled sites using self-signed certificates.
+  use_gssapi:
+    description:
+      - Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.
+      - Requires the Python library `gssapi <https://github.com/pythongssapi/python-gssapi>` to be installed.
+      - Credentials for GSSAPI can be specified with `url_username`/ `url_password`
+      - or with the GSSAPI env var `KRB5CCNAME` that specified a custom Kerberos credential cache.
+      - NTLM authentication is `not` supported even if the GSSAPI mech for NTLM has been installed.
 extends_documentation_fragment:
   - ansible.builtin.url
   - constructed
@@ -72,7 +108,10 @@ import json
 class InventoryModule(BaseInventoryPlugin, Constructable):
     NAME = "telekom_mms.icinga_director.icinga_director_inventory"
 
-    def call_url(self, url, url_username, url_password, url_path):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def call_url(self, url_path):
         """
         Execute the request against the API with the provided arguments and return json.
         """
@@ -81,12 +120,18 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
             "Accept": "application/json",
             "X-HTTP-Method-Override": "GET",
         }
-        url = url + url_path
+        url = self.url + url_path
         rsp = open_url(
             url,
             url_username=self.url_username,
             url_password=self.url_password,
             force_basic_auth=self.force_basic_auth,
+            client_cert=self.client_cert,
+            client_key=self.client_key,
+            http_agent=self.http_agent,
+            use_proxy=self.use_proxy,
+            validate_certs=self.validate_certs,
+            use_gssapi=self.use_gssapi,
             headers=headers,
         )
         content = ""
@@ -110,9 +155,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
 
         for hostgroup in hostgroups:
             members = self.call_url(
-                self.url,
-                self.url_username,
-                self.url_password,
                 url_path="/monitoring/list/hosts"
                 + "?hostgroup_name="
                 + hostgroup,
@@ -122,9 +164,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
 
     def set_hostgroups(self):
         hostgroup_list = self.call_url(
-            self.url,
-            self.url_username,
-            self.url_password,
             url_path="/director/hostgroups",
         )
 
@@ -150,13 +189,17 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
         self.url_username = self.get_option("url_username")
         self.url_password = self.get_option("url_password")
         self.force_basic_auth = self.get_option("force_basic_auth")
-        strict = self.get_option("strict")
-        compose = self.get_option("compose")
+        self.client_cert = self.get_option("client_cert")
+        self.client_key = self.get_option("client_key")
+        self.http_agent = self.get_option("http_agent")
+        self.use_proxy = self.get_option("use_proxy")
+        self.validate_certs = self.get_option("validate_certs")
+        self.force_basic_auth = self.get_option("force_basic_auth")
+        self.use_gssapi = self.get_option("use_gssapi")
+        self.strict = self.get_option("strict")
+        self.compose = self.get_option("compose")
 
         host_list = self.call_url(
-            self.url,
-            self.url_username,
-            self.url_password,
             url_path="/director/hosts" + "?resolved",
         )
 
@@ -171,10 +214,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
 
             # Add variables created by the user's Jinja2 expressions to the host
             self._set_composite_vars(
-                compose,
+                self.compose,
                 host_vars,
                 host["object_name"],
-                strict=strict,
+                strict=self.strict,
             )
 
             # The following two methods combine the provided variables dictionary with the latest host variables
@@ -183,13 +226,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
                 self.get_option("groups"),
                 host_vars,
                 host["object_name"],
-                strict=strict,
+                strict=self.strict,
             )
             self._add_host_to_keyed_groups(
                 self.get_option("keyed_groups"),
                 host_vars,
                 host["object_name"],
-                strict=strict,
+                strict=self.strict,
             )
 
         self.add_hosts_to_groups()
