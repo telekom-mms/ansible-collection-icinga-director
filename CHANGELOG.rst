@@ -5,6 +5,20 @@ T_Systems_Mms.Icinga_Director Release Notes
 .. contents:: Topics
 
 
+v2.0.1
+======
+
+v2.0.0
+======
+
+Deprecated Features
+-------------------
+
+- All modules and plugins are moved to the new namespace telekom_mms. Please update your code accordingly.
+
+v1.33.3
+=======
+
 v1.33.2
 =======
 
