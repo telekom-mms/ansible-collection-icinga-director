@@ -50,205 +50,205 @@ plugin_routing:
       redirect: telekom_mms.icinga_director.icinga_director_inventory
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_director_inventory instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
   modules:
     icinga_command:
       redirect: telekom_mms.icinga_director.icinga_command
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_command instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_command_info:
       redirect: telekom_mms.icinga_director.icinga_command_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_command_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_command_template:
       redirect: telekom_mms.icinga_director.icinga_command_template
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_command_template instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_command_template_info:
       redirect: telekom_mms.icinga_director.icinga_command_template_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_command_template_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_deploy:
       redirect: telekom_mms.icinga_director.icinga_deploy
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_deploy instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_deploy_info:
       redirect: telekom_mms.icinga_director.icinga_deploy_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_deploy_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_endpoint:
       redirect: telekom_mms.icinga_director.icinga_endpoint
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_endpoint instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_endpoint_info:
       redirect: telekom_mms.icinga_director.icinga_endpoint_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_endpoint_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_host:
       redirect: telekom_mms.icinga_director.icinga_host
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_host instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_host_info:
       redirect: telekom_mms.icinga_director.icinga_host_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_host_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_host_template:
       redirect: telekom_mms.icinga_director.icinga_host_template
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_host_template instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_host_template_info:
       redirect: telekom_mms.icinga_director.icinga_host_template_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_host_template_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_hostgroup:
       redirect: telekom_mms.icinga_director.icinga_hostgroup
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_hostgroup instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_hostgroup_info:
       redirect: telekom_mms.icinga_director.icinga_hostgroup_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_hostgroup_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_notification:
       redirect: telekom_mms.icinga_director.icinga_notification
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_notification instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_notification_info:
       redirect: telekom_mms.icinga_director.icinga_notification_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_notification_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_notification_template:
       redirect: telekom_mms.icinga_director.icinga_notification_template
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_notification_template instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_notification_template_info:
       redirect: telekom_mms.icinga_director.icinga_notification_template_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_notification_template_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_scheduled_downtime:
       redirect: telekom_mms.icinga_director.icinga_scheduled_downtime
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_scheduled_downtime instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_service:
       redirect: telekom_mms.icinga_director.icinga_service
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_service instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_service_apply:
       redirect: telekom_mms.icinga_director.icinga_service_apply
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_service_apply instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_service_apply_info:
       redirect: telekom_mms.icinga_director.icinga_service_apply_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_service_apply_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_service_info:
       redirect: telekom_mms.icinga_director.icinga_service_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_service_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_service_template:
       redirect: telekom_mms.icinga_director.icinga_service_template
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_service_template instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_service_template_info:
       redirect: telekom_mms.icinga_director.icinga_service_template_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_service_template_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_servicegroup:
       redirect: telekom_mms.icinga_director.icinga_servicegroup
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_servicegroup instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_servicegroup_info:
       redirect: telekom_mms.icinga_director.icinga_servicegroup_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_servicegroup_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_serviceset:
       redirect: telekom_mms.icinga_director.icinga_serviceset
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_serviceset instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_timeperiod:
       redirect: telekom_mms.icinga_director.icinga_timeperiod
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_timeperiod instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_timeperiod_info:
       redirect: telekom_mms.icinga_director.icinga_timeperiod_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_timeperiod_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_timeperiod_template:
       redirect: telekom_mms.icinga_director.icinga_timeperiod_template
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_timeperiod_template instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_timeperiod_template_info:
       redirect: telekom_mms.icinga_director.icinga_timeperiod_template_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_timeperiod_template_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_user:
       redirect: telekom_mms.icinga_director.icinga_user
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_user instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_user_group:
       redirect: telekom_mms.icinga_director.icinga_user_group
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_user_group instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_user_group_info:
       redirect: telekom_mms.icinga_director.icinga_user_group_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_user_group_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_user_info:
       redirect: telekom_mms.icinga_director.icinga_user_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_user_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_user_template:
       redirect: telekom_mms.icinga_director.icinga_user_template
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_user_template instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_user_template_info:
       redirect: telekom_mms.icinga_director.icinga_user_template_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_user_template_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_zone:
       redirect: telekom_mms.icinga_director.icinga_zone
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_zone instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0
     icinga_zone_info:
       redirect: telekom_mms.icinga_director.icinga_zone_info
       deprecation:
         warning_text: Use telekom_mms.icinga_director.icinga_zone_info instead
-        removal_version: 2.0.0
+        removal_version: 3.0.0

@@ -36,7 +36,7 @@ notes:
   - This module supports check mode.
 deprecated:
   why: moved collection to new organisation telekom_mms
-  removed_in: 2.0.0
+  removed_in: 3.0.0
   alternative: telekom_mms.icinga_director.icinga_command_info
 options:
   query:
