@@ -8,6 +8,11 @@ telekom_mms.icinga_director Release Notes
 v1.33.3
 =======
 
+Minor Changes
+-------------
+
+- add command_endpoint var for service templates (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/222)
+
 v1.33.2
 =======
 
