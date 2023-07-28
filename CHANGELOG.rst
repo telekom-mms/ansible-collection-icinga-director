@@ -5,6 +5,14 @@ telekom_mms.icinga_director Release Notes
 .. contents:: Topics
 
 
+v1.34.1
+=======
+
+Bugfixes
+--------
+
+- add more http-options for inventory module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/221)
+
 v1.33.3
 =======
 

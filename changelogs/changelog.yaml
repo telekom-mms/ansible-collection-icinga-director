@@ -265,3 +265,8 @@ releases:
       minor_changes:
         - add command_endpoint var for service templates (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/222)
     release_date: '2023-07-14'
+  1.34.1:
+    changes:
+      bugfixes:
+        - add more http-options for inventory module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/221)
+    release_date: '2023-07-28'
