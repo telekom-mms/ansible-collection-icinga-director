@@ -7,68 +7,6 @@ argument_specs:
         The main entry point includes all tasks for objects that can be created
         with the role.
     options:
-      icinga_url:
-        description:
-          - >-
-            HTTP, HTTPS, or FTP URL in the form
-            (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
-        type: str
-      icinga_url_password:
-        description:
-          - >-
-            The password for use in HTTP basic authentication. If the
-            `url_username' parameter is not specified, the `url_password'
-            parameter will not be used.
-        type: str
-      icinga_url_username:
-        description:
-          - >-
-            The username for use in HTTP basic authentication. This parameter
-            can be used without `url_password' for sites that allow empty
-            passwords
-        type: str
-      icinga_use_gssapi:
-        description:
-          - >-
-            Use GSSAPI to perform the authentication, typically this is for
-            Kerberos or Kerberos through Negotiate authentication. Requires the
-            Python library gssapi <https://github.com/pythongssapi/python-
-            gssapi> to be installed. Credentials for GSSAPI can be specified
-            with `url_username'/`url_password' or with the GSSAPI env var
-            `KRB5CCNAME' that specified a custom Kerberos credential cache. NTLM
-            authentication is `not' supported even if the GSSAPI mech for NTLM
-            has been installed.
-        default: false
-        type: bool
-      icinga_use_proxy:
-        description:
-          - >-
-            If `no', it will not use a proxy, even if one is defined in an
-            environment variable on the target hosts.
-        default: true
-        type: bool
-      icinga_validate_certs:
-        description:
-          - >-
-            If `no', SSL certificates will not be validated. icinga_This should
-            only be used on personally controlled sites using selfigned
-            certificates.
-        default: true
-        type: bool
-      icinga_client_cert:
-        description:
-          - >-
-            PEM formatted certificate chain file to be used for SSL client
-            authentication. This file can also include the key as well, and if
-            the key is included, `client_key' is not required.
-        type: path
-      icinga_client_key:
-        description:
-          - >-
-            PEM formatted file that contains your private key to be used for SSL
-            client authentication. If `client_cert' contains both the
-            certificate and key, this option is not required.
-        type: path
       icinga_timeperiods:
         description:
           - A list of Icinga timeperiods to configure
@@ -83,11 +21,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Name of the time period.
-            aliases:
-              - name
             type: str
           display_name:
             description:
@@ -118,11 +54,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Name of the user template.
-            aliases:
-              - name
             required: true
             type: str
           imports:
@@ -157,11 +91,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Name of the user.
-            aliases:
-              - name
             required: true
             type: str
           display_name:
@@ -223,7 +155,7 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Icinga object name for this endpoint.
               - >-
@@ -236,8 +168,6 @@ argument_specs:
                 For example "generic-endpoint" is ugly, "Standard Linux Server"
                 is easier to understand.
             required: true
-            aliases:
-              - name
             type: str
           host:
             description:
@@ -276,7 +206,7 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Icinga object name for this zone.
               - >-
@@ -288,8 +218,6 @@ argument_specs:
               - >-
                 For example "generic-zone" is ugly, "Standard Linux Server" is
                 easier to understand.
-            aliases:
-              - name
             required: true
             type: str
           is_global:
@@ -317,11 +245,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Icinga object name for this hostgroup.
-            aliases:
-              - name
             required: true
             type: str
           display_name:
@@ -350,7 +276,7 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Icinga object name for this host template.
               - >-
@@ -362,8 +288,6 @@ argument_specs:
               - >-
                 For example "generic-host" is ugly, "Standard Linux Server" is
                 easier to understand.
-            aliases:
-              - name
             required: true
             type: str
           display_name:
@@ -496,7 +420,7 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Icinga object name for this host.
               - >-
@@ -508,8 +432,6 @@ argument_specs:
               - >-
                 For example "generic-host" is ugly, "Standard Linux Server" is
                 easier to understand.
-            aliases:
-              - name
             required: true
             type: str
           display_name:
@@ -562,6 +484,7 @@ argument_specs:
               - Choose a Host Template. Required when state is C(present).
             type: list
             elements: str
+            required: true
           zone:
             description:
               - Set the zone.
@@ -671,11 +594,9 @@ argument_specs:
             choices:
               - true
               - false
-          object_name:
+          name:
             description:
               - Name of the command template.
-            aliases:
-              - name
             required: true
             type: str
           imports:
@@ -768,11 +689,9 @@ argument_specs:
             choices:
               - true
               - false
-          object_name:
+          name:
             description:
               - Name of the command.
-            aliases:
-              - name
             required: true
             type: str
           imports:
@@ -821,11 +740,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Name of the service.
-            aliases:
-              - name
             required: true
             type: str
           check_command:
@@ -957,11 +874,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Name of the service template.
-            aliases:
-              - name
             required: true
             type: str
           check_command:
@@ -1097,11 +1012,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Name for the Icinga service apply rule.
-            aliases:
-              - name
             required: true
             type: str
           display_name:
@@ -1239,11 +1152,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Name for the Icinga servicegroup.
-            aliases:
-              - name
             required: true
             type: str
           display_name:
@@ -1272,11 +1183,9 @@ argument_specs:
               - absent
             default: present
             type: str
-          object_name:
+          name:
             description:
               - Name of the notification.
-            aliases:
-              - name
             required: true
             type: str
           notification_interval:
@@ -1345,9 +1254,7 @@ argument_specs:
               - >-
                 The name of a time period which determines when this
                 notification should be triggered.
-            type: str
-            aliases:
-              - period
+            type: strod
             version_added: 1.15.0
           times_begin:
             description:
@@ -1367,3 +1274,72 @@ argument_specs:
             type: list
             elements: str
             version_added: 1.16.0
+  icinga_service_apply:
+    short_description: Configure an Icinga instance with Icinga Director
+    description:
+      - >-
+        The main entry point includes all tasks for objects that can be created
+        with the role.
+    options:
+      icinga_url:
+        description:
+          - >-
+            HTTP, HTTPS, or FTP URL in the form
+            (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
+        type: str
+      icinga_url_password:
+        description:
+          - >-
+            The password for use in HTTP basic authentication. If the
+            `url_username' parameter is not specified, the `url_password'
+            parameter will not be used.
+        type: str
+      icinga_url_username:
+        description:
+          - >-
+            The username for use in HTTP basic authentication. This parameter
+            can be used without `url_password' for sites that allow empty
+            passwords
+        type: str
+      icinga_use_gssapi:
+        description:
+          - >-
+            Use GSSAPI to perform the authentication, typically this is for
+            Kerberos or Kerberos through Negotiate authentication. Requires the
+            Python library gssapi <https://github.com/pythongssapi/python-
+            gssapi> to be installed. Credentials for GSSAPI can be specified
+            with `url_username'/`url_password' or with the GSSAPI env var
+            `KRB5CCNAME' that specified a custom Kerberos credential cache. NTLM
+            authentication is `not' supported even if the GSSAPI mech for NTLM
+            has been installed.
+        default: false
+        type: bool
+      icinga_use_proxy:
+        description:
+          - >-
+            If `no', it will not use a proxy, even if one is defined in an
+            environment variable on the target hosts.
+        default: true
+        type: bool
+      icinga_validate_certs:
+        description:
+          - >-
+            If `no', SSL certificates will not be validated. icinga_This should
+            only be used on personally controlled sites using selfigned
+            certificates.
+        default: true
+        type: bool
+      icinga_client_cert:
+        description:
+          - >-
+            PEM formatted certificate chain file to be used for SSL client
+            authentication. This file can also include the key as well, and if
+            the key is included, `client_key' is not required.
+        type: path
+      icinga_client_key:
+        description:
+          - >-
+            PEM formatted file that contains your private key to be used for SSL
+            client authentication. If `client_cert' contains both the
+            certificate and key, this option is not required.
+        type: path
