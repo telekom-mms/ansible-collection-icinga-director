@@ -26,15 +26,18 @@ concurrency:
 
 jobs:
   sanity:
+    runs-on: >-
+      ${{ contains(fromJson(
+          '["stable-2.9", "stable-2.10", "stable-2.11"]'
+      ), matrix.ansible) && 'ubuntu-20.04' || 'ubuntu-latest' }}
     name: Sanity (Ⓐ${{ matrix.ansible }})
     strategy:
       matrix:
         ansible:
-          - stable-2.12
           - stable-2.13
           - stable-2.14
+          - stable-2.15
           - devel
-    runs-on: ubuntu-20.04
     steps:
       # Run sanity tests inside a Docker container.
       # The docker container has all the pinned dependencies that are
@@ -52,20 +55,78 @@ jobs:
 
 
   integration:
-    runs-on: ubuntu-20.04
+    runs-on: >-
+      ${{ contains(fromJson(
+          '["stable-2.9", "stable-2.10", "stable-2.11"]'
+      ), matrix.ansible) && 'ubuntu-20.04' || 'ubuntu-latest' }}
     name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
     strategy:
       fail-fast: false
       matrix:
         ansible:
-          - stable-2.12
-          - stable-2.13
-          - stable-2.14
           - devel
+        # - milestone
         python:
-          - "3.8"
-          - "3.9"
-          - "3.10"
+          - '2.7'
+          - '3.6'
+          - '3.7'
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+        include:
+          # Add new versions announced in
+          # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
+          # consider dropping testing against EOL versions and versions you don't support.
+          # ansible-core 2.13
+          - ansible: stable-2.13
+            python: '2.7'
+          - ansible: stable-2.13
+            python: '3.5'
+          - ansible: stable-2.13
+            python: '3.6'
+          - ansible: stable-2.13
+            python: '3.7'
+          - ansible: stable-2.13
+            python: '3.8'
+          - ansible: stable-2.13
+            python: '3.9'
+          - ansible: stable-2.13
+            python: '3.10'
+          # ansible-core 2.14
+          - ansible: stable-2.14
+            python: '2.7'
+          - ansible: stable-2.14
+            python: '3.5'
+          - ansible: stable-2.14
+            python: '3.6'
+          - ansible: stable-2.14
+            python: '3.7'
+          - ansible: stable-2.14
+            python: '3.8'
+          - ansible: stable-2.14
+            python: '3.9'
+          - ansible: stable-2.14
+            python: '3.10'
+          - ansible: stable-2.14
+            python: '3.11'
+          # ansible-core 2.15
+          - ansible: stable-2.15
+            python: '2.7'
+          - ansible: stable-2.15
+            python: '3.5'
+          - ansible: stable-2.15
+            python: '3.6'
+          - ansible: stable-2.15
+            python: '3.7'
+          - ansible: stable-2.15
+            python: '3.8'
+          - ansible: stable-2.15
+            python: '3.9'
+          - ansible: stable-2.15
+            python: '3.10'
+          - ansible: stable-2.15
+            python: '3.11'
     services:
       icinga:
         image: ghcr.io/telekom-mms/icinga2:director-1.8.1
