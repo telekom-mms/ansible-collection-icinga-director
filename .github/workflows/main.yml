@@ -26,23 +26,42 @@ concurrency:
 
 jobs:
   sanity:
-    runs-on: >-
-      ${{ contains(fromJson(
-          '["stable-2.9", "stable-2.10", "stable-2.11"]'
-      ), matrix.ansible) && 'ubuntu-20.04' || 'ubuntu-latest' }}
     name: Sanity (Ⓐ${{ matrix.ansible }})
     strategy:
       matrix:
         ansible:
+          # It's important that Sanity is tested against all stable-X.Y branches
+          # Testing against `devel` may fail as new tests are added.
+          # An alternative to `devel` is the `milestone` branch with
+          # gets synchronized with `devel` every few weeks and therefore
+          # tends to be a more stable target. Be aware that it is not updated
+          # around creation of a new stable branch, this might cause a problem
+          # that two different versions of ansible-test use the same sanity test
+          # ignore.txt file.
+          # Add new versions announced in
+          # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
+          # consider dropping testing against EOL versions and versions you don't support.
           - stable-2.13
           - stable-2.14
           - stable-2.15
           - devel
+        # - milestone
+    # Ansible-test on various stable branches does not yet work well with cgroups v2.
+    # Since ubuntu-latest now uses Ubuntu 22.04, we need to fall back to the ubuntu-20.04
+    # image for these stable branches. The list of branches where this is necessary will
+    # shrink over time, check out https://github.com/ansible-collections/news-for-maintainers/issues/28
+    # for the latest list.
+    runs-on: >-
+      ${{ contains(fromJson(
+          '["stable-2.9", "stable-2.10", "stable-2.11"]'
+      ), matrix.ansible) && 'ubuntu-20.04' || 'ubuntu-latest' }}
     steps:
       # Run sanity tests inside a Docker container.
       # The docker container has all the pinned dependencies that are
       # required and all Python versions Ansible supports.
       - name: Perform sanity testing
+        # See the documentation for the following GitHub action on
+        # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
         uses: ansible-community/ansible-test-gh-action@release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
@@ -52,9 +71,17 @@ jobs:
           # test-deps: >-
           #   ansible.netcommon
           #   ansible.utils
-
+          # OPTIONAL If set to true, will test only against changed files,
+          # which should improve CI performance. See limitations on
+          # https://github.com/ansible-community/ansible-test-gh-action#pull-request-change-detection
+          pull-request-change-detection: true
 
   integration:
+    # Ansible-test on various stable branches does not yet work well with cgroups v2.
+    # Since ubuntu-latest now uses Ubuntu 22.04, we need to fall back to the ubuntu-20.04
+    # image for these stable branches. The list of branches where this is necessary will
+    # shrink over time, check out https://github.com/ansible-collections/news-for-maintainers/issues/28
+    # for the latest list.
     runs-on: >-
       ${{ contains(fromJson(
           '["stable-2.9", "stable-2.10", "stable-2.11"]'
@@ -137,6 +164,8 @@ jobs:
           Perform integration testing against
           Ansible version ${{ matrix.ansible }}
           under Python ${{ matrix.python }}
+        # See the documentation for the following GitHub action on
+        # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
         uses: ansible-community/ansible-test-gh-action@v1.14.1
         with:
           ansible-core-version: ${{ matrix.ansible }}
@@ -147,3 +176,7 @@ jobs:
           # OPTIONAL If your integration tests require code
           # from other collections, install them like this
           # test-deps: ansible.netcommon
+          # OPTIONAL If set to true, will test only against changed files,
+          # which should improve CI performance. See limitations on
+          # https://github.com/ansible-community/ansible-test-gh-action#pull-request-change-detection
+          pull-request-change-detection: true
