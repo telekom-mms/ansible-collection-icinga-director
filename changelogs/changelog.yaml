@@ -274,4 +274,5 @@ releases:
     changes:
       trivial:
         - Update test matrix (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/223)
+        - exclude old python versions with ansible devel (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/225)
     release_date: '2023-08-07'
