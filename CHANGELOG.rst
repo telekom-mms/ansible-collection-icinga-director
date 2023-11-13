@@ -5,6 +5,14 @@ telekom_mms.icinga_director Release Notes
 .. contents:: Topics
 
 
+v1.35.0
+=======
+
+Minor Changes
+-------------
+
+- Extended docs and examples for multiple assign_filter conditions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/227)
+
 v1.34.2
 =======
 
