@@ -159,6 +159,22 @@ With ansible-core >= 2.12 it is possible to specify defaults parameters for all 
         command: my-command.sh
 ```
 
+## Examples for defining multiple assign_filter conditions
+
+The Icinga Director API expects multiple conditions for the `assign_filter` in a different format than what is rendered to the configuration files.
+
+Example: An assign condition in the config looking like this:
+
+```
+assign where host.vars.something == "foo" || host.vars.something_else == "bar"
+```
+
+would have to look like this when using the module:
+
+```
+assign_filter: 'host.vars.something="foo"|host.vars.something_else="bar"'
+```
+
 ## Contributing
 
 See [Contributing](CONTRIBUTING.md).
