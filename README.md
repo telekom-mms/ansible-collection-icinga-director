@@ -160,15 +160,19 @@ With ansible-core >= 2.12 it is possible to specify defaults parameters for all 
 ```
 
 ## Examples for defining multiple assign_filter conditions
-The Icinga Director API expects multiple conditions for the `assig_filter` in a different format than what is rendered to the configuration files.
-Example:
-A assign condtition in the config looking like this
+
+The Icinga Director API expects multiple conditions for the `assign_filter` in a different format than what is rendered to the configuration files.
+
+Example: An assign condition in the config looking like this:
+
 ```
 assign where host.vars.something == "foo" || host.vars.something_else == "bar"
 ```
+
 would have to look like this when using the module:
+
 ```
-assign_filter: "host.vars.something=\"foo\"|host.vars.something_else=\"bar\""
+assign_filter: 'host.vars.something="foo"|host.vars.something_else="bar"'
 ```
 
 ## Contributing
