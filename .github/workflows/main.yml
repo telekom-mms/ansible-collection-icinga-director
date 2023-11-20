@@ -161,7 +161,7 @@ jobs:
             python: '3.11'
     services:
       icinga:
-        image: ghcr.io/telekom-mms/icinga2:director-1.8.1
+        image: ghcr.io/telekom-mms/icinga2:director-1.8.1@sha256:bf9205d41607f1641146e870644af0529338d06a9b360737bdf56a3f951cc28b
         ports:
           - 80:80
     steps:
@@ -171,7 +171,7 @@ jobs:
           under Python ${{ matrix.python }}
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
-        uses: ansible-community/ansible-test-gh-action@v1.14.1
+        uses: ansible-community/ansible-test-gh-action@f4523b15a83b7d9eb65d859073ff49ad935a785a # v1.14.1
         with:
           ansible-core-version: ${{ matrix.ansible }}
           # OPTIONAL command to run before invoking `ansible-test integration`
