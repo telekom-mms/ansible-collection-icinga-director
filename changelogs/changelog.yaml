@@ -282,7 +282,7 @@ releases:
       minor_changes:
         - Extended docs and examples for multiple assign_filter conditions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/227)
       trivial:
-        - Update actions/checkout action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/224)
         - Update test matrix (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/223)
         - exclude old python versions with ansible devel (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/225)
+        - Update actions/checkout action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/224)
     release_date: '2023-11-13'
