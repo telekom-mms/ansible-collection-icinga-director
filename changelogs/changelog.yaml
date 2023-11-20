@@ -285,4 +285,6 @@ releases:
         - Update test matrix (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/223)
         - exclude old python versions with ansible devel (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/225)
         - Update actions/checkout action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/224)
+        - use telekom-mms renovate preset (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/229)
+        - Pin dependencies (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/230)
     release_date: '2023-11-13'
