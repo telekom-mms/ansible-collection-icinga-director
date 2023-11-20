@@ -96,24 +96,33 @@ jobs:
       - name: Update Changelog.rst
         run: antsibull-changelog generate -v
 
-      - name: push changelog
+      # the token is needed so the github app can push to the repository
+      # the github app can bypass the branch protection rule (need a PR to merge)
+      # this way it can directly commit to main
+      - name: Obtain a GitHub App Installation Access Token
+        id: githubAppAuth
+        run: |
+          TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_BRANCH_PROTECTION_APP_TOKEN }})"
+          echo "::add-mask::$TOKEN"
+          echo token=${TOKEN} >> $GITHUB_OUTPUT
+
+      - name: update and push due to new release
         uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'master'
-          commit-message: 'update changelog'
+          # use the token obtained in the step before
+          github-token: ${{ steps.githubAppAuth.outputs.token }}
+          push-branch: 'main'
+          commit-message: 'update due to new release'
           force-add: 'true'
           files: CHANGELOG.rst changelogs/
-          name: Telekom MMS GmbH
+          name: Deutsche Telekom MMS
           email: mms@telekom.de
-          rebase: true
 
       # do a second checkout to prevent race situation
       # changelog gets updated but action works on old commit id
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           ref: master
-
 
       # Drafts your next Release notes as Pull Requests are merged into "master"
       - uses: release-drafter/release-drafter@09c613e259eb8d4e7c81c2cb00618eb5fc4575a7 # v5
