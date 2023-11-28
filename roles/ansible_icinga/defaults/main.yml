@@ -20,6 +20,9 @@ icinga_zones: []
 # icinga_hostgroup
 icinga_hostgroups: []
 
+# icinga_user_group
+icinga_user_groups: []
+
 # icinga_host_template
 icinga_host_templates: []
 
