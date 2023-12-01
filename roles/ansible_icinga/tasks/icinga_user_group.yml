@@ -1,0 +1,26 @@
+---
+# user_group.1 = user_group array
+# user_group.0 = icinga_user_group attribute
+- name: icinga_user_group
+  icinga_user_group:
+    url: "{{ icinga_url }}"
+    use_proxy: "{{ icinga_use_proxy | default(omit) }}"
+    validate_certs: "{{ icinga_validate_certs | default(omit) }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    force_basic_auth: "{{ icinga_force_basic_auth | default(omit) }}"
+    client_cert: "{{ icinga_client_cert | default(omit) }}"
+    client_key: "{{ icinga_client_key | default(omit) }}"
+    state: "{{ user_group.0.state | default(omit) }}"
+    object_name: "{{ user_group.1 }}"
+    display_name: "{{ user_group.0.display_name | default(omit) }}"
+    disabled: "{{ user_group.0.disabled | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result is succeeded
+  loop: "{{ icinga_user_groups|subelements('user_group_object') }}"
+  loop_control:
+    loop_var: user_group
+  tags: user_group
+  notify: config_deploy
