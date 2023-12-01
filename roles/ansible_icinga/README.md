@@ -27,187 +27,205 @@ telekom_mms.icinga_director >= 1.2.2
 
 ## Role Variables
 
-| Variable                         | Required | Default                     |
-| -------------------------------- | -------- | --------------------------- |
-| **icinga**                       |
-| url                              | yes      |
-| use_proxy                        | no       |
-| validate_certs                   | no       |
-| url_username                     | yes      |
-| url_password                     | yes      |
-| force_basic_auth                 | no       |
-| client_cert                      | no       |
-| client_key                       | no       |
-| **icinga_timeperiod**            |
-| icinga_timeperiods               | no       | []                          |
-| display_name                     | no       |
-| imports                          | no       |
-| ranges                           | no       |
-| **icinga_user_template**         |
-| icinga_user_templates            | no       | []                          |
-| imports                          | no       |
-| period                           | no       |
-| enable_notifications             | no       |
-| **icinga_user**                  |
-| icinga_users                     | no       | []                          |
-| display_name                     | no       |
-| imports                          | yes      | []                          |
-| pager                            | no       |
-| period                           | no       |
-| disabled                         | no       |
-| email                            | yes      | null                        |
-| **icinga_zone**                  |
-| icinga_zones                     | no       | []                          |
-| is_global                        | no       |
-| parent                           | no       |
-| **icinga_endpoint**              |
-| icinga_endpoints                 | no       | []                          |
-| host                             | no       |
-| port                             | no       |
-| log_duration                     | no       |
-| zone                             | no       |
-| **icinga_hostgroup**             |
-| icinga_hostgroups                | no       | []                          |
-| display_name                     | no       |
-| assign_filter                    | no       | `host.name="hostgroup.1-*"` |
-| **icinga_host_template**         |
-| icinga_host_templates            | no       | []                          |
-| display_name                     | no       |
-| address                          | no       |
-| address6                         | no       |
-| groups                           | no       |
-| check_command                    | no       |
-| check_interval                   | no       |
-| disabled                         | no       |
-| imports                          | no       |
-| zone                             | no       |
-| vars                             | no       |
-| notes                            | no       |
-| notes_url                        | no       |
-| **icinga_host**                  |
-| icinga_hosts                     | no       | []                          |
-| display_name                     | no       |
-| address                          | no       |
-| address6                         | no       |
-| groups                           | no       |
-| disabled                         | no       |
-| imports                          | yes      | []                          |
-| zone                             | no       |
-| vars                             | no       |
-| notes                            | no       |
-| notes_url                        | no       |
-| **icinga_command_template**      |
-| icinga_command_templates         | no       | []                          |
-| display_name                     | no       |
-| command                          | no       |
-| methods_execute                  | yes      | PluginCheck                 |
-| timeout                          | no       |
-| imports                          | no       |
-| disabled                         | no       |
-| zone                             | no       |
-| vars                             | no       |
-| arguments                        | no       |
-| **icinga_command**               |
-| icinga_commands                  | no       | []                          |
-| command_type                     | yes      | PluginCheck                 |
-| disabled                         | yes      | false                       |
-| imports                          | no       |
-| zone                             | no       |
-| vars                             | no       |
-| **icinga_service**               |
-| icinga_services                  | no       | []                          |
-| display_name                     | no       |
-| disabled                         | no       |
-| check_command                    | no       |
-| check_interval                   | no       |
-| check_period                     | no       |
-| check_timeout                    | no       |
-| enable_active_checks             | no       |
-| enable_event_handler             | no       |
-| enable_notifications             | no       |
-| enable_passive_checks            | no       |
-| enable_perfdata                  | no       |
-| groups                           | no       |
-| host                             | yes      |
-| imports                          | no       |
-| max_check_attempts               | no       |
-| notes                            | no       |
-| notes_url                        | no       |
-| retry_interval                   | no       |
-| use_agent                        | no       |
-| vars                             | no       |
-| volatile                         | no       |
-| **icinga_service_template**      |
-| icinga_service_templates         | no       | []                          |
-| display_name                     | no       |
-| disabled                         | no       |
-| check_command                    | no       |
-| check_interval                   | no       |
-| check_period                     | no       |
-| check_timeout                    | no       |
-| enable_active_checks             | no       |
-| enable_event_handler             | no       |
-| enable_notifications             | no       |
-| enable_passive_checks            | no       |
-| enable_perfdata                  | no       |
-| groups                           | no       |
-| imports                          | no       |
-| max_check_attempts               | no       |
-| notes                            | no       |
-| notes_url                        | no       |
-| retry_interval                   | no       |
-| use_agent                        | no       |
-| vars                             | no       |
-| volatile                         | no       |
-| **icinga_service_apply**         |
-| icinga_service_applys            | no       | []                          |
-| display_name                     | no       |
-| groups                           | no       |
-| apply_for                        | no       |
-| assign_filter                    | no       |
-| imports                          | no       |
-| vars                             | no       |
-| notes                            | no       |
-| notes_url                        | no       |
-| **icinga_servicegroup**          |
-| icinga_servicegroups             | no       | []                          |
-| display_name                     | no       |
-| assign_filter                    | no       |
-| **icinga_notification_template** |
-| icinga_notification_templates    | no       | []                          |
-| notification_template_object     | no       |
-| state                            | no       |
-| notification_interval            | no       |
-| states                           | no       |
-| types                            | no       |
-| times_begin                      | no       |
-| times_end                        | no       |
-| timeperiod                       | no       |
-| users                            | no       |
-| user_groups                      | no       |
-| notification_command             | no       |
-| imports                          | no       |
-| **icinga_notification**          |
-| icinga_notifications             | no       | []                          |
-| notification_interval            | no       |
-| types                            | no       |
-| users                            | no       |
-| apply_to                         | no       |
-| assign_filter                    | no       |
-| imports                          | no       |
-| period                           | no       |
-| **icinga_scheduled_downtime**              |
-| icinga_scheduled_downtimes                 | no       | []                                 |
-| state                            | yes      | present
-| disabled                         | no       | false
-| assign_filter                    | no       |
-| apply_to                         | yes      |
-| author                           | yes      |
-| comment                          | yes      |
-| duration                         | no       |
-| fixed                            | yes      |
-| ranges                           | no       |
-| with_services                    | no       | true
+| Variable                          | Required | Default                     |
+|-----------------------------------|----------|-----------------------------|
+| **icinga**                        |
+| url                               | yes      |
+| use_proxy                         | no       |
+| validate_certs                    | no       |
+| url_username                      | yes      |
+| url_password                      | yes      |
+| force_basic_auth                  | no       |
+| client_cert                       | no       |
+| client_key                        | no       |
+| **icinga_timeperiod**             |
+| icinga_timeperiods                | no       | []                          |
+| display_name                      | no       |
+| imports                           | no       |
+| ranges                            | no       |
+| **icinga_user_template**          |
+| icinga_user_templates             | no       | []                          |
+| imports                           | no       |
+| period                            | no       |
+| enable_notifications              | no       |
+| **icinga_user**                   |
+| icinga_users                      | no       | []                          |
+| display_name                      | no       |
+| imports                           | yes      | []                          |
+| pager                             | no       |
+| period                            | no       |
+| disabled                          | no       |
+| email                             | yes      | null                        |
+| **icinga_user_group**             |
+| icinga_user_groups                | no       | []                          |
+| state                             | no       | present                     |
+| object_name                       | yes      |
+| display_name                      | no       |
+| disabled                          | no       |
+| append                            | no       |
+| url                               | yes      |
+| force                             | no       | False                       |
+| http_agent                        | no       | ansible-httpget             |
+| use_proxy                         | no       | True                        |
+| validate_certs                    | no       | True                        |
+| url_username                      | no       |
+| url_password                      | no       |
+| force_basic_auth                  | no       | False                       |
+| client_cert                       | no       |
+| client_key                        | no       |
+| use_gssapi                        | no       | False                       |
+| **icinga_zone**                   |
+| icinga_zones                      | no       | []                          |
+| is_global                         | no       |
+| parent                            | no       |
+| **icinga_endpoint**               |
+| icinga_endpoints                  | no       | []                          |
+| host                              | no       |
+| port                              | no       |
+| log_duration                      | no       |
+| zone                              | no       |
+| **icinga_hostgroup**              |
+| icinga_hostgroups                 | no       | []                          |
+| display_name                      | no       |
+| assign_filter                     | no       | `host.name="hostgroup.1-*"` |
+| **icinga_host_template**          |
+| icinga_host_templates             | no       | []                          |
+| display_name                      | no       |
+| address                           | no       |
+| address6                          | no       |
+| groups                            | no       |
+| check_command                     | no       |
+| check_interval                    | no       |
+| disabled                          | no       |
+| imports                           | no       |
+| zone                              | no       |
+| vars                              | no       |
+| notes                             | no       |
+| notes_url                         | no       |
+| **icinga_host**                   |
+| icinga_hosts                      | no       | []                          |
+| display_name                      | no       |
+| address                           | no       |
+| address6                          | no       |
+| groups                            | no       |
+| disabled                          | no       |
+| imports                           | yes      | []                          |
+| zone                              | no       |
+| vars                              | no       |
+| notes                             | no       |
+| notes_url                         | no       |
+| **icinga_command_template**       |
+| icinga_command_templates          | no       | []                          |
+| display_name                      | no       |
+| command                           | no       |
+| methods_execute                   | yes      | PluginCheck                 |
+| timeout                           | no       |
+| imports                           | no       |
+| disabled                          | no       |
+| zone                              | no       |
+| vars                              | no       |
+| arguments                         | no       |
+| **icinga_command**                |
+| icinga_commands                   | no       | []                          |
+| command_type                      | yes      | PluginCheck                 |
+| disabled                          | yes      | false                       |
+| imports                           | no       |
+| zone                              | no       |
+| vars                              | no       |
+| **icinga_service**                |
+| icinga_services                   | no       | []                          |
+| display_name                      | no       |
+| disabled                          | no       |
+| check_command                     | no       |
+| check_interval                    | no       |
+| check_period                      | no       |
+| check_timeout                     | no       |
+| enable_active_checks              | no       |
+| enable_event_handler              | no       |
+| enable_notifications              | no       |
+| enable_passive_checks             | no       |
+| enable_perfdata                   | no       |
+| groups                            | no       |
+| host                              | yes      |
+| imports                           | no       |
+| max_check_attempts                | no       |
+| notes                             | no       |
+| notes_url                         | no       |
+| retry_interval                    | no       |
+| use_agent                         | no       |
+| vars                              | no       |
+| volatile                          | no       |
+| **icinga_service_template**       |
+| icinga_service_templates          | no       | []                          |
+| display_name                      | no       |
+| disabled                          | no       |
+| check_command                     | no       |
+| check_interval                    | no       |
+| check_period                      | no       |
+| check_timeout                     | no       |
+| enable_active_checks              | no       |
+| enable_event_handler              | no       |
+| enable_notifications              | no       |
+| enable_passive_checks             | no       |
+| enable_perfdata                   | no       |
+| groups                            | no       |
+| imports                           | no       |
+| max_check_attempts                | no       |
+| notes                             | no       |
+| notes_url                         | no       |
+| retry_interval                    | no       |
+| use_agent                         | no       |
+| vars                              | no       |
+| volatile                          | no       |
+| **icinga_service_apply**          |
+| icinga_service_applys             | no       | []                          |
+| display_name                      | no       |
+| groups                            | no       |
+| apply_for                         | no       |
+| assign_filter                     | no       |
+| imports                           | no       |
+| vars                              | no       |
+| notes                             | no       |
+| notes_url                         | no       |
+| **icinga_servicegroup**           |
+| icinga_servicegroups              | no       | []                          |
+| display_name                      | no       |
+| assign_filter                     | no       |
+| **icinga_notification_template**  |
+| icinga_notification_templates     | no       | []                          |
+| notification_template_object      | no       |
+| state                             | no       |
+| notification_interval             | no       |
+| states                            | no       |
+| types                             | no       |
+| times_begin                       | no       |
+| times_end                         | no       |
+| timeperiod                        | no       |
+| users                             | no       |
+| user_groups                       | no       |
+| notification_command              | no       |
+| imports                           | no       |
+| **icinga_notification**           |
+| icinga_notifications              | no       | []                          |
+| notification_interval             | no       |
+| types                             | no       |
+| users                             | no       |
+| apply_to                          | no       |
+| assign_filter                     | no       |
+| imports                           | no       |
+| period                            | no       |
+| **icinga_scheduled_downtime**     |
+| icinga_scheduled_downtimes        | no       | []                          |
+| state                             | yes      | present                     |
+| disabled                          | no       | false                       |
+| assign_filter                     | no       |
+| apply_to                          | yes      |
+| author                            | yes      |
+| comment                           | yes      |
+| duration                          | no       |
+| fixed                             | yes      |
+| ranges                            | no       |
+| with_services                     | no       | true                        |
 
 ## Example Playbook
 
@@ -250,6 +268,10 @@ telekom_mms.icinga_director >= 1.2.2
       - user_object:
         - "service_abbreviation_8x5"
         email: "service_abbreviation@example.com"
+    icinga_user_groups:
+      - user_group_object:
+        - "user-group-example"
+        display_name: "User Group Example"
     icinga_hostgroups:
       - hostgroup_object:
         - "service_abbreviation-environement"
