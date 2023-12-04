@@ -1,0 +1,72 @@
+output_template: |
+  <!-- BEGIN_ANSIBLE_DOCS -->
+  # Ansible Role: {{ role }}
+  ---
+  {%- if "version" in galaxy_collection %}
+  Version: {{ galaxy_collection.version }}
+  {% endif %}
+  {{ metadata.galaxy_info.description }}
+  {% if ("galaxy_tags" in metadata.galaxy_info) and (metadata.galaxy_info.galaxy_tags | length > 0) %}
+  Tags: {{ metadata.galaxy_info.galaxy_tags | join(', ') }}
+  {%- endif %}
+
+  ## Requirements
+  ---
+  | Platform | Versions |
+  | -------- | -------- |
+  {%- for platform in metadata.galaxy_info.platforms %}
+  | {{ platform.name }} | {{ platform.versions | default([]) | join(', ') }} |
+  {%- endfor %}
+
+  ## Supported Operating Systems
+
+  {%- for platform in metadata.galaxy_info.platforms %}
+  - {{ platform.name }}
+    {%- if "versions" in platform %}
+    - {{ platform.versions | default([]) | join(', ') }}
+    {%- endif %}
+  {%- endfor %}
+
+  ## Role Variables
+  {% for entrypoint in argument_specs.keys() %}
+  {%- set path, options=entrypoint_options[entrypoint][0] -%}
+  {%- for name, details in options.items() |sort() %}
+  - `{{ name }}`:
+    - Default: `{{ details.display_default }}`
+    - Description: {{ details.display_description }}
+    - Type: {{ details.display_type }}
+    - Required: {{ details.display_required }}
+    {% if details.options -%}
+    - Options:
+      {% for key, value in details.options.items() %}
+      - `{{ key }}`:
+        - description:
+          {% for line in value.description %}
+          - "{{ line }}"
+          {% endfor %}
+          {%- if value.choices %}
+        - Choices:
+            {%- for choice in value.choices %}
+            - {{ choice }}
+            {%- endfor %}
+          {%- endif %}
+        - default: "{{ value.default }}"
+        - type: "{{ value.type }}"
+        - required: "{{ value.display_required }}"
+        {% endfor %}
+    {%- endif %}
+  {%- endfor %}
+  {%- endfor %}
+
+  ## Dependencies
+
+  {%- if ("dependencies" in metadata) and (metadata.dependencies | length > 0) %}
+  {%- for dependency in metadata.dependencies %}
+  - {{ dependency }}
+  {%- endfor %}
+  {%- else %}
+
+  None.
+  {%- endif %}
+
+  <!-- END_ANSIBLE_DOCS -->

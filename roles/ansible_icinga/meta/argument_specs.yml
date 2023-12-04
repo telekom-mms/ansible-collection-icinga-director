@@ -31,7 +31,7 @@ argument_specs:
             type: str
           imports:
             description:
-              - 'Importable templates, add as many as you want.'
+              - Importable templates, add as many as you want.
               - >-
                 Please note that order matters when importing properties from
                 multiple templates - last one wins.
@@ -61,7 +61,7 @@ argument_specs:
             type: str
           imports:
             description:
-              - 'Importable templates, add as many as you want.'
+              - Importable templates, add as many as you want.
               - >-
                 Please note that order matters when importing properties from
                 multiple templates - last one wins.
@@ -105,7 +105,7 @@ argument_specs:
             type: str
           imports:
             description:
-              - 'Importable templates, add as many as you want.'
+              - Importable templates, add as many as you want.
               - >-
                 Please note that order matters when importing properties from
                 multiple templates - last one wins.
@@ -806,7 +806,7 @@ argument_specs:
             type: str
           imports:
             description:
-              - 'Importable templates, add as many as you want.'
+              - Importable templates, add as many as you want.
               - >-
                 Please note that order matters when importing properties from
                 multiple templates - last one wins.
@@ -944,7 +944,7 @@ argument_specs:
             default: []
           imports:
             description:
-              - 'Importable templates, add as many as you want.'
+              - Importable templates, add as many as you want.
               - >-
                 Please note that order matters when importing properties from
                 multiple templates - last one wins.
@@ -978,7 +978,7 @@ argument_specs:
           use_agent:
             description:
               - >-
-                Whether the check commmand for this service should be executed
+                Whether the check command for this service should be executed
                 on the Icinga agent.
             type: bool
           vars:
@@ -1118,7 +1118,7 @@ argument_specs:
             type: str
           imports:
             description:
-              - 'Importable templates, add as many as you want.'
+              - Importable templates, add as many as you want.
               - >-
                 Please note that order matters when importing properties from
                 multiple templates - last one wins.
