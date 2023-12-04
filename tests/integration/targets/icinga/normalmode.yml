@@ -1,6 +1,160 @@
 ---
-- name: run tasks in check mode
-  hosts: localhost
-  tasks:
-    - include_role:
-        name: "icinga"
+- hosts: localhost
+  roles:
+    - telekom_mms.icinga_director.ansible_icinga
+  vars:
+    icinga_url: "https://example.com"
+    icinga_user: "{{ icinga_user }}"
+    icinga_pass: "{{ icinga_pass }}"
+    icinga_commands:
+      - name: "mail_notification_with_description"
+        disabled: false
+        command_type: "PluginNotification"
+        command: mail-service-notification.py
+        arguments:
+          "--hostaddress":
+            required: true
+            value: "$address$"
+          "--hostdisplayname":
+            required: true
+            value: "$host.display_name$"
+          "--hostname":
+            required: true
+            value: "$host.name$"
+          "--longdatetime":
+            required: true
+            value: "$icinga.long_date_time$"
+          "--notificationauthorname":
+            required: true
+            value: "$notification.author$"
+          "--notificationcomment":
+            required: true
+            value: "$notification.comment$"
+          "--notificationtype":
+            required: true
+            value: "$notification.type$"
+          "--servicedescription":
+            required: true
+            value: "$service.vars.description$"
+          "--servicedisplayname":
+            required: true
+            value: "$service.display_name$"
+          "--servicename":
+            required: true
+            value: "$service.name$"
+          "--serviceoutput":
+            required: true
+            value: "$service.output$"
+          "--servicestate":
+            required: true
+            value: "$service.state$"
+          "--usermail":
+            required: true
+            value: "$user.email$"
+    icinga_command_templates:
+      - name: "check_interface_template"
+        arguments:
+          "interface":
+            required: false
+            value: "$interface$"
+            skip_key: true
+            order: 1
+          "port":
+            required: false
+            value: "$port$"
+            skip_key: true
+            order: 2
+        command: "check_interfaces.sh"
+        timeout: 60
+    icinga_endpoints:
+      - name: cust-live-api01
+        state: present
+        object_name: cust-live-api01
+        host: 127.0.0.1
+        port: 5665
+        zone: "hosts"
+        log_duration: 86400
+    icinga_hosts:
+      - name: "cust-tst-frontend"
+        imports:
+          - empty-hosts
+    icinga_host_templates:
+      - name: "empty-hosts"
+    icinga_notifications:
+      - name: "cust_e-mail_service"
+        apply_to: service
+        imports:
+          - cust_e-mail_description_template
+        notification_interval: "0"
+        users:
+          - "cust_email"
+        types:
+          - Problem
+          - Recovery
+    icinga_notification_templates:
+      - name: "cust_e-mail_description_template"
+        notification_command: "mail_notification_with_description"
+    icinga_scheduled_downtimes:
+      - name: "downtime"
+        author: "nobody"
+        comment: "issue here"
+        fixed: true
+        state: present
+        apply_to: "service"
+        assign_filter: >-2
+          service.name="*"
+        ranges:
+          "monday": "05:20-05:35"
+    icinga_service_applies:
+      - name: "cust_availability"
+        assign_filter: 'host.name="cust-tst-frontend"'
+        imports:
+          - check_procs
+        vars:
+          http_address: "127.0.0.1"
+          http_onredirect: "follow"
+          http_sni: true
+          http_ssl: true
+          http_string: "example"
+          http_uri: "/"
+          http_vhost: "example.org"
+    icinga_zones:
+      - name: hosts
+        state: present
+        object_name: hosts
+        parent: master
+    icinga_servicegroups:
+      - name: "larming_frontends"
+        assign_filter: service.name="foo"
+    icinga_service_templates:
+      - name: "check_procs"
+        check_command: procs
+        check_interval: 60
+        retry_interval: 30
+        use_agent: true
+    icinga_timeperiods:
+      - name: "8x5"
+        include: "8x5-templ"
+    icinga_timeperiods_templates:
+      - name: "8x5-templ"
+        ranges:
+          monday: "00:00-23:59"
+          tuesday: "00:00-23:59"
+          wednesday: "00:00-23:59"
+          thursday: "00:00-23:59"
+          friday: "00:00-23:59"
+          saturday: "00:00-23:59"
+          sunday: "00:00-23:59"
+    icinga_users:
+      - name: "cust_email"
+        period: "8x5"
+        email: "foo@example.com"
+    icinga_services:
+      - name: "foo-service"
+        host: "cust-tst-frontend"
+    icinga_servicesets:
+      - name: "foo-serviceset"
+    icinga_user_groups:
+      - name: "cust"
+    icinga_user_templates:
+      - name: "cust"
