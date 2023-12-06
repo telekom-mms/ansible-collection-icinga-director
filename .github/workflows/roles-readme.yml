@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4
         with:
           python-version: 3.11
 
@@ -33,7 +33,7 @@ jobs:
 
       - name: Push README
         if: github.event_name != 'pull_request'
-        uses: github-actions-x/commit@v2.9
+        uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'update readme'
