@@ -1,5 +1,4 @@
----
-- name: run tasks in check mode
+- name: run all tasks
   hosts: localhost
   tasks:
     - include_role:
