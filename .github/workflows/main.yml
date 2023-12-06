@@ -5,11 +5,11 @@ on:
   # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
   push:
     branches:
-      - 'master'
+      - 'main'
       - 'renovate/**'
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [master]
+    branches: [main]
   # Run CI once per week (at 06:00 UTC)
   # This ensures that even if there haven't been commits that we are still
   # testing against latest version of ansible-test for each ansible-core

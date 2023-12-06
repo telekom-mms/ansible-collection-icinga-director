@@ -3,9 +3,9 @@ name: Codespell - Spellcheck
 
 on:  # yamllint disable-line rule:truthy
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   codespell:
