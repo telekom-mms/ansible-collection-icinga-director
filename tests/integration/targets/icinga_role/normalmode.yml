@@ -76,7 +76,7 @@
         log_duration: 86400
     icinga_hosts:
       - name: "cust-tst-frontend"
-        imorts:
+        imports:
           - empty-hosts
     icinga_host_templates:
       - name: "empty-hosts"
