@@ -540,7 +540,7 @@ argument_specs:
             version_added: 1.9.0
       icinga_command_templates:
         description:
-          - A list of Icinga command_templat to configure
+          - A list of Icinga command_templates to configure
         type: list
         elements: str
         options:
@@ -862,7 +862,7 @@ argument_specs:
               - false
       icinga_service_templates:
         description:
-          - A list of Icinga service_templat to configure
+          - A list of Icinga service_templates to configure
         type: list
         elements: str
         options:
