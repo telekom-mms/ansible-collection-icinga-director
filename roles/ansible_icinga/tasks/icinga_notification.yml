@@ -11,8 +11,7 @@
     client_key: "{{ icinga_client_key | default(omit) }}"
     state: "{{ notification.state | default(omit) }}"
     object_name: "{{ notification.name }}"
-    notification_interval: "{{ notification.notification_interval | default(omit)\
-      \ }}"
+    notification_interval: "{{ notification.notification_interval | default(omit) }}"
     states: "{{ notification.states | default(omit) }}"
     types: "{{ notification.types | default(omit) }}"
     users: "{{ notification.users | default(omit) }}"

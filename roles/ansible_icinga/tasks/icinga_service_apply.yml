@@ -27,8 +27,7 @@
     enable_active_checks: "{{ service_apply.enable_active_checks | default(omit) }}"
     enable_event_handler: "{{ service_apply.enable_event_handler | default(omit) }}"
     enable_notifications: "{{ service_apply.enable_notifications | default(omit) }}"
-    enable_passive_checks: "{{ service_apply.enable_passive_checks | default(omit)\
-      \ }}"
+    enable_passive_checks: "{{ service_apply.enable_passive_checks | default(omit) }}"
     enable_perfdata: "{{ service_apply.enable_perfdata | default(omit) }}"
     event_command: "{{ service_apply.event_command | default(omit) }}"
     max_check_attempts: "{{ service_apply.max_check_attempts | default(omit) }}"

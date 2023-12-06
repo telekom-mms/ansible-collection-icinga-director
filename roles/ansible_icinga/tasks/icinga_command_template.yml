@@ -13,8 +13,7 @@
     object_name: "{{ command_template.name }}"
     display_name: "{{ command_template.display_name | default(omit) }}"
     command: "{{ command_template.command | default(omit) }}"
-    command_type: "{{ command_template.command_type | default(icinga_command_template_command_type)\
-      \ }}"
+    command_type: "{{ command_template.command_type | default(icinga_command_template_command_type) }}"
     timeout: "{{ command_template.timeout | default(omit) }}"
     imports: "{{ command_template.imports | default(omit) }}"
     disabled: "{{ command_template.disabled | default(omit) }}"

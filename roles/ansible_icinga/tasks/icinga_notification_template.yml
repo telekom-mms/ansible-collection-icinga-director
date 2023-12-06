@@ -11,8 +11,7 @@
     client_key: "{{ icinga_client_key | default(omit) }}"
     object_name: "{{ notification_template.name }}"
     state: "{{ notification_template.state | default(omit) }}"
-    notification_interval: "{{ notification_template.notification_interval | default(omit)\
-      \ }}"
+    notification_interval: "{{ notification_template.notification_interval | default(omit) }}"
     states: "{{ notification_template.states | default(omit) }}"
     types: "{{ notification_template.types | default(omit) }}"
     times_begin: "{{ notification_template.times_begin | default(omit) }}"
@@ -20,8 +19,7 @@
     time_period: "{{ notification_template.time_period | default(omit) }}"
     users: "{{ notification_template.users | default(omit) }}"
     user_groups: "{{ notification_template.user_groups | default(omit) }}"
-    notification_command: "{{ notification_template.notification_command | default(omit)\
-      \ }}"
+    notification_command: "{{ notification_template.notification_command | default(omit) }}"
     imports: "{{ notification_template.imports | default(omit) }}"
     zone: "{{ notification_template.zone | default(omit) }}"
   retries: 3

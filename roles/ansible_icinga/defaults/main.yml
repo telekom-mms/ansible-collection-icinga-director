@@ -8,7 +8,6 @@ icinga_users: []
 icinga_user_imports: []
 icinga_user_disabled: false
 icinga_user_email:
-
 # icinga_endpoints
 icinga_endpoints: []
 # icinga_zone

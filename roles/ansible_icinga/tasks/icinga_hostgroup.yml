@@ -12,8 +12,7 @@
     state: "{{ hostgroup.state | default(omit) }}"
     object_name: "{{ hostgroup.name }}"
     display_name: "{{ hostgroup.display_name | default(omit) }}"
-    assign_filter: "{{ hostgroup.assign_filter | default('host.name=\"' + hostgroup.name\
-      \ + '-*\"') }}"
+    assign_filter: "{{ hostgroup.assign_filter | default('host.name=\"' + hostgroup.name + '-*\"') }}"
   retries: 3
   delay: 3
   register: result

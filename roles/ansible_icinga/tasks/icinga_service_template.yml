@@ -18,14 +18,10 @@
     check_period: "{{ service_template.check_period | default(omit) }}"
     check_timeout: "{{ service_template.check_timeout | default(omit) }}"
     command_endpoint: "{{ service_template.command_endpoint | default(omit) }}"
-    enable_active_checks: "{{ service_template.enable_active_checks | default(omit)\
-      \ }}"
-    enable_event_handler: "{{ service_template.enable_event_handler | default(omit)\
-      \ }}"
-    enable_notifications: "{{ service_template.enable_notifications | default(omit)\
-      \ }}"
-    enable_passive_checks: "{{ service_template.enable_passive_checks | default(omit)\
-      \ }}"
+    enable_active_checks: "{{ service_template.enable_active_checks | default(omit) }}"
+    enable_event_handler: "{{ service_template.enable_event_handler | default(omit) }}"
+    enable_notifications: "{{ service_template.enable_notifications | default(omit) }}"
+    enable_passive_checks: "{{ service_template.enable_passive_checks | default(omit) }}"
     enable_perfdata: "{{ service_template.enable_perfdata | default(omit) }}"
     groups: "{{ service_template.groups | default(omit) }}"
     imports: "{{ service_template.imports | default(omit) }}"

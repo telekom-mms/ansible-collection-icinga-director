@@ -23,21 +23,17 @@
     enable_event_handler: "{{ host_template.enable_event_handler | default(omit) }}"
     enable_flapping: "{{ host_template.enable_flapping | default(omit) }}"
     enable_notifications: "{{ host_template.enable_notifications | default(omit) }}"
-    enable_passive_checks: "{{ host_template.enable_passive_checks | default(omit)\
-      \ }}"
+    enable_passive_checks: "{{ host_template.enable_passive_checks | default(omit) }}"
     enable_perfdata: "{{ host_template.enable_perfdata | default(omit) }}"
     event_command: "{{ host_template.event_command | default(omit) }}"
-    flapping_threshold_high: "{{ host_template.flapping_threshold_high | default(omit)\
-      \ }}"
-    flapping_threshold_low: "{{ host_template.flapping_threshold_low | default(omit)\
-      \ }}"
+    flapping_threshold_high: "{{ host_template.flapping_threshold_high | default(omit) }}"
+    flapping_threshold_low: "{{ host_template.flapping_threshold_low | default(omit) }}"
     groups: "{{ host_template.address | default(omit) }}"
     has_agent: "{{ host_template.has_agent | default(omit) }}"
     icon_image_alt: "{{ host_template.icon_image_alt | default(omit) }}"
     icon_image: "{{ host_template.icon_image | default(omit) }}"
     imports: "{{ host_template.imports | default(omit) }}"
-    master_should_connect: "{{ host_template.master_should_connect | default(omit)\
-      \ }}"
+    master_should_connect: "{{ host_template.master_should_connect | default(omit) }}"
     max_check_attempts: "{{ host_template.max_check_attempts | default(omit) }}"
     notes_url: "{{ host_template.notes_url | default(omit) }}"
     notes: "{{ host_template.notes | default(omit) }}"
