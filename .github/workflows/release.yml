@@ -67,7 +67,7 @@ jobs:
           python-version: 3.8
 
       - name: Install antsibull-changelog, antsichaut
-        run: python -m pip install antsibull-changelog antsichaut --disable-pip-version-check
+        run: python -m pip install antsibull-changelog --disable-pip-version-check
 
       - name: Install pandoc
         run: sudo apt-get install pandoc
@@ -87,12 +87,12 @@ jobs:
       - name: Generate new version in changelog.yaml
         run: antsibull-changelog release -v --version "${{ steps.version.outputs.next-version }}"
 
-      - name: Generate changelog.yaml
-        run: antsichaut
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Run antsichaut"
+        uses: ansible-community/antsichaut@main
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           SINCE_VERSION: "${{ steps.previoustag.outputs.tag }}"
-
+    
       - name: Update Changelog.rst
         run: antsibull-changelog generate -v
 
