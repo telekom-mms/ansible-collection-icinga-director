@@ -88,7 +88,7 @@ jobs:
         run: antsibull-changelog release -v --version "${{ steps.version.outputs.next-version }}"
 
       - name: Generate changelog.yaml
-        uses: ansible-community/antsichaut@0.4.0
+        uses: ansible-community/antsichaut@66464bba7f07c56db4bfec4b14e70b71c0b43ca9 # 0.4.0
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           SINCE_VERSION: "${{ steps.previoustag.outputs.tag }}"
