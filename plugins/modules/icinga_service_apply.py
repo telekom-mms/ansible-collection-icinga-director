@@ -260,18 +260,18 @@ class ServiceApplyRule(Icinga2APIObject):
         if ret["code"] == 200:
             for existing_rule in ret["data"]["objects"]:
                 if existing_rule["object_name"] == self.data["object_name"]:
-                    self.object_id = existing_rule["id"]
+                    self.object_id = existing_rule["uuid"]
                     return self.object_id
         return False
 
     def delete(self):
-        return super(ServiceApplyRule, self).delete(find_by="id")
+        return super(ServiceApplyRule, self).delete(find_by="uuid")
 
     def modify(self):
-        return super(ServiceApplyRule, self).modify(find_by="id")
+        return super(ServiceApplyRule, self).modify(find_by="uuid")
 
     def diff(self):
-        return super(ServiceApplyRule, self).diff(find_by="id")
+        return super(ServiceApplyRule, self).diff(find_by="uuid")
 
 
 # ===========================================
