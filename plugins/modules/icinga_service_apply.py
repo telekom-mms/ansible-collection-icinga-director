@@ -251,33 +251,34 @@ from ansible_collections.telekom_mms.icinga_director.plugins.module_utils.icinga
 # Icinga2 API class
 #
 class ServiceApplyRule(Icinga2APIObject):
+    find_by_parameter = None
     def __init__(self, module, data):
         path = "/service"
         super(ServiceApplyRule, self).__init__(module, path, data)
 
     def exists(self):
-        global find_by_value
+        # global FINDBY
         ret = self.call_url(path="/serviceapplyrules")
         if ret["code"] == 200:
             for existing_rule in ret["data"]["objects"]:
                 if existing_rule["object_name"] == self.data["object_name"]:
-                  if existing_rule["uuid"] != None:
-                    self.object_id = existing_rule["uuid"]
-                    find_by_value = "uuid"
-                  else:
-                    self.object_id = existing_rule["id"]
-                    find_by_value = "id"
-                  return self.object_id
+                    if existing_rule["uuid"] is not None:
+                        self.find_by_parameter = "uuid"
+                    else:
+                        # self.object_id = existing_rule["id"]
+                        self.find_by_parameter = "id"
+                    self.object_id = existing_rule[self.find_by_parameter]
+                    return self.object_id
         return False
 
     def delete(self):
-        return super(ServiceApplyRule, self).delete(find_by=find_by_value)
+        return super(ServiceApplyRule, self).delete(find_by=self.find_by_parameter)
 
     def modify(self):
-        return super(ServiceApplyRule, self).modify(find_by=find_by_value)
+        return super(ServiceApplyRule, self).modify(find_by=self.find_by_parameter)
 
     def diff(self):
-        return super(ServiceApplyRule, self).diff(find_by=find_by_value)
+        return super(ServiceApplyRule, self).diff(find_by=self.find_by_parameter)
 
 
 # ===========================================
