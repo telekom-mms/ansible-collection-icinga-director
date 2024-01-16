@@ -252,12 +252,12 @@ from ansible_collections.telekom_mms.icinga_director.plugins.module_utils.icinga
 #
 class ServiceApplyRule(Icinga2APIObject):
     find_by_parameter = None
+
     def __init__(self, module, data):
         path = "/service"
         super(ServiceApplyRule, self).__init__(module, path, data)
 
     def exists(self):
-        # global FINDBY
         ret = self.call_url(path="/serviceapplyrules")
         if ret["code"] == 200:
             for existing_rule in ret["data"]["objects"]:
@@ -265,7 +265,6 @@ class ServiceApplyRule(Icinga2APIObject):
                     if "uuid" in existing_rule and existing_rule["uuid"] is not None:
                         self.find_by_parameter = "uuid"
                     else:
-                        # self.object_id = existing_rule["id"]
                         self.find_by_parameter = "id"
                     self.object_id = existing_rule[self.find_by_parameter]
                     return self.object_id
