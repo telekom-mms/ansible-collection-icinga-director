@@ -262,7 +262,7 @@ class ServiceApplyRule(Icinga2APIObject):
         if ret["code"] == 200:
             for existing_rule in ret["data"]["objects"]:
                 if existing_rule["object_name"] == self.data["object_name"]:
-                    if existing_rule["uuid"] is not None:
+                    if "uuid" in existing_rule and existing_rule["uuid"] is not None:
                         self.find_by_parameter = "uuid"
                     else:
                         # self.object_id = existing_rule["id"]
