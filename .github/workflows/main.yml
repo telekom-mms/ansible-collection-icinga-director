@@ -29,6 +29,9 @@ jobs:
     name: Sanity (Ⓐ${{ matrix.ansible }})
     strategy:
       matrix:
+        icinga_director:
+          - 1.8.1
+          - 1.11.0
         ansible:
           # It's important that Sanity is tested against all stable-X.Y branches
           # Testing against `devel` may fail as new tests are added.
@@ -161,7 +164,7 @@ jobs:
             python: '3.11'
     services:
       icinga:
-        image: ghcr.io/telekom-mms/icinga2:director-1.8.1@sha256:bf9205d41607f1641146e870644af0529338d06a9b360737bdf56a3f951cc28b
+        image: ghcr.io/telekom-mms/icinga2:director-${{ matrix.icinga_director }}
         ports:
           - 80:80
     steps:
