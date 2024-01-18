@@ -97,71 +97,165 @@ jobs:
           - devel
         # - milestone
         python:
-          - '2.7'
-          - '3.6'
           - '3.7'
           - '3.8'
           - '3.9'
           - '3.10'
           - '3.11'
-        exclude:
-          - ansible: devel
-            python: '2.7'
-          - ansible: devel
-            python: '3.6'
+          - '3.12'
         include:
           # Add new versions announced in
           # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
           # consider dropping testing against EOL versions and versions you don't support.
-          # ansible-core 2.13
-          - ansible: stable-2.13
-            python: '2.7'
-          - ansible: stable-2.13
-            python: '3.5'
-          - ansible: stable-2.13
-            python: '3.6'
-          - ansible: stable-2.13
-            python: '3.7'
-          - ansible: stable-2.13
-            python: '3.8'
-          - ansible: stable-2.13
-            python: '3.9'
-          - ansible: stable-2.13
-            python: '3.10'
           # ansible-core 2.14
           - ansible: stable-2.14
             python: '2.7'
+            icinga_director: 1.8.1
           - ansible: stable-2.14
             python: '3.5'
+            icinga_director: 1.8.1
           - ansible: stable-2.14
             python: '3.6'
+            icinga_director: 1.8.1
           - ansible: stable-2.14
             python: '3.7'
+            icinga_director: 1.8.1
           - ansible: stable-2.14
             python: '3.8'
+            icinga_director: 1.8.1
           - ansible: stable-2.14
             python: '3.9'
+            icinga_director: 1.8.1
           - ansible: stable-2.14
             python: '3.10'
+            icinga_director: 1.8.1
           - ansible: stable-2.14
             python: '3.11'
+            icinga_director: 1.8.1
           # ansible-core 2.15
           - ansible: stable-2.15
             python: '2.7'
+            icinga_director: 1.8.1
           - ansible: stable-2.15
             python: '3.5'
+            icinga_director: 1.8.1
           - ansible: stable-2.15
             python: '3.6'
+            icinga_director: 1.8.1
           - ansible: stable-2.15
             python: '3.7'
+            icinga_director: 1.8.1
           - ansible: stable-2.15
             python: '3.8'
+            icinga_director: 1.8.1
           - ansible: stable-2.15
             python: '3.9'
+            icinga_director: 1.8.1
           - ansible: stable-2.15
             python: '3.10'
+            icinga_director: 1.8.1
           - ansible: stable-2.15
             python: '3.11'
+            icinga_director: 1.8.1
+          # ansible-core 2.16
+          - ansible: stable-2.16
+            python: '2.7'
+            icinga_director: 1.8.1
+          - ansible: stable-2.16
+            python: '3.6'
+            icinga_director: 1.8.1
+          - ansible: stable-2.16
+            python: '3.7'
+            icinga_director: 1.8.1
+          - ansible: stable-2.16
+            python: '3.8'
+            icinga_director: 1.8.1
+          - ansible: stable-2.16
+            python: '3.9'
+            icinga_director: 1.8.1
+          - ansible: stable-2.16
+            python: '3.10'
+            icinga_director: 1.8.1
+          - ansible: stable-2.16
+            python: '3.11'
+            icinga_director: 1.8.1
+          - ansible: stable-2.16
+            python: '3.12'
+            icinga_director: 1.8.1
+          - ansible: stable-2.14
+            python: '2.7'
+            icinga_director: 1.11.0
+          - ansible: stable-2.14
+            python: '3.5'
+            icinga_director: 1.11.0
+          - ansible: stable-2.14
+            python: '3.6'
+            icinga_director: 1.11.0
+          - ansible: stable-2.14
+            python: '3.7'
+            icinga_director: 1.11.0
+          - ansible: stable-2.14
+            python: '3.8'
+            icinga_director: 1.11.0
+          - ansible: stable-2.14
+            python: '3.9'
+            icinga_director: 1.11.0
+          - ansible: stable-2.14
+            python: '3.10'
+            icinga_director: 1.11.0
+          - ansible: stable-2.14
+            python: '3.11'
+            icinga_director: 1.11.0
+          # ansible-core 2.15
+          - ansible: stable-2.15
+            python: '2.7'
+            icinga_director: 1.11.0
+          - ansible: stable-2.15
+            python: '3.5'
+            icinga_director: 1.11.0
+          - ansible: stable-2.15
+            python: '3.6'
+            icinga_director: 1.11.0
+          - ansible: stable-2.15
+            python: '3.7'
+            icinga_director: 1.11.0
+          - ansible: stable-2.15
+            python: '3.8'
+            icinga_director: 1.11.0
+          - ansible: stable-2.15
+            python: '3.9'
+            icinga_director: 1.11.0
+          - ansible: stable-2.15
+            python: '3.10'
+            icinga_director: 1.11.0
+          - ansible: stable-2.15
+            python: '3.11'
+            icinga_director: 1.11.0
+          # ansible-core 2.16
+          - ansible: stable-2.16
+            python: '2.7'
+            icinga_director: 1.11.0
+          - ansible: stable-2.16
+            python: '3.6'
+            icinga_director: 1.11.0
+          - ansible: stable-2.16
+            python: '3.7'
+            icinga_director: 1.11.0
+          - ansible: stable-2.16
+            python: '3.8'
+            icinga_director: 1.11.0
+          - ansible: stable-2.16
+            python: '3.9'
+            icinga_director: 1.11.0
+          - ansible: stable-2.16
+            python: '3.10'
+            icinga_director: 1.11.0
+          - ansible: stable-2.16
+            python: '3.11'
+            icinga_director: 1.11.0
+          - ansible: stable-2.16
+            python: '3.12'
+            icinga_director: 1.11.0
     services:
       icinga:
         image: ghcr.io/telekom-mms/icinga2:director-${{ matrix.icinga_director }}
