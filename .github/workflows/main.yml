@@ -86,7 +86,7 @@ jobs:
       ${{ contains(fromJson(
           '["stable-2.9", "stable-2.10", "stable-2.11"]'
       ), matrix.ansible) && 'ubuntu-20.04' || 'ubuntu-latest' }}
-    name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }}) - director ${{ matrix.icinga_director }}
+    name: I ${{ matrix.ansible }}+py${{ matrix.python }})+dir-${{ matrix.icinga_director }}
     strategy:
       fail-fast: false
       matrix:
