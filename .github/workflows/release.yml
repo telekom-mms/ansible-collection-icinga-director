@@ -20,6 +20,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       # ansible-doc-extractor requires the collection to be in a directory in
       # the form ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}/
@@ -41,10 +42,20 @@ jobs:
       - name: create documentation
         run: ansible-doc-extractor docs/ plugins/inventory/* plugins/modules/*
 
+      # the token is needed so the github app can push to the repository
+      # the github app can bypass the branch protection rule (need a PR to merge)
+      # this way it can directly commit to main
+      - name: Obtain a GitHub App Installation Access Token
+        id: githubAppAuth
+        run: |
+          TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.GH_BRANCH_PROTECTION_APP_TOKEN }})"
+          echo "::add-mask::$TOKEN"
+          echo token=${TOKEN} >> $GITHUB_OUTPUT
+
       - name: commit documentation
         uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ steps.githubAppAuth.outputs.token }}
           push-branch: 'main'
           commit-message: 'update documentation'
           force-add: 'true'
@@ -60,6 +71,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5
