@@ -5,6 +5,14 @@ telekom_mms.icinga_director Release Notes
 .. contents:: Topics
 
 
+v2.0.1
+======
+
+Bugfixes
+--------
+
+- Fixes #190 - Workaround for service apply bug (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/239)
+
 v1.35.0
 =======
 
