@@ -92,8 +92,8 @@ def main():
     icinga_deployment = Icinga2APIObject(module=module, path="/config/deploy", data=[])
     result = icinga_deployment.create()
     # the deployment is asynchronous and I don't know of a way to check if it is finished.
-    # so we need some sleep here. 2 seconds is a wild guess.
-    sleep(2)
+    # so we need some sleep here. 5 seconds is a wild guess.
+    sleep(5)
 
     # get the new deployment status
     create_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
