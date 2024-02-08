@@ -92,8 +92,12 @@ jobs:
       matrix:
         icinga_director:
           - 1.8.1
+          - 1.11.1
         ansible:
           - devel
+          - stable-2.14
+          - stable-2.15
+          - stable-2.16
         # - milestone
         python:
           - '3.7'
@@ -107,6 +111,8 @@ jobs:
           # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
           # consider dropping testing against EOL versions and versions you don't support.
           # ansible-core 2.14
+          #
+          # icinga-director 1.8.1
           - ansible: stable-2.14
             python: '2.7'
             icinga_director: 1.8.1
@@ -115,21 +121,6 @@ jobs:
             icinga_director: 1.8.1
           - ansible: stable-2.14
             python: '3.6'
-            icinga_director: 1.8.1
-          - ansible: stable-2.14
-            python: '3.7'
-            icinga_director: 1.8.1
-          - ansible: stable-2.14
-            python: '3.8'
-            icinga_director: 1.8.1
-          - ansible: stable-2.14
-            python: '3.9'
-            icinga_director: 1.8.1
-          - ansible: stable-2.14
-            python: '3.10'
-            icinga_director: 1.8.1
-          - ansible: stable-2.14
-            python: '3.11'
             icinga_director: 1.8.1
           # ansible-core 2.15
           - ansible: stable-2.15
@@ -141,21 +132,6 @@ jobs:
           - ansible: stable-2.15
             python: '3.6'
             icinga_director: 1.8.1
-          - ansible: stable-2.15
-            python: '3.7'
-            icinga_director: 1.8.1
-          - ansible: stable-2.15
-            python: '3.8'
-            icinga_director: 1.8.1
-          - ansible: stable-2.15
-            python: '3.9'
-            icinga_director: 1.8.1
-          - ansible: stable-2.15
-            python: '3.10'
-            icinga_director: 1.8.1
-          - ansible: stable-2.15
-            python: '3.11'
-            icinga_director: 1.8.1
           # ansible-core 2.16
           - ansible: stable-2.16
             python: '2.7'
@@ -163,24 +139,38 @@ jobs:
           - ansible: stable-2.16
             python: '3.6'
             icinga_director: 1.8.1
+          # icinga-director 1.11.1
+          - ansible: stable-2.14
+            python: '2.7'
+            icinga_director: 1.11.1
+          - ansible: stable-2.14
+            python: '3.5'
+            icinga_director: 1.11.1
+          - ansible: stable-2.14
+            python: '3.6'
+            icinga_director: 1.11.1
+          # ansible-core 2.15
+          - ansible: stable-2.15
+            python: '2.7'
+            icinga_director: 1.11.1
+          - ansible: stable-2.15
+            python: '3.5'
+            icinga_director: 1.11.1
+          - ansible: stable-2.15
+            python: '3.6'
+            icinga_director: 1.11.1
+          # ansible-core 2.16
           - ansible: stable-2.16
-            python: '3.7'
-            icinga_director: 1.8.1
+            python: '2.7'
+            icinga_director: 1.11.1
           - ansible: stable-2.16
-            python: '3.8'
-            icinga_director: 1.8.1
-          - ansible: stable-2.16
-            python: '3.9'
-            icinga_director: 1.8.1
-          - ansible: stable-2.16
-            python: '3.10'
-            icinga_director: 1.8.1
-          - ansible: stable-2.16
-            python: '3.11'
-            icinga_director: 1.8.1
-          - ansible: stable-2.16
-            python: '3.12'
-            icinga_director: 1.8.1
+            python: '3.6'
+            icinga_director: 1.11.1
+        exclude:
+          - python: '3.12'
+            ansible: stable-2.14
+          - python: '3.12'
+            ansible: stable-2.15
     services:
       icinga:
         image: ghcr.io/telekom-mms/icinga2:director-${{ matrix.icinga_director }}
