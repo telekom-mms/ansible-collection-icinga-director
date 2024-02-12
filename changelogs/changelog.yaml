@@ -301,3 +301,5 @@ releases:
     release_date: '2024-01-25'
   2.0.3:
     release_date: '2024-02-12'
+  2.0.4:
+    release_date: '2024-02-12'
