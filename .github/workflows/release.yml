@@ -70,6 +70,9 @@ jobs:
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
+          # checkout the main branch, because without the ref, the above commit ("update documentation")
+          # isn't included and the push will fail
+          ref: main
           fetch-depth: 0
           persist-credentials: false
 
