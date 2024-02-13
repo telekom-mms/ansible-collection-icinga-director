@@ -32,6 +32,12 @@ version_added: '1.33.0'
 extends_documentation_fragment:
   - ansible.builtin.url
   - telekom_mms.icinga_director.common_options
+options:
+  timeout:
+    description:
+      - Default timeout to wait for deployment to finish in seconds.
+    default: 2
+    type: int
 """
 
 EXAMPLES = """
@@ -40,6 +46,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
+    timeout: 5
 """
 
 RETURN = r"""
@@ -71,6 +78,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
+        timeout=dict(required=False, default=2, type="int")
     )
 
     # Define the main module
@@ -92,8 +100,8 @@ def main():
     icinga_deployment = Icinga2APIObject(module=module, path="/config/deploy", data=[])
     result = icinga_deployment.create()
     # the deployment is asynchronous and I don't know of a way to check if it is finished.
-    # so we need some sleep here. 2 seconds is a wild guess.
-    sleep(2)
+    # so we need some sleep here. 2 seconds is a wild guess and a default, now it is a variable
+    sleep(module.params["timeout"])
 
     # get the new deployment status
     create_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
