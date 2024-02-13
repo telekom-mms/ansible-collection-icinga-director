@@ -46,7 +46,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    timeout: "{{ icinga_deploy_timeout }}"
+    timeout: 5
 """
 
 RETURN = r"""
