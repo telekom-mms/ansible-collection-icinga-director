@@ -5,6 +5,14 @@ telekom_mms.icinga_director Release Notes
 .. contents:: Topics
 
 
+v2.1.0
+======
+
+Minor Changes
+-------------
+
+- Increase sleep to 5 seconds (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/245)
+
 v2.0.5
 ======
 
