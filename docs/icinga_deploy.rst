@@ -22,6 +22,10 @@ Trigger a deployment to Icinga2 through the director API.
 Parameters
 ----------
 
+  timeout (optional, int, 2)
+    Default timeout to wait for deployment to finish in seconds.
+
+
   url (True, str, None)
     HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
 
@@ -100,6 +104,7 @@ Examples
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
+        timeout: 5
 
 
 
