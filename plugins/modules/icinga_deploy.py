@@ -32,6 +32,12 @@ version_added: '1.33.0'
 extends_documentation_fragment:
   - ansible.builtin.url
   - telekom_mms.icinga_director.common_options
+options:
+  timeout:
+    description:
+      - Default timeout to wait for deployment to finish in seconds.
+    default: 2
+    type: int
 """
 
 EXAMPLES = """
