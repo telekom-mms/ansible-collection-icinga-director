@@ -40,6 +40,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
+    timeout: "{{ icinga_deploy_timeout }}"
 """
 
 RETURN = r"""
@@ -71,6 +72,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
+        timeout=dict(required=False, default=2)
     )
 
     # Define the main module
@@ -92,8 +94,9 @@ def main():
     icinga_deployment = Icinga2APIObject(module=module, path="/config/deploy", data=[])
     result = icinga_deployment.create()
     # the deployment is asynchronous and I don't know of a way to check if it is finished.
-    # so we need some sleep here. 5 seconds is a wild guess.
-    sleep(5)
+    # so we need some sleep here. 2 seconds is a wild guess and a default, now it is a variable
+    sleep(module.params["timeout"])
+
 
     # get the new deployment status
     create_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
