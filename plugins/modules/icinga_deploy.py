@@ -97,6 +97,7 @@ def main():
     # so we need some sleep here. 2 seconds is a wild guess and a default, now it is a variable
     sleep(module.params["timeout"])
 
+
     # get the new deployment status
     create_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
 
