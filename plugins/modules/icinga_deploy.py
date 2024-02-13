@@ -78,7 +78,7 @@ def main():
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
-        timeout=dict(required=False, default=2)
+        timeout=dict(required=False, default=2, type="int")
     )
 
     # Define the main module
@@ -102,7 +102,6 @@ def main():
     # the deployment is asynchronous and I don't know of a way to check if it is finished.
     # so we need some sleep here. 2 seconds is a wild guess and a default, now it is a variable
     sleep(module.params["timeout"])
-
 
     # get the new deployment status
     create_deployment = icinga_deploy_status.query_deployment()["data"]["active_configuration"]["config"]
