@@ -1,302 +1,307 @@
----
-ancestor:
+ancestor: null
 releases:
-  2.0.2:
-    changes:
-      trivial:
-        - Update release-drafter/release-drafter action to v6 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/244)
-    release_date: '2024-01-25'
-  2.0.1:
-    changes:
-      bugfixes:
-        - 'Fixes #190 - Workaround for service apply bug (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/239)'
-      trivial:
-        - Add optional parameters to deploy handler (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/243)
-        - test different director versions with the services function (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/240)
-        - use antsichaut action (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/238)
-    release_date: '2024-01-25'
-  1.35.0:
-    changes:
-      minor_changes:
-        - Extended docs and examples for multiple assign_filter conditions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/227)
-      trivial:
-        - exclude old python versions with ansible devel (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/225)
-        - Update actions/checkout action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/224)
-        - Update test matrix (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/223)
-    release_date: '2023-11-13'
-  1.34.2:
-    changes:
-      trivial:
-        - exclude old python versions with ansible devel (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/225)
-        - Update actions/checkout action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/224)
-        - Update test matrix (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/223)
-    release_date: '2023-08-07'
-  1.34.1:
-    changes:
-      bugfixes:
-        - add more http-options for inventory module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/221)
-    release_date: '2023-07-28'
-  1.33.3:
-    changes:
-      minor_changes:
-        - add command_endpoint var for service templates (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/222)
-    release_date: '2023-07-14'
-  1.33.2:
-    changes:
-      trivial:
-        - move orga (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/216)
-        - run CI-tests only once peer week (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/215)
-    release_date: '2023-06-09'
-  1.33.1:
-    changes:
-      bugfixes:
-        - add icinga_deploy_* to action_group and test it (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/214)
-      trivial:
-        - Update README (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/211)
-    release_date: '2023-05-22'
-  1.33.0:
-    changes:
-      minor_changes:
-        - Add Icinga Deploy handler and module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/205)
-      trivial:
-        - use codespell to improve spelling (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/207)
-        - Update actions/checkout action to v3.5.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/206)
-    modules:
-      - description: Trigger deployment in Icinga2
-        name: icinga_deploy
-        namespace: ''
-      - description: Get deployment information through the director API
-        name: icinga_deploy_info
-        namespace: ''
-    release_date: '2023-05-22'
-  1.32.3:
-    changes:
-      trivial:
-        - use codespell to improve spelling (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/207)
-        - Update actions/checkout action to v3.5.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/206)
-    release_date: '2023-03-09'
-  1.32.2:
-    changes:
-      trivial:
-        - lowercase some more bools (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/204)
-    release_date: '2023-03-07'
-  1.32.1:
-    changes:
-      trivial:
-        - Consider true/false in docs for boolean (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/203)
-        - immediately return values and update dict-updates (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/199)
-    release_date: '2023-01-20'
-  1.32.0:
-    changes:
-      minor_changes:
-        - Add zone to user and notification template (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/198)
-      trivial:
-        - Update ansible-test to latest collection template. (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/195)
-        - Update actions/checkout action to v3.2.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/194)
-        - Update ansible-community/ansible-test-gh-action action to v1.12.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/192)
-        - add galaxy.yml to yamllinting (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/191)
-    release_date: '2023-01-06'
-  1.31.5:
-    changes:
-      trivial:
-        - Update ansible-test to latest collection template. (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/195)
-        - Update actions/checkout action to v3.2.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/194)
-        - Update ansible-community/ansible-test-gh-action action to v1.12.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/192)
-        - add galaxy.yml to yamllinting (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/191)
-    release_date: '2022-11-15'
-  1.31.4:
-    release_date: '2022-11-04'
-  1.31.3:
-    release_date: '2022-11-04'
-  1.31.2:
-    release_date: '2022-11-04'
-  1.31.1:
-    changes:
-      trivial:
-        - add empty default to argument docs (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/188)
-        - Update ansible-community/ansible-test-gh-action action to v1.11.1 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/186)
-        - Update ansible-community/ansible-test-gh-action action to v1.11.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/185)
-        - Update actions/checkout action to v3.1.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/184)
-        - fix problems found by refurb (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/183)
-        - Update ansible-community/ansible-test-gh-action action to v1.10.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/182)
-        - add ansible 2.14 to test-matrix, use new gh-action for tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/181)
-    release_date: '2022-08-22'
-  1.31.0:
-    changes:
-      minor_changes:
-        - Add flapping support to service template module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/180)
-        - Add icon support to service template (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/179)
-    release_date: '2022-08-22'
-  1.30.2:
-    release_date: '2022-08-02'
-  1.30.1:
-    changes:
-      bugfixes:
-        - Add exception handling to diff and exist functions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/176)
-      trivial:
-        - update list of ansible and python versions to be tested (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/178)
-        - update python-version for ansible-lint in tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/177)
-    release_date: '2022-07-01'
-  1.30.0:
-    changes:
-      minor_changes:
-        - Add action_group to enable module default groups (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/175)
-      trivial:
-        - fix release workflow (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/174)
-        - 'chore(deps): update actions/setup-python action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/173)'
-        - 'chore(deps): update github/codeql-action action to v2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/172)'
-        - 'chore(deps): update actions/checkout action to v3.0.2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/171)'
-    release_date: '2022-06-16'
-  1.29.1:
-    changes:
-      trivial:
-        - fix release workflow (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/174)
-        - 'chore(deps): update actions/setup-python action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/173)'
-        - 'chore(deps): update github/codeql-action action to v2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/172)'
-        - 'chore(deps): update actions/checkout action to v3.0.2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/171)'
-    release_date: '2022-04-21'
-  1.29.0:
-    changes:
-      minor_changes:
-        - Add icinga_serviceset module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/163)
-        - Test more ansible versions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/162)
-      trivial:
-        - 'chore(deps): update codecov/codecov-action action to v3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/170)'
-        - 'chore(deps): update actions/setup-python action to v3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/169)'
-        - 'chore(deps): update actions/checkout action (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/168)'
-        - 'chore(deps): update github-actions-x/commit action to v2.9 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/166)'
-        - Configure Renovate (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/164)
-    modules:
-      - description: Manage servicesets in Icinga2
-        name: icinga_serviceset
-        namespace: ''
-    release_date: '2022-04-20'
-  1.28.1:
-    changes:
-      minor_changes:
-        - Test more ansible versions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/162)
-      trivial:
-        - 'chore(deps): update codecov/codecov-action action to v3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/170)'
-        - 'chore(deps): update actions/setup-python action to v3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/169)'
-        - 'chore(deps): update actions/checkout action (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/168)'
-        - 'chore(deps): update github-actions-x/commit action to v2.9 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/166)'
-        - Configure Renovate (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/164)
-    release_date: '2022-03-30'
-  1.28.0:
-    changes:
-      bugfixes:
-        - 'role: add check_command to icinga_service_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/161)'
-      minor_changes:
-        - Added missing fields to 'icinga_host' and 'icinga_host_template' (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/158)
-      trivial:
-        - Fix sanity tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/159)
-    release_date: '2022-03-28'
-  1.27.2:
-    changes:
-      trivial:
-        - Fix sanity tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/159)
-    release_date: '2022-03-19'
-  1.27.1:
-    changes:
-      trivial:
-        - fixed missing property 'display_name' in module 'icinga_service' (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/157)
-    release_date: '2022-02-15'
-  1.27.0:
-    changes:
-      minor_changes:
-        - Add possibility to use Compose and keyed groups in inventory-module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/155)
-    release_date: '2022-01-03'
-  1.26.0:
-    changes:
-      minor_changes:
-        - add option to append arguments to all modules (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/153)
-      trivial:
-        - fix call url function (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/154)
-        - added duration into our scheduled_downtime task (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/151)
-    release_date: '2021-12-03'
-  1.25.1:
-    changes:
-      trivial:
-        - fix call url function (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/154)
-        - added duration into our scheduled_downtime task (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/151)
-    release_date: '2021-11-24'
-  1.25.0:
-    changes:
-      bugfixes:
-        - added a fix for the new scheduled_downtime module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/150)
-      minor_changes:
-        - Add Icinga scheduled downtime module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/146)
-    release_date: '2021-11-22'
-  1.23.1:
-    changes:
-      minor_changes:
-        - add resolve option to inventory-plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/147)
-      trivial:
-        - improve autogenerated documentation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/145)
-        - add documentation files and creation-workflow to repo (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/144)
-    release_date: '2021-10-18'
-  1.23.0:
-    release_date: '2021-09-23'
-  1.22.1:
-    changes:
-      trivial:
-        - ansible-test needs python >= 3.8 at the controller (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/142)
-        - added missing parameter to notification task (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/141)
-    release_date: '2021-09-17'
-  1.22.0:
-    changes:
-      minor_changes:
-        - Add support for retry_interval and max_check_attempts to host template (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/140)
-      trivial:
-        - 'Draft: updated retry pull request (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/139)'
-        - added 3 retries for every playbook (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/138)
-    release_date: '2021-09-15'
-  1.21.2:
-    changes:
-      trivial:
-        - 'Draft: updated retry pull request (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/139)'
-        - added 3 retries for every playbook (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/138)
-    release_date: '2021-09-13'
-  1.21.1:
-    changes:
-      bugfixes:
-        - Changed place in the creation order of service object in ansible_icinga
-          role (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/135)
-    release_date: '2021-08-30'
-  1.21.0:
-    changes:
-      minor_changes:
-        - Add event_command parameter to service apply playbook to enable usage (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/133)
-        - Add event_command parameter to icinga_service_apply module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/132)
-      trivial:
-        - Docs and tests update (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/131)
-    release_date: '2021-08-16'
-  1.20.1:
-    changes:
-      trivial:
-        - Docs and tests update (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/131)
-    release_date: '2021-08-05'
-  1.20.0:
-    changes:
-      minor_changes:
-        - add "vars" variable to icinga_notification in the role (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/129)
-        - Add some more documentation on command template (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/128)
-    release_date: '2021-07-16'
-  1.19.0:
-    changes:
-      minor_changes:
-        - add notification_template to role (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/125)
-      trivial:
-        - add Inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/127)
-        - ignore changelogs directory created by a 3rd party tool (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/126)
-        - add changelogs config so antsibull-changelog can work (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/124)
-        - use antsichaut and release-drafter for changelog and release generation
-          (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/122)
-    release_date: '2021-06-28'
   1.18.1:
     changes:
       trivial:
-        - add changelogs config so antsibull-changelog can work (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/124)
-        - use antsichaut and release-drafter for changelog and release generation
-          (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/122)
+      - add changelogs config so antsibull-changelog can work (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/124)
+      - use antsichaut and release-drafter for changelog and release generation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/122)
     release_date: '2021-06-28'
+  1.19.0:
+    changes:
+      minor_changes:
+      - add notification_template to role (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/125)
+      trivial:
+      - add Inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/127)
+      - add changelogs config so antsibull-changelog can work (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/124)
+      - ignore changelogs directory created by a 3rd party tool (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/126)
+      - use antsichaut and release-drafter for changelog and release generation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/122)
+    release_date: '2021-06-28'
+  1.20.0:
+    changes:
+      minor_changes:
+      - Add some more documentation on command template (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/128)
+      - add "vars" variable to icinga_notification in the role (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/129)
+    release_date: '2021-07-16'
+  1.20.1:
+    changes:
+      trivial:
+      - Docs and tests update (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/131)
+    release_date: '2021-08-05'
+  1.21.0:
+    changes:
+      minor_changes:
+      - Add event_command parameter to icinga_service_apply module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/132)
+      - Add event_command parameter to service apply playbook to enable usage (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/133)
+      trivial:
+      - Docs and tests update (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/131)
+    release_date: '2021-08-16'
+  1.21.1:
+    changes:
+      bugfixes:
+      - Changed place in the creation order of service object in ansible_icinga role
+        (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/135)
+    release_date: '2021-08-30'
+  1.21.2:
+    changes:
+      trivial:
+      - 'Draft: updated retry pull request (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/139)'
+      - added 3 retries for every playbook (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/138)
+    release_date: '2021-09-13'
+  1.22.0:
+    changes:
+      minor_changes:
+      - Add support for retry_interval and max_check_attempts to host template (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/140)
+      trivial:
+      - 'Draft: updated retry pull request (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/139)'
+      - added 3 retries for every playbook (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/138)
+    release_date: '2021-09-15'
+  1.22.1:
+    changes:
+      trivial:
+      - added missing parameter to notification task (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/141)
+      - ansible-test needs python >= 3.8 at the controller (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/142)
+    release_date: '2021-09-17'
+  1.23.0:
+    release_date: '2021-09-23'
+  1.23.1:
+    changes:
+      minor_changes:
+      - add resolve option to inventory-plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/147)
+      trivial:
+      - add documentation files and creation-workflow to repo (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/144)
+      - improve autogenerated documentation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/145)
+    release_date: '2021-10-18'
+  1.25.0:
+    changes:
+      bugfixes:
+      - added a fix for the new scheduled_downtime module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/150)
+      minor_changes:
+      - Add Icinga scheduled downtime module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/146)
+    release_date: '2021-11-22'
+  1.25.1:
+    changes:
+      trivial:
+      - added duration into our scheduled_downtime task (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/151)
+      - fix call url function (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/154)
+    release_date: '2021-11-24'
+  1.26.0:
+    changes:
+      minor_changes:
+      - add option to append arguments to all modules (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/153)
+      trivial:
+      - added duration into our scheduled_downtime task (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/151)
+      - fix call url function (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/154)
+    release_date: '2021-12-03'
+  1.27.0:
+    changes:
+      minor_changes:
+      - Add possibility to use Compose and keyed groups in inventory-module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/155)
+    release_date: '2022-01-03'
+  1.27.1:
+    changes:
+      trivial:
+      - fixed missing property 'display_name' in module 'icinga_service' (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/157)
+    release_date: '2022-02-15'
+  1.27.2:
+    changes:
+      trivial:
+      - Fix sanity tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/159)
+    release_date: '2022-03-19'
+  1.28.0:
+    changes:
+      bugfixes:
+      - 'role: add check_command to icinga_service_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/161)'
+      minor_changes:
+      - Added missing fields to 'icinga_host' and 'icinga_host_template' (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/158)
+      trivial:
+      - Fix sanity tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/159)
+    release_date: '2022-03-28'
+  1.28.1:
+    changes:
+      minor_changes:
+      - Test more ansible versions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/162)
+      trivial:
+      - Configure Renovate (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/164)
+      - 'chore(deps): update actions/checkout action (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/168)'
+      - 'chore(deps): update actions/setup-python action to v3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/169)'
+      - 'chore(deps): update codecov/codecov-action action to v3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/170)'
+      - 'chore(deps): update github-actions-x/commit action to v2.9 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/166)'
+    release_date: '2022-03-30'
+  1.29.0:
+    changes:
+      minor_changes:
+      - Add icinga_serviceset module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/163)
+      - Test more ansible versions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/162)
+      trivial:
+      - Configure Renovate (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/164)
+      - 'chore(deps): update actions/checkout action (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/168)'
+      - 'chore(deps): update actions/setup-python action to v3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/169)'
+      - 'chore(deps): update codecov/codecov-action action to v3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/170)'
+      - 'chore(deps): update github-actions-x/commit action to v2.9 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/166)'
+    modules:
+    - description: Manage servicesets in Icinga2
+      name: icinga_serviceset
+      namespace: ''
+    release_date: '2022-04-20'
+  1.29.1:
+    changes:
+      trivial:
+      - 'chore(deps): update actions/checkout action to v3.0.2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/171)'
+      - 'chore(deps): update actions/setup-python action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/173)'
+      - 'chore(deps): update github/codeql-action action to v2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/172)'
+      - fix release workflow (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/174)
+    release_date: '2022-04-21'
+  1.30.0:
+    changes:
+      minor_changes:
+      - Add action_group to enable module default groups (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/175)
+      trivial:
+      - 'chore(deps): update actions/checkout action to v3.0.2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/171)'
+      - 'chore(deps): update actions/setup-python action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/173)'
+      - 'chore(deps): update github/codeql-action action to v2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/172)'
+      - fix release workflow (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/174)
+    release_date: '2022-06-16'
+  1.30.1:
+    changes:
+      bugfixes:
+      - Add exception handling to diff and exist functions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/176)
+      trivial:
+      - update list of ansible and python versions to be tested (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/178)
+      - update python-version for ansible-lint in tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/177)
+    release_date: '2022-07-01'
+  1.30.2:
+    release_date: '2022-08-02'
+  1.31.0:
+    changes:
+      minor_changes:
+      - Add flapping support to service template module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/180)
+      - Add icon support to service template (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/179)
+    release_date: '2022-08-22'
+  1.31.1:
+    changes:
+      trivial:
+      - Update actions/checkout action to v3.1.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/184)
+      - Update ansible-community/ansible-test-gh-action action to v1.10.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/182)
+      - Update ansible-community/ansible-test-gh-action action to v1.11.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/185)
+      - Update ansible-community/ansible-test-gh-action action to v1.11.1 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/186)
+      - add ansible 2.14 to test-matrix, use new gh-action for tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/181)
+      - add empty default to argument docs (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/188)
+      - fix problems found by refurb (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/183)
+    release_date: '2022-08-22'
+  1.31.2:
+    release_date: '2022-11-04'
+  1.31.3:
+    release_date: '2022-11-04'
+  1.31.4:
+    release_date: '2022-11-04'
+  1.31.5:
+    changes:
+      trivial:
+      - Update actions/checkout action to v3.2.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/194)
+      - Update ansible-community/ansible-test-gh-action action to v1.12.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/192)
+      - Update ansible-test to latest collection template. (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/195)
+      - add galaxy.yml to yamllinting (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/191)
+    release_date: '2022-11-15'
+  1.32.0:
+    changes:
+      minor_changes:
+      - Add zone to user and notification template (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/198)
+      trivial:
+      - Update actions/checkout action to v3.2.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/194)
+      - Update ansible-community/ansible-test-gh-action action to v1.12.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/192)
+      - Update ansible-test to latest collection template. (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/195)
+      - add galaxy.yml to yamllinting (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/191)
+    release_date: '2023-01-06'
+  1.32.1:
+    changes:
+      trivial:
+      - Consider true/false in docs for boolean (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/203)
+      - immediately return values and update dict-updates (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/199)
+    release_date: '2023-01-20'
+  1.32.2:
+    changes:
+      trivial:
+      - lowercase some more bools (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/204)
+    release_date: '2023-03-07'
+  1.32.3:
+    changes:
+      trivial:
+      - Update actions/checkout action to v3.5.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/206)
+      - use codespell to improve spelling (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/207)
+    release_date: '2023-03-09'
+  1.33.0:
+    changes:
+      minor_changes:
+      - Add Icinga Deploy handler and module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/205)
+      trivial:
+      - Update actions/checkout action to v3.5.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/206)
+      - use codespell to improve spelling (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/207)
+    modules:
+    - description: Trigger deployment in Icinga2
+      name: icinga_deploy
+      namespace: ''
+    - description: Get deployment information through the director API
+      name: icinga_deploy_info
+      namespace: ''
+    release_date: '2023-05-22'
+  1.33.1:
+    changes:
+      bugfixes:
+      - add icinga_deploy_* to action_group and test it (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/214)
+      trivial:
+      - Update README (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/211)
+    release_date: '2023-05-22'
+  1.33.2:
+    changes:
+      trivial:
+      - move orga (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/216)
+      - run CI-tests only once peer week (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/215)
+    release_date: '2023-06-09'
+  1.33.3:
+    changes:
+      minor_changes:
+      - add command_endpoint var for service templates (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/222)
+    release_date: '2023-07-14'
+  1.34.1:
+    changes:
+      bugfixes:
+      - add more http-options for inventory module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/221)
+    release_date: '2023-07-28'
+  1.34.2:
+    changes:
+      trivial:
+      - Update actions/checkout action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/224)
+      - Update test matrix (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/223)
+      - exclude old python versions with ansible devel (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/225)
+    release_date: '2023-08-07'
+  1.35.0:
+    changes:
+      minor_changes:
+      - Extended docs and examples for multiple assign_filter conditions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/227)
+      trivial:
+      - Update actions/checkout action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/224)
+      - Update test matrix (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/223)
+      - exclude old python versions with ansible devel (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/225)
+    release_date: '2023-11-13'
+  2.0.1:
+    changes:
+      bugfixes:
+      - 'Fixes #190 - Workaround for service apply bug (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/239)'
+      trivial:
+      - Add optional parameters to deploy handler (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/243)
+      - test different director versions with the services function (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/240)
+      - use antsichaut action (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/238)
+    release_date: '2024-01-25'
+  2.0.2:
+    changes:
+      trivial:
+      - Update release-drafter/release-drafter action to v6 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/244)
+      - add 1.11.1 to test-matrix (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/247)
+      - release only on releases, not pre-releases (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/237)
+    release_date: '2024-01-25'
+  2.0.3:
+    release_date: '2024-02-12'
+  2.0.4:
+    release_date: '2024-02-12'
+  2.0.5:
+    release_date: '2024-02-12'
