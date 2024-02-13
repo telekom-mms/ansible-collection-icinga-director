@@ -9,5 +9,6 @@
     client_key: "{{ icinga_client_key | default(omit) }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
+    timeout: "{{ icinga_deploy_timeout | default(omit) }}"
   when: icinga_deploy_config and icinga_deploy_config is defined
   listen: config_deploy
