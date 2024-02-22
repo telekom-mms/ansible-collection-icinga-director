@@ -1,9 +1,10 @@
 ---
-- hosts: localhost
+- name: Test icinga_role
+  hosts: localhost
   roles:
     - telekom_mms.icinga_director.ansible_icinga
   vars:
-    icinga_url: "https://example.com"
+    icinga_url: "{{ icinga_url }}"
     icinga_user: "{{ icinga_user }}"
     icinga_pass: "{{ icinga_pass }}"
     icinga_commands:
