@@ -41,20 +41,11 @@ jobs:
           # Add new versions announced in
           # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
           # consider dropping testing against EOL versions and versions you don't support.
-          - stable-2.13
           - stable-2.14
           - stable-2.15
+          - stable-2.16
           - devel
-        # - milestone
-    # Ansible-test on various stable branches does not yet work well with cgroups v2.
-    # Since ubuntu-latest now uses Ubuntu 22.04, we need to fall back to the ubuntu-20.04
-    # image for these stable branches. The list of branches where this is necessary will
-    # shrink over time, check out https://github.com/ansible-collections/news-for-maintainers/issues/28
-    # for the latest list.
-    runs-on: >-
-      ${{ contains(fromJson(
-          '["stable-2.9", "stable-2.10", "stable-2.11"]'
-      ), matrix.ansible) && 'ubuntu-20.04' || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     steps:
       # Run sanity tests inside a Docker container.
       # The docker container has all the pinned dependencies that are
@@ -82,10 +73,7 @@ jobs:
     # image for these stable branches. The list of branches where this is necessary will
     # shrink over time, check out https://github.com/ansible-collections/news-for-maintainers/issues/28
     # for the latest list.
-    runs-on: >-
-      ${{ contains(fromJson(
-          '["stable-2.9", "stable-2.10", "stable-2.11"]'
-      ), matrix.ansible) && 'ubuntu-20.04' || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }}) - director ${{ matrix.icinga_director }}
     strategy:
       fail-fast: false
@@ -94,13 +82,11 @@ jobs:
           - 1.8.1
           - 1.11.1
         ansible:
-          - devel
           - stable-2.14
           - stable-2.15
           - stable-2.16
-        # - milestone
+          - devel
         python:
-          - '3.7'
           - '3.8'
           - '3.9'
           - '3.10'
