@@ -5,6 +5,7 @@ releases:
     changes:
       trivial:
         - update tested ansible and python versions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/253)
+        - Update github/codeql-action digest to df5a14d (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/251)
         - Update github/codeql-action digest to 47b3d88 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/250)
         - document known errors for different director versions  (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/249)
     release_date: '2024-02-14'
