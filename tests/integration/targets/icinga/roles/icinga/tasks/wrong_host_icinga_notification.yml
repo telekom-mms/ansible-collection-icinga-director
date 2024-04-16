@@ -9,7 +9,7 @@
     assign_filter: 'host.name="foohost"'
     imports:
       - foonotificationtemplate
-    notification_interval: '0'
+    notification_interval: 0
     object_name: E-Mail_host
     states:
       - Up
@@ -25,6 +25,34 @@
     time_period: "24/7"
     times_begin: 20
     times_end: 120
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Create another notification
+  telekom_mms.icinga_director.icinga_notification:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    apply_to: host
+    assign_filter: 'host.name="foohost"'
+    imports:
+      - foonotificationtemplate
+    notification_interval: 0
+    object_name: E-Mail_host
+    states:
+      - Up
+      - Down
+    types:
+      - Problem
+      - Recovery
+    users:
+      - rb
+    time_period: "24/7"
   ignore_errors: true
   register: result
 - assert:
