@@ -40,18 +40,18 @@ options:
       - Apply feature state.
     choices: [ "present", "absent" ]
     default: present
-    type: str
+    type: "str"
   object_name:
     description:
       - Name of the notification.
     aliases: ['name']
     required: true
-    type: str
+    type: "str"
   notification_interval:
     description:
       - The notification interval (in seconds). This interval is used for active notifications.
       - Defaults to 30 minutes. If set to 0, re-notifications are disabled.
-    type: str
+    type: "int"
   types:
     description:
       - The state transition types you want to get notifications for.
@@ -72,7 +72,7 @@ options:
     description:
       - Whether this notification should affect hosts or services.
       - Required if I(state) is C(present).
-    type: str
+    type: "str"
     choices: ["host", "service"]
   assign_filter:
     description:
@@ -127,7 +127,7 @@ options:
       - Do not overwrite the whole object but instead append the defined properties.
       - Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
       - Note - Variables that are set by default will also be applied, even if not set.
-    type: bool
+    type: "bool"
     choices: [true, false]
     version_added: '1.25.0'
 """
@@ -143,7 +143,7 @@ EXAMPLES = """
     assign_filter: 'host.name="foohost"'
     imports:
       - foonotificationtemplate
-    notification_interval: '0'
+    notification_interval: 0
     object_name: E-Mail_host
     states:
       - Up
@@ -159,6 +159,28 @@ EXAMPLES = """
     time_period: "24/7"
     times_begin: 20
     times_end: 120
+
+- name: Create another notification
+  telekom_mms.icinga_director.icinga_notification:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    apply_to: host
+    assign_filter: 'host.name="foohost"'
+    imports:
+      - foonotificationtemplate
+    notification_interval: 0
+    object_name: E-Mail_host
+    states:
+      - Up
+      - Down
+    types:
+      - Problem
+      - Recovery
+    users:
+      - rb
+    time_period: "24/7"
 
 - name: Update notification
   telekom_mms.icinga_director.icinga_notification:
@@ -200,7 +222,7 @@ def main():
         disabled=dict(
             type="bool", required=False, default=False, choices=[True, False]
         ),
-        notification_interval=dict(required=False),
+        notification_interval=dict(type="int", required=False),
         states=dict(type="list", elements="str", required=False),
         users=dict(type="list", elements="str", required=False),
         user_groups=dict(type="list", elements="str", required=False),
