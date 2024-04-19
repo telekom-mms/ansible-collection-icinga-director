@@ -3,6 +3,8 @@ ancestor:
 releases:
   2.1.1:
     changes:
+      bugfixes:
+        - change notification interval variable to int-type (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/254)
       trivial:
         - update tested ansible and python versions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/253)
         - Update ansible-community/ansible-test-gh-action action to v1.15.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/252)

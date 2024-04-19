@@ -8,6 +8,11 @@ telekom_mms.icinga_director Release Notes
 v2.1.1
 ======
 
+Bugfixes
+--------
+
+- change notification interval variable to int-type (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/254)
+
 v2.1.0
 ======
 
