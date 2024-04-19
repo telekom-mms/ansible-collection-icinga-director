@@ -34,7 +34,9 @@ Additionally all supported modules have an appropriate `*_info`-module to gather
 
 4. An [inventory plugin](plugins/inventory) to use hosts and groups defined in Icinga as a dynamic inventory.
 
-Required Ansible version: 2.9.10
+Required Ansible version: 2.14.0
+
+Recommended Icinga-Director version: 2.11.1
 
 ## Installation
 
@@ -193,6 +195,10 @@ failed: [localhost] => {"ansible_loop_var": "item", "changed": false, "item": "l
 ```
 
 ## Known Errors with different Director versions
+
+### Director 1.11.1
+
+When creating notifications that contain the `users`-parameter, the task might not be idempotent ([see](https://github.com/Icinga/icingaweb2-module-director/issues/2882)).
 
 ### Director 1.11.0
 
