@@ -121,6 +121,7 @@ options:
       - User Groups that should be notified by this notification.
     type: "list"
     elements: str
+    default: []
     version_added: '1.16.0'
   append:
     description:
@@ -225,7 +226,7 @@ def main():
         notification_interval=dict(type="int", required=False),
         states=dict(type="list", elements="str", required=False),
         users=dict(type="list", elements="str", required=False),
-        user_groups=dict(type="list", elements="str", required=False),
+        user_groups=dict(type="list", elements="str", default=[], required=False),
         types=dict(type="list", elements="str", required=False),
         vars=dict(type="dict", default={}, required=False),
         period=dict(required=False, aliases=["time_period"]),
