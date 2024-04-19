@@ -90,7 +90,7 @@ Parameters
     When the last notification should be sent.
 
 
-  user_groups (optional, list, None)
+  user_groups (optional, list, [])
     User Groups that should be notified by this notification.
 
 
