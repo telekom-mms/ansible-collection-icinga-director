@@ -30,7 +30,7 @@ Parameters
     Name of the notification.
 
 
-  notification_interval (optional, str, None)
+  notification_interval (optional, int, None)
     The notification interval (in seconds). This interval is used for active notifications.
 
     Defaults to 30 minutes. If set to 0, re-notifications are disabled.
@@ -190,7 +190,7 @@ Examples
         assign_filter: 'host.name="foohost"'
         imports:
           - foonotificationtemplate
-        notification_interval: '0'
+        notification_interval: 0
         object_name: E-Mail_host
         states:
           - Up
@@ -206,6 +206,28 @@ Examples
         time_period: "24/7"
         times_begin: 20
         times_end: 120
+
+    - name: Create another notification
+      telekom_mms.icinga_director.icinga_notification:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        apply_to: host
+        assign_filter: 'host.name="foohost"'
+        imports:
+          - foonotificationtemplate
+        notification_interval: 0
+        object_name: E-Mail_host
+        states:
+          - Up
+          - Down
+        types:
+          - Problem
+          - Recovery
+        users:
+          - rb
+        time_period: "24/7"
 
     - name: Update notification
       telekom_mms.icinga_director.icinga_notification:
