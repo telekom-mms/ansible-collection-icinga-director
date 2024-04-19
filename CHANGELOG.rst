@@ -12,6 +12,7 @@ Bugfixes
 --------
 
 - change notification interval variable to int-type (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/254)
+- set user_groups in notification to empty list (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/255)
 
 v2.1.0
 ======

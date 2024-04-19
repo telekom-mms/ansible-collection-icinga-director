@@ -4,6 +4,7 @@ releases:
   2.1.1:
     changes:
       bugfixes:
+        - set user_groups in notification to empty list (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/255)
         - change notification interval variable to int-type (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/254)
       trivial:
         - update tested ansible and python versions (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/253)
