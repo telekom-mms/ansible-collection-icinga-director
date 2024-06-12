@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     name: create documentation inside docs-folder
     steps:
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -26,7 +26,7 @@ jobs:
       # the form ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}/
 
       - name: Check out code to ansible collection location
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
           fetch-depth: 0
@@ -68,7 +68,7 @@ jobs:
     name: create release draft
     needs: update_docs  # the documentation should be updated before creating a new release
     steps:
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           # checkout the main branch, because without the ref, the above commit ("update documentation")
           # isn't included and the push will fail
@@ -135,7 +135,7 @@ jobs:
 
       # do a second checkout to prevent race situation
       # changelog gets updated but action works on old commit id
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           ref: main
 
