@@ -229,6 +229,8 @@ class IcingaServiceObject(Icinga2APIObject):
         self.path = path
         self.data = data
         self.object_id = None
+        param_service_type = ""
+        param_service_type_filter = ""
         # set url parameters when service is assigned to a host
         if "host" in self.data:
             if self.data["host"]:
