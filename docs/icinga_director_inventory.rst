@@ -85,11 +85,11 @@ Parameters
 
 
   force (optional, bool, False)
-    If \ :literal:`yes`\  do not get a cached copy.
+    If :literal:`yes` do not get a cached copy.
 
 
   strict (optional, bool, False)
-    If \ :literal:`yes`\  make invalid entries a fatal error, otherwise skip and continue.
+    If :literal:`yes` make invalid entries a fatal error, otherwise skip and continue.
 
     Since it is possible to use facts in the expressions they might not always be available and we ignore those errors by default.
 
@@ -125,13 +125,13 @@ Parameters
     default_value (optional, str, None)
       The default value when the host variable's value is an empty string.
 
-      This option is mutually exclusive with \ :literal:`trailing\_separator`\ .
+      This option is mutually exclusive with :literal:`trailing\_separator`.
 
 
     trailing_separator (optional, bool, True)
-      Set this option to \ :emphasis:`False`\  to omit the \ :literal:`separator`\  after the host variable when the value is an empty string.
+      Set this option to :emphasis:`False` to omit the :literal:`separator` after the host variable when the value is an empty string.
 
-      This option is mutually exclusive with \ :literal:`default\_value`\ .
+      This option is mutually exclusive with :literal:`default\_value`.
 
 
 
