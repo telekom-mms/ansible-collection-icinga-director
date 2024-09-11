@@ -1254,7 +1254,7 @@ argument_specs:
               - >-
                 The name of a time period which determines when this
                 notification should be triggered.
-            type: strod
+            type: str
             version_added: 1.15.0
           times_begin:
             description:
