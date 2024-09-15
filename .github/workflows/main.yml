@@ -169,7 +169,7 @@ jobs:
           under Python ${{ matrix.python }}
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
-        uses: ansible-community/ansible-test-gh-action@7d847f97e7c69bb18e1cd2b72756ddeaed060430 # v1.15.0
+        uses: ansible-community/ansible-test-gh-action@b416b6ecf7ddb0ea3b0a51c1d198d715eba52c9d # v1.16.0
         with:
           ansible-core-version: ${{ matrix.ansible }}
           # OPTIONAL command to run before invoking `ansible-test integration`
