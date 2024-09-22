@@ -4,10 +4,11 @@ name: Publish collection to Ansible Galaxy
 on:
   release:
     types:
-      - published
+      - released
 
 jobs:
   deploy:
     uses: telekom-mms/.github/.github/workflows/ansible-galaxy-publish.yml@main
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
+      GH_BRANCH_PROTECTION_APP_TOKEN: ${{ secrets.GH_BRANCH_PROTECTION_APP_TOKEN }}

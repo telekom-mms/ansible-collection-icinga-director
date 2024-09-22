@@ -19,6 +19,10 @@ categories:
 exclude-labels:
   - 'skip-changelog'
   - 'duplicate'
+exclude-contributors:
+  - ' @renovate[bot]'
+  - 'Deutsche Telekom MMS'
+  - 'Telekom MMS GmbH'
 version-resolver:
   major:
     labels:

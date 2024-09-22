@@ -32,6 +32,7 @@
     use_agent: "{{ service.use_agent | default(omit) }}"
     vars: "{{ service.vars | default(omit) }}"
     volatile: "{{ service.volatile | default(omit) }}"
+    service_set: "{{ service.service_set | default(omit) }}"
   retries: 3
   delay: 3
   register: result

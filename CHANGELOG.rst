@@ -5,6 +5,49 @@ telekom_mms.icinga_director Release Notes
 .. contents:: Topics
 
 
+v2.1.3
+======
+
+v2.1.2
+======
+
+v2.1.1
+======
+
+Bugfixes
+--------
+
+- change notification interval variable to int-type (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/254)
+- set user_groups in notification to empty list (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/255)
+
+v2.1.0
+======
+
+Minor Changes
+-------------
+
+- Increase sleep to 5 seconds (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/245)
+
+v2.0.5
+======
+
+v2.0.4
+======
+
+v2.0.3
+======
+
+v2.0.2
+======
+
+v2.0.1
+======
+
+Bugfixes
+--------
+
+- Fixes #190 - Workaround for service apply bug (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/239)
+
 v1.35.0
 =======
 

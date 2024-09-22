@@ -34,7 +34,9 @@ Additionally all supported modules have an appropriate `*_info`-module to gather
 
 4. An [inventory plugin](plugins/inventory) to use hosts and groups defined in Icinga as a dynamic inventory.
 
-Required Ansible version: 2.9.10
+Required Ansible version: 2.14.0
+
+Recommended Icinga-Director version: 2.11.1
 
 ## Installation
 
@@ -192,6 +194,32 @@ fatal: [localhost]: FAILED! => {"changed": false, "msg": "bad return code while 
 failed: [localhost] => {"ansible_loop_var": "item", "changed": false, "item": "localhost", "msg": "AbstractDigestAuthHandler does not support the following scheme: 'Negotiate'", "status": -1, "url": "https://icinga-director.example.com/director/host?name=foohost"}
 ```
 
+## Known Errors with different Director versions
+
+### Director 1.11.1
+
+When creating notifications that contain the `users`-parameter, the task might not be idempotent ([see](https://github.com/Icinga/icingaweb2-module-director/issues/2882)).
+
+### Director 1.11.0
+
+You cannot create usergroups because of invalid property assign_filter ([see](https://github.com/telekom-mms/ansible-collection-icinga-director/issues/228)).
+
+### Director 1.10.0
+
+Existing service apply rule objects cannot be modified ([see](https://github.com/telekom-mms/ansible-collection-icinga-director/issues/190)):
+
+```
+TASK [Add service apply rule to icinga] ********************************************************************************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "exception when deleting: 'id'"}
+```
+
+### Director 1.9.0
+
+When creating service checks, the tasks fails ([see](https://github.com/telekom-mms/ansible-collection-icinga-director/issues/160)):
+
+```
+failed: [icinga2-master1.localdomain] (item={'name': 'director-generic-service', 'enable_active_checks': True, 'enable_event_handler': True, 'enable_flapping': True, 'enable_notifications': True, 'eanble_passive_checks': True, 'enable_perfdata': True, 'use_agent': True, 'volatile': False}) => {"ansible_loop_var": "item", "changed": false, "item": {"eanble_passive_checks": true, "enable_active_checks": true, "enable_event_handler": true, "enable_flapping": true, "enable_notifications": true, "enable_perfdata": true, "name": "director-generic-service", "use_agent": true, "volatile": false}, "msg": "bad return code while creating: 422. Error message: Trying to recreate icinga_service (\"{\"object_name\":\"director-generic-service\"}\")"}
+```
 
 ## Extras
 
