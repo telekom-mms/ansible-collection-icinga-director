@@ -11,6 +11,9 @@
     email: "foouser@example.com"
     groups:
       - onCall
+    vars:
+      department: IT
+      role: CTO
 - name: Update user
   telekom_mms.icinga_director.icinga_user:
     state: absent
