@@ -183,3 +183,23 @@ jobs:
           # which should improve CI performance. See limitations on
           # https://github.com/ansible-community/ansible-test-gh-action#pull-request-change-detection
           pull-request-change-detection: true
+
+  docsite:
+    name: Lint extra docsite docs and links
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5
+        with:
+          python-version: 3.11
+
+      - name: Install antsibull-docs
+        run: pip install antsibull-docs --disable-pip-version-check
+
+      - name: Run collection docs linter
+        run: antsibull-docs  lint-collection-docs --plugin-docs --validate-collection-refs all --disallow-unknown-collection-refs --skip-rstcheck .
