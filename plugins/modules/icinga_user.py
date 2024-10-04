@@ -82,6 +82,11 @@ options:
       - Groups can be useful for various reasons. You might prefer to send notifications to groups instead of single users.
     type: list
     elements: str
+  vars:
+    description:
+      - Custom properties of the user.
+    type: "dict"
+    default: {}
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -107,6 +112,9 @@ EXAMPLES = """
       - foousertemplate
     groups:
       - onCall
+    vars:
+      department: IT
+      role: CTO
 
 - name: Update user
   telekom_mms.icinga_director.icinga_user:
@@ -147,6 +155,7 @@ def main():
         pager=dict(required=False),
         period=dict(required=False),
         groups=dict(type="list", elements="str", required=False),
+        vars=dict(type="dict", default={}, required=False),
     )
 
     # Define the main module
@@ -163,6 +172,7 @@ def main():
         "pager",
         "period",
         "groups",
+        "vars",
     ]
 
     data = {}

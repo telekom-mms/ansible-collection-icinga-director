@@ -77,6 +77,11 @@ argument_specs:
             description:
               - Whether to send notifications for this user.
             type: bool
+          vars:
+            description:
+              - Custom properties of the user.
+            type: "dict"
+            default: {}
       icinga_users:
         description:
           - A list of Icinga users to configure
@@ -141,6 +146,11 @@ argument_specs:
                 send notifications to groups instead of single users.
             type: list
             elements: str
+          vars:
+            description:
+              - Custom properties of the user.
+            type: "dict"
+            default: {}
       icinga_endpoints:
         description:
           - A list of Icinga endpoints to configure

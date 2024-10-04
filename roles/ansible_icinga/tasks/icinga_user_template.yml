@@ -14,6 +14,7 @@
     imports: "{{ user_template.imports | default(omit) }}"
     period: "{{ user_template.period | default(omit) }}"
     enable_notifications: "{{ user_template.enable_notifications | default(omit) }}"
+    vars: "{{ user_template.vars | default(omit) }}"
     zone: "{{ user_template.zone | default(omit) }}"
   retries: 3
   delay: 3

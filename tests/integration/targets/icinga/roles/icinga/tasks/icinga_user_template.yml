@@ -9,6 +9,8 @@
     enable_notifications: false
     period: '24/7'
     zone: "foozone"
+    vars:
+      department: IT
 - name: Update user template
   telekom_mms.icinga_director.icinga_user_template:
     state: present
