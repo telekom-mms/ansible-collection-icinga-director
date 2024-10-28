@@ -4,6 +4,9 @@ releases:
   2.1.3:
     changes:
       trivial:
+        - 'chore(deps): update github/codeql-action digest to 6624720 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/264)'
+        - 'chore(deps): update actions/checkout action to v4.2.0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/263)'
+        - 'feat(test): add antsibull-doc tests (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/261)'
         - Fix typo in argument_specs.yml (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/260)
         - 'fix(service): fix var before assignment (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/258)'
         - 'chore(deps): update github/codeql-action digest to 883d858 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/257)'
