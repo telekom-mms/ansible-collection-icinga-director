@@ -26,10 +26,10 @@ jobs:
           python-version: 3.11
 
       - name: Install aar_doc
-        run: pip3 install aar_doc
+        run: pip3 install aar-doc
 
       - name: Run aar_doc
-        run: aar_doc --config-file .aar_doc.yml roles/ansible_icinga/ markdown
+        run: aar-doc --config-file .aar_doc.yml roles/ansible_icinga/ markdown
 
       - name: Push README
         if: github.event_name != 'pull_request'
