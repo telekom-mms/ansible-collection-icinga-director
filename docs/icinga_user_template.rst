@@ -47,6 +47,8 @@ Parameters
   zone (optional, str, None)
     Set the zone.
 
+  vars (optional, dict, {})
+    Custom properties of the user template.
 
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
@@ -133,7 +135,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    
+
     - name: Create user template
       telekom_mms.icinga_director.icinga_user_template:
         state: present
@@ -143,6 +145,8 @@ Examples
         object_name: "foousertemplate"
         enable_notifications: false
         period: '24/7'
+        vars:
+          department: IT
         zone: "foozone"
 
     - name: Update user template
