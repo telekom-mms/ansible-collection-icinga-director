@@ -8,6 +8,11 @@ telekom_mms.icinga_director Release Notes
 v2.1.3
 ======
 
+Minor Changes
+-------------
+
+- Add vars parameter to user_template and user modules (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/262)
+
 v2.1.2
 ======
 
