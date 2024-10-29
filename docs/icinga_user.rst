@@ -63,8 +63,10 @@ Parameters
 
     Groups can be useful for various reasons. You might prefer to send notifications to groups instead of single users.
 
+
   vars (optional, dict, {})
     Custom properties of the user.
+
 
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
@@ -151,7 +153,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-
+    
     - name: Create user
       telekom_mms.icinga_director.icinga_user:
         state: present
