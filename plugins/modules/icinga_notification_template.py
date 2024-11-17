@@ -123,6 +123,8 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foonotificationtemplate
+        imports:
+          - foonotificationtemplate
     states:
       - Up
       - Down
@@ -138,8 +140,6 @@ EXAMPLES = """
     user_groups:
       - "OnCall"
     zone: "foozone"
-    imports:
-      - 'footemplate'
 
 - name: Update notification template
   telekom_mms.icinga_director.icinga_notification_template:
@@ -148,10 +148,11 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foonotificationtemplate
+    imports:
+      - foonotificationtemplate
     notification_interval: '0'
     append: true
-    imports:
-      - 'footemplate'
+
 """
 
 RETURN = r""" # """
