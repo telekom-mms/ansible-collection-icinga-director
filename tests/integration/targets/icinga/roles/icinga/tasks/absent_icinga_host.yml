@@ -31,7 +31,7 @@
     retry_interval: "1m"
     volatile: false
     groups:
-      - "foohostgroup"
+    - "foohostgroup"
     vars:
       dnscheck: "no"
 - name: update a host in icinga

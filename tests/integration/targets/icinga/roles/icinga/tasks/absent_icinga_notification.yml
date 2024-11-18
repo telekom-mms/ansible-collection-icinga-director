@@ -10,15 +10,15 @@
     notification_interval: 0
     object_name: E-Mail_host
     states:
-      - Up
-      - Down
+    - Up
+    - Down
     types:
-      - Problem
-      - Recovery
+    - Problem
+    - Recovery
     users:
-      - rb
+    - rb
     user_groups:
-      - OnCall
+    - OnCall
     disabled: false
     time_period: "24/7"
     times_begin: 20
@@ -34,13 +34,13 @@
     notification_interval: 0
     object_name: E-Mail_host
     states:
-      - Up
-      - Down
+    - Up
+    - Down
     types:
-      - Problem
-      - Recovery
+    - Problem
+    - Recovery
     users:
-      - rb
+    - rb
     time_period: "24/7"
 - name: Update notification
   telekom_mms.icinga_director.icinga_notification:

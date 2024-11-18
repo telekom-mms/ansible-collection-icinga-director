@@ -8,4 +8,4 @@
   register: result
 - assert:
     that:
-      - '(result.objects | length) == 0'
+    - '(result.objects | length) == 0'
