@@ -1,0 +1,36 @@
+---
+name: Check generated testcases
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [master]
+    paths:
+      - 'plugins/modules/*.py'
+      - 'examples/**'
+      - 'hacking/**'
+      - 'tests/**'
+      - '.github/workflows/test_gen.yml'
+
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{
+      github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
+
+jobs:
+  test_gen:
+    name: re-generate tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.5.3
+        with:
+          fetch-depth: 0
+      - uses: chrisdickinson/setup-yq@v1.0.1
+        with:
+          yq-version: 3.2.1
+      - run: |
+          ./hacking/update_examples_and_tests.sh
+          if [[ -n $(git status --porcelain) ]]; then
+              echo "You need to re-generate tests with `./hacking/update_examples_and_tests.sh`" >> "$GITHUB_OUTPUT";
+          fi
