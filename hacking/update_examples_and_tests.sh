@@ -40,13 +40,13 @@ for module in "$dir_path"/../plugins/modules/*.py; do
 
         # this adds an assert task that checks for response length
         # yq does this by appending the contents of "assert_info.yml"
-        yq m -a=append -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" "$dir_path"/assert_info_found.yml
-        yq m -a=append -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml" "$dir_path"/assert_info_found.yml
-        yq m -a=append -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" "$dir_path"/assert_info_notfound.yml
+        yq m -a -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/${module_name}.yml" "$dir_path"/assert_info_found.yml
+        yq m -a -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/no_query_${module_name}.yml" "$dir_path"/assert_info_found.yml
+        yq m -a -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" "$dir_path"/assert_info_notfound.yml
 
         # this adds an assert task that checks for failure
         # yq does this by appending the contents of "assert_fail.yml" to the wrong_pass/host tests
-        yq m -a=append -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "$dir_path"/assert_fail.yml
+        yq m -a -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "$dir_path"/assert_fail.yml
 
         # this replaces the query variable with a wrong object, so nothing is found
         yq w -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_query_${module_name}.yml" "(name==*).\"${fqcn_name}\".query" "noobjecttofind"
@@ -95,8 +95,8 @@ for module in "$dir_path"/../plugins/modules/*.py; do
 
         # this adds an assert task that checks for failure
         # yq does this by appending the contents of "assert_fail.yml" to the wrong_pass/host tests
-        yq m -a=append -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "$dir_path"/assert_fail.yml
-        yq m -a=append -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" "$dir_path"/assert_fail.yml
+        yq m -a -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_pass_${module_name}.yml" "$dir_path"/assert_fail.yml
+        yq m -a -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/wrong_host_${module_name}.yml" "$dir_path"/assert_fail.yml
 
         # this replaces "state: present" with "state: absent" in the absent_*.yml tasks
         yq w -i "$dir_path/../tests/integration/targets/icinga/roles/icinga/tasks/absent_${module_name}.yml" "(name==*).\"${fqcn_name}\".state" "absent"
