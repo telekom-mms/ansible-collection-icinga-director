@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
       - uses: chrisdickinson/setup-yq@v1.0.1
         with:
-          yq-version: 3.2.1
+          yq-version: 3.4.1
       - run: |
           ./hacking/update_examples_and_tests.sh
           if [[ -n $(git status --porcelain) ]]; then

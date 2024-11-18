@@ -10,7 +10,7 @@
     period: '24/7'
     email: "foouser@example.com"
     groups:
-    - onCall
+      - onCall
     vars:
       department: IT
       role: CTO

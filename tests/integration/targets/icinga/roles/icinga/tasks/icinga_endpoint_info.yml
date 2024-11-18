@@ -8,6 +8,5 @@
   register: result
 - assert:
     that:
-    # yamllint disable-line rule:line-length
-    - '(result.objects | length) == 1 or (result.objects | length) == 2 or (result.objects
-      | length) == 3'
+      # yamllint disable-line rule:line-length
+      - '(result.objects | length) == 1 or (result.objects | length) == 2 or (result.objects | length) == 3'

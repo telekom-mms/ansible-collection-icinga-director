@@ -50,7 +50,7 @@
     disabled: false
     object_name: centreon-plugins
     imports:
-    - centreon-plugins-template
+      - centreon-plugins-template
     vars:
       centreon_maxrepetitions: 20
       centreon_subsetleef: 20

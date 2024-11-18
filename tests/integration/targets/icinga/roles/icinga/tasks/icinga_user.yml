@@ -10,9 +10,9 @@
     period: '24/7'
     email: "foouser@example.com"
     imports:
-    - foousertemplate
+      - foousertemplate
     groups:
-    - onCall
+      - onCall
     vars:
       department: IT
       role: CTO

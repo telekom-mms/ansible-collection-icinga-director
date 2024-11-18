@@ -21,9 +21,9 @@
     max_check_attempts: "5"
     retry_interval: "3m"
     imports:
-    - fooservicetemplate
+      - fooservicetemplate
     groups:
-    - fooservicegroup
+      - fooservicegroup
     vars:
       http_address: "$address$"
       http_port: "9080"
@@ -52,9 +52,9 @@
     retry_interval: "3m"
     command_endpoint: "fooendpoint"
     imports:
-    - fooservicetemplate
+      - fooservicetemplate
     groups:
-    - fooservicegroup
+      - fooservicegroup
 - name: Update service apply rule with command_endpoint
   telekom_mms.icinga_director.icinga_service_apply:
     state: present
