@@ -2,8 +2,8 @@
 name: Check generated testcases
 
 on:  # yamllint disable-line rule:truthy
-  push:
-    branches: [master]
+  pull_request:
+    branches: [main]
     paths:
       - 'plugins/modules/*.py'
       - 'examples/**'
