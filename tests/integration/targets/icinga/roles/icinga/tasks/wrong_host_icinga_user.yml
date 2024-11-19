@@ -13,6 +13,9 @@
       - foousertemplate
     groups:
       - onCall
+    vars:
+      department: IT
+      role: CTO
   ignore_errors: true
   register: result
 - assert:
