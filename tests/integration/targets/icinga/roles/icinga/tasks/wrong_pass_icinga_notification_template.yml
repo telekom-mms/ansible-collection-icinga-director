@@ -6,8 +6,6 @@
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
     object_name: foonotificationtemplate
-    imports:
-      - foonotificationtemplate
     states:
       - Up
       - Down
@@ -37,8 +35,6 @@
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
     object_name: foonotificationtemplate
-    imports:
-      - foonotificationtemplate
     notification_interval: '0'
     append: true
   ignore_errors: true

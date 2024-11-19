@@ -125,8 +125,6 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foonotificationtemplate
-    imports:
-      - foonotificationtemplate
     states:
       - Up
       - Down
@@ -150,11 +148,8 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foonotificationtemplate
-    imports:
-      - foonotificationtemplate
     notification_interval: '0'
     append: true
-
 """
 
 RETURN = r""" # """
