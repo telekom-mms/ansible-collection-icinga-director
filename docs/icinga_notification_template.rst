@@ -29,6 +29,12 @@ Parameters
   object_name (True, str, None)
     Name of the notification template.
 
+  imports (optional, list, None)
+    Importable templates, add as many as you want. Required when state is :literal:`present`.
+
+    Please note that order matters when importing properties from multiple templates - last one wins.
+
+    Required if :emphasis:`state` is :literal:`present`.
 
   notification_interval (optional, str, None)
     The notification interval (in seconds). This interval is used for active notifications.
@@ -161,7 +167,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    
+
     - name: Create notification template
       telekom_mms.icinga_director.icinga_notification_template:
         state: present
@@ -169,6 +175,8 @@ Examples
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
         object_name: foonotificationtemplate
+        imports:
+          - foonotificationtemplate
         states:
           - Up
           - Down
@@ -192,6 +200,8 @@ Examples
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
         object_name: foonotificationtemplate
+        imports:
+          - foonotificationtemplate
         notification_interval: '0'
         append: true
 

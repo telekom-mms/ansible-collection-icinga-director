@@ -108,6 +108,13 @@ options:
     type: bool
     choices: [true, false]
     version_added: '1.25.0'
+  imports:
+    description:
+      - Importable templates, add as many as you want. Required when state is C(present).
+      - Please note that order matters when importing properties from multiple templates - last one wins.
+      - Required if I(state) is C(present).
+    type: "list"
+    elements: str
 """
 
 EXAMPLES = """
@@ -167,6 +174,7 @@ def main():
         url=dict(required=True),
         append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
+        imports=dict(type="list", elements="str", required=False),
         notification_interval=dict(required=False),
         states=dict(type="list", elements="str", required=False),
         times_begin=dict(type="int", required=False),
@@ -187,6 +195,7 @@ def main():
 
     data_keys = [
         "object_name",
+        "imports",
         "notification_interval",
         "states",
         "times_begin",
