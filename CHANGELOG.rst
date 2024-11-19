@@ -8,6 +8,11 @@ telekom_mms.icinga_director Release Notes
 v2.2.1
 ======
 
+Bugfixes
+--------
+
+- Add Icinga notification template imports (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/267)
+
 v2.1.3
 ======
 
