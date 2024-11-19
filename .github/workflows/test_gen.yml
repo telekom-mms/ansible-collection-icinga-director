@@ -32,6 +32,6 @@ jobs:
       - run: |
           ./hacking/update_examples_and_tests.sh
           if [[ -n $(git status --porcelain) ]]; then
-              echo "::error ::You need to re-generate tests with './hacking/update_examples_and_tests.sh'"
+              echo "::error ::You need to re-generate tests with './hacking/update_examples_and_tests.sh' (see CONTRIBUTING.md)"
               exit 1
           fi
