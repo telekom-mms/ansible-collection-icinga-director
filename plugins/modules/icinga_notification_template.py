@@ -113,6 +113,8 @@ options:
       - Importable templates, add as many as you want. Required when state is C(present).
       - Please note that order matters when importing properties from multiple templates - last one wins.
       - Required if I(state) is C(present).
+    type: "list"
+    elements: str
 """
 
 EXAMPLES = """
@@ -123,8 +125,8 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: foonotificationtemplate
-        imports:
-          - foonotificationtemplate
+    imports:
+      - foonotificationtemplate
     states:
       - Up
       - Down
