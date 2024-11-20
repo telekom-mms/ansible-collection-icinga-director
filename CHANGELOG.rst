@@ -5,6 +5,9 @@ telekom_mms.icinga_director Release Notes
 .. contents:: Topics
 
 
+v2.2.2
+======
+
 v2.2.1
 ======
 
