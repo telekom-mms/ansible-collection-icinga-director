@@ -20,6 +20,8 @@
       - "rb"
     user_groups:
       - "OnCall"
+    vars:
+      foo: bar
     zone: "foozone"
   ignore_errors: true
   register: result
@@ -36,6 +38,8 @@
     url_password: "{{ icinga_pass }}"
     object_name: foonotificationtemplate
     notification_interval: '0'
+    vars:
+      foo: bar
     append: true
   ignore_errors: true
   register: result

@@ -20,6 +20,8 @@
       - "rb"
     user_groups:
       - "OnCall"
+    vars:
+      foo: bar
     zone: "foozone"
 - name: Update notification template
   telekom_mms.icinga_director.icinga_notification_template:
@@ -29,4 +31,6 @@
     url_password: "{{ icinga_pass }}"
     object_name: foonotificationtemplate
     notification_interval: '0'
+    vars:
+      foo: bar
     append: true

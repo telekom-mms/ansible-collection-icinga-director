@@ -115,6 +115,12 @@ options:
       - Required if I(state) is C(present).
     type: "list"
     elements: str
+  vars:
+    description:
+      - Custom properties of the notification.
+    type: "dict"
+    version_added: "2.2.x"
+    default: {}
 """
 
 EXAMPLES = """
@@ -139,6 +145,8 @@ EXAMPLES = """
       - "rb"
     user_groups:
       - "OnCall"
+    vars:
+      foo: bar
     zone: "foozone"
 
 - name: Update notification template
@@ -149,6 +157,8 @@ EXAMPLES = """
     url_password: "{{ icinga_pass }}"
     object_name: foonotificationtemplate
     notification_interval: '0'
+    vars:
+      foo: bar
     append: true
 """
 
@@ -185,6 +195,7 @@ def main():
         command=dict(required=False, aliases=["notification_command"]),
         users=dict(type="list", elements="str", required=False),
         user_groups=dict(type="list", elements="str", required=False),
+        vars=dict(type="dict", default={}, required=False),
     )
 
     # Define the main module
@@ -206,6 +217,7 @@ def main():
         "command",
         "users",
         "user_groups",
+        "vars"
     ]
 
     data = {}

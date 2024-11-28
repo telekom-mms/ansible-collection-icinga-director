@@ -21,6 +21,7 @@
     user_groups: "{{ notification_template.user_groups | default(omit) }}"
     notification_command: "{{ notification_template.notification_command | default(omit) }}"
     imports: "{{ notification_template.imports | default(omit) }}"
+    vars: "{{ notification_template.vars | default(omit) }}"
     zone: "{{ notification_template.zone | default(omit) }}"
   retries: 3
   delay: 3
