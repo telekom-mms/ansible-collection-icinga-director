@@ -69,15 +69,15 @@
   when: icinga_servicegroups is defined
   tags: servicegroup
 
-- name: Icinga service configuration
-  ansible.builtin.include_tasks: icinga_service.yml
-  when: icinga_services is defined
-  tags: service
-
 - name: Icinga serviceset configuration
   ansible.builtin.include_tasks: icinga_serviceset.yml
   when: icinga_servicesets is defined
   tags: serviceset
+
+- name: Icinga service configuration
+  ansible.builtin.include_tasks: icinga_service.yml
+  when: icinga_services is defined
+  tags: service
 
 - name: Icinga notification template configuration
   ansible.builtin.include_tasks: icinga_notification_template.yml

@@ -75,6 +75,8 @@ Parameters
   user_groups (optional, list, None)
     User Groups that should be notified by this notification.
 
+  vars (optional, dict, {})
+    Custom properties of the notification.
 
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
@@ -169,7 +171,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    
+
     - name: Create notification template
       telekom_mms.icinga_director.icinga_notification_template:
         state: present
@@ -191,6 +193,8 @@ Examples
           - "rb"
         user_groups:
           - "OnCall"
+        vars:
+          foo: bar
         zone: "foozone"
 
     - name: Update notification template
@@ -201,6 +205,8 @@ Examples
         url_password: "{{ icinga_pass }}"
         object_name: foonotificationtemplate
         notification_interval: '0'
+        vars:
+          foo: bar
         append: true
 
 
