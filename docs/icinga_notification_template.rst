@@ -75,8 +75,6 @@ Parameters
   user_groups (optional, list, None)
     User Groups that should be notified by this notification.
 
-  vars (optional, dict, {})
-    Custom properties of the notification.
 
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
@@ -92,6 +90,10 @@ Parameters
     Please note that order matters when importing properties from multiple templates - last one wins.
 
     Required if :emphasis:`state` is :literal:`present`.
+
+
+  vars (optional, dict, {})
+    Custom properties of the notification.
 
 
   url (True, str, None)
@@ -171,7 +173,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-
+    
     - name: Create notification template
       telekom_mms.icinga_director.icinga_notification_template:
         state: present
