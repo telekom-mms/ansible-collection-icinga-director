@@ -119,7 +119,7 @@ options:
     description:
       - Custom properties of the notification.
     type: "dict"
-    version_added: "2.2.x"
+    version_added: "2.2.2"
     default: {}
 """
 
