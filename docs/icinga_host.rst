@@ -195,7 +195,7 @@ Parameters
 
 
   url (True, str, None)
-    HTTP, HTTPS, or FTP URL in the form (http|https|ftp)://[user[:pass]]@host.domain[:port]/path
+    HTTP, HTTPS, or FTP URL in the form (http\|https\|ftp)://[user[:pass]]@host.domain[:port]/path
 
 
   force (optional, bool, False)
