@@ -125,7 +125,7 @@ EXAMPLES = """
       - Critical
 
 - name: Update dependency template with ignore_soft_states
-  telekom_mms.icinga_director.icinga_service_apply:
+  telekom_mms.icinga_director.icinga_dependency_template:
     state: present
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"

@@ -47,10 +47,6 @@ options:
     aliases: ['name']
     required: true
     type: str
-  display_name:
-    description:
-      - Alternative displayed name of the dependency apply rule.
-    type: str
   imports:
     description:
       - Importable templates, add as many as you want.
