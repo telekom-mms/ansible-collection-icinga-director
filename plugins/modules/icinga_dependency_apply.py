@@ -219,7 +219,7 @@ def main():
         object_name=dict(required=True, aliases=["name"]),
         apply_to=dict(required=True, choices=["Host", "Services"]),
         assign_filter=dict(required=False),
-        imports=dict(type="list", elements="str", required=False),
+        imports=dict(type="list", elements="str", required=True),
         parent_host=dict(required=False, type="str"),
         parent_service=dict(required=False, type="str"),
         disable_checks=dict(required=False, type="bool", choices=[True, False]),
