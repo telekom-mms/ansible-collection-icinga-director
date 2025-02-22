@@ -59,16 +59,19 @@ options:
       - Whether to disable checks when this dependency fails.
     required: false
     type: "bool"
+    choices: [true, false]
   disable_notifications:
     description:
       - Whether to disable notifications when this dependency fails.
     required: false
     type: "bool"
+    choices: [true, false]
   ignore_soft_states:
     description:
       - Whether to ignore soft states for the reachability calculation.
     required: false
     type: "bool"
+    choices: [true, false]
   period:
     description:
       - The name of a time period which determines when this notification should be triggered.

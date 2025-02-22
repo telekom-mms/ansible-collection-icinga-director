@@ -25,7 +25,6 @@ Parameters
   state (optional, str, present)
     Apply feature state.
 
-
   object_name (True, str, None)
     Name for the Icinga service apply rule.
 
@@ -46,7 +45,7 @@ Parameters
   disable_checks (False, bool, None)
     Whether to disable checks when this dependency fails.
 
-  disable_notifications (False, bool, None)
+  disable_notifications (False, bool, [true, false])
     Whether to disable checks when this dependency fails.
 
   ignore_soft_states (False, bool, None)
