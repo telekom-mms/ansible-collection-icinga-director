@@ -76,7 +76,7 @@ options:
     description:
       - The name of a time period which determines when this notification should be triggered.
     required: false
-    type: "string"
+    type: str
   zone:
     description:
       - Icinga cluster zone.

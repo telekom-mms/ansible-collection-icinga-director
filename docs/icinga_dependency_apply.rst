@@ -28,7 +28,7 @@ Parameters
   object_name (True, str, None)
     Name for the Icinga service apply rule.
 
-  imports (optional, list, None)
+  imports (True, list, None)
     Importable templates, add as many as you want.
 
     Please note that order matters when importing properties from multiple templates - last one wins.
@@ -36,28 +36,28 @@ Parameters
   apply_to (True, str, None)
     The object (Host, Services) to apply this dependency to.
 
-  parent_host (False, str, None)
+  parent_host (optional, str, None)
     The parent host.
 
-  parent_service (False, str, None)
+  parent_service (optional, str, None)
     The parent service. If omitted this dependency object is treated as host dependency.
 
-  disable_checks (False, bool, None)
+  disable_checks (optional, bool, None)
     Whether to disable checks when this dependency fails.
 
-  disable_notifications (False, bool, [true, false])
+  disable_notifications (optional, bool, [true, false])
     Whether to disable checks when this dependency fails.
 
-  ignore_soft_states (False, bool, None)
+  ignore_soft_states (optional, bool, None)
     Whether to ignore soft states for the reachability calculation.
 
-  period (False, str, None)
+  period (optional, str, None)
     The name of a time period which determines when this notification should be triggered.
 
-  zone (False, str, None)
+  zone (optional, str, None)
     Icinga cluster zone.
 
-  states (False, list, None)
+  states (optional, list, None)
     The host/service states you want to get notifications for.
 
   append (optional, bool, None)
