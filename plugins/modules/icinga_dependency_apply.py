@@ -27,11 +27,11 @@ module: icinga_dependency_apply
 short_description: Manage dependency apply rules in Icinga2
 description:
    - Add or remove a dependency apply rule to Icinga2 through the director API.
-author: Sebastian Gumprich (@rndmh3ro)
+author: Gianmarco Mameli (@gianmarco-mameli)
 extends_documentation_fragment:
   - ansible.builtin.url
   - telekom_mms.icinga_director.common_options
-version_added: '1.0.0'
+version_added: '2.3.0'
 notes:
   - This module supports check mode.
 options:
