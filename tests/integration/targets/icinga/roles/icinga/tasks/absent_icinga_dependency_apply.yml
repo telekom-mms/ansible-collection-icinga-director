@@ -6,7 +6,7 @@
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "DEPENDENCY_APPLY_dummy"
-    apply_to: Hosts
+    apply_to: host
     assign_filter: 'host.name="foohost"'
 - name: Add dependency apply to icinga with customization
   telekom_mms.icinga_director.icinga_dependency_apply:
@@ -15,7 +15,7 @@
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     object_name: "DEPENDENCY_APPLY_dummy"
-    apply_to: Hosts
+    apply_to: host
     assign_filter: 'host.name="foohost"'
     parent_host: foo_host
     parent_service: bar_service

@@ -157,7 +157,7 @@ Examples
     object_name: "DEPENDENCY_APPLY_dummy"
     imports:
       - DEPENDENCY_TMPL_dummy
-    apply_to: Hosts
+    apply_to: host
     assign_filter: 'host.name="foohost"'
 
 - name: Add dependency apply to icinga with customization
@@ -169,7 +169,7 @@ Examples
     object_name: "DEPENDENCY_APPLY_dummy"
     imports:
       - DEPENDENCY_TMPL_dummy
-    apply_to: Hosts
+    apply_to: host
     assign_filter: 'host.name="foohost"'
     parent_host: foo_host
     parent_service: bar_service
