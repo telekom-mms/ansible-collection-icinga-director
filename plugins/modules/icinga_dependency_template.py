@@ -27,7 +27,7 @@ module: icinga_dependency_template
 short_description: Manage dependency template in Icinga2
 description:
   - Add or remove a dependency template to Icinga2 through the director API.
-author: Sebastian Gumprich (@rndmh3ro)
+author: Gianmarco Mameli (@gianmarco-mameli)
 extends_documentation_fragment:
   - ansible.builtin.url
   - telekom_mms.icinga_director.common_options
