@@ -93,3 +93,13 @@
   ansible.builtin.include_tasks: icinga_scheduled_downtime.yml
   when: icinga_scheduled_downtimes is defined
   tags: downtime
+
+- name: Icinga dependency template configuration
+  ansible.builtin.include_tasks: icinga_dependency_template.yml
+  when: icinga_dependency_templates is defined
+  tags: dependency_template
+
+- name: Icinga dependency apply configuration
+  ansible.builtin.include_tasks: icinga_dependency_apply.yml
+  when: icinga_dependency_applies is defined
+  tags: dependency_apply
