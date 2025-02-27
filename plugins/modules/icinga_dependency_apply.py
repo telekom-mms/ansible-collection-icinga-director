@@ -217,7 +217,7 @@ def main():
         url=dict(required=True),
         append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
-        apply_to=dict(required=True, choices=["Host", "Services"]),
+        apply_to=dict(required=True, choices=["host", "services"]),
         assign_filter=dict(required=False),
         imports=dict(type="list", elements="str", required=True),
         parent_host=dict(required=False, type="str"),
