@@ -24,6 +24,8 @@
         - absent_icinga_endpoint.yml
         - absent_icinga_zone.yml
         - absent_icinga_service.yml
+        - absent_icinga_dependency_apply.yml
+        - absent_icinga_dependency_template.yml
 
         - icinga_zone.yml
         - icinga_endpoint.yml
@@ -44,6 +46,8 @@
         - icinga_host.yml
         - icinga_serviceset.yml
         - icinga_service.yml
+        - icinga_dependency_template.yml
+        - icinga_dependency_apply.yml
 
         - absent_icinga_host.yml
         - absent_icinga_host_template.yml
@@ -64,3 +68,5 @@
         - absent_icinga_zone.yml
         - absent_icinga_service.yml
         - absent_icinga_serviceset.yml
+        - absent_icinga_dependency_apply.yml
+        - absent_icinga_dependency_template.yml
