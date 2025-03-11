@@ -49,17 +49,17 @@ options:
     type: str
   imports:
     description:
-      - Importable templates, add as many as you want.
+      - Importable templates, add as many as you want. Required when state is C(present).
       - Please note that order matters when importing properties from multiple templates - last one wins.
+      - Required if I(state) is C(present).
     type: "list"
     elements: str
-    required: true
   apply_to:
     description:
-      - The object (Host, Services) to apply this dependency to.
-    type: str
-    required: true
-    choices: ["host", "services"]
+      - Whether this notification should affect hosts or services.
+      - Required if I(state) is C(present).
+    type: "str"
+    choices: ["host", "service"]
   parent_host:
     description:
       - The parent host.
@@ -124,9 +124,9 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_APPLY_dummy"
+    object_name: footdependencyapply
     imports:
-      - DEPENDENCY_TMPL_dummy
+      - footdependencytemplate
     apply_to: host
     assign_filter: 'host.name="foohost"'
 
@@ -136,13 +136,11 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_APPLY_dummy"
+    object_name: footdependencyapplycustom
     imports:
-      - DEPENDENCY_TMPL_dummy
+      - footdependencytemplate
     apply_to: host
     assign_filter: 'host.name="foohost"'
-    parent_host: foo_host
-    parent_service: bar_service
     disable_checks: true
     disable_notifications: true
     ignore_soft_states: false
@@ -158,7 +156,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_TMPL_dummy"
+    object_name: footdependencyapply
     ignore_soft_states: true
     append: true
 """
@@ -183,7 +181,7 @@ class DependencyApplyRule(Icinga2APIObject):
         super(DependencyApplyRule, self).__init__(module, path, data)
 
     def exists(self):
-        ret = self.call_url(path="/dependencyapplyrules")
+        ret = self.call_url(path="/dependency")
         if ret["code"] == 200:
             for existing_rule in ret["data"]["objects"]:
                 if existing_rule["object_name"] == self.data["object_name"]:
@@ -217,9 +215,9 @@ def main():
         url=dict(required=True),
         append=dict(type="bool", choices=[True, False]),
         object_name=dict(required=True, aliases=["name"]),
-        apply_to=dict(required=True, choices=["host", "services"]),
+        apply_to=dict(choices=["service", "host"]),
         assign_filter=dict(required=False),
-        imports=dict(type="list", elements="str", required=True),
+        imports=dict(type="list", elements="str", required=False),
         parent_host=dict(required=False, type="str"),
         parent_service=dict(required=False, type="str"),
         disable_checks=dict(required=False, type="bool", choices=[True, False]),
@@ -268,7 +266,7 @@ def main():
 
     data["object_type"] = "apply"
 
-    icinga_object = DependencyApplyRule(module=module, data=data)
+    icinga_object = Icinga2APIObject(module=module, path="/dependency", data=data)
 
     changed, diff = icinga_object.update(module.params["state"])
     module.exit_json(

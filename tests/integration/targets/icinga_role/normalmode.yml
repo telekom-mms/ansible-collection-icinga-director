@@ -161,7 +161,8 @@
       - name: "cust"
     icinga_dependency_templates:
       - name: foo-dependency-template
-        parent_host: cust-tst-frontend
+        # parent_host: cust-tst-frontend
+        # parent_service: foo-service
         disable_checks: true
         disable_notifications: true
         ignore_soft_states: false

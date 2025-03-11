@@ -28,13 +28,17 @@ Parameters
   object_name (True, str, None)
     Name for the Icinga service apply rule.
 
-  imports (True, list, None)
-    Importable templates, add as many as you want.
+  imports (optional, list, None)
+    Importable templates, add as many as you want. Required when state is :literal:`present`.
 
     Please note that order matters when importing properties from multiple templates - last one wins.
 
-  apply_to (True, str, None)
-    The object (Host, Services) to apply this dependency to.
+    Required if :emphasis:`state` is :literal:`present`.
+
+  apply_to (optional, str, None)
+    Whether this notification should affect hosts or services.
+
+    Required if :emphasis:`state` is :literal:`present`.
 
   parent_host (optional, str, None)
     The parent host.
@@ -154,9 +158,9 @@ Examples
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_APPLY_dummy"
+    object_name: footdependencyapply
     imports:
-      - DEPENDENCY_TMPL_dummy
+      - footdependencytemplate
     apply_to: host
     assign_filter: 'host.name="foohost"'
 
@@ -166,13 +170,11 @@ Examples
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_APPLY_dummy"
+    object_name: footdependencyapplycustom
     imports:
-      - DEPENDENCY_TMPL_dummy
+      - footdependencytemplate
     apply_to: host
     assign_filter: 'host.name="foohost"'
-    parent_host: foo_host
-    parent_service: bar_service
     disable_checks: true
     disable_notifications: true
     ignore_soft_states: false
@@ -188,7 +190,7 @@ Examples
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_TMPL_dummy"
+    object_name: footdependencyapply
     ignore_soft_states: true
     append: true
 

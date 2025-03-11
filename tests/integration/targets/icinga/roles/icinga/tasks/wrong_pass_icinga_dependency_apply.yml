@@ -5,9 +5,9 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    object_name: "DEPENDENCY_APPLY_dummy"
+    object_name: footdependencyapply
     imports:
-      - DEPENDENCY_TMPL_dummy
+      - footdependencytemplate
     apply_to: host
     assign_filter: 'host.name="foohost"'
   ignore_errors: true
@@ -23,13 +23,11 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    object_name: "DEPENDENCY_APPLY_dummy"
+    object_name: footdependencyapplycustom
     imports:
-      - DEPENDENCY_TMPL_dummy
+      - footdependencytemplate
     apply_to: host
     assign_filter: 'host.name="foohost"'
-    parent_host: foo_host
-    parent_service: bar_service
     disable_checks: true
     disable_notifications: true
     ignore_soft_states: false
@@ -51,7 +49,7 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    object_name: "DEPENDENCY_TMPL_dummy"
+    object_name: footdependencyapply
     ignore_soft_states: true
     append: true
   ignore_errors: true

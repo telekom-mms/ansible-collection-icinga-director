@@ -6,6 +6,7 @@
         name: "icinga"
         tasks_from: "{{ item }}"
       loop:
+
         - absent_icinga_host.yml
         - absent_icinga_host_template.yml
         - absent_icinga_hostgroup.yml
@@ -17,6 +18,8 @@
         - absent_icinga_user.yml
         - absent_icinga_user_group.yml
         - absent_icinga_user_template.yml
+        - absent_icinga_dependency_apply.yml
+        - absent_icinga_dependency_template.yml
         - absent_icinga_timeperiod_template.yml
         - absent_icinga_timeperiod.yml
         - absent_icinga_command.yml
@@ -24,8 +27,6 @@
         - absent_icinga_endpoint.yml
         - absent_icinga_zone.yml
         - absent_icinga_service.yml
-        - absent_icinga_dependency_apply.yml
-        - absent_icinga_dependency_template.yml
 
         - icinga_zone.yml
         - icinga_endpoint.yml
@@ -60,6 +61,8 @@
         - absent_icinga_user.yml
         - absent_icinga_user_group.yml
         - absent_icinga_user_template.yml
+        - absent_icinga_dependency_apply.yml
+        - absent_icinga_dependency_template.yml
         - absent_icinga_timeperiod.yml
         - absent_icinga_timeperiod_template.yml
         - absent_icinga_command.yml
@@ -68,5 +71,3 @@
         - absent_icinga_zone.yml
         - absent_icinga_service.yml
         - absent_icinga_serviceset.yml
-        - absent_icinga_dependency_apply.yml
-        - absent_icinga_dependency_template.yml

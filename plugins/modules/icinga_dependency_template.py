@@ -106,7 +106,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_TMPL_dummy"
+    object_name: footdependencytemplate
     period: "24/7"
 
 - name: Add dependency template to icinga with customization
@@ -115,9 +115,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_TMPL_dummy"
-    parent_host: foo_host
-    parent_service: bar_service
+    object_name: footdependencytemplatecustom
     disable_checks: true
     disable_notifications: true
     ignore_soft_states: false
@@ -133,7 +131,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: "DEPENDENCY_TMPL_dummy"
+    object_name: footdependencytemplateappend
     ignore_soft_states: true
     append: true
 """
