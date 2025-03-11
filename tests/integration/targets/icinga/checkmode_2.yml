@@ -25,6 +25,8 @@
         - icinga_host.yml
         - icinga_serviceset.yml
         - icinga_service.yml
+        - icinga_dependency_template.yml
+        - icinga_dependency_apply.yml
 
         - absent_icinga_host.yml
         - absent_icinga_host_template.yml
@@ -35,8 +37,10 @@
         - absent_icinga_notification.yml
         - absent_icinga_notification_template.yml
         - absent_icinga_user.yml
-        - absent_icinga_user_template.yml
         - absent_icinga_user_group.yml
+        - absent_icinga_user_template.yml
+        - absent_icinga_dependency_apply.yml
+        - absent_icinga_dependency_template.yml
         - absent_icinga_timeperiod.yml
         - absent_icinga_timeperiod_template.yml
         - absent_icinga_command.yml
@@ -65,3 +69,5 @@
         - icinga_host.yml
         - icinga_serviceset.yml
         - icinga_service.yml
+        - icinga_dependency_template.yml
+        - icinga_dependency_apply.yml
