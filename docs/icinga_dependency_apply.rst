@@ -2,7 +2,7 @@
 
 
 icinga_dependency_apply -- Manage dependency apply rules in Icinga2
-=============================================================
+===================================================================
 
 .. contents::
    :local:
@@ -25,8 +25,10 @@ Parameters
   state (optional, str, present)
     Apply feature state.
 
+
   object_name (True, str, None)
-    Name for the Icinga service apply rule.
+    Name for the Icinga dependency apply rule.
+
 
   imports (optional, list, None)
     Importable templates, add as many as you want. Required when state is :literal:`present`.
@@ -35,34 +37,44 @@ Parameters
 
     Required if :emphasis:`state` is :literal:`present`.
 
+
   apply_to (optional, str, None)
     Whether this notification should affect hosts or services.
 
     Required if :emphasis:`state` is :literal:`present`.
 
+
   parent_host (optional, str, None)
     The parent host.
+
 
   parent_service (optional, str, None)
     The parent service. If omitted this dependency object is treated as host dependency.
 
-  disable_checks (optional, bool, None)
+
+  disable_checks (False, bool, None)
     Whether to disable checks when this dependency fails.
 
-  disable_notifications (optional, bool, [true, false])
-    Whether to disable checks when this dependency fails.
 
-  ignore_soft_states (optional, bool, None)
+  disable_notifications (False, bool, None)
+    Whether to disable notifications when this dependency fails.
+
+
+  ignore_soft_states (False, bool, None)
     Whether to ignore soft states for the reachability calculation.
 
-  period (optional, str, None)
+
+  period (False, str, None)
     The name of a time period which determines when this notification should be triggered.
 
-  zone (optional, str, None)
+
+  zone (False, str, None)
     Icinga cluster zone.
 
-  states (optional, list, None)
+
+  states (False, list, [])
     The host/service states you want to get notifications for.
+
 
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
@@ -71,8 +83,10 @@ Parameters
 
     Note - Variables that are set by default will also be applied, even if not set.
 
-  assign_filter (False, str, None)
+
+  assign_filter (optional, str, None)
     The filter where the service apply rule will take effect.
+
 
   url (True, str, None)
     HTTP, HTTPS, or FTP URL in the form (http\|https\|ftp)://[user[:pass]]@host.domain[:port]/path
@@ -151,48 +165,48 @@ Examples
 
 .. code-block:: yaml+jinja
 
+    
+    - name: Add dependency apply to icinga
+      telekom_mms.icinga_director.icinga_dependency_apply:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: footdependencyapply
+        imports:
+          - footdependencytemplate
+        apply_to: host
+        assign_filter: 'host.name="foohost"'
 
-- name: Add dependency apply to icinga
-  telekom_mms.icinga_director.icinga_dependency_apply:
-    state: present
-    url: "{{ icinga_url }}"
-    url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapply
-    imports:
-      - footdependencytemplate
-    apply_to: host
-    assign_filter: 'host.name="foohost"'
+    - name: Add dependency apply to icinga with customization
+      telekom_mms.icinga_director.icinga_dependency_apply:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: footdependencyapplycustom
+        imports:
+          - footdependencytemplate
+        apply_to: host
+        assign_filter: 'host.name="foohost"'
+        disable_checks: true
+        disable_notifications: true
+        ignore_soft_states: false
+        period: "24/7"
+        zone: master
+        states:
+          - Warning
+          - Critical
 
-- name: Add dependency apply to icinga with customization
-  telekom_mms.icinga_director.icinga_dependency_apply:
-    state: present
-    url: "{{ icinga_url }}"
-    url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapplycustom
-    imports:
-      - footdependencytemplate
-    apply_to: host
-    assign_filter: 'host.name="foohost"'
-    disable_checks: true
-    disable_notifications: true
-    ignore_soft_states: false
-    period: "24/7"
-    zone: master
-    states:
-      - Warning
-      - Critical
-
-- name: Update dependency apply rule with ignore_soft_states
-  telekom_mms.icinga_director.icinga_dependency_apply:
-    state: present
-    url: "{{ icinga_url }}"
-    url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapply
-    ignore_soft_states: true
-    append: true
+    - name: Update dependency apply rule with ignore_soft_states
+      telekom_mms.icinga_director.icinga_dependency_apply:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: footdependencyapply
+        ignore_soft_states: true
+        append: true
 
 
 
@@ -204,8 +218,9 @@ Status
 
 
 
+
 Authors
 ~~~~~~~
 
-- Sebastian Gumprich (@rndmh3ro)
+- Gianmarco Mameli (@gianmarco-mameli)
 

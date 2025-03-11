@@ -2,7 +2,7 @@
 
 
 icinga_dependency_template -- Manage dependency templates in Icinga2
-==============================================================
+====================================================================
 
 .. contents::
    :local:
@@ -25,32 +25,42 @@ Parameters
   state (optional, str, present)
     Apply feature state.
 
-  object_name (True, str, None)
-    Name for the Icinga service apply rule.
 
-  parent_host (False, str, None)
+  object_name (True, str, None)
+    Name for the Icinga dependency apply rule.
+
+
+  parent_host (optional, str, None)
     The parent host.
 
-  parent_service (False, str, None)
+
+  parent_service (optional, str, None)
     The parent service. If omitted this dependency object is treated as host dependency.
+
 
   disable_checks (False, bool, None)
     Whether to disable checks when this dependency fails.
 
+
   disable_notifications (False, bool, None)
-    Whether to disable checks when this dependency fails.
+    Whether to disable notifications when this dependency fails.
+
 
   ignore_soft_states (False, bool, None)
     Whether to ignore soft states for the reachability calculation.
 
+
   period (False, str, None)
     The name of a time period which determines when this notification should be triggered.
+
 
   zone (False, str, None)
     Icinga cluster zone.
 
-  states (False, list, None)
+
+  states (False, list, [])
     The host/service states you want to get notifications for.
+
 
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
@@ -137,41 +147,41 @@ Examples
 
 .. code-block:: yaml+jinja
 
+    
+    - name: Add dependency template to icinga
+      telekom_mms.icinga_director.icinga_dependency_template:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: footdependencytemplate
+        period: "24/7"
 
-- name: Add dependency template to icinga
-  telekom_mms.icinga_director.icinga_dependency_template:
-    state: present
-    url: "{{ icinga_url }}"
-    url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    object_name: footdependencytemplate
-    period: "24/7"
+    - name: Add dependency template to icinga with customization
+      telekom_mms.icinga_director.icinga_dependency_template:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: footdependencytemplatecustom
+        disable_checks: true
+        disable_notifications: true
+        ignore_soft_states: false
+        period: "24/7"
+        zone: master
+        states:
+          - Warning
+          - Critical
 
-- name: Add dependency template to icinga with customization
-  telekom_mms.icinga_director.icinga_dependency_template:
-    state: present
-    url: "{{ icinga_url }}"
-    url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    object_name: footdependencytemplatecustom
-    disable_checks: true
-    disable_notifications: true
-    ignore_soft_states: false
-    period: "24/7"
-    zone: master
-    states:
-      - Warning
-      - Critical
-
-- name: Update dependency template with ignore_soft_states
-  telekom_mms.icinga_director.icinga_dependency_template:
-    state: present
-    url: "{{ icinga_url }}"
-    url_username: "{{ icinga_user }}"
-    url_password: "{{ icinga_pass }}"
-    object_name: footdependencytemplateappend
-    ignore_soft_states: true
-    append: true
+    - name: Update dependency template with ignore_soft_states
+      telekom_mms.icinga_director.icinga_dependency_template:
+        state: present
+        url: "{{ icinga_url }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        object_name: footdependencytemplateappend
+        ignore_soft_states: true
+        append: true
 
 
 
@@ -187,5 +197,5 @@ Status
 Authors
 ~~~~~~~
 
-- Sebastian Gumprich (@rndmh3ro)
+- Gianmarco Mameli (@gianmarco-mameli)
 
