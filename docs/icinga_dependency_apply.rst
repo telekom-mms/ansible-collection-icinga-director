@@ -1,7 +1,7 @@
 .. _icinga_dependency_apply_module:
 
 
-icinga_dependency_apply -- Manage dependency apply rule in Icinga2
+icinga_dependency_apply -- Manage dependency apply rules in Icinga2
 =============================================================
 
 .. contents::

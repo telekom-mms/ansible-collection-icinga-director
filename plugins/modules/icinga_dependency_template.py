@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2020 T-Systems Multimedia Solutions GmbH
+# Copyright (c) 2025 Deutsche Telekom MMS GmbH
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 #
 # This module is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ __metaclass__ = type
 DOCUMENTATION = """
 ---
 module: icinga_dependency_template
-short_description: Manage dependency template in Icinga2
+short_description: Manage dependency templates in Icinga2
 description:
   - Add or remove a dependency template to Icinga2 through the director API.
 author: Gianmarco Mameli (@gianmarco-mameli)
