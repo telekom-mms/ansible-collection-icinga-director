@@ -8,6 +8,11 @@ telekom_mms.icinga_director Release Notes
 v2.2.3
 ======
 
+Minor Changes
+-------------
+
+- Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
+
 v2.2.2
 ======
 
