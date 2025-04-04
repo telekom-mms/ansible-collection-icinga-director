@@ -73,6 +73,7 @@ options:
 extends_documentation_fragment:
   - ansible.builtin.url
   - constructed
+  - inventory_cache
 """
 
 EXAMPLES = r"""
@@ -99,7 +100,7 @@ groups:
 """
 
 
-from ansible.plugins.inventory import BaseInventoryPlugin, Constructable
+from ansible.plugins.inventory import BaseInventoryPlugin, Constructable, Cacheable
 from ansible.inventory.group import to_safe_group_name
 
 from ansible.module_utils.urls import open_url
@@ -107,7 +108,7 @@ from urllib.parse import quote
 import json
 
 
-class InventoryModule(BaseInventoryPlugin, Constructable):
+class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
     NAME = "telekom_mms.icinga_director.icinga_director_inventory"
 
     def __init__(self, *args, **kwargs):
@@ -161,15 +162,14 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
         hostgroup_url_path = "/monitoring/list/hosts"
         hostgroup_name = "hostgroup_name"
         host_name = "host_name"
-      
+
         for module in health["data"]:
             if module["module"] == "icingadb":
                 hostgroup_url_path = "/icingadb/hostgroup"
                 hostgroup_name = "name"
                 host_name = "name"
-                
+
         for hostgroup in hostgroups:
-            print("hostgroup:", hostgroup, quote(hostgroup))
             members = self.call_url(
                 url_path=hostgroup_url_path
                 + "?" + hostgroup_name + "="
@@ -189,6 +189,50 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
             hostgroups.append(hostgroup["object_name"])
             self.inventory.add_group(to_safe_group_name(hostgroup["object_name"], force=True, silent=True))
         return hostgroups
+
+    def serialize_inventory(self):
+        """ Converts self.inventory to an JSON-serializable structure for cache """
+        result = {
+            '_meta': {
+                'hostvars': {}
+            }
+        }
+
+        # Go through each group
+        for group in self.inventory.groups.values():
+            result[group.name] = {
+                'hosts': [],
+                'vars': group.vars.copy(),
+                'children': [child.name for child in group.child_groups],
+            }
+
+            # Collect hosts
+            for host in group.hosts:
+                result[group.name]['hosts'].append(host.name)
+                # Ensure we collect hostvars only once per host
+                if host.name not in result['_meta']['hostvars']:
+                    result['_meta']['hostvars'][host.name] = host.vars.copy()
+
+        return result
+
+    def deserialize_inventory(self, data):
+        """ Load inventory from serialized JSON structure (cache) back into self.inventory """
+        hostvars = data.get('_meta', {}).get('hostvars', {})
+
+        for group_name, group_data in data.items():
+            if group_name == '_meta':
+                continue
+
+            self.inventory.add_group(group_name)
+
+            for host in group_data.get('hosts', []):
+                self.inventory.add_host(host, group=group_name)
+                if host in hostvars:
+                    for var, value in hostvars[host].items():
+                        self.inventory.set_variable(host, var, value)
+
+            for child in group_data.get('children', []):
+                self.inventory.add_child(group_name, child)
 
     def parse(self, inventory, loader, path, cache=True):
         """Return dynamic inventory from source"""
@@ -210,10 +254,30 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
         self.http_agent = self.get_option("http_agent")
         self.use_proxy = self.get_option("use_proxy")
         self.validate_certs = self.get_option("validate_certs")
-        self.force_basic_auth = self.get_option("force_basic_auth")
         self.use_gssapi = self.get_option("use_gssapi")
         self.strict = self.get_option("strict")
         self.compose = self.get_option("compose")
+
+        # Load or generate inventory data
+        self.load_cache_plugin()
+        cache_key = self.get_cache_key(path)
+        user_cache_enabled = self.get_option("cache")
+
+        use_cache = cache and user_cache_enabled
+        cache_needs_update = not cache and user_cache_enabled
+
+        if use_cache:
+            try:
+                self.display.vvv(f"Reading inventory from cache for {path}")
+                cached_inventory = self._cache[cache_key]
+                self.deserialize_inventory(cached_inventory)
+                return
+            except KeyError:
+                cache_needs_update = True
+
+
+        # If cache is disabled or expired, fetch fresh data
+        self.display.vvv("Refreshing inventory from Icinga Director API")
 
         host_list = self.call_url(
             url_path="/director/hosts" + "?resolved",
@@ -252,3 +316,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
             )
 
         self.add_hosts_to_groups()
+
+        if cache_needs_update:
+            self._cache[cache_key] = self.serialize_inventory()
