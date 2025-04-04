@@ -1,0 +1,54 @@
+---
+- name: Add dependency template to icinga
+  telekom_mms.icinga_director.icinga_dependency_template:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: footdependencytemplate
+    period: "24/7"
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Add dependency template to icinga with customization
+  telekom_mms.icinga_director.icinga_dependency_template:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: footdependencytemplatecustom
+    disable_checks: true
+    disable_notifications: true
+    ignore_soft_states: false
+    period: "24/7"
+    zone: master
+    states:
+      - Warning
+      - Critical
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Update dependency template with ignore_soft_states
+  telekom_mms.icinga_director.icinga_dependency_template:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    object_name: footdependencytemplateappend
+    ignore_soft_states: true
+    append: true
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
