@@ -5,7 +5,7 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    object_name: footdependencyapply
+    object_name: foodependencyapply
     imports:
       - footdependencytemplate
     apply_to: host
@@ -23,10 +23,11 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    object_name: footdependencyapplycustom
+    object_name: foodependencyapplycustom
     imports:
       - footdependencytemplate
     apply_to: host
+    parent_host: $host.vars.parent_host$
     assign_filter: 'host.name="foohost"'
     disable_checks: true
     disable_notifications: true
@@ -49,7 +50,7 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: iamwrong
-    object_name: footdependencyapply
+    object_name: foodependencyapply
     ignore_soft_states: true
     append: true
   ignore_errors: true

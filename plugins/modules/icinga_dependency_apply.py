@@ -62,11 +62,11 @@ options:
     choices: ["host", "service"]
   parent_host:
     description:
-      - The parent host.
+      - The parent host. You can refer to Host Custom Variables via $host.vars.varname$
     type: str
   parent_service:
     description:
-      - The parent service. If omitted this dependency object is treated as host dependency.
+      - The parent service. If omitted this dependency object is treated as host dependency. You can refer to Host Custom Variables via $host.vars.varname$
     type: str
   disable_checks:
     description:
@@ -124,7 +124,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapply
+    object_name: foodependencyapply
     imports:
       - footdependencytemplate
     apply_to: host
@@ -136,10 +136,11 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapplycustom
+    object_name: foodependencyapplycustom
     imports:
       - footdependencytemplate
     apply_to: host
+    parent_host: $host.vars.parent_host$
     assign_filter: 'host.name="foohost"'
     disable_checks: true
     disable_notifications: true
@@ -156,7 +157,7 @@ EXAMPLES = """
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapply
+    object_name: foodependencyapply
     ignore_soft_states: true
     append: true
 """
@@ -168,39 +169,6 @@ from ansible.module_utils.urls import url_argument_spec
 from ansible_collections.telekom_mms.icinga_director.plugins.module_utils.icinga import (
     Icinga2APIObject,
 )
-
-
-# ===========================================
-# Icinga2 API class
-#
-class DependencyApplyRule(Icinga2APIObject):
-    find_by_parameter = None
-
-    def __init__(self, module, data):
-        path = "/dependency"
-        super(DependencyApplyRule, self).__init__(module, path, data)
-
-    def exists(self):
-        ret = self.call_url(path="/dependency")
-        if ret["code"] == 200:
-            for existing_rule in ret["data"]["objects"]:
-                if existing_rule["object_name"] == self.data["object_name"]:
-                    if "uuid" in existing_rule and existing_rule["uuid"] is not None:
-                        self.find_by_parameter = "uuid"
-                    else:
-                        self.find_by_parameter = "id"
-                    self.object_id = existing_rule[self.find_by_parameter]
-                    return self.object_id
-        return False
-
-    def delete(self):
-        return super(DependencyApplyRule, self).delete(find_by=self.find_by_parameter)
-
-    def modify(self):
-        return super(DependencyApplyRule, self).modify(find_by=self.find_by_parameter)
-
-    def diff(self):
-        return super(DependencyApplyRule, self).diff(find_by=self.find_by_parameter)
 
 
 # ===========================================
@@ -263,6 +231,22 @@ def main():
     else:
         for k in data_keys:
             data[k] = module.params[k]
+
+    # Swap parameter name in case of a parent host variable
+    if (
+        data["parent_host"]
+        and data["parent_host"].startswith("$")
+        and data["parent_host"].endswith("$")
+    ):
+        data["parent_host_var"] = data.pop("parent_host").replace("$", "")
+
+    # Swap parameter name in case of a parent service variable
+    if (
+        data["parent_service"]
+        and data["parent_service"].startswith("$")
+        and data["parent_service"].endswith("$")
+    ):
+        data["parent_service_by_name"] = data.pop("parent_service").replace("$", "")
 
     data["object_type"] = "apply"
 

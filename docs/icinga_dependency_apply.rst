@@ -45,11 +45,11 @@ Parameters
 
 
   parent_host (optional, str, None)
-    The parent host.
+    The parent host. You can refer to Host Custom Variables via $host.vars.varname$
 
 
   parent_service (optional, str, None)
-    The parent service. If omitted this dependency object is treated as host dependency.
+    The parent service. If omitted this dependency object is treated as host dependency. You can refer to Host Custom Variables via $host.vars.varname$
 
 
   disable_checks (False, bool, None)
@@ -165,14 +165,14 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    
+
     - name: Add dependency apply to icinga
       telekom_mms.icinga_director.icinga_dependency_apply:
         state: present
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
-        object_name: footdependencyapply
+        object_name: foodependencyapply
         imports:
           - footdependencytemplate
         apply_to: host
@@ -184,10 +184,11 @@ Examples
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
-        object_name: footdependencyapplycustom
+        object_name: foodependencyapplycustom
         imports:
           - footdependencytemplate
         apply_to: host
+        parent_host: $host.vars.parent_host$
         assign_filter: 'host.name="foohost"'
         disable_checks: true
         disable_notifications: true
@@ -204,7 +205,7 @@ Examples
         url: "{{ icinga_url }}"
         url_username: "{{ icinga_user }}"
         url_password: "{{ icinga_pass }}"
-        object_name: footdependencyapply
+        object_name: foodependencyapply
         ignore_soft_states: true
         append: true
 
