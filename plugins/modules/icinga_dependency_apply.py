@@ -140,7 +140,6 @@ EXAMPLES = """
     imports:
       - footdependencytemplate
     apply_to: host
-    parent_host: $host.vars.parent_host$
     assign_filter: 'host.name="foohost"'
     disable_checks: true
     disable_notifications: true
