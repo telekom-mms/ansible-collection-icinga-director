@@ -140,6 +140,7 @@ EXAMPLES = """
     imports:
       - footdependencytemplate
     apply_to: host
+    parent_host: $host.vars.variable$
     assign_filter: 'host.name="foohost"'
     disable_checks: true
     disable_notifications: true
@@ -147,8 +148,8 @@ EXAMPLES = """
     period: "24/7"
     zone: master
     states:
-      - Warning
       - Critical
+      - Warning
 
 - name: Update dependency apply rule with ignore_soft_states
   telekom_mms.icinga_director.icinga_dependency_apply:
@@ -233,7 +234,7 @@ def main():
 
     # Swap parameter name in case of a parent host variable
     if (
-        data["parent_host"]
+        data.get("parent_host") is not None
         and data["parent_host"].startswith("$")
         and data["parent_host"].endswith("$")
     ):
@@ -241,7 +242,7 @@ def main():
 
     # Swap parameter name in case of a parent service variable
     if (
-        data["parent_service"]
+        data.get("parent_service") is not None
         and data["parent_service"].startswith("$")
         and data["parent_service"].endswith("$")
     ):
