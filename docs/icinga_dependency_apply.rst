@@ -165,7 +165,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-
+    
     - name: Add dependency apply to icinga
       telekom_mms.icinga_director.icinga_dependency_apply:
         state: present
@@ -188,7 +188,7 @@ Examples
         imports:
           - footdependencytemplate
         apply_to: host
-        parent_host: $host.vars.parent_host$
+        parent_host: $host.vars.variable$
         assign_filter: 'host.name="foohost"'
         disable_checks: true
         disable_notifications: true
@@ -196,8 +196,8 @@ Examples
         period: "24/7"
         zone: master
         states:
-          - Warning
           - Critical
+          - Warning
 
     - name: Update dependency apply rule with ignore_soft_states
       telekom_mms.icinga_director.icinga_dependency_apply:
