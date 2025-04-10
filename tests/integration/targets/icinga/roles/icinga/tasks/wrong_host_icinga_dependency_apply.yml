@@ -5,7 +5,7 @@
     url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapply
+    object_name: foodependencyapply
     imports:
       - footdependencytemplate
     apply_to: host
@@ -23,10 +23,11 @@
     url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapplycustom
+    object_name: foodependencyapplycustom
     imports:
       - footdependencytemplate
     apply_to: host
+    parent_host: $host.vars.variable$
     assign_filter: 'host.name="foohost"'
     disable_checks: true
     disable_notifications: true
@@ -34,8 +35,8 @@
     period: "24/7"
     zone: master
     states:
-      - Warning
       - Critical
+      - Warning
   ignore_errors: true
   register: result
 - assert:
@@ -49,7 +50,7 @@
     url: http://nonexistent
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-    object_name: footdependencyapply
+    object_name: foodependencyapply
     ignore_soft_states: true
     append: true
   ignore_errors: true
