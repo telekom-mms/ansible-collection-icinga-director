@@ -13,6 +13,11 @@ Minor Changes
 
 - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
 
+Bugfixes
+--------
+
+- Bug: dependency apply module raises error when using a variable for parent host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)
+
 v2.2.2
 ======
 
