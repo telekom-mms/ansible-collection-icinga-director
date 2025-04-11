@@ -169,7 +169,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
                 host_name = "name"
                 
         for hostgroup in hostgroups:
-            print("hostgroup:", hostgroup, quote(hostgroup))
             members = self.call_url(
                 url_path=hostgroup_url_path
                 + "?" + hostgroup_name + "="
