@@ -3,11 +3,11 @@ ancestor:
 releases:
   2.2.3:
     changes:
-      minor_changes:
-        - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
       bugfixes:
         - 'Bug: dependency apply module raises error when using a variable for parent
           host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)'
+      minor_changes:
+        - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
     release_date: '2024-12-31'
   2.2.2:
     changes:
