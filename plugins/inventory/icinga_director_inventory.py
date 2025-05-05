@@ -161,13 +161,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
         hostgroup_url_path = "/monitoring/list/hosts"
         hostgroup_name = "hostgroup_name"
         host_name = "host_name"
-      
+
         for module in health["data"]:
             if module["module"] == "icingadb":
                 hostgroup_url_path = "/icingadb/hostgroup"
                 hostgroup_name = "name"
                 host_name = "name"
-                
+
         for hostgroup in hostgroups:
             members = self.call_url(
                 url_path=hostgroup_url_path
