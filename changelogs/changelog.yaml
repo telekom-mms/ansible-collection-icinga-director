@@ -1,6 +1,19 @@
 ---
 ancestor:
 releases:
+  2.3.0:
+    changes:
+      bugfixes:
+        - 'Bug: dependency apply module raises error when using a variable for parent
+          host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)'
+      minor_changes:
+        - Add support for IcingaDB in inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/274)
+        - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
+    modules:
+      - description: Manage dependency apply rules in Icinga2
+        name: icinga_dependency_apply
+        namespace: ''
+    release_date: '2025-05-08'
   2.2.3:
     changes:
       bugfixes:
