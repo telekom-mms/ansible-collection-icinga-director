@@ -5,3 +5,4 @@ tests/output
 *.pyc
 __pycache__/
 .vscode
+.ansible/.lock

@@ -33,6 +33,16 @@ plugins:
       name: icinga_command_template_info
       namespace: ''
       version_added: 1.13.0
+    icinga_dependency_apply:
+      description: Manage dependency apply rules in Icinga2
+      name: icinga_dependency_apply
+      namespace: ''
+      version_added: 2.3.0
+    icinga_dependency_template:
+      description: Manage dependency templates in Icinga2
+      name: icinga_dependency_template
+      namespace: ''
+      version_added: null
     icinga_deploy:
       description: Trigger deployment in Icinga2
       name: icinga_deploy
@@ -217,4 +227,4 @@ plugins:
   shell: {}
   strategy: {}
   vars: {}
-version: 2.2.3
+version: 2.3.0
