@@ -275,7 +275,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             except KeyError:
                 cache_needs_update = True
 
-
         # If cache is disabled or expired, fetch fresh data
         self.display.vvv("Refreshing inventory from Icinga Director API")
 
