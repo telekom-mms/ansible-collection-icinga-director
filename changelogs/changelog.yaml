@@ -9,6 +9,8 @@ releases:
       minor_changes:
         - Add support for IcingaDB in inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/274)
         - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
+      trivial:
+        - Update tests to ansible-core 2.17 and 2.18 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/281)
     modules:
       - description: Manage dependency apply rules in Icinga2
         name: icinga_dependency_apply
