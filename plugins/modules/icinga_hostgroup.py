@@ -67,7 +67,7 @@ options:
     version_added: '1.25.0'
   timeout:
     description:
-      - Default timeout to wait for deployment to finish in seconds.
+      - Default timeout to wait for transaction to finish in seconds.
     default: 10
     type: int
 """
