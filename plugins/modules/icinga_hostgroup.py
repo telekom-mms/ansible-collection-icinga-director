@@ -65,7 +65,7 @@ options:
     type: bool
     choices: [true, false]
     version_added: '1.25.0'
-  timeout:
+  api_timeout:
     description:
       - Default timeout to wait for transaction to finish in seconds.
     default: 10
@@ -130,7 +130,7 @@ def main():
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         assign_filter=dict(required=False),
-        timeout=dict(required=False, default=10, type="int"),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

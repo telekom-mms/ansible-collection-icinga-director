@@ -50,7 +50,7 @@ Parameters
     Note - Variables that are set by default will also be applied, even if not set.
 
 
-  timeout (optional, int, 10)
+  api_timeout (optional, int, 10)
     Default timeout to wait for transaction to finish in seconds.
 
 
