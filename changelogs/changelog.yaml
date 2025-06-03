@@ -3,12 +3,12 @@ ancestor:
 releases:
   2.3.0:
     changes:
-      bugfixes:
-        - 'Bug: dependency apply module raises error when using a variable for parent
-          host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)'
       minor_changes:
         - Add support for IcingaDB in inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/274)
         - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
+      bugfixes:
+        - 'Bug: dependency apply module raises error when using a variable for parent
+          host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)'
       trivial:
         - Update tests to ansible-core 2.17 and 2.18 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/281)
     modules:
