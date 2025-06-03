@@ -65,11 +65,6 @@ options:
     type: bool
     choices: [true, false]
     version_added: '1.25.0'
-  api_timeout:
-    description:
-      - Default timeout to wait for transaction to finish in seconds.
-    default: 10
-    type: int
 """
 
 EXAMPLES = """
