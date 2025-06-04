@@ -27,4 +27,9 @@ class ModuleDocFragment(object):
     options:
       url:
         required: true
+      api_timeout:
+        description:
+          - Default timeout to wait for transaction to finish in seconds.
+        default: 10
+        type: int
      """

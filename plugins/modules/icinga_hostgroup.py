@@ -125,6 +125,7 @@ def main():
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         assign_filter=dict(required=False),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module
