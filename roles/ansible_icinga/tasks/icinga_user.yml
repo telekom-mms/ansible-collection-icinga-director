@@ -17,6 +17,7 @@
     period: "{{ user.period | default(omit) }}"
     disabled: "{{ user.disabled | default(omit) }}"
     email: "{{ user.email | default(icinga_user_email) }}"
+    groups: "{{ user.groups | default(omit) }}"
     vars: "{{ user.vars | default(omit) }}"
   retries: 3
   delay: 3
