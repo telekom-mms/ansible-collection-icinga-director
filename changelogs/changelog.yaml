@@ -7,6 +7,7 @@ releases:
         - Add support for IcingaDB in inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/274)
         - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
       bugfixes:
+        - add 'groups' parameter to task 'icinga_user.yml' (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/284)
         - 'Bug: dependency apply module raises error when using a variable for parent
           host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)'
       trivial:
