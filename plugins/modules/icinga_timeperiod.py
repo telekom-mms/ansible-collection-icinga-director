@@ -126,6 +126,7 @@ def main():
         display_name=dict(required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         ranges=dict(type="dict", required=False),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

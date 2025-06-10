@@ -156,6 +156,7 @@ def main():
         period=dict(required=False),
         groups=dict(type="list", elements="str", required=False),
         vars=dict(type="dict", default={}, required=False),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module
