@@ -90,6 +90,10 @@ Parameters
     NTLM authentication is :literal:`not` supported even if the GSSAPI mech for NTLM has been installed.
 
 
+  api_timeout (optional, int, 10)
+    Default timeout to wait for transaction to finish in seconds.
+
+
 
 
 
