@@ -11,6 +11,7 @@ v2.3.0
 Minor Changes
 -------------
 
+- Add API timeout option for all modules (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/282)
 - Add support for IcingaDB in inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/274)
 - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
 
