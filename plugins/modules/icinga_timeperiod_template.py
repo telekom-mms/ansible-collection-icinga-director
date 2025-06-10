@@ -181,6 +181,7 @@ def main():
             aliases=["include_period"],
         ),
         update_method=dict(required=False, default="LegacyTimePeriod"),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

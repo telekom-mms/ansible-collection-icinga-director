@@ -112,6 +112,7 @@ def main():
         object_name=dict(required=True, aliases=["name"]),
         is_global=dict(required=False, type="bool", default=False),
         parent=dict(required=False),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

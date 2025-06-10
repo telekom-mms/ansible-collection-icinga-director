@@ -110,6 +110,7 @@ def main():
         object_name=dict(required=True, aliases=["name"]),
         state=dict(default="present", choices=["absent", "present"]),
         url=dict(required=True),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

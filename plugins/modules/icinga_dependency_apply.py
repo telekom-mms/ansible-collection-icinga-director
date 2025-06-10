@@ -199,7 +199,8 @@ def main():
             default=[],
             required=False,
             choices=["Critical", "Down", "OK", "Unknown", "Up", "Warning"]
-        )
+        ),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

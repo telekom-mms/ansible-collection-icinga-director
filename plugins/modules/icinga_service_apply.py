@@ -313,6 +313,7 @@ def main():
         vars=dict(type="dict", default={}),
         notes=dict(type="str", required=False),
         notes_url=dict(type="str", required=False),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module
