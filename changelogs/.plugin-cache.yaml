@@ -227,4 +227,4 @@ plugins:
   shell: {}
   strategy: {}
   vars: {}
-version: 2.3.0
+version: 2.3.1
