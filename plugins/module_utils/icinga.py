@@ -262,10 +262,11 @@ class Icinga2APIObject(object):
                 diff["before"][key] = "{val}".format(val=value)
                 diff["after"][key] = "{val}".format(val=data_from_task[key])
 
+        # workaround for type confusion in API, remove when https://github.com/telekom-mms/ansible-collection-icinga-director/issues/285 is solved
         if diff["before"] == diff["after"]:
             return {}
-        else:
-            return diff
+
+        return diff
 
     def update(self, state):
         """
