@@ -19,6 +19,7 @@ Bugfixes
 --------
 
 - Bug: dependency apply module raises error when using a variable for parent host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)
+- Extend checks in diff as a workaround for type confusion with the Director API (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/278)
 - add 'groups' parameter to task 'icinga_user.yml' (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/284)
 
 New Modules
