@@ -78,7 +78,8 @@ def main():
     # add our own arguments
     argument_spec.update(
         url=dict(required=True),
-        timeout=dict(required=False, default=2, type="int")
+        timeout=dict(required=False, default=2, type="int"),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

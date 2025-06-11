@@ -238,6 +238,7 @@ def main():
         timeout=dict(required=False, default=None),
         zone=dict(required=False, default=None),
         arguments=dict(type="dict", default=None),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

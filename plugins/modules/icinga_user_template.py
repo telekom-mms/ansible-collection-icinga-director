@@ -132,6 +132,7 @@ def main():
         enable_notifications=dict(type="bool", required=False),
         vars=dict(type="dict", default={}, required=False),
         zone=dict(required=False, default=None),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

@@ -327,6 +327,7 @@ def main():
         use_agent=dict(type="bool", required=False),
         vars=dict(type="dict", default={}, required=False),
         volatile=dict(type="bool", required=False),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

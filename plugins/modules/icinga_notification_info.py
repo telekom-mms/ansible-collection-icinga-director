@@ -89,6 +89,7 @@ def main():
         url=dict(required=True),
         query=dict(type="str", required=False, default=""),
         resolved=dict(type="bool", default=False, choices=[True, False]),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

@@ -100,8 +100,10 @@ groups:
 
 
 from ansible.plugins.inventory import BaseInventoryPlugin, Constructable
+from ansible.inventory.group import to_safe_group_name
 
 from ansible.module_utils.urls import open_url
+from urllib.parse import quote
 import json
 
 
@@ -153,14 +155,27 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
     def add_hosts_to_groups(self):
         hostgroups = self.set_hostgroups()
 
+        health = self.call_url(url_path="/health")
+
+        # default for deprecated monitoring module
+        hostgroup_url_path = "/monitoring/list/hosts"
+        hostgroup_name = "hostgroup_name"
+        host_name = "host_name"
+
+        for module in health["data"]:
+            if module["module"] == "icingadb":
+                hostgroup_url_path = "/icingadb/hostgroup"
+                hostgroup_name = "name"
+                host_name = "name"
+
         for hostgroup in hostgroups:
             members = self.call_url(
-                url_path="/monitoring/list/hosts"
-                + "?hostgroup_name="
-                + hostgroup,
+                url_path=hostgroup_url_path
+                + "?" + hostgroup_name + "="
+                + quote(hostgroup),
             )
             for member in members:
-                self.inventory.add_host(member["host_name"], group=hostgroup)
+                self.inventory.add_host(member[host_name], group=to_safe_group_name(hostgroup, force=True, silent=True))
 
     def set_hostgroups(self):
         hostgroup_list = self.call_url(
@@ -171,7 +186,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
 
         for hostgroup in hostgroup_list["objects"]:
             hostgroups.append(hostgroup["object_name"])
-            self.inventory.add_group(hostgroup["object_name"])
+            self.inventory.add_group(to_safe_group_name(hostgroup["object_name"], force=True, silent=True))
         return hostgroups
 
     def parse(self, inventory, loader, path, cache=True):
