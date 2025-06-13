@@ -8,6 +8,11 @@ telekom_mms.icinga_director Release Notes
 v2.3.1
 ======
 
+Minor Changes
+-------------
+
+- Add zone option for icinga_user_group module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/286)
+
 v2.3.0
 ======
 
