@@ -58,6 +58,10 @@ options:
     type: bool
     default: false
     choices: [true, false]
+  zone:
+    description:
+      - Set the zone.
+    type: str
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -77,6 +81,7 @@ EXAMPLES = """
     url_password: "{{ icinga_pass }}"
     object_name: "onCall"
     disabled: false
+    zone: "foozone"
 
 - name: Update user group
   telekom_mms.icinga_director.icinga_user_group:
@@ -112,6 +117,7 @@ def main():
         object_name=dict(required=True, aliases=["name"]),
         display_name=dict(required=False),
         disabled=dict(type="bool", default=False, choices=[True, False]),
+        zone=dict(required=False, default=None),
         api_timeout=dict(required=False, default=10, type="int"),
     )
 
@@ -124,6 +130,7 @@ def main():
         "object_name",
         "display_name",
         "disabled",
+        "zone",
     ]
 
     data = {}
