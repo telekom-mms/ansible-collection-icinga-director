@@ -40,6 +40,10 @@ Parameters
     Disabled objects will not be deployed.
 
 
+  zone (optional, str, None)
+    Set the zone.
+
+
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
 
@@ -138,6 +142,7 @@ Examples
         url_password: "{{ icinga_pass }}"
         object_name: "onCall"
         disabled: false
+        zone: "foozone"
 
     - name: Update user group
       telekom_mms.icinga_director.icinga_user_group:
