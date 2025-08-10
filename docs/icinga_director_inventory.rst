@@ -107,31 +107,31 @@ Parameters
 
 
     parent_group (optional, str, None)
-      parent group for keyed group
+      parent group for keyed group.
 
 
     prefix (optional, str, )
-      A keyed group name will start with this prefix
+      A keyed group name will start with this prefix.
 
 
     separator (optional, str, _)
-      separator used to build the keyed group name
+      separator used to build the keyed group name.
 
 
     key (optional, str, None)
-      The key from input dictionary used to generate groups
+      The key from input dictionary used to generate groups.
 
 
     default_value (optional, str, None)
       The default value when the host variable's value is an empty string.
 
-      This option is mutually exclusive with :literal:`trailing\_separator`.
+      This option is mutually exclusive with :literal:`keyed\_groups[].trailing\_separator`.
 
 
     trailing_separator (optional, bool, True)
-      Set this option to :emphasis:`False` to omit the :literal:`separator` after the host variable when the value is an empty string.
+      Set this option to :literal:`false` to omit the :literal:`keyed\_groups[].separator` after the host variable when the value is an empty string.
 
-      This option is mutually exclusive with :literal:`default\_value`.
+      This option is mutually exclusive with :literal:`keyed\_groups[].default\_value`.
 
 
 
@@ -140,13 +140,13 @@ Parameters
 
 
   leading_separator (optional, boolean, True)
-    Use in conjunction with keyed\_groups.
+    Use in conjunction with :literal:`keyed\_groups`.
 
     By default, a keyed group that does not have a prefix or a separator provided will have a name that starts with an underscore.
 
-    This is because the default prefix is "" and the default separator is "\_".
+    This is because the default prefix is :literal:`""` and the default separator is :literal:`"\_"`.
 
-    Set this option to False to omit the leading underscore (or other separator) if no prefix is given.
+    Set this option to :literal:`false` to omit the leading underscore (or other separator) if no prefix is given.
 
     If the group name is derived from a mapping the separator is still used to concatenate the items.
 

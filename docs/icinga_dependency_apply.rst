@@ -113,17 +113,17 @@ Parameters
   url_username (optional, str, None)
     The username for use in HTTP basic authentication.
 
-    This parameter can be used without :emphasis:`url\_password` for sites that allow empty passwords
+    This parameter can be used without :literal:`url\_password` for sites that allow empty passwords.
 
 
   url_password (optional, str, None)
     The password for use in HTTP basic authentication.
 
-    If the :emphasis:`url\_username` parameter is not specified, the :emphasis:`url\_password` parameter will not be used.
+    If the :literal:`url\_username` parameter is not specified, the :literal:`url\_password` parameter will not be used.
 
 
   force_basic_auth (optional, bool, False)
-    Credentials specified with :emphasis:`url\_username` and :emphasis:`url\_password` should be passed in HTTP Header.
+    Credentials specified with :literal:`url\_username` and :literal:`url\_password` should be passed in HTTP Header.
 
 
   client_cert (optional, path, None)
@@ -143,9 +143,9 @@ Parameters
 
     Requires the Python library \ `gssapi <https://github.com/pythongssapi/python-gssapi>`__ to be installed.
 
-    Credentials for GSSAPI can be specified with :emphasis:`url\_username`\ /\ :emphasis:`url\_password` or with the GSSAPI env var :literal:`KRB5CCNAME` that specified a custom Kerberos credential cache.
+    Credentials for GSSAPI can be specified with :literal:`url\_username`\ /\ :literal:`url\_password` or with the GSSAPI env var :envvar:`KRB5CCNAME` that specified a custom Kerberos credential cache.
 
-    NTLM authentication is :literal:`not` supported even if the GSSAPI mech for NTLM has been installed.
+    NTLM authentication is :strong:`not` supported even if the GSSAPI mech for NTLM has been installed.
 
 
   api_timeout (optional, int, 10)
