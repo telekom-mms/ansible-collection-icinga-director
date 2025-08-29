@@ -103,7 +103,6 @@ options:
     required: false
     type: list
     elements: str
-    default: []
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -196,7 +195,6 @@ def main():
         states=dict(
             type="list",
             elements="str",
-            default=[],
             required=False,
             choices=["Critical", "Down", "OK", "Unknown", "Up", "Warning"]
         ),

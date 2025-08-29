@@ -75,6 +75,10 @@ options:
     description:
       - Whether to enable event handlers this object.
     type: "bool"
+  enable_flapping:
+    description:
+      - Whether flap detection is enabled on this object.
+    type: bool
   enable_notifications:
     description:
       - Whether to send notifications for this object.
@@ -87,6 +91,21 @@ options:
     description:
       - Whether to process performance data provided by this object.
     type: "bool"
+  event_command:
+    description:
+      - Event command for service which gets called on every check execution if one of these conditions matches
+      - The service is in a soft state
+      - The service state changes into a hard state
+      - The service state recovers from a soft or hard state to OK/Up
+    type: "str"
+  flapping_threshold_high:
+    description:
+      - Flapping upper bound in percent for a service to be considered flapping
+    type: str
+  flapping_threshold_low:
+    description:
+      - Flapping lower bound in percent for a service to be considered not flapping
+    type: str
   groups:
     description:
       - Service groups that should be directly assigned to this service.
@@ -96,6 +115,15 @@ options:
     type: "list"
     elements: "str"
     default: []
+  icon_image:
+    description:
+      - An URL pointing to an icon for this object.
+      - Try "tux.png" for icons relative to public/img/icons or "cloud" (no extension) for items from the Icinga icon font
+    type: str
+  icon_image_alt:
+    description:
+      - Alternative text to be shown in case above icon is missing
+    type: str
   host:
     description:
       - Choose the host this single service should be assigned to.
@@ -313,11 +341,17 @@ def main():
         display_name=dict(required=False),
         enable_active_checks=dict(type="bool", required=False),
         enable_event_handler=dict(type="bool", required=False),
+        enable_flapping=dict(type="bool", required=False),
         enable_notifications=dict(type="bool", required=False),
         enable_passive_checks=dict(type="bool", required=False),
         enable_perfdata=dict(type="bool", required=False),
+        event_command=dict(type="str", required=False),
+        flapping_threshold_high=dict(type="str", required=False),
+        flapping_threshold_low=dict(type="str", required=False),
         host=dict(type="str", required=False),
         groups=dict(type="list", elements="str", default=[], required=False),
+        icon_image_alt=dict(type="str", required=False),
+        icon_image=dict(type="str", required=False),
         imports=dict(type="list", elements="str", default=[], required=False),
         max_check_attempts=dict(required=False),
         notes=dict(type="str", required=False),
@@ -345,10 +379,16 @@ def main():
         "display_name",
         "enable_active_checks",
         "enable_event_handler",
+        "enable_flapping",
         "enable_notifications",
         "enable_passive_checks",
         "enable_perfdata",
+        "event_command",
+        "flapping_threshold_high",
+        "flapping_threshold_low",
         "groups",
+        "icon_image_alt",
+        "icon_image",
         "host",
         "imports",
         "max_check_attempts",
