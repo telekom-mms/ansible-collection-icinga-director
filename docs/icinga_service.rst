@@ -57,6 +57,8 @@ Parameters
   enable_event_handler (optional, bool, None)
     Whether to enable event handlers this object.
 
+  enable_flapping (optional, bool, None)
+    Whether flap detection is enabled on this object.
 
   enable_notifications (optional, bool, None)
     Whether to send notifications for this object.
@@ -65,10 +67,23 @@ Parameters
   enable_passive_checks (optional, bool, None)
     Whether to accept passive check results for this object.
 
-
   enable_perfdata (optional, bool, None)
     Whether to process performance data provided by this object.
 
+  event_command (optional, str, None)
+    Event command for service which gets called on every check execution if one of these conditions matches
+
+    The service is in a soft state
+
+    The service state changes into a hard state
+
+    The service state recovers from a soft or hard state to OK/Up
+
+  flapping_thresold_high (optional, str, None)
+    Flapping upper bound in percent for a service to be considered flapping
+
+  flapping_threshold_low (optional, str, None)
+    Flapping lower bound in percent for a service to be considered not flapping
 
   groups (optional, list, [])
     Service groups that should be directly assigned to this service.
@@ -223,7 +238,7 @@ Examples
 
 .. code-block:: yaml+jinja
 
-    
+
     - name: Create service
       tags: service
       telekom_mms.icinga_director.icinga_service:
