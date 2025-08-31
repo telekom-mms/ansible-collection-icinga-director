@@ -232,6 +232,7 @@ def main():
         period=dict(required=False, aliases=["time_period"]),
         times_begin=dict(type="int", required=False),
         times_end=dict(type="int", required=False),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

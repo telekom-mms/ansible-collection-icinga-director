@@ -41,9 +41,8 @@ jobs:
           # Add new versions announced in
           # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
           # consider dropping testing against EOL versions and versions you don't support.
-          - stable-2.14
-          - stable-2.15
-          - stable-2.16
+          - stable-2.17
+          - stable-2.18
           - devel
     runs-on: ubuntu-latest
     steps:
@@ -82,81 +81,13 @@ jobs:
           - 1.8.1
           - 1.11.1
         ansible:
-          - stable-2.14
-          - stable-2.15
-          - stable-2.16
+          - stable-2.17
+          - stable-2.18
           - devel
         python:
-          - '3.8'
-          - '3.9'
           - '3.10'
           - '3.11'
           - '3.12'
-        include:
-          # Add new versions announced in
-          # https://github.com/ansible-collections/news-for-maintainers in a timely manner,
-          # consider dropping testing against EOL versions and versions you don't support.
-          # ansible-core 2.14
-          #
-          # icinga-director 1.8.1
-          - ansible: stable-2.14
-            python: '2.7'
-            icinga_director: 1.8.1
-          - ansible: stable-2.14
-            python: '3.5'
-            icinga_director: 1.8.1
-          - ansible: stable-2.14
-            python: '3.6'
-            icinga_director: 1.8.1
-          # ansible-core 2.15
-          - ansible: stable-2.15
-            python: '2.7'
-            icinga_director: 1.8.1
-          - ansible: stable-2.15
-            python: '3.5'
-            icinga_director: 1.8.1
-          - ansible: stable-2.15
-            python: '3.6'
-            icinga_director: 1.8.1
-          # ansible-core 2.16
-          - ansible: stable-2.16
-            python: '2.7'
-            icinga_director: 1.8.1
-          - ansible: stable-2.16
-            python: '3.6'
-            icinga_director: 1.8.1
-          # icinga-director 1.11.1
-          - ansible: stable-2.14
-            python: '2.7'
-            icinga_director: 1.11.1
-          - ansible: stable-2.14
-            python: '3.5'
-            icinga_director: 1.11.1
-          - ansible: stable-2.14
-            python: '3.6'
-            icinga_director: 1.11.1
-          # ansible-core 2.15
-          - ansible: stable-2.15
-            python: '2.7'
-            icinga_director: 1.11.1
-          - ansible: stable-2.15
-            python: '3.5'
-            icinga_director: 1.11.1
-          - ansible: stable-2.15
-            python: '3.6'
-            icinga_director: 1.11.1
-          # ansible-core 2.16
-          - ansible: stable-2.16
-            python: '2.7'
-            icinga_director: 1.11.1
-          - ansible: stable-2.16
-            python: '3.6'
-            icinga_director: 1.11.1
-        exclude:
-          - python: '3.12'
-            ansible: stable-2.14
-          - python: '3.12'
-            ansible: stable-2.15
     services:
       icinga:
         image: ghcr.io/telekom-mms/icinga2:director-${{ matrix.icinga_director }}
@@ -169,7 +100,7 @@ jobs:
           under Python ${{ matrix.python }}
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
-        uses: ansible-community/ansible-test-gh-action@b416b6ecf7ddb0ea3b0a51c1d198d715eba52c9d # v1.16.0
+        uses: ansible-community/ansible-test-gh-action@d3a8ec7a59694e25e210fcd44738910149537f0e # v1.17.0
         with:
           ansible-core-version: ${{ matrix.ansible }}
           # OPTIONAL command to run before invoking `ansible-test integration`
@@ -191,12 +122,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
-          python-version: 3.11
+          python-version: 3.13
 
       - name: Install antsibull-docs
         run: pip install antsibull-docs --disable-pip-version-check

@@ -1,6 +1,6 @@
 namespace: telekom_mms
 name: icinga_director
-version: 2.2.2
+version: 2.4.0
 readme: README.md
 authors:
   - Sebastian Gumprich <sebastian.gumprich@telekom.de>

@@ -105,6 +105,7 @@ def main():
         url=dict(required=True),
         configs=dict(type="list", required=False, default=None, elements="str"),
         activities=dict(type="list", required=False, default=None, elements="str"),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module

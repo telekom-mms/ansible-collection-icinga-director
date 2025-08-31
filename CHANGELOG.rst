@@ -1,9 +1,19 @@
-=========================================
-telekom_mms.icinga_director Release Notes
-=========================================
+===========================================
+telekom\_mms.icinga\_director Release Notes
+===========================================
 
 .. contents:: Topics
 
+v2.4.1
+======
+
+v2.3.1
+======
+
+Minor Changes
+-------------
+
+- Add zone option for icinga_user_group module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/286)
 
 v2.3.0
 ======
@@ -11,6 +21,7 @@ v2.3.0
 Minor Changes
 -------------
 
+- Add API timeout option for all modules (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/282)
 - Add support for IcingaDB in inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/274)
 - Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
 
@@ -18,6 +29,8 @@ Bugfixes
 --------
 
 - Bug: dependency apply module raises error when using a variable for parent host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)
+- Extend checks in diff as a workaround for type confusion with the Director API (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/278)
+- add 'groups' parameter to task 'icinga_user.yml' (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/284)
 
 New Modules
 -----------
@@ -348,3 +361,4 @@ Minor Changes
 
 v1.18.1
 =======
+

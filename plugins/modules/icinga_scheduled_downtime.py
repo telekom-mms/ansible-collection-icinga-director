@@ -189,6 +189,7 @@ def main():
         fixed=dict(type="bool", choices=[True, False], default=False),
         ranges=dict(type="dict", required=False, default={}),
         with_services=dict(type="bool", default=True, choices=[True, False]),
+        api_timeout=dict(required=False, default=10, type="int"),
     )
 
     # Define the main module
