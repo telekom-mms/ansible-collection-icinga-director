@@ -72,7 +72,7 @@ Parameters
     Icinga cluster zone.
 
 
-  states (False, list, [])
+  states (False, list, None)
     The host/service states you want to get notifications for.
 
 
