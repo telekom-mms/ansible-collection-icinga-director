@@ -7,6 +7,11 @@ telekom\_mms.icinga\_director Release Notes
 v2.4.1
 ======
 
+Bugfixes
+--------
+
+- Fix: remove default for states parameter in icinga_dependency_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/290)
+
 v2.3.1
 ======
 
