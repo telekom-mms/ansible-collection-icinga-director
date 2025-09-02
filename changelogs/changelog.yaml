@@ -1,6 +1,16 @@
 ---
 ancestor:
 releases:
+  2.5.0:
+    changes:
+      bugfixes:
+        - 'Fix: remove default for states parameter in icinga_dependency_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/290)'
+      minor_changes:
+        - 'Feat: add some parameters to the icinga service module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/289)'
+      trivial:
+        - 'chore(deps): update github/codeql-action digest to 2d92b76 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/291)'
+        - 'chore(deps): update actions/checkout action to v5 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/287)'
+    release_date: '2025-09-02'
   2.4.1:
     changes:
       bugfixes:

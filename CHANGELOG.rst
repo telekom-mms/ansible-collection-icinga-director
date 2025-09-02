@@ -4,6 +4,19 @@ telekom\_mms.icinga\_director Release Notes
 
 .. contents:: Topics
 
+v2.5.0
+======
+
+Minor Changes
+-------------
+
+- Feat: add some parameters to the icinga service module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/289)
+
+Bugfixes
+--------
+
+- Fix: remove default for states parameter in icinga_dependency_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/290)
+
 v2.4.1
 ======
 
