@@ -10,7 +10,6 @@ from collections import defaultdict
 from ansible.module_utils.urls import fetch_url
 from ansible.module_utils.common.text.converters import to_text
 from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
-from six import iteritems
 
 
 class Icinga2APIObject(object):
@@ -230,7 +229,7 @@ class Icinga2APIObject(object):
         """
 
         if isinstance(value, dict):
-            for k, v in iteritems(value.copy()):
+            for k, v in value.copy().items():
                 if isinstance(value[k], dict):
                     value[k].pop("command_id", None)
 
