@@ -37,7 +37,7 @@ jobs:
           python-version: 3.13
 
       - name: Install ansible-doc-extractor
-        run: python -m pip install ansible-doc-extractor[ansible]
+        run: python -m pip install ansible-doc-extractor[ansible] "ansible<12"
 
       - name: create documentation
         run: ansible-doc-extractor docs/ plugins/inventory/* plugins/modules/*

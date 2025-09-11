@@ -8,9 +8,9 @@ import json
 from collections import defaultdict
 
 from ansible.module_utils.urls import fetch_url
-from ansible.module_utils.six import iteritems
 from ansible.module_utils.common.text.converters import to_text
 from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
+from six import iteritems
 
 
 class Icinga2APIObject(object):
