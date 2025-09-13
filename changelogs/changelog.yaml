@@ -4,10 +4,13 @@ releases:
   2.5.0:
     changes:
       bugfixes:
+        - Fix doc generation and remove need for iteritems (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/296)
         - 'Fix: remove default for states parameter in icinga_dependency_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/290)'
       minor_changes:
         - 'Feat: add some parameters to the icinga service module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/289)'
       trivial:
+        - 'chore(deps): update github/codeql-action digest to d3678e2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/293)'
+        - 'chore(deps): update actions/setup-python action to v6 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/292)'
         - 'chore(deps): update github/codeql-action digest to 2d92b76 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/291)'
         - 'chore(deps): update actions/checkout action to v5 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/287)'
     release_date: '2025-09-02'

@@ -15,6 +15,7 @@ Minor Changes
 Bugfixes
 --------
 
+- Fix doc generation and remove need for iteritems (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/296)
 - Fix: remove default for states parameter in icinga_dependency_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/290)
 
 v2.4.1
