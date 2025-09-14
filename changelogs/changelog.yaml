@@ -9,6 +9,7 @@ releases:
       minor_changes:
         - 'Feat: add some parameters to the icinga service module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/289)'
       trivial:
+        - 'chore(deps): update github/codeql-action digest to 192325c (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/294)'
         - 'chore(deps): update github/codeql-action digest to d3678e2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/293)'
         - 'chore(deps): update actions/setup-python action to v6 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/292)'
         - 'chore(deps): update github/codeql-action digest to 2d92b76 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/291)'
