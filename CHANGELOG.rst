@@ -1,12 +1,38 @@
-=========================================
-telekom_mms.icinga_director Release Notes
-=========================================
+===========================================
+telekom\_mms.icinga\_director Release Notes
+===========================================
 
 .. contents:: Topics
 
+v2.5.0
+======
+
+Minor Changes
+-------------
+
+- Feat: add some parameters to the icinga service module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/289)
+
+Bugfixes
+--------
+
+- Fix doc generation and remove need for iteritems (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/296)
+- Fix: remove default for states parameter in icinga_dependency_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/290)
+
+v2.4.1
+======
+
+Bugfixes
+--------
+
+- Fix: remove default for states parameter in icinga_dependency_apply (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/290)
 
 v2.3.1
 ======
+
+Minor Changes
+-------------
+
+- Add zone option for icinga_user_group module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/286)
 
 v2.3.0
 ======
@@ -354,3 +380,4 @@ Minor Changes
 
 v1.18.1
 =======
+

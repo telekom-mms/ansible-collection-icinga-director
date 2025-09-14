@@ -58,6 +58,10 @@ Parameters
     Whether to enable event handlers this object.
 
 
+  enable_flapping (optional, bool, None)
+    Whether flap detection is enabled on this object.
+
+
   enable_notifications (optional, bool, None)
     Whether to send notifications for this object.
 
@@ -70,6 +74,24 @@ Parameters
     Whether to process performance data provided by this object.
 
 
+  event_command (optional, str, None)
+    Event command for service which gets called on every check execution if one of these conditions matches
+
+    The service is in a soft state
+
+    The service state changes into a hard state
+
+    The service state recovers from a soft or hard state to OK/Up
+
+
+  flapping_threshold_high (optional, str, None)
+    Flapping upper bound in percent for a service to be considered flapping
+
+
+  flapping_threshold_low (optional, str, None)
+    Flapping lower bound in percent for a service to be considered not flapping
+
+
   groups (optional, list, [])
     Service groups that should be directly assigned to this service.
 
@@ -78,6 +100,16 @@ Parameters
     They are helpful to provided service-type specific view in Icinga Web 2, either for custom dashboards or as an instrument to enforce restrictions.
 
     Service groups can be directly assigned to single services or to service templates.
+
+
+  icon_image (optional, str, None)
+    An URL pointing to an icon for this object.
+
+    Try "tux.png" for icons relative to public/img/icons or "cloud" (no extension) for items from the Icinga icon font
+
+
+  icon_image_alt (optional, str, None)
+    Alternative text to be shown in case above icon is missing
 
 
   host (False, str, None)
@@ -167,17 +199,17 @@ Parameters
   url_username (optional, str, None)
     The username for use in HTTP basic authentication.
 
-    This parameter can be used without :emphasis:`url\_password` for sites that allow empty passwords
+    This parameter can be used without :literal:`url\_password` for sites that allow empty passwords.
 
 
   url_password (optional, str, None)
     The password for use in HTTP basic authentication.
 
-    If the :emphasis:`url\_username` parameter is not specified, the :emphasis:`url\_password` parameter will not be used.
+    If the :literal:`url\_username` parameter is not specified, the :literal:`url\_password` parameter will not be used.
 
 
   force_basic_auth (optional, bool, False)
-    Credentials specified with :emphasis:`url\_username` and :emphasis:`url\_password` should be passed in HTTP Header.
+    Credentials specified with :literal:`url\_username` and :literal:`url\_password` should be passed in HTTP Header.
 
 
   client_cert (optional, path, None)
@@ -197,9 +229,9 @@ Parameters
 
     Requires the Python library \ `gssapi <https://github.com/pythongssapi/python-gssapi>`__ to be installed.
 
-    Credentials for GSSAPI can be specified with :emphasis:`url\_username`\ /\ :emphasis:`url\_password` or with the GSSAPI env var :literal:`KRB5CCNAME` that specified a custom Kerberos credential cache.
+    Credentials for GSSAPI can be specified with :literal:`url\_username`\ /\ :literal:`url\_password` or with the GSSAPI env var :envvar:`KRB5CCNAME` that specified a custom Kerberos credential cache.
 
-    NTLM authentication is :literal:`not` supported even if the GSSAPI mech for NTLM has been installed.
+    NTLM authentication is :strong:`not` supported even if the GSSAPI mech for NTLM has been installed.
 
 
   api_timeout (optional, int, 10)
