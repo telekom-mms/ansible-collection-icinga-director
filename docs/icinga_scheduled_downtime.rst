@@ -47,7 +47,7 @@ Parameters
 
 
   fixed (optional, bool, False)
-    Whether this downtime is fixed or flexible. If unsure please check the related documentation https://icinga.com/docs/icinga2/latest/doc/08-advanced-topics/#downtimes
+    Whether this downtime is fixed or flexible. If unsure please check the related documentation https://icinga.com/docs/icinga2/latest/doc/08\-advanced\-topics/#downtimes
 
     Required if :emphasis:`state` is :literal:`present`.
 
@@ -71,15 +71,15 @@ Parameters
 
 
   duration (optional, str, None)
-    How long the downtime lasts. Only has an effect for flexible (non-fixed) downtimes. Time in seconds, supported suffixes include ms (milliseconds), s (seconds), m (minutes), h (hours) and d (days). To express "90 minutes" you might want to write 1h 30m
+    How long the downtime lasts. Only has an effect for flexible (non\-fixed) downtimes. Time in seconds, supported suffixes include ms (milliseconds), s (seconds), m (minutes), h (hours) and d (days). To express "90 minutes" you might want to write 1h 30m
 
 
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
 
-    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    Note \- Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
 
-    Note - Variables that are set by default will also be applied, even if not set.
+    Note \- Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -101,7 +101,7 @@ Parameters
   validate_certs (optional, bool, True)
     If :literal:`no`\ , SSL certificates will not be validated.
 
-    This should only be used on personally controlled sites using self-signed certificates.
+    This should only be used on personally controlled sites using self\-signed certificates.
 
 
   url_username (optional, str, None)
