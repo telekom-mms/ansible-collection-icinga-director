@@ -34,7 +34,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6
         with:
-          python-version: 3.13
+          python-version: 3.14
 
       - name: Install ansible-doc-extractor
         run: python -m pip install ansible-doc-extractor[ansible] "ansible<12"
@@ -79,7 +79,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6
         with:
-          python-version: 3.13
+          python-version: 3.14
 
       - name: Install antsibull-changelog, antsichaut
         run: python -m pip install antsibull-changelog --disable-pip-version-check
