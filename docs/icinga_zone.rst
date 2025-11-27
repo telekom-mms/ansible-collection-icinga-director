@@ -33,7 +33,7 @@ Parameters
 
     To make things easier for your users we strongly suggest to use meaningful names for templates.
 
-    For example "generic-zone" is ugly, "Standard Linux Server" is easier to understand.
+    For example "generic\-zone" is ugly, "Standard Linux Server" is easier to understand.
 
 
   is_global (optional, bool, False)
@@ -47,9 +47,9 @@ Parameters
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
 
-    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    Note \- Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
 
-    Note - Variables that are set by default will also be applied, even if not set.
+    Note \- Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -71,7 +71,7 @@ Parameters
   validate_certs (optional, bool, True)
     If :literal:`no`\ , SSL certificates will not be validated.
 
-    This should only be used on personally controlled sites using self-signed certificates.
+    This should only be used on personally controlled sites using self\-signed certificates.
 
 
   url_username (optional, str, None)

@@ -69,13 +69,13 @@ Parameters
   validate_certs (optional, bool, True)
     If \`no\`, SSL certificates will not be validated.
 
-    This should only be used on personally controlled sites using self-signed certificates.
+    This should only be used on personally controlled sites using self\-signed certificates.
 
 
   use_gssapi (optional, bool, False)
     Use GSSAPI to perform the authentication, typically this is for Kerberos or Kerberos through Negotiate authentication.
 
-    Requires the Python library \`gssapi \<https://github.com/pythongssapi/python-gssapi\>\` to be installed.
+    Requires the Python library \`gssapi \<https://github.com/pythongssapi/python\-gssapi\>\` to be installed.
 
     Credentials for GSSAPI can be specified with \`url\_username\`/ \`url\_password\`
 

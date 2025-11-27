@@ -59,7 +59,7 @@ Parameters
   validate_certs (optional, bool, True)
     If :literal:`no`\ , SSL certificates will not be validated.
 
-    This should only be used on personally controlled sites using self-signed certificates.
+    This should only be used on personally controlled sites using self\-signed certificates.
 
 
   url_username (optional, str, None)

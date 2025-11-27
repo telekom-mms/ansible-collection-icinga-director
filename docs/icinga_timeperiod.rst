@@ -37,7 +37,7 @@ Parameters
   imports (optional, list, [])
     Importable templates, add as many as you want.
 
-    Please note that order matters when importing properties from multiple templates - last one wins.
+    Please note that order matters when importing properties from multiple templates \- last one wins.
 
 
   ranges (optional, dict, None)
@@ -47,9 +47,9 @@ Parameters
   append (optional, bool, None)
     Do not overwrite the whole object but instead append the defined properties.
 
-    Note - Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
+    Note \- Appending to existing vars, imports or any other list/dict is not possible. You have to overwrite the complete list/dict.
 
-    Note - Variables that are set by default will also be applied, even if not set.
+    Note \- Variables that are set by default will also be applied, even if not set.
 
 
   url (True, str, None)
@@ -71,7 +71,7 @@ Parameters
   validate_certs (optional, bool, True)
     If :literal:`no`\ , SSL certificates will not be validated.
 
-    This should only be used on personally controlled sites using self-signed certificates.
+    This should only be used on personally controlled sites using self\-signed certificates.
 
 
   url_username (optional, str, None)
