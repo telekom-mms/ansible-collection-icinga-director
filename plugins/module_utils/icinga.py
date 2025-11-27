@@ -13,6 +13,7 @@ from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
 
 BOOLEAN_MAPPING = {"True": "y", "False": "n"}
 
+
 def _normalize_diff(before, after):
     """
     Recursively normalize diff values.
@@ -29,6 +30,7 @@ def _normalize_diff(before, after):
         return before if BOOLEAN_MAPPING.get(before) == after else after
     return after
 
+
 def _fix_diff(diff):
     """
     Fix the diff structure by normalizing the "after" part
@@ -37,6 +39,7 @@ def _fix_diff(diff):
     if isinstance(diff, dict) and "before" in diff and "after" in diff:
         diff["after"] = _normalize_diff(diff["before"], diff["after"])
     return diff
+
 
 class Icinga2APIObject(object):
     """Interact with the icinga2 director API"""
