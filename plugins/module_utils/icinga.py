@@ -11,6 +11,35 @@ from ansible.module_utils.urls import fetch_url
 from ansible.module_utils.common.text.converters import to_text
 from ansible.module_utils.six.moves.urllib.parse import quote as urlquote
 
+BOOLEAN_MAPPING = {"True": "y", "False": "n"}
+
+
+def _normalize_diff(before, after):
+    """
+    Recursively normalize diff values.
+
+    If `before` is "True"/"False" and `after` is "y"/"n",
+    replace `after` with the corresponding `before` value.
+    Works recursively for nested dicts.
+    """
+    if isinstance(before, dict) and isinstance(after, dict):
+        for key in (before.keys() & after.keys()):
+            after[key] = _normalize_diff(before[key], after[key])
+        return after
+    if isinstance(before, str) and isinstance(after, str):
+        return before if BOOLEAN_MAPPING.get(before) == after else after
+    return after
+
+
+def _fix_diff(diff):
+    """
+    Fix the diff structure by normalizing the "after" part
+    against the corresponding "before" values.
+    """
+    if isinstance(diff, dict) and "before" in diff and "after" in diff:
+        diff["after"] = _normalize_diff(diff["before"], diff["after"])
+    return diff
+
 
 class Icinga2APIObject(object):
     """Interact with the icinga2 director API"""
@@ -260,6 +289,8 @@ class Icinga2APIObject(object):
             if key in data_from_task.keys() and value != data_from_task[key]:
                 diff["before"][key] = "{val}".format(val=value)
                 diff["after"][key] = "{val}".format(val=data_from_task[key])
+
+        diff = _fix_diff(diff)
 
         # workaround for type confusion in API, remove when https://github.com/telekom-mms/ansible-collection-icinga-director/issues/285 is solved
         if diff["before"] == diff["after"]:
