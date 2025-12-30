@@ -3,6 +3,8 @@ ancestor:
 releases:
   2.5.1:
     changes:
+      bugfixes:
+        - 'fix: Ansible 12 broken conditionals (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/301)'
       trivial:
         - 'chore(deps): update actions/checkout action to v6 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/300)'
         - 'chore(deps): update github/codeql-action action to v4 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/297)'
