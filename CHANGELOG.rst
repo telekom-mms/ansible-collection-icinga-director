@@ -7,11 +7,6 @@ telekom\_mms.icinga\_director Release Notes
 v2.5.1
 ======
 
-Bugfixes
---------
-
-- fix: Ansible 12 broken conditionals (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/301)
-
 v2.5.0
 ======
 
