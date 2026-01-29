@@ -1,0 +1,135 @@
+---
+# manages Icinga2 Monitoring Configuration via Icinga2 Director API as a meta playbook
+########################################################################
+
+# object deletion
+- name: import icinga_service_apply playbook
+  import_playbook: icinga_service_apply.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_service_apply
+    - icinga_delete
+
+- name: import icinga_service playbook
+  import_playbook: icinga_service.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_service
+    - icinga_delete
+
+- name: import icinga_service_templates playbook
+  import_playbook: icinga_service_templates.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_service_templates
+    - icinga_delete
+
+- name: import icinga_commands playbook
+  ansible.builtin.import_playbook: icinga_commands.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_commands
+    - icinga_delete
+
+- name: import icinga_hostgroups playbook
+  ansible.builtin.import_playbook: icinga_hostgroups.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_hostgroups
+    - icinga_delete
+
+- name: import icinga_hosts playbook
+  ansible.builtin.import_playbook: icinga_hosts.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_hosts
+    - icinga_delete
+
+- name: import icinga_host_templates playbook
+  ansible.builtin.import_playbook: icinga_host_templates.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_host_templates
+    - icinga_delete
+
+- name: import icinga_timeperiods playbook
+  import_playbook: icinga_timeperiods.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_timeperiods
+    - icinga_delete
+
+- name: import icinga_user playbook
+  import_playbook: icinga_user.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_user
+    - icinga_delete
+
+- name: import icinga_notifications playbook
+  import_playbook: icinga_notifications.yml
+  vars:
+    icinga_delete: true
+  tags:
+    - icinga_notifications
+    - icinga_delete
+
+# object modification and creation
+- name: import icinga_host_templates playbook
+  ansible.builtin.import_playbook: icinga_host_templates.yml
+  tags:
+    - icinga_host_templates
+
+- name: import icinga_hosts playbook
+  ansible.builtin.import_playbook: icinga_hosts.yml
+  tags:
+    - icinga_hosts
+
+- name: import icinga_hostgroups playbook
+  ansible.builtin.import_playbook: icinga_hostgroups.yml
+  tags:
+    - icinga_hostgroups
+
+- name: import icinga_commands playbook
+  ansible.builtin.import_playbook: icinga_commands.yml
+  tags:
+    - icinga_commands
+
+- name: import icinga_service_templates playbook
+  ansible.builtin.import_playbook: icinga_service_templates.yml
+  tags:
+    - icinga_service_templates
+
+- name: import icinga_service playbook
+  ansible.builtin.import_playbook: icinga_service.yml
+  tags:
+    - icinga_service
+
+- name: import icinga_service_apply playbook
+  ansible.builtin.import_playbook: icinga_service_apply.yml
+  tags:
+    - icinga_service_apply
+
+- name: import icinga_timeperiods playbook
+  ansible.builtin.import_playbook: icinga_timeperiods.yml
+  tags:
+    - icinga_timeperiods
+
+- name: import icinga_user playbook
+  import_playbook: icinga_user.yml
+  tags:
+    - icinga_user
+
+- name: import icinga_notifications playbook
+  import_playbook: icinga_notifications.yml
+  tags:
+    - icinga_notifications
