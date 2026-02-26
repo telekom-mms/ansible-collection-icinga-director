@@ -6,6 +6,7 @@ releases:
       trivial:
         - 'chore(deps): update wyrihaximus/github-action-get-previous-tag action to
           v2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/302)'
+        - Add cache to inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/275)
     release_date: '2026-01-02'
   2.5.1:
     changes:
