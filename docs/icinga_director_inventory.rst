@@ -153,6 +153,26 @@ Parameters
     To not use a separator in the group name at all, set the separator for the keyed group to an empty string instead.
 
 
+  cache (optional, bool, False)
+    Toggle to enable/disable the caching of the inventory's source data, requires a cache plugin setup to work.
+
+
+  cache_plugin (optional, str, memory)
+    Cache plugin to use for the inventory's source data.
+
+
+  cache_timeout (optional, int, 3600)
+    Cache duration in seconds.
+
+
+  cache_connection (optional, str, None)
+    Cache connection data or path, read cache plugin documentation for specifics.
+
+
+  cache_prefix (optional, any, ansible_inventory_)
+    Prefix to use for cache plugin files/tables.
+
+
 
 
 
