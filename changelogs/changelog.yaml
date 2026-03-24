@@ -4,6 +4,7 @@ releases:
   2.5.2:
     changes:
       trivial:
+        - 'chore(deps): update release-drafter/release-drafter action to v7 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/303)'
         - 'chore(deps): update wyrihaximus/github-action-get-previous-tag action to
           v2 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/302)'
         - Add cache to inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/275)
