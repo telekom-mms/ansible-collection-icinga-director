@@ -9,4 +9,4 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   codespell:
-    uses: "telekom-mms/.github/.github/workflows/codespell.yml@0d1a1d1271a147b86d8c493fa6507d7cb55da58f" # main
+    uses: "telekom-mms/.github/.github/workflows/codespell.yml@0fe0f08a635c010c8724c517d58a6bc124177149" # main
