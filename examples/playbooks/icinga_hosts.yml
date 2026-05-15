@@ -1,0 +1,52 @@
+---
+- hosts:
+    - all
+  gather_facts: false
+  vars:
+    icinga_deploy_config: true
+    icinga_deploy_timeout: 5
+    icinga_delete: false
+  pre_tasks:
+    - name: merge icinga vars
+      ansible.builtin.set_fact:
+        icinga_hosts:
+          - name: "{{ inventory_hostname }}"
+            imports: "{{ icinga2.template }}"
+            address: "{{ ansible_default_ipv4.address }}"
+            vars: "{{ lookup('community.general.merge_variables', 'icinga__to_merge', pattern_type='suffix', override='warn') | default('') }}"
+      delegate_to: localhost
+
+    - name: get all object configs
+      telekom_mms.icinga_director.icinga_host_info:
+        url: "{{ icinga_host }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        query: '*'
+        force_basic_auth: true
+      delegate_to: localhost
+      run_once: true
+      register: result
+
+    - name: create empty object to fill it with delete objects
+      ansible.builtin.set_fact:
+        delete_icinga_hosts: []
+
+    - name: create objects scheduled for deletion
+      ansible.builtin.set_fact:
+        delete_icinga_hosts: "{{ delete_icinga_hosts + [{'name': item.object_name, 'state': 'absent' }] }}"
+      when: item.object_name not in ansible_play_hosts_all
+      loop: "{{ result.objects }}"
+      run_once: true
+      delegate_facts: false
+      delegate_to: localhost
+
+    - name: set deletion objects as used objects
+      ansible.builtin.set_fact:
+        icinga_hosts: "{{ delete_icinga_hosts }}"
+      when: icinga_delete
+
+  tasks:
+    - name: import ansible-icinga role
+      import_role:
+        name: telekom_mms.icinga_director.ansible_icinga
+      delegate_to: localhost
