@@ -4,6 +4,7 @@ releases:
   2.5.2:
     changes:
       trivial:
+        - 'chore(deps): update github/codeql-action digest to 8aad20d (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/310)'
         - 'chore(deps): update actions/checkout action to v6.0.3 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/309)'
         - 'chore(deps): update telekom-mms/.github digest to d5e3d5d (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/308)'
         - 'chore(deps): update telekom-mms/.github digest to c8e2963 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/307)'
