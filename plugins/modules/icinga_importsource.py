@@ -69,6 +69,16 @@ options:
       - An optional description for this import source.
     required: false
     type: str
+  settings:
+    description:
+      - A dict of provider-specific settings that are stored as key-value pairs
+        in the Director import_source_setting table.
+      - The available keys depend on the chosen C(provider_class).
+      - Example for the OTC provider: C(iam_url), C(username), C(password),
+        C(domain), C(project), C(service_type), C(resource_path).
+    required: false
+    type: dict
+    no_log: false
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -174,6 +184,7 @@ def main():
         key_column=dict(required=False),
         provider_class=dict(required=False),
         description=dict(required=False),
+        settings=dict(required=False, type="dict", no_log=False),
         api_timeout=dict(required=False, default=10, type="int"),
     )
 
@@ -198,6 +209,9 @@ def main():
     else:
         for k in data_keys:
             data[k] = module.params[k]
+
+    if module.params["settings"]:
+        data.update(module.params["settings"])
 
     # Set object_name as alias for source_name to satisfy base class update()
     # during check mode. The create() and modify() overrides strip this key

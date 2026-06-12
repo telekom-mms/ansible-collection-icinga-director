@@ -104,6 +104,11 @@
   when: icinga_dependency_applies is defined
   tags: dependency_apply
 
+- name: Icinga importsource_info configuration
+  ansible.builtin.include_tasks: icinga_importsource_info.yml
+  when: icinga_importsources_info is defined
+  tags: importsource_info
+
 - name: Icinga importsource configuration
   ansible.builtin.include_tasks: icinga_importsource.yml
   when: icinga_importsources is defined
