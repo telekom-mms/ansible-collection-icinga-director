@@ -103,3 +103,18 @@
   ansible.builtin.include_tasks: icinga_dependency_apply.yml
   when: icinga_dependency_applies is defined
   tags: dependency_apply
+
+- name: Icinga importsource configuration
+  ansible.builtin.include_tasks: icinga_importsource.yml
+  when: icinga_importsources is defined
+  tags: importsource
+
+- name: Icinga syncrule configuration
+  ansible.builtin.include_tasks: icinga_syncrule.yml
+  when: icinga_syncrules is defined
+  tags: syncrule
+
+- name: Icinga job configuration
+  ansible.builtin.include_tasks: icinga_job.yml
+  when: icinga_jobs is defined
+  tags: job

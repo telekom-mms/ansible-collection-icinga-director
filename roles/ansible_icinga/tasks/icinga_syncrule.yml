@@ -1,0 +1,29 @@
+---
+- name: Icinga_syncrule
+  telekom_mms.icinga_director.icinga_syncrule:
+    url: "{{ icinga_url }}"
+    use_proxy: "{{ icinga_use_proxy | default(omit) }}"
+    validate_certs: "{{ icinga_validate_certs | default(omit) }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    force_basic_auth: "{{ icinga_force_basic_auth | default(omit) }}"
+    client_cert: "{{ icinga_client_cert | default(omit) }}"
+    client_key: "{{ icinga_client_key | default(omit) }}"
+    state: "{{ syncrule.state | default(omit) }}"
+    rule_name: "{{ syncrule.name }}"
+    object_type: "{{ syncrule.object_type | default(omit) }}"
+    update_policy: "{{ syncrule.update_policy | default(omit) }}"
+    purge_existing: "{{ syncrule.purge_existing | default(omit) }}"
+    purge_action: "{{ syncrule.purge_action | default(omit) }}"
+    filter_expression: "{{ syncrule.filter_expression | default(omit) }}"
+    description: "{{ syncrule.description | default(omit) }}"
+    append: "{{ syncrule.append | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result is succeeded
+  loop: "{{ icinga_syncrules }}"
+  loop_control:
+    loop_var: syncrule
+  tags: syncrule
+  notify: config_deploy
