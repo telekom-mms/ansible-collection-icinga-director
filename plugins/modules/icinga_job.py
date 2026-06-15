@@ -75,6 +75,19 @@ options:
       - If not set the job may run at any time.
     required: false
     type: str
+  settings:
+    description:
+      - A dict of job-class-specific settings stored as key-value pairs in the
+        Director director_job_setting table.
+      - For C(Icinga\\Module\\Director\\Job\\ImportJob) use C(source_name) to
+        reference the import source by name and C(run_import) set to C("y") to
+        actually run the import (default C("n") only checks for changes).
+      - For C(Icinga\\Module\\Director\\Job\\SyncJob) use C(rule_name) to
+        reference the sync rule by name and C(apply_changes) set to C("y") to
+        actually apply changes (default C("n") only checks).
+    required: false
+    type: dict
+    no_log: false
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -192,6 +205,7 @@ def main():
         disabled=dict(type="bool", required=False, default=False),
         run_interval=dict(type="int", required=False),
         timeperiod=dict(required=False),
+        settings=dict(required=False, type="dict", no_log=False),
         api_timeout=dict(required=False, default=10, type="int"),
     )
 
@@ -217,6 +231,9 @@ def main():
     else:
         for k in data_keys:
             data[k] = module.params[k]
+
+    if module.params["settings"]:
+        data.update(module.params["settings"])
 
     # Set object_name as alias for job_name to satisfy base class update()
     # during check mode. The create() and modify() overrides strip this key

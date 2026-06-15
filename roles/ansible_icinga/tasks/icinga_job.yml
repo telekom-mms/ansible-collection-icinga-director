@@ -15,6 +15,7 @@
     disabled: "{{ job.disabled | default(omit) }}"
     run_interval: "{{ job.run_interval | default(omit) }}"
     timeperiod: "{{ job.timeperiod | default(omit) }}"
+    settings: "{{ job.settings | default(omit) }}"
     append: "{{ job.append | default(omit) }}"
   retries: 3
   delay: 3
