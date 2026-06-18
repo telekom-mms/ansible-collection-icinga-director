@@ -161,6 +161,15 @@ class DirectorJobObject(Icinga2APIObject):
     Director jobs are not standard Icinga objects and use 'job_name' as their
     identifier instead of 'object_name'. This subclass adapts the base class
     to use the correct field names and API endpoints.
+
+    IMPORTANT: The standard Director provides no REST API for jobs at all
+    (/director/jobs has no API handler; /director/job has no REST support).
+    This module therefore uses the patched /director/job (singular) endpoint
+    provided by icingaweb2-module-otc (docker/patches/JobController.php).
+    That patch must be deployed to any Director instance this module targets.
+    In addition, the patched JobController resolves source_name -> source_id
+    and rule_name -> rule_id server-side; without the patch those lookups
+    will fail.
     """
 
     def exists(self):

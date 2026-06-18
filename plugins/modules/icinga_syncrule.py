@@ -179,6 +179,12 @@ class SyncRuleObject(Icinga2APIObject):
     Sync rules are not standard Icinga objects and use 'rule_name' as their
     identifier instead of 'object_name'. This subclass adapts the base class
     to use the correct field names and API endpoints.
+
+    IMPORTANT: The standard Director /director/syncrules (plural) endpoint only
+    supports GET (bulk export) – there is no standard POST/DELETE API for sync
+    rules.  This module therefore uses the patched /director/syncrule (singular)
+    endpoint provided by icingaweb2-module-otc (docker/patches/SyncruleController.php).
+    That patch must be deployed to any Director instance this module targets.
     """
 
     def exists(self):

@@ -138,34 +138,125 @@ class ImportSourceObject(Icinga2APIObject):
     """
     Icinga2 Director Import Source API object.
 
-    Import sources are not standard Icinga objects and use 'source_name' as
-    their identifier instead of 'object_name'. This subclass adapts the base
-    class to use the correct field names and API endpoints.
+    Uses the standard /director/importsources (plural) bulk endpoint, which is
+    available in unpatched Director installations (>= 1.3).  This avoids the
+    need for the icingaweb2-module-otc ImportsourceController patch for
+    create / modify / read operations.
+
+    Note: state=absent (delete) still falls back to the singular
+    /director/importsource?name=X endpoint, which requires the patched
+    controller on the Director server.
     """
 
+    # Fields compared when deciding whether a modify POST is needed.
+    _BULK_KEYS = frozenset(
+        ["source_name", "provider_class", "key_column", "description", "settings"]
+    )
+
+    def __init__(self, module, path, data):
+        super().__init__(module, path, data)
+        self._current = None  # populated by exists()
+
+    def _desired_payload(self):
+        """
+        Build a single import-source object in the ImportExport bulk format
+        expected by POST /director/importsources.
+
+        In append mode unset core fields fall back to the current Director
+        value; settings are merged (new keys win).
+        """
+        current = self._current or {}
+        append = self.data.get("_append", False)
+
+        settings = self.data.get("settings") or {}
+        if append:
+            merged = dict(current.get("settings") or {})
+            merged.update(settings)
+            settings = merged
+
+        def _val(key):
+            v = self.data.get(key)
+            if v is None and append:
+                return current.get(key)
+            return v
+
+        return {
+            "source_name": self.data["source_name"],
+            "provider_class": _val("provider_class"),
+            "key_column": _val("key_column"),
+            "description": _val("description"),
+            "modifiers": current.get("modifiers", []),
+            "settings": settings,
+        }
+
     def exists(self):
-        ret = self.call_url(
-            path=self.path
-            + "?name="
-            + to_text(urlquote(self.data["source_name"]))
-        )
-        self.object_id = to_text(urlquote(self.data["source_name"]))
-        return ret["code"] == 200
+        """GET /director/importsources and search the list by source_name."""
+        ret = self.call_url(path=self.path)
+        if ret["code"] != 200:
+            self._current = None
+            return False
+        sources = ret["data"] if isinstance(ret["data"], list) else []
+        name = self.data["source_name"]
+        for source in sources:
+            if source.get("source_name") == name:
+                self._current = source
+                self.object_id = to_text(urlquote(name))
+                return True
+        self._current = None
+        return False
 
     def create(self):
-        api_data = {k: v for k, v in self.data.items() if k != "object_name"}
-        return self.call_url(
+        """POST a single-element array to /director/importsources."""
+        ret = self.call_url(
             path=self.path,
-            data=self.module.jsonify(api_data),
+            data=self.module.jsonify([self._desired_payload()]),
             method="POST",
         )
+        # Bulk endpoint returns HTTP 200 + empty body on success.
+        # Translate to 201 so base update() treats it as "created".
+        if ret["code"] == 200:
+            ret["code"] = 201
+        return ret
 
     def modify(self):
-        api_data = {k: v for k, v in self.data.items() if k != "object_name"}
-        return self.call_url(
-            path=self.path + "?name=" + self.object_id,
-            data=self.module.jsonify(api_data),
+        """
+        Compare desired state with current state from Director.
+        POST only when something actually changed; return synthetic 304 if not.
+        """
+        desired = self._desired_payload()
+        current = self._current or {}
+        if all(current.get(k) == desired.get(k) for k in self._BULK_KEYS):
+            return {"code": 304, "data": {}, "error": ""}
+        ret = self.call_url(
+            path=self.path,
+            data=self.module.jsonify([desired]),
             method="POST",
+        )
+        return ret
+
+    def diff(self, find_by="name"):
+        """Build a diff dict from stored _current vs _desired_payload."""
+        current = self._current or {}
+        desired = self._desired_payload()
+        before = {}
+        after = {}
+        for key in self._BULK_KEYS:
+            cv = current.get(key)
+            dv = desired.get(key)
+            if cv != dv:
+                before[key] = cv
+                after[key] = dv
+        return {"before": before, "after": after} if before else {}
+
+    def delete(self, find_by="name"):
+        """
+        DELETE via the singular /director/importsource?name=X endpoint.
+        Requires the icingaweb2-module-otc ImportsourceController patch on the
+        Director server.
+        """
+        return self.call_url(
+            path="/importsource?name=" + self.object_id,
+            method="DELETE",
         )
 
 
@@ -211,7 +302,12 @@ def main():
             data[k] = module.params[k]
 
     if module.params["settings"]:
-        data.update(module.params["settings"])
+        data["settings"] = module.params["settings"]
+    else:
+        data["settings"] = {}
+
+    # Pass the append flag through data so _desired_payload() can use it.
+    data["_append"] = bool(module.params.get("append"))
 
     # Set object_name as alias for source_name to satisfy base class update()
     # during check mode. The create() and modify() overrides strip this key
@@ -219,7 +315,7 @@ def main():
     data["object_name"] = data["source_name"]
 
     icinga_object = ImportSourceObject(
-        module=module, path="/importsource", data=data
+        module=module, path="/importsources", data=data
     )
 
     changed, diff = icinga_object.update(module.params["state"])
