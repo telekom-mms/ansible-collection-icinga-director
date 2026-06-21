@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    uses: telekom-mms/.github/.github/workflows/ansible-galaxy-publish.yml@c07ba2f2a0999eeb06c282c140045789305a622d # main
+    uses: telekom-mms/.github/.github/workflows/ansible-galaxy-publish.yml@ed152d4fa253abd94a369aa713f689e5b85e33dd # main
     secrets:
       GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
       GH_BRANCH_PROTECTION_APP_TOKEN: ${{ secrets.GH_BRANCH_PROTECTION_APP_TOKEN }}
