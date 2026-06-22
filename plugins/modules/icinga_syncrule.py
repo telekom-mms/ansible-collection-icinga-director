@@ -210,10 +210,12 @@ class SyncRuleObject(Icinga2APIObject):
                 return current.get(key)
             return v
 
-        # Director stores purge_existing as "y"/"n"; convert Python bool
+        # Director stores purge_existing as "y"/"n"; NOT NULL in DB → default "n"
         purge = _val("purge_existing")
         if isinstance(purge, bool):
             purge = "y" if purge else "n"
+        if purge is None:
+            purge = "n"
 
         return {
             "rule_name": self.data["rule_name"],
@@ -223,8 +225,8 @@ class SyncRuleObject(Icinga2APIObject):
             "purge_action": _val("purge_action"),
             "filter_expression": _val("filter_expression"),
             "description": _val("description"),
-            # Preserve existing sync properties – this module does not manage them
-            "sync_properties": current.get("sync_properties", []),
+            # sync_properties are a related object – not a direct SyncRule property
+            # and are not managed by this module
         }
 
     def exists(self):
@@ -256,11 +258,20 @@ class SyncRuleObject(Icinga2APIObject):
             ret["code"] = 201
         return ret
 
+    @staticmethod
+    def _norm(val):
+        """Normalize Director boolean variants (True/"y" and False/"n"/None) for comparison."""
+        if val is True or val == "y":
+            return "y"
+        if val is False or val == "n" or val is None:
+            return "n"
+        return val
+
     def modify(self):
         """POST only when the desired state differs from the current state."""
         desired = self._desired_payload()
         current = self._current or {}
-        if all(current.get(k) == desired.get(k) for k in self._BULK_KEYS):
+        if all(self._norm(current.get(k)) == self._norm(desired.get(k)) for k in self._BULK_KEYS):
             return {"code": 304, "data": {}, "error": ""}
         return self.call_url(
             path=self.path,
@@ -275,7 +286,7 @@ class SyncRuleObject(Icinga2APIObject):
         before, after = {}, {}
         for key in self._BULK_KEYS:
             cv, dv = current.get(key), desired.get(key)
-            if cv != dv:
+            if self._norm(cv) != self._norm(dv):
                 before[key] = cv
                 after[key] = dv
         return {"before": before, "after": after} if before else {}

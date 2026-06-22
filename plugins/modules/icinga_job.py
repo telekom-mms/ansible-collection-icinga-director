@@ -241,11 +241,20 @@ class DirectorJobObject(Icinga2APIObject):
             ret["code"] = 201
         return ret
 
+    @staticmethod
+    def _norm(val):
+        """Normalize Director boolean variants (True/"y" and False/"n"/None) for comparison."""
+        if val is True or val == "y":
+            return "y"
+        if val is False or val == "n" or val is None:
+            return "n"
+        return val
+
     def modify(self):
         """POST only when the desired state differs from the current state."""
         desired = self._desired_payload()
         current = self._current or {}
-        if all(current.get(k) == desired.get(k) for k in self._BULK_KEYS):
+        if all(self._norm(current.get(k)) == self._norm(desired.get(k)) for k in self._BULK_KEYS):
             return {"code": 304, "data": {}, "error": ""}
         return self.call_url(
             path=self.path,
@@ -260,7 +269,7 @@ class DirectorJobObject(Icinga2APIObject):
         before, after = {}, {}
         for key in self._BULK_KEYS:
             cv, dv = current.get(key), desired.get(key)
-            if cv != dv:
+            if self._norm(cv) != self._norm(dv):
                 before[key] = cv
                 after[key] = dv
         return {"before": before, "after": after} if before else {}
