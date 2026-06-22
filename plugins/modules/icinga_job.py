@@ -203,14 +203,22 @@ class DirectorJobObject(Icinga2APIObject):
             merged.update(settings)
             settings = merged
 
-        return {
+        payload = {
             "job_name": self.data["job_name"],
             "job_class": _val("job_class"),
             "disabled": disabled,
-            "run_interval": _val("run_interval"),
-            "timeperiod": _val("timeperiod"),
+            # Director stores and returns run_interval as a string — normalise
+            # to str here so that modify() comparison matches without extra logic.
+            "run_interval": str(_val("run_interval")) if _val("run_interval") is not None else None,
             "settings": settings,
         }
+        # timeperiod uses a special setter in Director (setTimeperiod) that
+        # throws InvalidArgumentException when passed null.  Only include it
+        # when explicitly set so ObjectImporter does not call setTimeperiod(null).
+        tp = _val("timeperiod")
+        if tp is not None:
+            payload["timeperiod"] = tp
+        return payload
 
     def exists(self):
         """GET /director/jobs and search the list by job_name."""

@@ -106,6 +106,17 @@ options:
       - An optional description for this sync rule.
     required: false
     type: str
+  sync_properties:
+    description:
+      - List of sync property mappings from import-source columns to Icinga object fields.
+      - Each entry must contain C(source) (import source name), C(destination_field) (Icinga property
+        such as C(object_name), C(address), C(display_name)), and C(source_expression) (the column
+        name from the import source).
+      - Optional per-entry keys are C(merge_policy) (default C(override)) and C(filter_expression).
+      - When omitted the module does not manage sync properties (existing properties are preserved).
+    required: false
+    type: list
+    elements: dict
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -217,7 +228,7 @@ class SyncRuleObject(Icinga2APIObject):
         if purge is None:
             purge = "n"
 
-        return {
+        payload = {
             "rule_name": self.data["rule_name"],
             "object_type": _val("object_type"),
             "update_policy": _val("update_policy"),
@@ -225,9 +236,16 @@ class SyncRuleObject(Icinga2APIObject):
             "purge_action": _val("purge_action"),
             "filter_expression": _val("filter_expression"),
             "description": _val("description"),
-            # sync_properties are a related object – not a direct SyncRule property
-            # and are not managed by this module
         }
+        # sync_properties are stored as "properties" in the Director bulk format.
+        # Only include when the user explicitly manages them.
+        sp = self.data.get("sync_properties")
+        if sp is not None:
+            payload["properties"] = [
+                {k: v for k, v in prop.items() if v is not None}
+                for prop in sp
+            ]
+        return payload
 
     def exists(self):
         """GET /director/syncrules and search the list by rule_name."""
@@ -267,11 +285,28 @@ class SyncRuleObject(Icinga2APIObject):
             return "n"
         return val
 
+    @staticmethod
+    def _props_equal(current_props, desired_props):
+        """Compare sync properties, ignoring auto-set fields (priority)."""
+        if desired_props is None:
+            return True  # not managing properties → never trigger re-POST for them
+        c = sorted(current_props or [], key=lambda p: (p.get("destination_field", ""), p.get("source_expression", "")))
+        d = sorted(desired_props, key=lambda p: (p.get("destination_field", ""), p.get("source_expression", "")))
+        if len(c) != len(d):
+            return False
+        for cp, dp in zip(c, d):
+            for key, val in dp.items():
+                if val is not None and str(cp.get(key, "")) != str(val):
+                    return False
+        return True
+
     def modify(self):
         """POST only when the desired state differs from the current state."""
         desired = self._desired_payload()
         current = self._current or {}
-        if all(self._norm(current.get(k)) == self._norm(desired.get(k)) for k in self._BULK_KEYS):
+        scalar_same = all(self._norm(current.get(k)) == self._norm(desired.get(k)) for k in self._BULK_KEYS)
+        props_same = self._props_equal(current.get("properties"), desired.get("properties"))
+        if scalar_same and props_same:
             return {"code": 304, "data": {}, "error": ""}
         return self.call_url(
             path=self.path,
@@ -280,7 +315,7 @@ class SyncRuleObject(Icinga2APIObject):
         )
 
     def diff(self, find_by="name"):
-        """Return a before/after diff dict for changed _BULK_KEYS only."""
+        """Return a before/after diff dict for changed _BULK_KEYS and properties."""
         current = self._current or {}
         desired = self._desired_payload()
         before, after = {}, {}
@@ -289,6 +324,9 @@ class SyncRuleObject(Icinga2APIObject):
             if self._norm(cv) != self._norm(dv):
                 before[key] = cv
                 after[key] = dv
+        if not self._props_equal(current.get("properties"), desired.get("properties")):
+            before["properties"] = current.get("properties")
+            after["properties"] = desired.get("properties")
         return {"before": before, "after": after} if before else {}
 
     def delete(self, find_by="name"):
@@ -341,6 +379,7 @@ def main():
         ),
         filter_expression=dict(required=False),
         description=dict(required=False),
+        sync_properties=dict(required=False, type="list", elements="dict"),
         api_timeout=dict(required=False, default=10, type="int"),
     )
 
@@ -369,6 +408,9 @@ def main():
     else:
         for k in data_keys:
             data[k] = module.params[k]
+
+    if module.params["sync_properties"] is not None:
+        data["sync_properties"] = module.params["sync_properties"]
 
     # object_name is required by the base class update() / check-mode path
     data["object_name"] = data["rule_name"]

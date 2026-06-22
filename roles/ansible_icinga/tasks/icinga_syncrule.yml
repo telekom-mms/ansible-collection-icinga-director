@@ -17,6 +17,7 @@
     purge_action: "{{ syncrule.purge_action | default(omit) }}"
     filter_expression: "{{ syncrule.filter_expression | default(omit) }}"
     description: "{{ syncrule.description | default(omit) }}"
+    sync_properties: "{{ syncrule.sync_properties | default(omit) }}"
     append: "{{ syncrule.append | default(omit) }}"
   retries: 3
   delay: 3

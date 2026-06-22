@@ -79,6 +79,16 @@ options:
     required: false
     type: dict
     no_log: false
+  modifiers:
+    description:
+      - A list of row modifier objects to apply to imported rows.
+      - Each modifier is a dict with keys C(property_name), C(target_property),
+        C(provider_class) and C(settings).
+      - Example modifier to extract an IP with regex:
+        C(provider_class: Icinga\\Module\\Director\\PropertyModifier\\PropertyModifierRegexReplace).
+    required: false
+    type: list
+    elements: dict
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -150,7 +160,7 @@ class ImportSourceObject(Icinga2APIObject):
 
     # Fields compared when deciding whether a modify POST is needed.
     _BULK_KEYS = frozenset(
-        ["source_name", "provider_class", "key_column", "description", "settings"]
+        ["source_name", "provider_class", "key_column", "description", "settings", "modifiers"]
     )
 
     def __init__(self, module, path, data):
@@ -180,14 +190,30 @@ class ImportSourceObject(Icinga2APIObject):
                 return current.get(key)
             return v
 
+        desired_modifiers = self.data.get("modifiers")
+        if desired_modifiers is None:
+            # not specified in task → preserve whatever is already in Director
+            modifiers = current.get("modifiers", [])
+        else:
+            modifiers = desired_modifiers
+
         return {
             "source_name": self.data["source_name"],
             "provider_class": _val("provider_class"),
             "key_column": _val("key_column"),
             "description": _val("description"),
-            "modifiers": current.get("modifiers", []),
+            "modifiers": modifiers,
             "settings": settings,
         }
+
+    @staticmethod
+    def _norm_modifiers(modifiers):
+        """Strip read-only fields (priority) from modifier list for comparison."""
+        _skip = {"priority", "description", "filter_expression"}
+        result = []
+        for m in (modifiers or []):
+            result.append({k: v for k, v in m.items() if k not in _skip})
+        return result
 
     def exists(self):
         """GET /director/importsources and search the list by source_name."""
@@ -225,7 +251,15 @@ class ImportSourceObject(Icinga2APIObject):
         """
         desired = self._desired_payload()
         current = self._current or {}
-        if all(current.get(k) == desired.get(k) for k in self._BULK_KEYS):
+
+        # Compare all bulk keys except modifiers (needs normalization)
+        scalar_keys = self._BULK_KEYS - {"modifiers"}
+        scalar_equal = all(current.get(k) == desired.get(k) for k in scalar_keys)
+        mods_equal = (
+            self._norm_modifiers(current.get("modifiers", []))
+            == self._norm_modifiers(desired.get("modifiers", []))
+        )
+        if scalar_equal and mods_equal:
             return {"code": 304, "data": {}, "error": ""}
         ret = self.call_url(
             path=self.path,
@@ -276,6 +310,7 @@ def main():
         provider_class=dict(required=False),
         description=dict(required=False),
         settings=dict(required=False, type="dict", no_log=False),
+        modifiers=dict(required=False, type="list", elements="dict"),
         api_timeout=dict(required=False, default=10, type="int"),
     )
 
@@ -305,6 +340,9 @@ def main():
         data["settings"] = module.params["settings"]
     else:
         data["settings"] = {}
+
+    if module.params.get("modifiers") is not None:
+        data["modifiers"] = module.params["modifiers"]
 
     # Pass the append flag through data so _desired_payload() can use it.
     data["_append"] = bool(module.params.get("append"))

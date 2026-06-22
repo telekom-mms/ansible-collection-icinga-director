@@ -15,6 +15,7 @@
     provider_class: "{{ importsource.provider_class | default(omit) }}"
     description: "{{ importsource.description | default(omit) }}"
     settings: "{{ importsource.settings | default(omit) }}"
+    modifiers: "{{ importsource.modifiers | default(omit) }}"
     append: "{{ importsource.append | default(omit) }}"
   retries: 3
   delay: 3
