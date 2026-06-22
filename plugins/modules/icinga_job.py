@@ -26,8 +26,8 @@ DOCUMENTATION = """
 module: icinga_job
 short_description: Manage director jobs in Icinga2 Director
 description:
-   - Add or remove a director job in Icinga2 Director through the director API.
-   - Director jobs allow scheduling automatic import and sync runs as well as other recurring tasks.
+  - Add or remove a director job in Icinga2 Director through the director API.
+  - Director jobs allow scheduling automatic import and sync runs as well as other recurring tasks.
 author: Michaela Mattes (@mikaEz)
 extends_documentation_fragment:
   - ansible.builtin.url
@@ -35,6 +35,9 @@ extends_documentation_fragment:
 version_added: '2.0.0'
 notes:
   - This module supports check mode.
+  - Uses the standard C(/director/jobs) bulk endpoint (GET/POST/DELETE).
+    Requires Director with upstream PR adding POST and DELETE support to
+    C(JobsController) and C(unserializeJobs) in C(ImportExport).
 options:
   state:
     description:
@@ -158,43 +161,115 @@ class DirectorJobObject(Icinga2APIObject):
     """
     Icinga2 Director Job API object.
 
-    Director jobs are not standard Icinga objects and use 'job_name' as their
-    identifier instead of 'object_name'. This subclass adapts the base class
-    to use the correct field names and API endpoints.
+    Uses the standard /director/jobs (plural) bulk endpoint, available in
+    Director >= 1.3 once the upstream PR adding POST/DELETE support has been
+    merged.  This avoids any patched singular controller.
 
-    IMPORTANT: The standard Director provides no REST API for jobs at all
-    (/director/jobs has no API handler; /director/job has no REST support).
-    This module therefore uses the patched /director/job (singular) endpoint
-    provided by icingaweb2-module-otc (docker/patches/JobController.php).
-    That patch must be deployed to any Director instance this module targets.
-    In addition, the patched JobController resolves source_name -> source_id
-    and rule_name -> rule_id server-side; without the patch those lookups
-    will fail.
+    Behaviour mirrors icinga_importsource:
+      exists()  – GET /director/jobs, search list by job_name
+      create()  – POST single-element array to /director/jobs
+      modify()  – same POST (unserialize is idempotent / upsert)
+      delete()  – DELETE /director/jobs?name=<job_name>
     """
 
+    _BULK_KEYS = frozenset([
+        "job_name", "job_class", "disabled", "run_interval", "timeperiod", "settings",
+    ])
+
+    def __init__(self, module, path, data):
+        super().__init__(module, path, data)
+        self._current = None  # populated by exists()
+
+    def _desired_payload(self):
+        """Build a single job object in the Director bulk export format."""
+        current = self._current or {}
+        append = self.data.get("_append", False)
+
+        def _val(key):
+            v = self.data.get(key)
+            if v is None and append:
+                return current.get(key)
+            return v
+
+        # Director stores disabled as "y"/"n"; convert Python bool
+        disabled = _val("disabled")
+        if isinstance(disabled, bool):
+            disabled = "y" if disabled else "n"
+
+        # Merge settings dict in append mode
+        settings = self.data.get("settings") or {}
+        if append:
+            merged = dict(current.get("settings") or {})
+            merged.update(settings)
+            settings = merged
+
+        return {
+            "job_name": self.data["job_name"],
+            "job_class": _val("job_class"),
+            "disabled": disabled,
+            "run_interval": _val("run_interval"),
+            "timeperiod": _val("timeperiod"),
+            "settings": settings,
+        }
+
     def exists(self):
-        ret = self.call_url(
-            path=self.path
-            + "?name="
-            + to_text(urlquote(self.data["job_name"]))
-        )
-        self.object_id = to_text(urlquote(self.data["job_name"]))
-        return ret["code"] == 200
+        """GET /director/jobs and search the list by job_name."""
+        ret = self.call_url(path=self.path)
+        if ret["code"] != 200:
+            self._current = None
+            return False
+        jobs = ret["data"] if isinstance(ret["data"], list) else []
+        name = self.data["job_name"]
+        for job in jobs:
+            if job.get("job_name") == name:
+                self._current = job
+                self.object_id = to_text(urlquote(name))
+                return True
+        self._current = None
+        return False
 
     def create(self):
-        api_data = {k: v for k, v in self.data.items() if k != "object_name"}
+        """POST single-element array to /director/jobs."""
+        ret = self.call_url(
+            path=self.path,
+            data=self.module.jsonify([self._desired_payload()]),
+            method="POST",
+        )
+        # Bulk endpoint returns HTTP 200 on success; translate to 201 so that
+        # the base update() method treats the result as "created".
+        if ret["code"] == 200:
+            ret["code"] = 201
+        return ret
+
+    def modify(self):
+        """POST only when the desired state differs from the current state."""
+        desired = self._desired_payload()
+        current = self._current or {}
+        if all(current.get(k) == desired.get(k) for k in self._BULK_KEYS):
+            return {"code": 304, "data": {}, "error": ""}
         return self.call_url(
             path=self.path,
-            data=self.module.jsonify(api_data),
+            data=self.module.jsonify([desired]),
             method="POST",
         )
 
-    def modify(self):
-        api_data = {k: v for k, v in self.data.items() if k != "object_name"}
+    def diff(self, find_by="name"):
+        """Return a before/after diff dict for changed _BULK_KEYS only."""
+        current = self._current or {}
+        desired = self._desired_payload()
+        before, after = {}, {}
+        for key in self._BULK_KEYS:
+            cv, dv = current.get(key), desired.get(key)
+            if cv != dv:
+                before[key] = cv
+                after[key] = dv
+        return {"before": before, "after": after} if before else {}
+
+    def delete(self, find_by="name"):
+        """DELETE /director/jobs?name=<job_name>."""
         return self.call_url(
             path=self.path + "?name=" + self.object_id,
-            data=self.module.jsonify(api_data),
-            method="POST",
+            method="DELETE",
         )
 
 
@@ -234,6 +309,7 @@ def main():
     data = {}
 
     if module.params["append"]:
+        data["_append"] = True
         for k in data_keys:
             if module.params[k] is not None:
                 data[k] = module.params[k]
@@ -241,16 +317,17 @@ def main():
         for k in data_keys:
             data[k] = module.params[k]
 
-    if module.params["settings"]:
-        data.update(module.params["settings"])
+    # Keep settings as a nested dict (bulk format); do not merge into data
+    if module.params["settings"] is not None:
+        data["settings"] = module.params["settings"]
+    else:
+        data["settings"] = {}
 
-    # Set object_name as alias for job_name to satisfy base class update()
-    # during check mode. The create() and modify() overrides strip this key
-    # before sending to the API.
+    # object_name is required by the base class update() / check-mode path
     data["object_name"] = data["job_name"]
 
     icinga_object = DirectorJobObject(
-        module=module, path="/job", data=data
+        module=module, path="/jobs", data=data
     )
 
     changed, diff = icinga_object.update(module.params["state"])
