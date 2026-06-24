@@ -105,8 +105,9 @@ def main():
         query=module.params["query"],
     )
 
+    data = object_list["data"]
     module.exit_json(
-        objects=object_list["data"]["objects"],
+        objects=data if isinstance(data, list) else data.get("objects", []),
     )
 
 
