@@ -10,7 +10,6 @@
     update_policy: "merge"
     purge_existing: false
     description: "Synchronizes hosts from the CMDB import source"
-
 - name: Create a sync rule that purges deleted objects
   telekom_mms.icinga_director.icinga_syncrule:
     state: present
@@ -23,7 +22,6 @@
     purge_existing: true
     purge_action: "disable"
     filter_expression: 'source.vars.monitored="yes"'
-
 - name: Update the description of a sync rule
   telekom_mms.icinga_director.icinga_syncrule:
     state: present
@@ -33,7 +31,6 @@
     rule_name: "Sync Hosts from CMDB"
     description: "Updated description"
     append: true
-
 - name: Delete a sync rule in icinga
   telekom_mms.icinga_director.icinga_syncrule:
     state: absent

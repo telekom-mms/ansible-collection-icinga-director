@@ -4,7 +4,6 @@
     url: "{{ icinga_url }}"
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
-
 - name: Query a specific sync rule in icinga
   telekom_mms.icinga_director.icinga_syncrule_info:
     url: "{{ icinga_url }}"
