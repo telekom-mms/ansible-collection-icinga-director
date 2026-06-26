@@ -1,0 +1,21 @@
+---
+- name: Query all director jobs in icinga
+  telekom_mms.icinga_director.icinga_job_info:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    query: noobjecttofind
+  register: result
+- assert:
+    that:
+      - '(result.objects | length) == 0'
+- name: Query a specific director job in icinga
+  telekom_mms.icinga_director.icinga_job_info:
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    query: noobjecttofind
+  register: result
+- assert:
+    that:
+      - '(result.objects | length) == 0'

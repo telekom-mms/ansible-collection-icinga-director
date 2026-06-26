@@ -1,0 +1,40 @@
+---
+- name: Create a director job to run an import source
+  telekom_mms.icinga_director.icinga_job:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    job_name: "Run CMDB Import"
+    job_class: "Icinga\\Module\\Director\\Job\\ImportRunJob"
+    run_interval: 3600
+    disabled: false
+
+- name: Create a director job to run a sync rule during business hours
+  telekom_mms.icinga_director.icinga_job:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    job_name: "Run Host Sync"
+    job_class: "Icinga\\Module\\Director\\Job\\SyncRunJob"
+    run_interval: 900
+    timeperiod: "business-hours"
+
+- name: Disable a director job
+  telekom_mms.icinga_director.icinga_job:
+    state: present
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    job_name: "Run CMDB Import"
+    disabled: true
+    append: true
+
+- name: Delete a director job
+  telekom_mms.icinga_director.icinga_job:
+    state: absent
+    url: "{{ icinga_url }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    job_name: "Run CMDB Import"
