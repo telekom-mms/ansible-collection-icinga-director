@@ -330,15 +330,9 @@ class SyncRuleObject(Icinga2APIObject):
         return {"before": before, "after": after} if before else {}
 
     def delete(self, find_by="name"):
-        """DELETE via the standard singular /director/syncrule?name=<name> endpoint.
-
-        The patched bulk endpoint DELETE /director/syncrules?name=X calls
-        SyncRule::load($name) which fails with HTTP 500 because Director's
-        SyncRule uses an auto-increment integer primary key, not the rule_name
-        string.  The singular endpoint handles the name lookup correctly.
-        """
+        """DELETE via the OTC-patched bulk endpoint /director/syncrules?name=<name>."""
         return self.call_url(
-            path="/syncrule?name=" + self.object_id,
+            path=self.path + "?name=" + self.object_id,
             method="DELETE",
         )
 
