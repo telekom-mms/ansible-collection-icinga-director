@@ -123,3 +123,8 @@
   ansible.builtin.include_tasks: icinga_job.yml
   when: icinga_jobs is defined
   tags: job
+
+- name: Icinga host_info configuration
+  ansible.builtin.include_tasks: icinga_host_info.yml
+  when: icinga_hosts_info is defined
+  tags: host_info
