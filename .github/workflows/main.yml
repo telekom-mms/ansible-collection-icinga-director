@@ -52,7 +52,7 @@ jobs:
       - name: Perform sanity testing
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
-        uses: ansible-community/ansible-test-gh-action@d3a8ec7a59694e25e210fcd44738910149537f0e # release/v1
+        uses: ansible-community/ansible-test-gh-action@6ded727edb598e670ac056a8e680ca4050bac0a3 # release/v1
         with:
           ansible-core-version: ${{ matrix.ansible }}
           testing-type: sanity
@@ -100,7 +100,7 @@ jobs:
           under Python ${{ matrix.python }}
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
-        uses: ansible-community/ansible-test-gh-action@d3a8ec7a59694e25e210fcd44738910149537f0e # v1.17.0
+        uses: ansible-community/ansible-test-gh-action@6ded727edb598e670ac056a8e680ca4050bac0a3 # v1.18.0
         with:
           ansible-core-version: ${{ matrix.ansible }}
           # OPTIONAL command to run before invoking `ansible-test integration`
@@ -125,7 +125,7 @@ jobs:
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: 3.14
 
