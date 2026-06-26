@@ -221,18 +221,32 @@ class DirectorJobObject(Icinga2APIObject):
         return payload
 
     def exists(self):
-        """GET /director/jobs and search the list by job_name."""
+        """Check if the job exists.
+
+        Tries the bulk endpoint GET /director/jobs first (requires
+        icingaweb2-module-otc patch on Director).  Falls back to the
+        standard singular endpoint GET /director/job?name=<name> so that
+        the module also works against an unpatched Director.
+        """
+        name = self.data["job_name"]
+        self.object_id = to_text(urlquote(name))
+
+        # Try bulk endpoint (available when icingaweb2-module-otc patch is applied)
         ret = self.call_url(path=self.path)
-        if ret["code"] != 200:
+        if ret["code"] == 200:
+            jobs = ret["data"] if isinstance(ret["data"], list) else []
+            for job in jobs:
+                if job.get("job_name") == name:
+                    self._current = job
+                    return True
             self._current = None
             return False
-        jobs = ret["data"] if isinstance(ret["data"], list) else []
-        name = self.data["job_name"]
-        for job in jobs:
-            if job.get("job_name") == name:
-                self._current = job
-                self.object_id = to_text(urlquote(name))
-                return True
+
+        # Fall back to singular endpoint (standard Director API, always available)
+        ret = self.call_url(path="/job?name=" + self.object_id)
+        if ret["code"] == 200:
+            self._current = ret["data"] if isinstance(ret["data"], dict) else {}
+            return True
         self._current = None
         return False
 
@@ -283,9 +297,13 @@ class DirectorJobObject(Icinga2APIObject):
         return {"before": before, "after": after} if before else {}
 
     def delete(self, find_by="name"):
-        """DELETE /director/jobs?name=<job_name>."""
+        """DELETE the job.
+
+        Uses the standard singular endpoint DELETE /director/job?name=<name>
+        which is always available in Director without any patches.
+        """
         return self.call_url(
-            path=self.path + "?name=" + self.object_id,
+            path="/job?name=" + self.object_id,
             method="DELETE",
         )
 
