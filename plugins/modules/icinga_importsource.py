@@ -97,7 +97,7 @@ options:
     version_added: '2.0.0'
 """
 
-EXAMPLES = """
+EXAMPLES = r"""
 - name: Create an import source in icinga
   telekom_mms.icinga_director.icinga_importsource:
     state: present
@@ -106,7 +106,7 @@ EXAMPLES = """
     url_password: "{{ icinga_pass }}"
     source_name: "My Import Source"
     key_column: "hostname"
-    provider_class: Icinga\\Module\\Director\\Import\\RestApiImportSource
+    provider_class: "Icinga\\Module\\Director\\Import\\RestApiImportSource"
     description: "Import hosts from REST API"
 
 - name: Update the description of an import source

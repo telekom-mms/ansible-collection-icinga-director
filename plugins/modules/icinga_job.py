@@ -100,7 +100,7 @@ options:
     version_added: '2.0.0'
 """
 
-EXAMPLES = """
+EXAMPLES = r"""
 - name: Create a director job to run an import source
   telekom_mms.icinga_director.icinga_job:
     state: present
@@ -108,7 +108,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     job_name: "Run CMDB Import"
-    job_class: Icinga\\Module\\Director\\Job\\ImportRunJob
+    job_class: "Icinga\\Module\\Director\\Job\\ImportRunJob"
     run_interval: 3600
     disabled: false
 
@@ -119,7 +119,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     job_name: "Run Host Sync"
-    job_class: Icinga\\Module\\Director\\Job\\SyncRunJob
+    job_class: "Icinga\\Module\\Director\\Job\\SyncRunJob"
     run_interval: 900
     timeperiod: "business-hours"
 
