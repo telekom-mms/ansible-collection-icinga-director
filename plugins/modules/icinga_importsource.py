@@ -74,18 +74,16 @@ options:
       - A dict of provider-specific settings that are stored as key-value pairs
         in the Director import_source_setting table.
       - The available keys depend on the chosen C(provider_class).
-      - Example for the OTC provider: C(iam_url), C(username), C(password),
-        C(domain), C(project), C(service_type), C(resource_path).
+      - "Example for the OTC provider: C(iam_url), C(username), C(password), C(domain), C(project), C(service_type), C(resource_path)."
     required: false
     type: dict
-    no_log: false
   modifiers:
     description:
       - A list of row modifier objects to apply to imported rows.
       - Each modifier is a dict with keys C(property_name), C(target_property),
         C(provider_class) and C(settings).
-      - Example modifier to extract an IP with regex:
-        C(provider_class: Icinga\\Module\\Director\\PropertyModifier\\PropertyModifierRegexReplace).
+      - For a regex modifier that extracts an IP address, set C(provider_class) to
+        C(Icinga\\Module\\Director\\PropertyModifier\\PropertyModifierRegexReplace).
     required: false
     type: list
     elements: dict
@@ -108,7 +106,7 @@ EXAMPLES = """
     url_password: "{{ icinga_pass }}"
     source_name: "My Import Source"
     key_column: "hostname"
-    provider_class: "Icinga\\Module\\Director\\Import\\RestApiImportSource"
+    provider_class: Icinga\\Module\\Director\\Import\\RestApiImportSource
     description: "Import hosts from REST API"
 
 - name: Update the description of an import source
@@ -306,7 +304,7 @@ def main():
         url=dict(required=True),
         append=dict(type="bool", choices=[True, False]),
         source_name=dict(required=True, aliases=["name"]),
-        key_column=dict(required=False),
+        key_column=dict(required=False, no_log=False),
         provider_class=dict(required=False),
         description=dict(required=False),
         settings=dict(required=False, type="dict", no_log=False),

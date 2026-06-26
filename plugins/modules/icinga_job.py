@@ -90,7 +90,6 @@ options:
         actually apply changes (default C("n") only checks).
     required: false
     type: dict
-    no_log: false
   append:
     description:
       - Do not overwrite the whole object but instead append the defined properties.
@@ -109,7 +108,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     job_name: "Run CMDB Import"
-    job_class: "Icinga\\Module\\Director\\Job\\ImportRunJob"
+    job_class: Icinga\\Module\\Director\\Job\\ImportRunJob
     run_interval: 3600
     disabled: false
 
@@ -120,7 +119,7 @@ EXAMPLES = """
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     job_name: "Run Host Sync"
-    job_class: "Icinga\\Module\\Director\\Job\\SyncRunJob"
+    job_class: Icinga\\Module\\Director\\Job\\SyncRunJob
     run_interval: 900
     timeperiod: "business-hours"
 
