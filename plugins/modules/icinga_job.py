@@ -224,8 +224,10 @@ class DirectorJobObject(Icinga2APIObject):
 
         Tries the bulk endpoint GET /director/jobs first (requires
         icingaweb2-module-otc patch on Director).  Falls back to the
-        standard singular endpoint GET /director/job?name=<name> so that
+        standard singular endpoint GET /director/job?name=<name> only
+        when the bulk endpoint returns 404 (endpoint not available), so
         the module also works against an unpatched Director.
+        Auth or network errors are propagated immediately.
         """
         name = self.data["job_name"]
         self.object_id = to_text(urlquote(name))
@@ -240,14 +242,26 @@ class DirectorJobObject(Icinga2APIObject):
                     return True
             self._current = None
             return False
+        elif ret["code"] != 404:
+            # Auth error, network error, or unexpected response — propagate immediately
+            self.module.fail_json(
+                msg="bad return code while querying: %d. Error message: %s"
+                % (ret["code"], ret["error"])
+            )
 
         # Fall back to singular endpoint (standard Director API, always available)
         ret = self.call_url(path="/job?name=" + self.object_id)
         if ret["code"] == 200:
             self._current = ret["data"] if isinstance(ret["data"], dict) else {}
             return True
-        self._current = None
-        return False
+        elif ret["code"] == 404:
+            self._current = None
+            return False
+        else:
+            self.module.fail_json(
+                msg="bad return code while querying: %d. Error message: %s"
+                % (ret["code"], ret["error"])
+            )
 
     def create(self):
         """POST single-element array to /director/jobs."""

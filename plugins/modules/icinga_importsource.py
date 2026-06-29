@@ -217,8 +217,10 @@ class ImportSourceObject(Icinga2APIObject):
         """GET /director/importsources and search the list by source_name."""
         ret = self.call_url(path=self.path)
         if ret["code"] != 200:
-            self._current = None
-            return False
+            self.module.fail_json(
+                msg="bad return code while querying: %d. Error message: %s"
+                % (ret["code"], ret["error"])
+            )
         sources = ret["data"] if isinstance(ret["data"], list) else []
         name = self.data["source_name"]
         for source in sources:

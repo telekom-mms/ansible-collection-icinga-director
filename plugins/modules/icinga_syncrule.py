@@ -251,8 +251,10 @@ class SyncRuleObject(Icinga2APIObject):
         """GET /director/syncrules and search the list by rule_name."""
         ret = self.call_url(path=self.path)
         if ret["code"] != 200:
-            self._current = None
-            return False
+            self.module.fail_json(
+                msg="bad return code while querying: %d. Error message: %s"
+                % (ret["code"], ret["error"])
+            )
         rules = ret["data"] if isinstance(ret["data"], list) else []
         name = self.data["rule_name"]
         for rule in rules:
