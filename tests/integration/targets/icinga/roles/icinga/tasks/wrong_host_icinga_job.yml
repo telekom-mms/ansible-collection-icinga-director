@@ -1,0 +1,65 @@
+---
+- name: Create a director job to run an import source
+  telekom_mms.icinga_director.icinga_job:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    job_name: "Run CMDB Import"
+    job_class: "Icinga\\Module\\Director\\Job\\ImportRunJob"
+    run_interval: 3600
+    disabled: false
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Create a director job to run a sync rule during business hours
+  telekom_mms.icinga_director.icinga_job:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    job_name: "Run Host Sync"
+    job_class: "Icinga\\Module\\Director\\Job\\SyncRunJob"
+    run_interval: 900
+    timeperiod: "business-hours"
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Disable a director job
+  telekom_mms.icinga_director.icinga_job:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    job_name: "Run CMDB Import"
+    disabled: true
+    append: true
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Delete a director job
+  telekom_mms.icinga_director.icinga_job:
+    state: absent
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    job_name: "Run CMDB Import"
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'

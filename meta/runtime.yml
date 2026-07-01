@@ -17,6 +17,9 @@ action_groups:
     - icinga_host_template_info
     - icinga_hostgroup
     - icinga_hostgroup_info
+    - icinga_importsource
+    - icinga_importsource_info
+    - icinga_job
     - icinga_notification
     - icinga_notification_info
     - icinga_notification_template
@@ -31,6 +34,8 @@ action_groups:
     - icinga_servicegroup
     - icinga_servicegroup_info
     - icinga_serviceset
+    - icinga_syncrule
+    - icinga_syncrule_info
     - icinga_timeperiod
     - icinga_timeperiod_info
     - icinga_timeperiod_template

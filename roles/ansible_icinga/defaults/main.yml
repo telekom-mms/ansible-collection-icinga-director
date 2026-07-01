@@ -42,5 +42,11 @@ icinga_service_applies: []
 icinga_servicegroups: []
 # icinga_notification
 icinga_notifications: []
+# icinga_importsource
+icinga_importsources: []
+# icinga_syncrule
+icinga_syncrules: []
+# icinga_job
+icinga_jobs: []
 # icinga deploy
 icinga_deploy_config: false
