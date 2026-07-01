@@ -281,13 +281,9 @@ class ImportSourceObject(Icinga2APIObject):
         return {"before": before, "after": after} if before else {}
 
     def delete(self, find_by="name"):
-        """
-        DELETE via the singular /director/importsource?name=X endpoint.
-        Requires the icingaweb2-module-otc ImportsourceController patch on the
-        Director server.
-        """
+        """DELETE via the bulk endpoint DELETE /director/importsources?name=<name>."""
         return self.call_url(
-            path="/importsource?name=" + self.object_id,
+            path=self.path + "?name=" + self.object_id,
             method="DELETE",
         )
 

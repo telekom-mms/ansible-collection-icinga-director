@@ -296,13 +296,9 @@ class DirectorJobObject(Icinga2APIObject):
         return {"before": before, "after": after} if before else {}
 
     def delete(self, find_by="name"):
-        """DELETE the job.
-
-        Uses the standard singular endpoint DELETE /director/job?name=<name>
-        which is always available in Director without any patches.
-        """
+        """DELETE the job via the bulk endpoint DELETE /director/jobs?name=<name>."""
         return self.call_url(
-            path="/job?name=" + self.object_id,
+            path=self.path + "?name=" + self.object_id,
             method="DELETE",
         )
 
