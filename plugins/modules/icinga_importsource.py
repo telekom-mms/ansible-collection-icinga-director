@@ -31,7 +31,7 @@ author: Michaela Mattes (@mikaEz)
 extends_documentation_fragment:
   - ansible.builtin.url
   - telekom_mms.icinga_director.common_options
-version_added: '2.0.0'
+version_added: '2.6.0'
 notes:
   - This module supports check mode.
 options:
@@ -94,7 +94,7 @@ options:
       - Note - Variables that are set by default will also be applied, even if not set.
     type: bool
     choices: [true, false]
-    version_added: '2.0.0'
+    version_added: '2.6.0'
 """
 
 EXAMPLES = r"""
