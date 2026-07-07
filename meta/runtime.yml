@@ -20,6 +20,7 @@ action_groups:
     - icinga_importsource
     - icinga_importsource_info
     - icinga_job
+    - icinga_job_info
     - icinga_notification
     - icinga_notification_info
     - icinga_notification_template
