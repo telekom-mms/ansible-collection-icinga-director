@@ -1,0 +1,51 @@
+---
+- hosts: localhost
+  gather_facts: false
+  collections:
+    - telekom_mms.icinga_director
+  vars:
+    icinga_deploy_config: true
+    icinga_deploy_timeout: 5
+    icinga_delete: false
+  pre_tasks:
+    - name: include Vars
+      ansible.builtin.include_vars:
+        file: vars/icinga_service.yml
+        name: included_icinga_services
+
+    - name: get all object configs
+      telekom_mms.icinga_director.icinga_service_info:
+        url: "{{ icinga_host }}"
+        url_username: "{{ icinga_user }}"
+        url_password: "{{ icinga_pass }}"
+        query: "*"
+        force_basic_auth: true
+      register: result
+
+    - name: create empty object to fill it with delete objects
+      ansible.builtin.set_fact:
+        delete_icinga_services: []
+
+    - name: create objects scheduled for deletion
+      ansible.builtin.set_fact:
+        delete_icinga_services: "{{ delete_icinga_services + [{'name': item.object_name, 'state': 'absent' }] }}"
+      when: not included_icinga_services.icinga_services | selectattr('name', 'contains', item.object_name)
+      loop: "{{ result.objects }}"
+
+    - name: set deletion objects as used objects
+      ansible.builtin.set_fact:
+        icinga_services: "{{ delete_icinga_services }}"
+      when: icinga_delete
+
+    - name: set included objects as used objects
+      ansible.builtin.set_fact:
+        icinga_services: "{{ included_icinga_services.icinga_services }}"
+      when: not icinga_delete
+
+  roles:
+    - ansible_icinga
+
+  post_tasks:
+    - name: remove vars
+      ansible.builtin.set_fact:
+        icinga_services: []
