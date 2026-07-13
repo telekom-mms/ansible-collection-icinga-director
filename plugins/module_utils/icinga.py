@@ -67,6 +67,7 @@ class Icinga2APIObject(object):
 
         headers = {
             "Accept": "application/json",
+            "Content-Type": "application/json",
             "X-HTTP-Method-Override": method,
         }
         url = self.module.params.get("url") + "/director" + path

@@ -1,0 +1,28 @@
+---
+- name: Icinga_job
+  telekom_mms.icinga_director.icinga_job:
+    url: "{{ icinga_url }}"
+    use_proxy: "{{ icinga_use_proxy | default(omit) }}"
+    validate_certs: "{{ icinga_validate_certs | default(omit) }}"
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    force_basic_auth: "{{ icinga_force_basic_auth | default(omit) }}"
+    client_cert: "{{ icinga_client_cert | default(omit) }}"
+    client_key: "{{ icinga_client_key | default(omit) }}"
+    state: "{{ job.state | default(omit) }}"
+    job_name: "{{ job.name }}"
+    job_class: "{{ job.job_class | default(omit) }}"
+    disabled: "{{ job.disabled | default(omit) }}"
+    run_interval: "{{ job.run_interval | default(omit) }}"
+    timeperiod: "{{ job.timeperiod | default(omit) }}"
+    settings: "{{ job.settings | default(omit) }}"
+    append: "{{ job.append | default(omit) }}"
+  retries: 3
+  delay: 3
+  register: result
+  until: result is succeeded
+  loop: "{{ icinga_jobs }}"
+  loop_control:
+    loop_var: job
+  tags: job
+  notify: config_deploy
