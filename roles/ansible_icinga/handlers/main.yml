@@ -12,3 +12,4 @@
     timeout: "{{ icinga_deploy_timeout | default(omit) }}"
   when: icinga_deploy_config | bool
   listen: config_deploy
+  throttle: 1
