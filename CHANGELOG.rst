@@ -4,6 +4,19 @@ telekom\_mms.icinga\_director Release Notes
 
 .. contents:: Topics
 
+v2.6.0
+======
+
+Minor Changes
+-------------
+
+- add support for managing and querying Icinga Director import sources, jobs, and sync rules (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/312)
+
+New Modules
+-----------
+
+- telekom_mms.icinga_director.icinga_importsource - Manage import sources in Icinga2 Director
+
 v2.5.2
 ======
 

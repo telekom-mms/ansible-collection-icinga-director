@@ -93,6 +93,26 @@ plugins:
       name: icinga_hostgroup_info
       namespace: ''
       version_added: 1.13.0
+    icinga_importsource:
+      description: Manage import sources in Icinga2 Director
+      name: icinga_importsource
+      namespace: ''
+      version_added: 2.6.0
+    icinga_importsource_info:
+      description: Query import sources in Icinga2 Director
+      name: icinga_importsource_info
+      namespace: ''
+      version_added: 2.0.0
+    icinga_job:
+      description: Manage director jobs in Icinga2 Director
+      name: icinga_job
+      namespace: ''
+      version_added: 2.0.0
+    icinga_job_info:
+      description: Query director jobs in Icinga2 Director
+      name: icinga_job_info
+      namespace: ''
+      version_added: 2.0.0
     icinga_notification:
       description: Manage notifications in Icinga2
       name: icinga_notification
@@ -163,6 +183,16 @@ plugins:
       name: icinga_serviceset
       namespace: ''
       version_added: 1.29.0
+    icinga_syncrule:
+      description: Manage sync rules in Icinga2 Director
+      name: icinga_syncrule
+      namespace: ''
+      version_added: 2.0.0
+    icinga_syncrule_info:
+      description: Query sync rules in Icinga2 Director
+      name: icinga_syncrule_info
+      namespace: ''
+      version_added: 2.0.0
     icinga_timeperiod:
       description: Manage timeperiods in Icinga2
       name: icinga_timeperiod
@@ -227,4 +257,4 @@ plugins:
   shell: {}
   strategy: {}
   vars: {}
-version: 2.5.2
+version: 2.6.0
