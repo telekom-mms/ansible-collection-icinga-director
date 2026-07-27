@@ -1,0 +1,48 @@
+---
+- name: Create an import source in icinga
+  telekom_mms.icinga_director.icinga_importsource:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    source_name: "My Import Source"
+    key_column: "hostname"
+    provider_class: "Icinga\\Module\\Director\\Import\\RestApiImportSource"
+    description: "Import hosts from REST API"
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Update the description of an import source
+  telekom_mms.icinga_director.icinga_importsource:
+    state: present
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    source_name: "My Import Source"
+    description: "Updated description"
+    append: true
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
+- name: Delete an import source in icinga
+  telekom_mms.icinga_director.icinga_importsource:
+    state: absent
+    url: http://nonexistent
+    url_username: "{{ icinga_user }}"
+    url_password: "{{ icinga_pass }}"
+    source_name: "My Import Source"
+  ignore_errors: true
+  register: result
+- assert:
+    that:
+      - result.failed
+      # yamllint disable-line rule:line-length
+      - 'result.msg in [ "bad return code while creating: 401. Error message: HTTP Error 401: Unauthorized", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -3] Temporary failure in name resolution>", "bad return code while creating: -1. Error message: Request failed: <urlopen error [Errno -2] Name or service not known>", "bad return code while querying: 401. Error message: HTTP Error 401: Unauthorized", ]'
