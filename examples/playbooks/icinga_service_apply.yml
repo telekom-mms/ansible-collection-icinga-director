@@ -1,0 +1,61 @@
+---
+- hosts: localhost
+  gather_facts: false
+  collections:
+    - telekom_mms.icinga_director
+  vars:
+    icinga_deploy_config: true
+    icinga_deploy_timeout: 5
+    icinga_delete: false
+  roles:
+    - ansible_icinga
+  pre_tasks:
+    - name: preparation of config
+      block:
+        - name: include Vars
+          ansible.builtin.include_vars:
+            file: vars/icinga_service_applies.yml
+            name: included_icinga_service_applies
+
+        - name: get all object configs
+          telekom_mms.icinga_director.icinga_service_apply_info:
+            url: "{{ icinga_host }}"
+            url_username: "{{ icinga_user }}"
+            url_password: "{{ icinga_pass }}"
+            query: "*"
+            force_basic_auth: true
+          register: result
+
+        - name: create empty object to fill it with delete objects
+          ansible.builtin.set_fact:
+            delete_icinga_service_applies: []
+
+        - name: create objects scheduled for deletion
+          vars:
+            results: "{{result.objects | map(attribute='object_name') | list }}"
+            service_apply_names: "{{ included_icinga_service_applies.icinga_service_applies | map(attribute='name') | flatten | list }}"
+          ansible.builtin.set_fact:
+            delete_icinga_service_applies: "{{ delete_icinga_service_applies + [{'name': item, 'state': 'absent' }] }}"
+          loop: "{{ results | difference(service_apply_names) | list }}"
+
+        - name: set deletion objects as used objects
+          set_fact:
+            icinga_service_applies: "{{ delete_icinga_service_applies }}"
+          when: icinga_delete
+
+        - name: set included objects as used objects
+          set_fact:
+            icinga_service_applies: "{{ included_icinga_service_applies.icinga_service_applies }}"
+          when: not icinga_delete
+
+      always:
+        - name: Delete vars file
+          ansible.builtin.file:
+            state: absent
+            path: vars/icinga_service_applies.yml
+          check_mode: false
+
+  post_tasks:
+    - name: remove vars
+      ansible.builtin.set_fact:
+        icinga_service_applies: []
