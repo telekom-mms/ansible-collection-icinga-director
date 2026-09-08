@@ -11,6 +11,7 @@ releases:
         - Update telekom-mms/.github digest to dea737e (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/326)
         - Update telekom-mms/.github digest to 532bfaf (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/325)
         - Update github/codeql-action digest to ff2f1c6 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/324)
+        - Update actions/checkout action to v7 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/313)
     release_date: '2026-07-28'
   2.6.1:
     changes:
