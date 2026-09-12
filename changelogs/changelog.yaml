@@ -4,6 +4,7 @@ releases:
   2.6.2:
     changes:
       trivial:
+        - Update telekom-mms/.github digest to d170c75 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/331)
         - Update telekom-mms/.github digest to 08da7a0 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/330)
         - Update telekom-mms/.github digest to d18369e (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/329)
         - Update telekom-mms/.github digest to 10bd7d1 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/328)
