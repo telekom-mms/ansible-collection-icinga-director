@@ -5,6 +5,7 @@ releases:
     changes:
       trivial:
         - Update telekom-mms/.github digest to 475784f (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/336)
+        - Update github/codeql-action digest to 9b32540 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/335)
         - Update telekom-mms/.github digest to a649dba (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/334)
         - Update telekom-mms/.github digest to 74ebbee (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/333)
         - Update telekom-mms/.github digest to 3713302 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/332)
