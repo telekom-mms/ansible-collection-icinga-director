@@ -46,7 +46,7 @@ jobs:
           - stable-2.21
           - stable-2.22
           - devel
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     steps:
       # Run sanity tests inside a Docker container.
       # The docker container has all the pinned dependencies that are
@@ -74,7 +74,7 @@ jobs:
     # image for these stable branches. The list of branches where this is necessary will
     # shrink over time, check out https://github.com/ansible-collections/news-for-maintainers/issues/28
     # for the latest list.
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }}) - director ${{ matrix.icinga_director }}
     strategy:
       fail-fast: false
