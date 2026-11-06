@@ -7,6 +7,11 @@ telekom\_mms.icinga\_director Release Notes
 v2.6.2
 ======
 
+Bugfixes
+--------
+
+- add icinga_dependency_* to action_group (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/339)
+
 v2.6.1
 ======
 
