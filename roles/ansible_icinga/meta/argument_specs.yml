@@ -1324,6 +1324,17 @@ argument_specs:
             has been installed.
         default: false
         type: bool
+      icinga_no_log:
+        description:
+          - >-
+            Set no_log on all role tasks. Hides the loop items and module
+            arguments (custom vars may carry secrets) at any verbosity and
+            on failed tasks. This also hides the object names in the output.
+            Without it, only successful items at default verbosity are
+            reduced to the object name; failed items and -v output still
+            show the full item. Enable it if your vars contain secrets.
+        default: false
+        type: bool
       icinga_use_proxy:
         description:
           - >-

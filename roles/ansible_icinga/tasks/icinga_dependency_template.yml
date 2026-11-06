@@ -25,8 +25,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_dependency_templates }}"
   loop_control:
     loop_var: dependency_template
+    label: "{{ dependency_template.name | default(dependency_template.object_name) }}"
   tags: dependency_template
   notify: config_deploy

@@ -20,8 +20,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_user_templates }}"
   loop_control:
     loop_var: user_template
+    label: "{{ user_template.name }}"
   tags: user_template
   notify: config_deploy

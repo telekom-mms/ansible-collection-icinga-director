@@ -28,8 +28,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_dependency_applies }}"
   loop_control:
     loop_var: dependency_apply
+    label: "{{ dependency_apply.name | default(dependency_apply.object_name) }}"
   tags: dependency_apply
   notify: config_deploy

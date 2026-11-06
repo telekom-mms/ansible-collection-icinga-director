@@ -36,8 +36,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_service_applies }}"
   loop_control:
     loop_var: service_apply
+    label: "{{ service_apply.name }}"
   tags: service_apply
   notify: config_deploy

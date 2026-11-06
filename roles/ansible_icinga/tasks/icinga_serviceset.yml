@@ -17,8 +17,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_servicesets }}"
   loop_control:
     loop_var: serviceset
+    label: "{{ serviceset.name }}"
   tags: serviceset
   notify: config_deploy

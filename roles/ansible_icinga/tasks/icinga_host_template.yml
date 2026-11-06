@@ -46,8 +46,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_host_templates }}"
   loop_control:
     loop_var: host_template
+    label: "{{ host_template.name }}"
   tags: host_template
   notify: config_deploy
