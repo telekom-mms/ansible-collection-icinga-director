@@ -50,3 +50,5 @@ icinga_syncrules: []
 icinga_jobs: []
 # icinga deploy
 icinga_deploy_config: false
+# hide loop items and module arguments (they may carry secrets) in output
+icinga_no_log: false

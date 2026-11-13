@@ -55,8 +55,8 @@ options:
   job_class:
     description:
       - The fully-qualified PHP class name of the job implementation.
-      - Examples are C(Icinga\\Module\\Director\\Job\\ImportRunJob) to run an import source
-        or C(Icinga\\Module\\Director\\Job\\SyncRunJob) to run a sync rule.
+      - Examples are C(Icinga\\Module\\Director\\Job\\ImportJob) to run an import source
+        or C(Icinga\\Module\\Director\\Job\\SyncJob) to run a sync rule.
       - Required when creating a new job.
     required: false
     type: str
@@ -82,12 +82,13 @@ options:
     description:
       - A dict of job-class-specific settings stored as key-value pairs in the
         Director director_job_setting table.
-      - For C(Icinga\\Module\\Director\\Job\\ImportJob) use C(source_name) to
+      - For C(Icinga\\Module\\Director\\Job\\ImportJob) use C(source) to
         reference the import source by name and C(run_import) set to C("y") to
-        actually run the import (default C("n") only checks for changes).
-      - For C(Icinga\\Module\\Director\\Job\\SyncJob) use C(rule_name) to
-        reference the sync rule by name and C(apply_changes) set to C("y") to
-        actually apply changes (default C("n") only checks).
+        actually run the import. Director compares C(run_import) with C("y")
+        literally, so any other value (C(true), C("1")) only checks for changes.
+      - For C(Icinga\\Module\\Director\\Job\\SyncJob) use C(rule) to
+        reference the sync rule by name and C(apply_changes) set to C(true) to
+        actually apply changes (default C(false) only checks).
     required: false
     type: dict
   append:
@@ -108,9 +109,12 @@ EXAMPLES = r"""
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     job_name: "Run CMDB Import"
-    job_class: "Icinga\\Module\\Director\\Job\\ImportRunJob"
+    job_class: "Icinga\\Module\\Director\\Job\\ImportJob"
     run_interval: 3600
     disabled: false
+    settings:
+      source: "My Import Source"
+      run_import: "y"
 
 - name: Create a director job to run a sync rule during business hours
   telekom_mms.icinga_director.icinga_job:
@@ -119,9 +123,12 @@ EXAMPLES = r"""
     url_username: "{{ icinga_user }}"
     url_password: "{{ icinga_pass }}"
     job_name: "Run Host Sync"
-    job_class: "Icinga\\Module\\Director\\Job\\SyncRunJob"
+    job_class: "Icinga\\Module\\Director\\Job\\SyncJob"
     run_interval: 900
     timeperiod: "business-hours"
+    settings:
+      rule: "Sync Hosts from CMDB"
+      apply_changes: true
 
 - name: Disable a director job
   telekom_mms.icinga_director.icinga_job:

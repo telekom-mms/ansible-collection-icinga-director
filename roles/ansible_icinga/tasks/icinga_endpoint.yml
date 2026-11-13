@@ -19,8 +19,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_endpoints }}"
   loop_control:
     loop_var: endpoint
+    label: "{{ endpoint.name }}"
   tags: endpoint
   notify: config_deploy

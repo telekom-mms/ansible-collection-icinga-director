@@ -23,8 +23,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_scheduled_downtimes }}"
   loop_control:
     loop_var: downtime
+    label: "{{ downtime.name }}"
   tags: downtime
   notify: config_deploy

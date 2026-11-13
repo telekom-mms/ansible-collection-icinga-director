@@ -17,8 +17,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_hostgroups }}"
   loop_control:
     loop_var: hostgroup
+    label: "{{ hostgroup.name }}"
   tags: hostgroup
   notify: config_deploy
