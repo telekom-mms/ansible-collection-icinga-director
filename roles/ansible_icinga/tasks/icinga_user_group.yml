@@ -17,8 +17,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_user_groups }}"
   loop_control:
     loop_var: user_group
+    label: "{{ user_group.name }}"
   tags: user_group
   notify: config_deploy

@@ -25,8 +25,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_notifications }}"
   loop_control:
     loop_var: notification
+    label: "{{ notification.name }}"
   tags: notification
   notify: config_deploy

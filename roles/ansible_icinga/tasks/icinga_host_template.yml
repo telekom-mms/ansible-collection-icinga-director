@@ -4,7 +4,7 @@
     client_cert: "{{ icinga_client_cert | default(omit) }}"
     client_key: "{{ icinga_client_key | default(omit) }}"
     force_basic_auth: "{{ icinga_force_basic_auth | default(omit) }}"
-    state: "{{ host.state | default(omit) }}"
+    state: "{{ host_template.state | default(omit) }}"
     url_password: "{{ icinga_pass }}"
     url_username: "{{ icinga_user }}"
     url: "{{ icinga_url }}"
@@ -28,7 +28,7 @@
     event_command: "{{ host_template.event_command | default(omit) }}"
     flapping_threshold_high: "{{ host_template.flapping_threshold_high | default(omit) }}"
     flapping_threshold_low: "{{ host_template.flapping_threshold_low | default(omit) }}"
-    groups: "{{ host_template.address | default(omit) }}"
+    groups: "{{ host_template.groups | default(omit) }}"
     has_agent: "{{ host_template.has_agent | default(omit) }}"
     icon_image_alt: "{{ host_template.icon_image_alt | default(omit) }}"
     icon_image: "{{ host_template.icon_image | default(omit) }}"
@@ -46,8 +46,10 @@
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_host_templates }}"
   loop_control:
     loop_var: host_template
+    label: "{{ host_template.name }}"
   tags: host_template
   notify: config_deploy
