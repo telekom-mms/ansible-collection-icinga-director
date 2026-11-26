@@ -11,7 +11,7 @@
     client_key: "{{ icinga_client_key | default(omit) }}"
     state: "{{ dependency_apply.state | default(omit) }}"
     name: "{{ dependency_apply.name | default(omit) }}"
-    object_name: "{{ dependency_apply.object_name | default(omit) }}"
+    object_name: "{{ dependency_apply.name | default(dependency_apply.object_name) }}"
     imports: "{{ dependency_apply.imports | default(omit) }}"
     apply_to: "{{ dependency_apply.apply_to | default(omit) }}"
     assign_filter: "{{ dependency_apply.assign_filter | default(omit) }}"
@@ -23,13 +23,15 @@
     period: "{{ dependency_apply.period | default(omit) }}"
     zone: "{{ dependency_apply.zone | default(omit) }}"
     states: "{{ dependency_apply.states | default(omit) }}"
-    append: "{{ dependency_template.append | default(omit) }}"
+    append: "{{ dependency_apply.append | default(omit) }}"
   retries: 3
   delay: 3
   register: result
   until: result is succeeded
+  no_log: "{{ icinga_no_log }}"
   loop: "{{ icinga_dependency_applies }}"
   loop_control:
     loop_var: dependency_apply
+    label: "{{ dependency_apply.name | default(dependency_apply.object_name) }}"
   tags: dependency_apply
   notify: config_deploy
