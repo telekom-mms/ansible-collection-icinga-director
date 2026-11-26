@@ -6,6 +6,7 @@ releases:
       bugfixes:
         - add icinga_dependency_* to action_group (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/339)
       trivial:
+        - Update telekom-mms/.github digest to faeb25c (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/343)
         - Update telekom-mms/.github digest to 49a656a (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/342)
         - Update github/codeql-action digest to 33d7b85 (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/338)
         - Update telekom-mms/.github digest to ae26fea (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/337)
